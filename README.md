@@ -22,7 +22,7 @@ Add-Ons
 - Freebie
 - Republic Structure Tweaks
 - Structure Search
-- 
+- Superfish Control Panel
 
 ### Plugins
 
