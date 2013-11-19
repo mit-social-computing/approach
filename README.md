@@ -17,7 +17,12 @@ Add-Ons
 
 ### Extensions
 
+- Stash
 - VL Entry URL
+- Freebie
+- Republic Structure Tweaks
+- Structure Search
+- 
 
 ### Plugins
 
