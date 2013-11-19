@@ -12,8 +12,12 @@ Add-Ons
 - CE Cache
 - Channel Images
 - Assets
+- Wygwam
+- Reelocate
 
 ### Extensions
+
+- VL Entry URL
 
 ### Plugins
 
