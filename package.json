@@ -1,0 +1,29 @@
+{
+  "title": "Another ExpressionEngine Website",
+  "name": "",
+  "homepage": "www.example.com",
+  "author": {
+    "agency": "",
+    "dev": "",
+    "design": ""
+  },
+  "version": "0.0.0-ignored",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt qunit"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-qunit": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-clean": "*",
+    "grunt": "*",
+    "grunt-contrib-compass": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-replace": "*"
+  }
+}
