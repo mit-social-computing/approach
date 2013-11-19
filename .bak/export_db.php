@@ -1,4 +1,5 @@
 <?php
+if (strpos($_SERVER['PHP_SELF'], '/')) exit('Script must be run from .bak directory');
 
 /* 
   Title: export_db.php
