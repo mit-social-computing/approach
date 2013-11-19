@@ -87,6 +87,12 @@ $config['stash_default_scope'] = 'local'; // default variable scope if not speci
 $config['stash_limit_bots'] = TRUE; // stop database writes by bots to reduce load on busy sites
 $config['stash_bots'] = array('bot', 'crawl', 'spider', 'archive', 'search', 'java', 'yahoo', 'teoma');
 
+/*
+ * Republic Theme
+ * -------------------------------------------------------------------------------*/
+$config['cp_theme'] = 'republic';
+$config['use_mobile_control_panel'] = 'n';
+
 // END EE config items
 
 /* 
