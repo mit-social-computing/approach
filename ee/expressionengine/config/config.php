@@ -15,7 +15,7 @@ if( isset( $_SERVER['argc'] ) ) {
 
     $base_url = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http');
     $base_url .= '://'.$_SERVER['HTTP_HOST'].'/';
-    $admin_url  = $base_url . 'admin.php';
+    $admin_url  = $base_url . 'cms.php';
 
     $env = strpos($base_url, 'staging') ? 'staging' : 'production';
     $env = strpos($base_url, 'dev') ? 'local' : $env;
