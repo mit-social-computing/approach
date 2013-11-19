@@ -10,6 +10,8 @@ Add-Ons
 - Zoo Flexible Admin
 - Low Variables
 - CE Cache
+- Channel Images
+- Assets
 
 ### Extensions
 
