@@ -17,15 +17,12 @@ if( isset( $_SERVER['argc'] ) ) {
 
     $env = strpos( $_SERVER['PWD'], 'staging') ? 'staging' : 'production';
     $env = strpos( $_SERVER['PWD'], 'www') ? $env : 'local';
-
     return;
 }
 
 /*
  * Dynamic Configs
  --------------------------------------------------------------------------------*/
-
-$s = 'BASE INSTALL';
 
 $base_url = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http');
 $base_url .= '://'.$_SERVER['HTTP_HOST'].'/';
@@ -42,13 +39,12 @@ $config['doc_url'] = "http://ellislab.com/expressionengine/user-guide/";
 $config['is_system_on'] = "y";
 $config['allow_extensions'] = 'y';
 $config['cookie_prefix'] = '';
-$config['save_tmpl_files'] = 'y';
 
 $config['site_url'] = $base_url;
 $config['cp_url'] = $admin_url;
 $config['webroot'] = FCPATH;
 $config['system_path'] = $config['webroot'] . '../ee';
-$config['site_label'] = 'Base Install';
+$assign_to_config['site_label'] = 'Site Name'; 
 
 $config['theme_folder_url'] = $config['site_url'].'themes/';
 $config['theme_folder_path'] = $config['webroot'].'themes/';
