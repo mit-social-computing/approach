@@ -1,5 +1,3 @@
-.DS_Store
-
 # Images
 images/avatars/
 images/captchas/
@@ -13,3 +11,10 @@ sized/
 thumbs/
 _thumbs/
 */expressionengine/cache/*
+
+# System
+*/expressionengine/config/config.php
+*/expressionengine/config/database.php
+.DS_Store
+*~
+*.swp
