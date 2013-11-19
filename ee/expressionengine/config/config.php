@@ -64,6 +64,12 @@ $config['sig_img_path'] = $config['webroot'].'images/signature_attachments/';
 $config['prv_msg_upload_path'] = $config['webroot'].'images/pm_attachments/';
 
 /*
+ * CE Cache Config
+ * -------------------------------------------------------------------------------*/
+$config['ce_cache_off'] = 'yes'; // turn off for production
+$config['ce_cache_static_enabled'] = 'yes';
+
+/*
 * Low Variables Config
 * -------------------------------------------------------------------------------*/
 $config['low_variables_license_key'] = '';
