@@ -76,6 +76,21 @@ $config['low_variables_license_key'] = '';
 $config['low_variables_save_as_files'] = 'y';
 $config['low_variables_file_path'] = $config['tmpl_file_basepath'].'low/';
 
+/*
+ * Stash Configs
+ * -------------------------------------------------------------------------------*/
+$config['stash_file_basepath'] = $config['tmpl_file_basepath'].'default_site/views/';
+$config['stash_file_sync'] = TRUE; // set to FALSE for production
+$config['stash_file_extensions'] = array('html', 'md', 'css', 'js', 'rss', 'xml');
+$config['stash_static_basepath'] =  $config['webroot'].'stash_cache/';
+$config['stash_static_url'] = $base_url.'static_cache/';
+$config['stash_static_cache_enabled'] = FALSE; // set to TRUE to enable static caching
+$config['stash_cookie'] = 'stashid'; // the stash cookie name
+$config['stash_cookie_expire'] = 0; // seconds - 0 means expire at end of session
+$config['stash_default_scope'] = 'local'; // default variable scope if not specified
+$config['stash_limit_bots'] = TRUE; // stop database writes by bots to reduce load on busy sites
+$config['stash_bots'] = array('bot', 'crawl', 'spider', 'archive', 'search', 'java', 'yahoo', 'teoma');
+
 // END EE config items
 
 /* 
