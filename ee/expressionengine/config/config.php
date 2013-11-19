@@ -22,10 +22,10 @@ if( isset( $_SERVER['argc'] ) ) {
 
     $config['app_version'] = '272';
     $config['install_lock'] = '';
-    $config['license_number'] = 'CORE';
+    $config['license_number'] = "CORE";
     $config['debug'] = '1';
-    $config['doc_url'] = 'http://ellislab.com/expressionengine/user-guide/';
-    $config['is_system_on'] = 'y';
+    $config['doc_url'] = "http://ellislab.com/expressionengine/user-guide/";
+    $config['is_system_on'] = "y";
     $config['allow_extensions'] = 'y';
     $config['cookie_prefix'] = '';
     $config['save_tmpl_files'] = 'y';
@@ -56,7 +56,7 @@ if( isset( $_SERVER['argc'] ) ) {
      ------------------------------------------------------------------*/
 
     $config['base_url'] = $config['site_url'];
-    $config['index_page'] = '';
+    $config['index_page'] = "";
     $config['uri_protocol']	= 'AUTO';
     $config['url_suffix'] = '';
     $config['language']	= 'english';
