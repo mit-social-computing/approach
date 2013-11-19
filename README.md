@@ -34,3 +34,6 @@ Add-Ons
 
 - Field Pack
 
+### Themes
+
+- Republic Control Panel Theme
