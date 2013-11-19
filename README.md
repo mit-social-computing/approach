@@ -1,0 +1,4 @@
+ee
+==
+
+Default EE Install
