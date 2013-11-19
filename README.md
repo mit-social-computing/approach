@@ -27,5 +27,10 @@ Add-Ons
 ### Plugins
 
 - CE String
+- Switchee
+- IfElse
 
+### Fieldtypes
+
+- Field Pack
 
