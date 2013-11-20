@@ -19,6 +19,8 @@ echo 'Setting full permissions on EE Cache'
 chmod 777 ee/expressionengine/cache
 echo 'Setting full permissions images folder and all sub folders'
 chmod -R 777 webroot/images
+echo 'Setting permissions on templates'
+chmod -R 660 webroot/assets/templates
 echo 'Finding apache group...'
 APACHE=$(ps axho user,comm|grep -E "httpd|apache"|uniq|grep -v "root"|awk 'END {if ($1) print $1}' | xargs groups | awk 'END {if ($1) print $1}')
 echo "Apache gruop is $APACHE."
