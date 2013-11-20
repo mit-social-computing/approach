@@ -1,9 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-$db['local']['hostname'] = '127.0.0.1';
-$db['local']['username'] = 'root';   
-$db['local']['password'] = 'root'; 
-$db['local']['database'] = 'base';   
+$db['dev']['hostname'] = '127.0.0.1';
+$db['dev']['username'] = 'root';   
+$db['dev']['password'] = 'root'; 
+$db['dev']['database'] = 'base';   
 $db['staging']['hostname'] = 'STAGINGHOST';
 $db['staging']['username'] = 'STAGINGUSER';   
 $db['staging']['password'] = 'STAGINGPASS'; 
@@ -13,12 +13,7 @@ $db['production']['username'] = 'PRODUCTIONUSER';
 $db['production']['password'] = 'PRODUCTIONPASS';
 $db['production']['database'] = 'PRODUCTIONDB';
 
-if( isset( $_SERVER['argc'] ) ) {
-
-    $env = strpos( $_SERVER['PWD'], 'staging') ? 'staging' : 'production';
-    $env = strpos( $_SERVER['PWD'], 'www') ? $env : 'local';
-    return;
-}
+if( $_SERVER['argc'] != 0 ) { return; }
 
 /*
  * Dynamic Configs
@@ -28,8 +23,13 @@ $base_url = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' :
 $base_url .= '://'.$_SERVER['HTTP_HOST'].'/';
 $admin_url  = $base_url . 'cms.php';
 
-$env = strpos($base_url, 'staging') ? 'staging' : 'production';
-$env = strpos($base_url, 'dev') ? 'local' : $env;
+if ( strpos($base_url, 'dev') || $_SERVER['HTTP_HOST'] == '54.235.162.173') {
+    $env = 'dev';
+} else if ( strpos($base_url, 'staging') ) {
+    $env = 'staging';
+} else {
+    $env = 'production';
+}
 
 $config['app_version'] = '272';
 $config['install_lock'] = '';
