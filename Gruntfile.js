@@ -12,6 +12,13 @@ module.exports = function(grunt) {
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.dev %>;' +
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
+    jsSrc : '<%= pkg.assetsPath %>js/src/',
+    jsBuild : '<%= pkg.assetsPath %>js/build/<%= pkg.name %>.js',
+    jsMin : '<%= pkg.assetsPath %>js/build/<%= pkg.name %>.min.js',
+    sass : '<%= pkg.assetsPath %>css/sass/*',
+    css : '<%= pkg.assetsPath %>css/app.css',
+    templates : '<%= pkg.assetsPath %>templates/**/*',
+    markup : '<%= pkg.assetsPath %>markup/**/*.html',
 
     replace : {
       build_replace : {
@@ -24,14 +31,8 @@ module.exports = function(grunt) {
           {
             flatten : true,
             expand : true,
-            src: ['build/html/header.html'],
-            dest: 'templates/default_site/includes.group/'
-          },
-          {
-            flatten : true,
-            expand : true,
-            src: ['build/js/init.js'],
-            dest: 'js/'
+            src: ['<%= pkg.assetsPath %>build/header.html', '<%= pkg.assetsPath %>build/footer.html'],
+            dest: '<%= pkg.assetsPath %>templates/default_site/views/partials/'
           }
         ]
       }
@@ -43,8 +44,8 @@ module.exports = function(grunt) {
         stripBanners: true
       },
       dist: {
-        src: ['src/<%= pkg.name %>.js'],
-        dest: 'build/<%= pkg.name %>.js'
+        src: ['<%= jsSrc %>'],
+        dest: '<%= jsBuild %>'
       },
     },
 
@@ -54,31 +55,16 @@ module.exports = function(grunt) {
       },
       dist: {
         src: '<%= concat.dist.dest %>',
-        dest: 'build/<%= pkg.name %>.min.js'
+        dest: '<%= jsMin %>'
       },
     },
 
     qunit: {
         all : {
             options : {
-                urls : ['http://pa.local/testing/index.html']
+                urls : ['']
             }
         }
-    },
-
-    jshint: {
-      gruntfile: {
-        options: {
-          jshintrc: '.jshintrc'
-        },
-        src: 'Gruntfile.js'
-      },
-      src: {
-        options: {
-          jshintrc: 'js/.jshintrc'
-        },
-        src: ['js/app/**/*.js', 'js/app.js', 'js/utils/**/*.js']
-      }
     },
 
     compass : {
@@ -89,34 +75,49 @@ module.exports = function(grunt) {
 
     copy: {
         dev : {
-            //files : [{ expand: true, src: ['src/js/**/*.js'], dest: 'build/js/', flatten: true }]
+            files : [{
+                expand : true,
+                cwd : '<%= jsSrc %>',
+                src: ['**/*.js'],
+                dest: '<%= pkg.assetsPath %>js/build/'
+            }]
         }
     },
 
     watch: {
-      options : {
-        livereload: true
-      },
-      test : {
-          files : ['testing/js/**/*'],
-          tasks : ['jshint:src', 'qunit']
-      },
-      gruntfile: {
-        files: '<%= jshint.gruntfile.src %>',
-        tasks: ['jshint:gruntfile']
-      },
-      src: {
-        files: '<%= jshint.src.src %>',
-        tasks: ['jshint:src', 'qunit']
-      },
-      dev: {
-        files: ['testing/js/tests/**/*','js/**/*', 'css/sass/**/*', 'templates/**/*', 'assets/html/**/*'],
-        tasks : ['jshint:src', 'qunit', 'compass']
-      },
-      sass : {
-        files : ['css/sass/**/*'],
-        tasks : ['compass']
-      }
+        sass : {
+            files : ['<%= sass %>'],
+            tasks : ['compass']
+        },
+        hashed : {
+            files : [
+                '<%= pkg.assetsPath %>build/header.html'
+                , '<%= pkg.assetsPath %>build/footer.html'
+            ],
+            tasks : ['replace']
+        },
+        markup : {
+            files : ['<%= markup %>'],
+            options : { livereload : true }
+        },
+        jsCopy : {
+            files : ['<%= jsSrc %>/*'],
+            tasks : ['copy:dev'],
+            options : {
+                spawn : false,
+                interrupt : true
+            }
+        },
+        reload : {
+            files : [
+                '<%= templates %>'
+                , '!<%= pkg.assetsPath %>templates/**/header.html'
+                , '!<%= pkg.assetsPath %>templates/**/footer.html'
+                , '<%= jsBuild %>'
+                , '<%= css %>'
+            ],
+            options : { livereload : true }
+        },
     },
 
     clean: {
@@ -126,7 +127,6 @@ module.exports = function(grunt) {
   });
 
   // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -137,7 +137,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-replace');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
-  grunt.registerTask('refresh', ['clean', 'compass', 'jshint:src', 'copy:dev']);
 
 };

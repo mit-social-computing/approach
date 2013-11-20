@@ -14,6 +14,7 @@
   "scripts": {
     "test": "grunt qunit"
   },
+  "assetsPath" : "webroot/assets/",
   "devDependencies": {
     "grunt-contrib-jshint": "*",
     "grunt-contrib-qunit": "*",
