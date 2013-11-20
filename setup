@@ -5,7 +5,11 @@ git rm --cached ee/expressionengine/database.php
 echo 'Ignoring Config and Database'
 sed -i '' -e '$a\
     *\/expressionengine\/config\/config.php\
-    *\/expressionengine\/config\/database.php' .gitignore
+    *\/expressionengine\/config\/database.php\
+    \
+    #Images\
+    \
+    *\/images\/\' .gitignore
 echo 'Setting permissions on config file'
 chmod 666 ee/expressionengine/config.php
 echo 'Creating EE Cache'
