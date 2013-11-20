@@ -1,8 +1,8 @@
 #! /bin/sh
 echo 'Removing Config and Database from Git'
-`git rm --cached ee/expressionengine/config.php `
-`git rm --cached ee/expressionengine/database.php `
-`git rm --cached webroot/images`
+git rm --cached ee/expressionengine/config/config.php 
+git rm --cached ee/expressionengine/config/database.php 
+git rm -r --cached webroot/images
 echo 'Ignoring Config and Database'
 sed -i '' -e '$a\
     *\/expressionengine\/config\/config.php\
