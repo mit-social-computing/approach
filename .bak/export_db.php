@@ -1,5 +1,5 @@
 <?php
-if (strpos($_SERVER['PHP_SELF'], '/')) exit('Script must be run from .bak directory');
+if ( strpos($_SERVER['PHP_SELF'], '/') ) exit('Script must be run from .bak directory');
 if ( !isset($_SERVER['argv'][1]) ) exit("Must specify an environment.\nOne of \"d s p\".");
 
 switch($_SERVER['argv'][1]) {

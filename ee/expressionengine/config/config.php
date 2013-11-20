@@ -13,7 +13,7 @@ $db['production']['username'] = 'PRODUCTIONUSER';
 $db['production']['password'] = 'PRODUCTIONPASS';
 $db['production']['database'] = 'PRODUCTIONDB';
 
-if( $_SERVER['argc'] != 0 ) { return; }
+if( php_sapi_name() == 'cli' ) return;
 
 /*
  * Dynamic Configs
