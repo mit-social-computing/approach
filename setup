@@ -1,0 +1,20 @@
+#! /bin/sh
+echo 'Removing Config and Database from Git'
+git rm --cached ee/expressionengine/config.php 
+git rm --cached ee/expressionengine/database.php 
+echo 'Setting permissions on config file'
+chmod 666 ee/expressionengine/config.php
+echo 'Creating EE Cache'
+mkdir ee/expressionengine/cache
+echo 'Setting full permissions on EE Cache'
+chmod 777 ee/expressionengine/cache
+echo 'Setting full permissions images folder and all sub folders'
+chmod -R 777 webroot/images
+echo 'Finding apache group...'
+APACHE=$(ps axho user,comm|grep -E "httpd|apache"|uniq|grep -v "root"|awk 'END {if ($1) print $1}' | xargs groups | awk 'END {if ($1) print $1}')
+echo "Apache gruop is $APACHE."
+echo "Granting permissions to Apache."
+chgrp -R $APACHE .
+echo "Cleaning up..."
+git remote rm origin
+echo "Done."
