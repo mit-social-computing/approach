@@ -1,8 +1,8 @@
 #! /bin/sh
 echo 'Removing Config and Database from Git'
-git rm --cached ee/expressionengine/config/config.php 
-git rm --cached ee/expressionengine/config/database.php 
-git rm -r --cached webroot/images
+git rm --cached ee/expressionengine/config/config.php &> /dev/null
+git rm --cached ee/expressionengine/config/database.php &> /dev/null
+git rm -r --cached webroot/images &> /dev/null
 echo 'Ignoring Config and Database'
 sed -i '' -e '$a\
     *\/expressionengine\/config\/config.php\
@@ -12,7 +12,7 @@ sed -i '' -e '$a\
     \
     *\/images\/\' .gitignore
 echo 'Setting permissions on config file'
-chmod 666 ee/expressionengine/config.php
+chmod 666 ee/expressionengine/config/config.php
 echo 'Creating EE Cache'
 mkdir ee/expressionengine/cache
 echo 'Setting full permissions on EE Cache'
