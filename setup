@@ -22,8 +22,8 @@ chmod -R 777 webroot/images
 echo 'Setting permissions on templates'
 chmod -R 660 webroot/assets/templates
 echo 'Finding apache group...'
-APACHE=$(ps axho user,comm|grep -E "httpd|apache"|uniq|grep -v "root"|awk 'END {if ($1) print $1}' | xargs groups | awk 'END {if ($1) print $1}')
-echo "Apache gruop is $APACHE."
+APACHE=$(ps axho user,comm|grep -E "httpd|apache"|uniq|grep -v "root"|awk 'END {if ($1) print $1}' | xargs groups | awk 'END {if ($2 == ":") { print $3 } else { print $1 }}')
+echo "Apache group is $APACHE."
 echo "Granting permissions to Apache."
 chgrp -R $APACHE .
 echo "Cleaning up..."
