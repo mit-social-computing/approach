@@ -58,7 +58,7 @@ echo "Updating DB Scripts."
 update_db_scripts ./.bak/export
 update_db_scripts ./.bak/import
 echo "Updating Config File."
-sed -i '' -e "s/_devdb/$devdb/g" -e "s/_stagingdb/$stagingdb/g" -e "s/_staginguser/$stagingdbuser/g" -e "s/_stagingpass/$stagingdbpass/g" -e "s/_productiondb/$productiondb/g" -e "s/_productionuser/$productiondbuser/g" -e "s/_productionpass/$productiondbpass/g" cfg.php
+sed -i '' -e "s/_devdb/$devdb/g" -e "s/_stagingdb/$stagingdb/g" -e "s/_staginguser/$stagingdbuser/g" -e "s/_stagingpass/$stagingdbpass/g" -e "s/_productiondb/$productiondb/g" -e "s/_productionuser/$productiondbuser/g" -e "s/_productionpass/$productiondbpass/g" ee/expressionengine/config/config.php
 
 echo "Creating Local DB"
 mysql -uroot -proot -e "create database $devdb;"
