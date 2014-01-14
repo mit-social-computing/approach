@@ -41,7 +41,7 @@ echo 'Finding apache group...'
 APACHE=$(ps axho user,comm|grep -E "httpd|apache"|uniq|grep -v "root"|awk 'END {if ($1) print $1}' | xargs groups | awk 'END {if ($2 == ":") { print $3 } else { print $1 }}')
 echo "Apache group is $APACHE."
 echo "Granting permissions to Apache."
-chgrp -R $APACHE .
+sudo chgrp -R $APACHE .
 echo "Setting up DB Scripts."
 echo "Local Settings:"
 read -e -p "    Enter the local url: " $localurl
