@@ -1,18 +1,7 @@
 #! /bin/sh
 
 update_db_scripts(){
-    sed -i ""
-    -e "/_localurl/$localurl/"
-    -e "/_localpath/$localpath/"
-    -e "/_developmenthost/$devhost/"
-    -e "/_developmentremoteurl/$devurl/"
-    -e "/_developmentremotepath/$devpath/"
-    -e "/_staginghost/$staginghost/"
-    -e "/_stagingremoteurl/$stagingurl/"
-    -e "/_stagingremotepath/$stagingpath/"
-    -e "/_productionhost/$productionhost/"
-    -e "/_productionremoteurl/$productionurl/"
-    -e "/_productionremotepath/$productionpath/" $1
+    sed -i "" -e "/_localurl/$localurl/" -e "/_localpath/$localpath/" -e "/_developmenthost/$devhost/" -e "/_developmentremoteurl/$devurl/" -e "/_developmentremotepath/$devpath/" -e "/_staginghost/$staginghost/" -e "/_stagingremoteurl/$stagingurl/" -e "/_stagingremotepath/$stagingpath/" -e "/_productionhost/$productionhost/" -e "/_productionremoteurl/$productionurl/" -e "/_productionremotepath/$productionpath/" $1
 }
 
 echo 'Removing Config and Database from Git'
@@ -44,42 +33,35 @@ echo "Granting permissions to Apache."
 sudo chgrp -R $APACHE .
 echo "Setting up DB Scripts."
 echo "Local Settings:"
-read -e -p "    Enter the local url: " $localurl
-read -e -p "    Enter the local path: " $localpath
+read -e -p "    Enter the local url: " localurl
+read -e -p "    Enter the local path: " localpath
 echo "Dev Server Settings:"
-read -e -p "    Enter SSH Dev Hostname: " $devhost
-read -e -p "    Enter Dev URL: " $devurl
-read -e -p "    Enter Dev Path: " $devpath
-read -e -p "    Enter Dev Database Name: " $devdb
+read -e -p "    Enter SSH Dev Hostname: " devhost
+read -e -p "    Enter Dev URL: " devurl
+read -e -p "    Enter Dev Path: " devpath
+read -e -p "    Enter Dev Database Name: " devdb
 echo "Staging Server Settings:"
-read -e -p "    Enter SSH Staging Hostname: " $staginghost
-read -e -p "    Enter Staging URL: " $stagingurl
-read -e -p "    Enter Staging Path: " $stagingpath
-read -e -p "    Enter Staging Database Name: " $stagingdb
-read -e -p "    Enter Staging Database User: " $stagingdbuser
-read -e -p "    Enter Staging Database Pass: " $stagingdbpass
+read -e -p "    Enter SSH Staging Hostname: " staginghost
+read -e -p "    Enter Staging URL: " stagingurl
+read -e -p "    Enter Staging Path: " stagingpath
+read -e -p "    Enter Staging Database Name: " stagingdb
+read -e -p "    Enter Staging Database User: " stagingdbuser
+read -e -p "    Enter Staging Database Pass: " stagingdbpass
 echo "Production Server Settings:"
-read -e -p "    Enter SSH Dev Hostname: " $productionhost
-read -e -p "    Enter Production URL: " $productionurl
-read -e -p "    Enter Production Path: " $productionpath
-read -e -p "    Enter Production Database Name: " $productiondb
-read -e -p "    Enter Production Database User: " $productiondbuser
-read -e -p "    Enter Production Database Pass: " $productiondbpass
+read -e -p "    Enter SSH Dev Hostname: " productionhost
+read -e -p "    Enter Production URL: " productionurl
+read -e -p "    Enter Production Path: " productionpath
+read -e -p "    Enter Production Database Name: " productiondb
+read -e -p "    Enter Production Database User: " productiondbuser
+read -e -p "    Enter Production Database Pass: " productiondbpass
 echo "Updating DB Scripts."
 update_db_scripts ./bak/export
 update_db_scripts ./bak/import
 echo "Updating Config File."
-sed -i ''
-    -e "/_devdb/$devdb/"
-    -e "/_stagingdb/$stagingdb/"
-    -e "/_staginguser/$stagingdbuser/"
-    -e "/_stagingpass/$stagingdbpass/"
-    -e "/_productiondb/$productiondb/"
-    -e "/_productionuser/$productiondbuser/"
-    -e "/_productionpass/$productiondbpass/" cfg.php
+sed -i '' -e "/_devdb/$devdb/" -e "/_stagingdb/$stagingdb/" -e "/_staginguser/$stagingdbuser/" -e "/_stagingpass/$stagingdbpass/" -e "/_productiondb/$productiondb/" -e "/_productionuser/$productiondbuser/" -e "/_productionpass/$productiondbpass/" cfg.php
 
 echo "Creating Local DB"
-mysql -uroot -proot -e "create database $devdb"
+mysql -uroot -proot -e "create database $devdb;"
 mysql -uroot -proot $devdb < .bak/sql/db_dump.sql
     
 echo "Cleaning up..."
