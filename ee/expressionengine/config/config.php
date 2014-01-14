@@ -3,15 +3,15 @@
 $db['dev']['hostname'] = '127.0.0.1';
 $db['dev']['username'] = 'root';   
 $db['dev']['password'] = 'root'; 
-$db['dev']['database'] = 'base';   
-$db['staging']['hostname'] = 'STAGINGHOST';
-$db['staging']['username'] = 'STAGINGUSER';   
-$db['staging']['password'] = 'STAGINGPASS'; 
-$db['staging']['database'] = 'STAGINGDB';   
-$db['production']['hostname'] = 'PRODUCTIONHOST';
-$db['production']['username'] = 'PRODUCTIONUSER';
-$db['production']['password'] = 'PRODUCTIONPASS';
-$db['production']['database'] = 'PRODUCTIONDB';
+$db['dev']['database'] = '_devdb';   
+$db['staging']['hostname'] = '127.0.0.1';
+$db['staging']['username'] = '_staginguser';   
+$db['staging']['password'] = '_stagingpass'; 
+$db['staging']['database'] = '_stagingdb';   
+$db['production']['hostname'] = '127.0.0.1';
+$db['production']['username'] = '_productionuser';
+$db['production']['password'] = '_productionpass';
+$db['production']['database'] = '_productiondb';
 
 if( php_sapi_name() == 'cli' ) return;
 
