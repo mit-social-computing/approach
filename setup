@@ -1,7 +1,7 @@
 #! /bin/sh
 
 update_db_scripts(){
-    sed -i "" -e "/_localurl/$localurl/" -e "/_localpath/$localpath/" -e "/_developmenthost/$devhost/" -e "/_developmentremoteurl/$devurl/" -e "/_developmentremotepath/$devpath/" -e "/_staginghost/$staginghost/" -e "/_stagingremoteurl/$stagingurl/" -e "/_stagingremotepath/$stagingpath/" -e "/_productionhost/$productionhost/" -e "/_productionremoteurl/$productionurl/" -e "/_productionremotepath/$productionpath/" $1
+    sed -i "" -e "s+_localurl+$localurl+g" -e "s+_localpath+$localpath+g" -e "s+_developmenthost+$devhost+g" -e "s+_developmentremoteurl+$devurl+g" -e "s+_developmentremotepath+$devpath+g" -e "s+_staginghost+$staginghost+g" -e "s+_stagingremoteurl+$stagingurl+g" -e "s+_stagingremotepath+$stagingpath+g" -e "s+_productionhost+$productionhost+g" -e "s+_productionremoteurl+$productionurl+g" -e "s+_productionremotepath+$productionpath+g" $1
 }
 
 echo 'Removing Config and Database from Git'
@@ -58,7 +58,7 @@ echo "Updating DB Scripts."
 update_db_scripts ./bak/export
 update_db_scripts ./bak/import
 echo "Updating Config File."
-sed -i '' -e "/_devdb/$devdb/" -e "/_stagingdb/$stagingdb/" -e "/_staginguser/$stagingdbuser/" -e "/_stagingpass/$stagingdbpass/" -e "/_productiondb/$productiondb/" -e "/_productionuser/$productiondbuser/" -e "/_productionpass/$productiondbpass/" cfg.php
+sed -i '' -e "s/_devdb/$devdb/g" -e "s/_stagingdb/$stagingdb/g" -e "s/_staginguser/$stagingdbuser/g" -e "s/_stagingpass/$stagingdbpass/g" -e "s/_productiondb/$productiondb/g" -e "s/_productionuser/$productiondbuser/g" -e "s/_productionpass/$productiondbpass/g" cfg.php
 
 echo "Creating Local DB"
 mysql -uroot -proot -e "create database $devdb;"
