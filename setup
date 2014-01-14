@@ -15,7 +15,7 @@ sed -i '' -e '$a\
     \
     #Images\
     \
-    *\/images\/\' .gitignore
+    webroot\/images\/\' .gitignore
 echo 'Setting permissions on config file'
 chmod 666 ee/expressionengine/config/config.php
 echo 'Creating EE Cache'
