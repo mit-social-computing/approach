@@ -5,7 +5,7 @@ read_cfg(){
 }
 
 if [ -z $1 ]; then
-    echo "Must use command line arguments."
+    echo "Must specify source environment."
     echo "One of 'd' for development, 's' for staging, 'p' for production."
     exit 
 elif [ $1 == 's' -o $1 == 'p' ]; then
