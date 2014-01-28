@@ -17,6 +17,7 @@ elif [ $1 == 's' -o $1 == 'p' -o $1 == 'd' ]; then
         HOST='_developmenthost'
         REMOTEURL='_developmentremoteurl'
         REMOTEPATH='_developmentremotepath'
+        echo 'Reading Config File for values'
         REMOTEDB=$(read_cfg dev database)
         REMOTEDBPASS=$(read_cfg dev password)
         REMOTEDBUSER=$(read_cfg dev username)
@@ -25,6 +26,7 @@ elif [ $1 == 's' -o $1 == 'p' -o $1 == 'd' ]; then
         HOST='_staginghost'
         REMOTEURL='_stagingremoteurl'
         REMOTEPATH='_stagingremotepath'
+        echo 'Reading Config File for values'
         REMOTEDB=$(read_cfg staging database)
         REMOTEDBPASS=$(read_cfg staging password)
         REMOTEDBUSER=$(read_cfg staging username)
@@ -33,9 +35,11 @@ elif [ $1 == 's' -o $1 == 'p' -o $1 == 'd' ]; then
         HOST='_productionhost'
         REMOTEURL='_productionremoteurl'
         REMOTEPATH='_productionremotepath'
+        echo 'Reading Config File for values'
         REMOTEDB=$(read_cfg production database)
         REMOTEDBPASS=$(read_cfg production password)
         REMOTEDBUSER=$(read_cfg production username)
     fi
+    echo 'Issuing Command'
     mysqldump -uroot -proot $LOCALDB | sed -e "s+$LOCALPATH+$REMOTEPATH+g" -e "s+$LOCALURL+$REMOTEURL+g" | gzip -9 | ssh $HOST "gzip -d | mysql -u$REMOTEDBUSER -p$REMOTEDBPASS $REMOTEDB"
 fi

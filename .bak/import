@@ -12,11 +12,13 @@ elif [ $1 == 's' -o $1 == 'p' ]; then
     LOCALURL='_localurl'
     LOCALPATH='_localpath'
     LOCALDB=$(read_cfg dev database)
+    mysql -uroot -proot -e "create database if not exists $LOCALDB;"
     if [ $1 == 'd' ]; then
         echo 'Connecting to Development DB'
         HOST='_developmenthost'
         REMOTEURL='_developmentremoteurl'
         REMOTEPATH='_developmentremotepath'
+        echo 'Reading Config File for values'
         REMOTEDB=$(read_cfg dev database)
         REMOTEDBPASS=$(read_cfg dev password)
         REMOTEDBUSER=$(read_cfg dev username)
@@ -25,6 +27,7 @@ elif [ $1 == 's' -o $1 == 'p' ]; then
         HOST='_staginghost'
         REMOTEURL='_stagingremoteurl'
         REMOTEPATH='_stagingremotepath'
+        echo 'Reading Config File for values'
         REMOTEDB=$(read_cfg staging database)
         REMOTEDBPASS=$(read_cfg staging password)
         REMOTEDBUSER=$(read_cfg staging username)
@@ -33,9 +36,11 @@ elif [ $1 == 's' -o $1 == 'p' ]; then
         HOST='_productionhost'
         REMOTEURL='_productionremoteurl'
         REMOTEPATH='_productionremotepath'
+        echo 'Reading Config File for values'
         REMOTEDB=$(read_cfg production database)
         REMOTEDBPASS=$(read_cfg production password)
         REMOTEDBUSER=$(read_cfg production username)
     fi
+    echo 'Issuing Command'
     ssh $HOST "mysqldump -u$REMOTEDBUSER -p$REMOTEDBPASS $REMOTEDB | gzip -9" | gzip -d | sed -e "s+$REMOTEPATH+$LOCALPATH+g" -e "s+$REMOTEURL+$LOCALURL+g" | mysql -uroot -proot $LOCALDB
 fi
