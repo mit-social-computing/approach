@@ -12,27 +12,60 @@ elif [ $1 == 's' -o $1 == 'p' ]; then
     LOCALURL='_localurl'
     LOCALPATH='_localpath'
     LOCALDB=$(read_cfg dev database)
+    echo "Getting local values"
+    echo
+    echo "Local Url: $LOCALURL"
+    echo "Local Path: $LOCALPATH"
+    echo "Local DB: $LOCALDB"
+    echo
+    echo "Creating Local DB if it doesn't exist..."
     mysql -uroot -proot -e "create database if not exists $LOCALDB;"
     if [ $1 == 'd' ]; then
         echo 'Connecting to Development DB'
         HOST='_developmenthost'
         REMOTEURL='_developmentremoteurl'
         REMOTEPATH='_developmentremotepath'
+        echo
+        echo "Host: $HOST"
+        echo "Remote URL: $REMOTEURL"
+        echo "Remote Path: $REMOTEPATH"
+        echo
         echo 'Reading Config File for values'
+        echo
         REMOTEDB=$(read_cfg dev database)
         REMOTEDBPASS=$(read_cfg dev password)
         REMOTEDBUSER=$(read_cfg dev username)
+        echo "Remote DB: $REMOTEDB"
+        echo "Remote DB password: $REMOTEDBPASS"
+        echo "Remote DB user: $REMOTEDBUSER"
+        echo
     elif [ $1 == 's' ]; then
         echo 'Connecting to Staging DB'
         HOST='_staginghost'
         REMOTEURL='_stagingremoteurl'
         REMOTEPATH='_stagingremotepath'
+        echo
+        echo "Host: $HOST"
+        echo "Remote URL: $REMOTEURL"
+        echo "Remote Path: $REMOTEPATH"
+        echo
         echo 'Reading Config File for values'
+        echo
         REMOTEDB=$(read_cfg staging database)
         REMOTEDBPASS=$(read_cfg staging password)
         REMOTEDBUSER=$(read_cfg staging username)
+        echo "Remote DB: $REMOTEDB"
+        echo "Remote DB password: $REMOTEDBPASS"
+        echo "Remote DB user: $REMOTEDBUSER"
+        echo
     else
-        echo 'Connecting to Production DB'
+        echo
+        echo "Host: $HOST"
+        echo "Remote URL: $REMOTEURL"
+        echo "Remote Path: $REMOTEPATH"
+        echo
+        echo 'Reading Config File for values'
+        echo
         HOST='_productionhost'
         REMOTEURL='_productionremoteurl'
         REMOTEPATH='_productionremotepath'
@@ -40,6 +73,10 @@ elif [ $1 == 's' -o $1 == 'p' ]; then
         REMOTEDB=$(read_cfg production database)
         REMOTEDBPASS=$(read_cfg production password)
         REMOTEDBUSER=$(read_cfg production username)
+        echo "Remote DB: $REMOTEDB"
+        echo "Remote DB password: $REMOTEDBPASS"
+        echo "Remote DB user: $REMOTEDBUSER"
+        echo
     fi
     echo 'Issuing Command'
     ssh $HOST "mysqldump -u$REMOTEDBUSER -p$REMOTEDBPASS $REMOTEDB | gzip -9" | gzip -d | sed -e "s+$REMOTEPATH+$LOCALPATH+g" -e "s+$REMOTEURL+$LOCALURL+g" | mysql -uroot -proot $LOCALDB
