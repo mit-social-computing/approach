@@ -19,7 +19,7 @@ $env = 'dev';
  * EE Configs
  ------------------------------------------------------------------------------*/
 
-$config['app_version'] = '272';
+$config['app_version'] = "281";
 $config['install_lock'] = '';
 $config['license_number'] = "CORE";
 $config['debug'] = '1';
@@ -87,8 +87,10 @@ $config['stash_bots'] = array('bot', 'crawl', 'spider', 'archive', 'search', 'ja
  * -------------------------------------------------------------------------------*/
 $config['cp_theme'] = 'republic';
 $config['use_mobile_control_panel'] = 'y';
+$config['cookie_httponly'] = "y";
 
 // END EE config items
+
 
 /* 
  * CodeIgniter Configuration
