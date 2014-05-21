@@ -10,3 +10,9 @@ _thumbs/
 *~
 *.swp
 .sass-cache
+*/expressionengine/config/config.php
+*/expressionengine/config/database.php
+
+#Images
+
+webroot/images/
