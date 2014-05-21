@@ -13,23 +13,11 @@ $db['production']['username'] = '_productionuser';
 $db['production']['password'] = '_productionpass';
 $db['production']['database'] = '_productiondb';
 
-if( php_sapi_name() == 'cli' ) return;
+$env = 'dev';
 
 /*
- * Dynamic Configs
- --------------------------------------------------------------------------------*/
-
-$base_url = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http');
-$base_url .= '://'.$_SERVER['HTTP_HOST'].'/';
-$admin_url  = $base_url . 'cms.php';
-
-if ( strpos($base_url, 'dev') || $_SERVER['HTTP_HOST'] == '54.235.162.173') {
-    $env = 'dev';
-} else if ( strpos($base_url, 'staging') ) {
-    $env = 'staging';
-} else {
-    $env = 'production';
-}
+ * EE Configs
+ ------------------------------------------------------------------------------*/
 
 $config['app_version'] = '272';
 $config['install_lock'] = '';
@@ -40,11 +28,18 @@ $config['is_system_on'] = "y";
 $config['allow_extensions'] = 'y';
 $config['cookie_prefix'] = '';
 
+/*
+ * Dynamic Configs
+ --------------------------------------------------------------------------------*/
+
+$base_url = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http');
+$base_url .= '://'.$_SERVER['HTTP_HOST'].'/';
+$admin_url  = $base_url . 'cms.php';
+
 $config['site_url'] = $base_url;
 $config['cp_url'] = $admin_url;
 $config['webroot'] = FCPATH;
 $config['system_path'] = $config['webroot'] . '../ee';
-$assign_to_config['site_label'] = 'Site Name'; 
 
 $config['theme_folder_url'] = $config['site_url'].'themes/';
 $config['theme_folder_path'] = $config['webroot'].'themes/';
@@ -91,7 +86,7 @@ $config['stash_bots'] = array('bot', 'crawl', 'spider', 'archive', 'search', 'ja
  * Republic Theme
  * -------------------------------------------------------------------------------*/
 $config['cp_theme'] = 'republic';
-$config['use_mobile_control_panel'] = 'n';
+$config['use_mobile_control_panel'] = 'y';
 
 // END EE config items
 
