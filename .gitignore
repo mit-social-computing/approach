@@ -5,6 +5,9 @@ _thumbs/
 */expressionengine/cache/*
 */static/cache/*
 
+# Dependencies
+node_modules/
+
 # System
 .DS_Store
 *~
