@@ -14,7 +14,7 @@
   "scripts": {
     "test": "grunt qunit"
   },
-  "assetsPath" : "webroot/assets/",
+  "assetsPath": "webroot/assets/",
   "devDependencies": {
     "grunt-contrib-jshint": "*",
     "grunt-contrib-qunit": "*",
@@ -25,6 +25,9 @@
     "grunt": "*",
     "grunt-contrib-compass": "*",
     "grunt-contrib-copy": "*",
-    "grunt-replace": "*"
+    "grunt-replace": "*",
+    "karma": "^0.12.16",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-jasmine": "^0.1.5"
   }
 }
