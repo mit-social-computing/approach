@@ -15,7 +15,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'webroot/tests/js/**/*Spec.js'
+      'webroot/assets/build/**/*.js',
+      'webroot/tests/js/**/*spec.js'
     ],
 
 

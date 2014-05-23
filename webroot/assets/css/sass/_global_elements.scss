@@ -1,0 +1,44 @@
+.main-header {
+    text-align: center;
+    font-family: kim;
+}
+
+.logo {
+    font-family: kim;
+    font-size: rem-calc(35);
+    margin: 0;
+    letter-spacing: 2.1px;
+
+    span {
+        @include transition(color 2000ms ease);
+    }
+}
+
+.main-menu {
+    padding: 0;
+    margin: 0;
+    max-width: 670px;
+    margin: 0 auto;
+    list-style-type: none;
+    @include flexbox;
+    @include justify-content(space-between);
+    @extend .antialiased;
+
+    li {
+        font-size: rem-calc(23);
+        letter-spacing: 2.1px;
+    }
+
+    a {
+        color: $purple;
+        border: none;
+
+        &.active {
+            color: $selected;
+        }
+
+        &:hover {
+            color: $pink;
+        }
+    }
+}

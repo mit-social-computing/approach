@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+        </style>
+    </head>
+    <body>
+        <div class="not-svg">
+</div>
+        <div class="container">
+            <svg version="1.1"
+                 viewBox="0 0 500 500"
+                 width="500"
+                 height="500"
+                 id="svg"
+                 baseProfile="full"
+                 xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                 xmlns:ev="http://www.w3.org/2001/xml-events">
+
+                 <defs>
+                    <linearGradient id="linear" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop id="start" offset="0%" stop-color="hsl(200, 40%, 60%)"/>
+                        <stop id="middle" offset="50%" stop-color="hsl(10, 65%, 40%)"/>
+                        <stop id="end" offset="100%" stop-color="hsl(150, 40%, 80%)"/>
+                    </linearGradient>
+
+                    <radialGradient id="radial" cx="50%" cy="50%">
+                        <stop id="radialStart" offset="0%" stop-color="hsl(200, 67%, 30%)"/>
+                        <stop id="radialStop" offset="100%" stop-color="hsl(100, 45%, 40%)"/>
+                    </linearGradient>
+                </defs>
+
+            </svg>
+        </div>
+        <script>
+            var text = "wildflower schools are authentic montessori schools. they are lab schoolsthat seek to advance the montessori method through research and observation. neighborhood-nested, shopfront schools are fully integrated in the communites they inhabit. schools are positioned in the context of other adults, working with their hands. wildflower schools blur the line between home schooling and institutions. wildflower employs a social process that fosters a collaborative network of learners and teachers. our beautiful spaces integrate nature and engender respect for learning materials and the world around us. our schools shape cities they inhabit. our schools are accessible to those who need them most.",
+            svg = document.getElementById('svg')
+
+            function createSVGtext(caption, x, y, textLength) {
+                //  This function attempts to create a new svg "text" element, chopping 
+                //  it up into "tspan" pieces, if the caption is too long
+                //
+                var svgText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                svgText.setAttributeNS(null, 'x', x);
+                svgText.setAttributeNS(null, 'y', y);
+                svgText.setAttributeNS(null, 'font-size', 18);
+                svgText.setAttributeNS(null, 'font-family', 'Verdana');
+                svgText.setAttributeNS(null, 'fill', 'url(#radial)');         //  White text
+                //svgText.setAttributeNS(null, 'text-anchor', 'middle');   //  Center the text
+
+                //  The following two variables should really be passed as parameters
+                var MAXIMUM_CHARS_PER_LINE = 50;
+                var LINE_HEIGHT = 22;
+
+                var words = caption.split(" ");
+                var line = "";
+
+                for (var n = 0; n < words.length; n++) {
+                    var testLine = line + words[n] + " ";
+                    if (testLine.length > MAXIMUM_CHARS_PER_LINE) {
+                        //  Add a new <tspan> element
+                        var svgTSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                        svgTSpan.setAttributeNS(null, 'x', x);
+                        svgTSpan.setAttributeNS(null, 'y', y);
+
+                        var tSpanTextNode = document.createTextNode(line);
+                        svgTSpan.appendChild(tSpanTextNode);
+                        svgText.appendChild(svgTSpan);
+
+                        line = words[n] + " ";
+                        y += LINE_HEIGHT;
+                    }
+                    else {
+                        line = testLine;
+                    }
+                }
+
+                var svgTSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                svgTSpan.setAttributeNS(null, 'x', x);
+                svgTSpan.setAttributeNS(null, 'y', y);
+
+                var tSpanTextNode = document.createTextNode(line);
+                svgTSpan.appendChild(tSpanTextNode);
+
+                svgText.appendChild(svgTSpan);
+
+                return svgText;
+            }
+
+            function animate() {
+                var start = document.getElementById('radialStart'),
+                    stop = document.getElementById('radialStop'),
+                    h1 = Math.floor(Math.random() * 360),
+                    h2 = h1 - 180 < 0 ? 0 : h1 - 180 
+
+                start.setAttribute('stop-color', 'hsl(' + h1 + ', 50%, 50%)')
+                stop.setAttribute('stop-color', 'hsl(' + h2 + ', 50%, 50%)')
+
+                function repeat() {
+                    h1 = h1 + 1 > 360 ? 0 : h1 + 1
+                    h2 = h2 + 1 > 360 ? 0 : h2 + 1
+                    
+                    start.setAttribute('stop-color', 'hsl(' + h1 + ', 50%, 50%)')
+                    stop.setAttribute('stop-color', 'hsl(' + h2 + ', 50%, 50%)')
+
+                    setTimeout(function() {
+                        requestAnimationFrame(repeat)
+                    }, 100)
+                }
+
+                repeat()
+            }
+
+            var t = createSVGtext(text,20,20)
+            svg.appendChild(t)
+            svg.setAttribute('viewBox', '0 0 500 ' + t.getBBox().height)
+            svg.setAttribute('height', t.getBBox().height)
+            animate()
+
+            window.mouseX = window.innerWidth/2
+            window.mouseY = window.innerHeight/2
+
+            document.addEventListener('mousemove', function(e) {
+                    window.mouseX = e.clientX
+                    window.mouseY = e.clientY
+            }, true)
+
+            function trackMouse() {
+                var x = mouseX/window.innerWidth * 100,
+                    y = mouseY/window.innerHeight * 100,
+                    r = document.getElementById('radial'),
+                    rx = parseInt(r.getAttribute('cx'), 10),
+                    ry = parseInt(r.getAttribute('cy'), 10),
+                    dx = x - rx,
+                    dy = y - ry,
+                    easing = 0.05,
+                    distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2))
+
+                if (distance > 1) {
+                    r.setAttribute('cx', rx + dx * easing + '%')
+                    r.setAttribute('cy', ry + dy * easing + '%')
+                }
+
+                // r.setAttribute('cx', x + '%')
+                // r.setAttribute('cy', y + '%')
+                requestAnimationFrame(trackMouse)
+            }
+
+            requestAnimationFrame(trackMouse)
+        </script>
+    </body>
+</html>

@@ -1,0 +1,21 @@
+body,
+html {
+    height: 100%;
+}
+
+.container { 
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-image: url('/assets/img/bkd.jpg');
+}
+
+a {
+    display: inline-block;
+    border-bottom: 1px solid rgba($link-hover, 0);
+    @include transition(border-bottom-color 150ms ease, color 150ms ease);
+
+    &:hover {
+        border-bottom-color: rgba($link-hover, 1);
+    }
+}

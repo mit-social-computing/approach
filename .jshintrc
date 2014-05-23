@@ -1,4 +1,5 @@
 {
+  "browser" : true,
   "laxcomma" : true,
   "asi" : true,
   "curly": true,

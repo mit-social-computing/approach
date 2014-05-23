@@ -1,0 +1,39 @@
+// Logo Colors
+$teal: #70becd;
+$dark-yellow: #e7b52c;
+$light-yellow: #ffca2b;
+$pink: #f77e85;
+$green: #81ae71;
+
+.teal { color: $teal; }
+.dark-yellow { color: $dark-yellow; }
+.light-yellow { color: $light-yellow; }
+.pink { color: $pink; }
+.green { color: $green; }
+
+$purple: #b6a2cd;
+
+// Main Nav
+$selected: $teal;
+$main-nav-link: $purple;
+$hover: $pink;
+
+//Text Gradient Colors (Home/Contact)
+$gradient1: $teal;
+$gradient2: $purple;
+
+// Body Text
+$body-text: #a59dae;
+$link: #d9959e;
+$link-hover: #fdc52f;
+
+//Category Boxes
+// Normal
+$category-text: #70becd;
+$cateogry-bg: #dfedef;
+//Selected
+$category-text-active: #b6a2cd;
+$category-bg-active: #eeeaf2;
+//Hover
+$category-text-hover: #f77e85;
+$category-bg-hover: #f9e5e6;
