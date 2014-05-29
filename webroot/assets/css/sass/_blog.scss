@@ -27,10 +27,27 @@
 .article-body {
     .white-mask {
         margin-bottom: 15px;
+        position: relative;
 
         &:before {
             content: '';
             display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url(/assets/img/white-mask-h.png);
+            background-repeat: no-repeat;
+            background-size: cover;
         }
+
+        img {
+            padding-bottom: 1px;
+            width: 100%;
+        }
+    }
+
+    p {
     }
 }
