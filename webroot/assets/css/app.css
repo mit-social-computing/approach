@@ -3553,23 +3553,28 @@ p {
 }
 
 /* line 11, sass/_global_elements.scss */
+.overview .main-header {
+  margin-bottom: 0;
+}
+
+/* line 15, sass/_global_elements.scss */
 .main-footer {
   color: #70becd;
   letter-spacing: 2.1px;
   padding-bottom: 1rem;
 }
-/* line 16, sass/_global_elements.scss */
+/* line 20, sass/_global_elements.scss */
 .main-footer a {
   height: 18px;
   color: #b6a2cd;
 }
-/* line 21, sass/_global_elements.scss */
+/* line 25, sass/_global_elements.scss */
 .main-footer p {
   margin: 0;
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 27, sass/_global_elements.scss */
+  /* line 31, sass/_global_elements.scss */
   .sticky .main-header {
     background-color: white;
     position: fixed;
@@ -3582,7 +3587,7 @@ p {
     -moz-box-shadow: 0 10px 10px 0px rgba(255, 255, 255, 0.5);
     box-shadow: 0 10px 10px 0px rgba(255, 255, 255, 0.5);
   }
-  /* line 37, sass/_global_elements.scss */
+  /* line 41, sass/_global_elements.scss */
   .sticky .main-header:after {
     content: '';
     display: block;
@@ -3595,7 +3600,7 @@ p {
     background-position: center center;
   }
 }
-/* line 51, sass/_global_elements.scss */
+/* line 55, sass/_global_elements.scss */
 .main-header .wrapper {
   display: -webkit-box;
   display: -moz-box;
@@ -3615,7 +3620,7 @@ p {
   align-items: center;
 }
 
-/* line 57, sass/_global_elements.scss */
+/* line 61, sass/_global_elements.scss */
 .menu-button {
   font-size: 1.625rem;
   background: none;
@@ -3627,26 +3632,26 @@ p {
   -o-transition: color 150ms ease;
   transition: color 150ms ease;
 }
-/* line 66, sass/_global_elements.scss */
+/* line 70, sass/_global_elements.scss */
 .menu-button:focus, .menu-button:active {
   color: inherit;
   outline: none;
   border: none;
   background: none;
 }
-/* line 73, sass/_global_elements.scss */
+/* line 77, sass/_global_elements.scss */
 .menu-button:hover {
   color: #f77e85;
   background: none;
 }
 
-/* line 79, sass/_global_elements.scss */
+/* line 83, sass/_global_elements.scss */
 .logo {
   color: white;
   margin: 0;
   letter-spacing: 2.1px;
 }
-/* line 85, sass/_global_elements.scss */
+/* line 89, sass/_global_elements.scss */
 .logo span {
   font-family: kim;
   font-size: 1.5625rem;
@@ -3658,22 +3663,22 @@ p {
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 94, sass/_global_elements.scss */
+  /* line 98, sass/_global_elements.scss */
   .main-header .wrapper {
     display: block;
   }
 
-  /* line 98, sass/_global_elements.scss */
+  /* line 102, sass/_global_elements.scss */
   .menu-button {
     display: none;
   }
 
-  /* line 103, sass/_global_elements.scss */
+  /* line 107, sass/_global_elements.scss */
   .logo span {
     font-size: 2.1875rem;
   }
 }
-/* line 109, sass/_global_elements.scss */
+/* line 113, sass/_global_elements.scss */
 .main-menu {
   padding: 0;
   max-width: 670px;
@@ -3681,31 +3686,31 @@ p {
   list-style-type: none;
   display: none;
 }
-/* line 117, sass/_global_elements.scss */
+/* line 121, sass/_global_elements.scss */
 .main-menu.show {
   display: block;
 }
-/* line 121, sass/_global_elements.scss */
+/* line 125, sass/_global_elements.scss */
 .main-menu li {
   font-size: 1.4375rem;
   letter-spacing: 2.1px;
 }
-/* line 126, sass/_global_elements.scss */
+/* line 130, sass/_global_elements.scss */
 .main-menu a {
   color: #b6a2cd;
   border: none;
 }
-/* line 130, sass/_global_elements.scss */
+/* line 134, sass/_global_elements.scss */
 .main-menu a.selected {
   color: #70becd;
 }
-/* line 134, sass/_global_elements.scss */
+/* line 138, sass/_global_elements.scss */
 .main-menu a:hover {
   color: #f77e85;
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 141, sass/_global_elements.scss */
+  /* line 145, sass/_global_elements.scss */
   .main-menu {
     display: -webkit-box;
     display: -moz-box;
@@ -3720,31 +3725,31 @@ p {
     justify-content: space-between;
   }
 }
-/* line 147, sass/_global_elements.scss */
+/* line 151, sass/_global_elements.scss */
 body::-webkit-scrollbar {
   width: 24px;
   height: auto;
 }
 
-/* line 152, sass/_global_elements.scss */
+/* line 156, sass/_global_elements.scss */
 body::-webkit-scrollbar-track {
   background-color: white;
   background-repeat: no-repeat;
 }
 
-/* line 157, sass/_global_elements.scss */
+/* line 161, sass/_global_elements.scss */
 .about::-webkit-scrollbar-track {
   background-image: url("/assets/img/scrollbars/red-scrollbar.png");
 }
 
-/* line 163, sass/_global_elements.scss */
+/* line 167, sass/_global_elements.scss */
 .blog::-webkit-scrollbar-track,
 .resources-detail::-webkit-scrollbar-track,
 .resources::-webkit-scrollbar-track {
   background-image: url("/assets/img/scrollbars/blue-scrollbar.png");
 }
 
-/* line 167, sass/_global_elements.scss */
+/* line 171, sass/_global_elements.scss */
 body::-webkit-scrollbar-thumb {
   background-color: white;
   border-left: 10px solid transparent;
@@ -3752,7 +3757,7 @@ body::-webkit-scrollbar-thumb {
   background-clip: padding-box;
 }
 
-/* line 174, sass/_global_elements.scss */
+/* line 178, sass/_global_elements.scss */
 .arrow {
   display: block;
   position: fixed;
@@ -3766,17 +3771,17 @@ body::-webkit-scrollbar-thumb {
   -o-transition: opacity 50ms;
   transition: opacity 50ms;
 }
-/* line 184, sass/_global_elements.scss */
+/* line 188, sass/_global_elements.scss */
 .arrow:hover {
   border: none;
 }
-/* line 188, sass/_global_elements.scss */
+/* line 192, sass/_global_elements.scss */
 .about .arrow {
   background-image: url(/assets/img/arrows/red-arrow.png);
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 198, sass/_global_elements.scss */
+  /* line 202, sass/_global_elements.scss */
   .arrow {
     display: none;
   }
@@ -3864,17 +3869,15 @@ body::-webkit-scrollbar-thumb {
   position: relative;
   margin-bottom: 15px;
   text-align: center;
+  height: 145px;
 }
 /* line 28, sass/_home.scss */
 .gif-stage img {
-  opacity: 0;
-  -webkit-transition: opacity 150ms ease;
-  -moz-transition: opacity 150ms ease;
-  -o-transition: opacity 150ms ease;
-  transition: opacity 150ms ease;
+  display: none;
 }
-/* line 33, sass/_home.scss */
+/* line 32, sass/_home.scss */
 .gif-stage .init-gif {
+  display: inline;
   opacity: 1;
   max-width: 100%;
   max-height: 100%;

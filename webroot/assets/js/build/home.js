@@ -26,14 +26,16 @@ function removeDisabled(gif) {
 }
 
 window.addEventListener('DOMContentLoaded', function() {
-    Array.prototype.forEach.call(principleText.children, function(el) {
-        el.gif = new SuperGif({
-            gif : document.getElementById(el.hash.slice(1)),
-            auto_play : 0,
-            c_h : 145
+    setTimeout(function() {
+        Array.prototype.forEach.call(principleText.children, function(el) {
+            el.gif = new SuperGif({
+                gif : document.getElementById(el.hash.slice(1)),
+                auto_play : 0,
+                c_h : 145
+            })
+            el.gif.load(removeDisabled)
         })
-        el.gif.load(removeDisabled)
-    })
+    }, 2250)
 })
 // Object.keys(gifs).forEach(function(key) {
 //     var img = document.createElement('img')
@@ -52,6 +54,10 @@ principles.addEventListener('mouseenter', function(e) {
         e.target.gif.move_to(0)
         e.target.gif.get_canvas().classList.add('show')
         e.target.gif.play()
+
+        if (stage.children[0].id === 'initGif') {
+            stage.removeChild(stage.children[0])
+        }
     }
 }, true)
 

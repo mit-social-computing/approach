@@ -20,17 +20,17 @@
 
 .gif-stage {
     display: none;
-    //height: 145px;
     position: relative;
     margin-bottom: 15px;
     text-align: center;
+    height: 145px;
 
     img {
-        opacity: 0;
-        @include transition(opacity 150ms ease);
+        display: none;
     }
 
     .init-gif {
+        display: inline;
         opacity: 1;
         max-width: 100%;
         max-height: 100%;
