@@ -646,6 +646,7 @@ var SuperGif = function ( opts ) {
         var i = -1;
         var curFrame;
         var delayInfo;
+        var timer;
 
         var showingInfo = false;
         var pinned = false;
@@ -667,7 +668,8 @@ var SuperGif = function ( opts ) {
                 stepFrame(forward ? 1 : -1);
                 var delay = frames[i].delay * 10;
                 if (!delay) delay = 100; // FIXME: Should this even default at all? What should it be?
-                setTimeout(doStep, delay);
+                timer = setTimeout(doStep, delay);
+                stepping = false;
             };
 
             return function () {
@@ -691,7 +693,7 @@ var SuperGif = function ( opts ) {
 
         var pause = function () {
             playing = false;
-            stepping = false;
+            clearTimeout(timer)
         };
 
 
