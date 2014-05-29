@@ -13,11 +13,16 @@ var menuButton = document.getElementById('menuButton'),
     logo = document.getElementById('logo'),
     s
 
+function updateLogoColors(logo) {
+    Array.prototype.forEach.call(logo.children, function(span) {
+        span.style.color = 'rgb(' + _.sample(colors) + ')'
+    })
+}
 
-function colorInit(banner) {
+function colorInit( logo ) {
     var newH1 = document.createElement('h1')
 
-    Array.prototype.forEach.call(banner.innerHTML, function(el, idx) {
+    Array.prototype.forEach.call(logo.innerHTML, function(el, idx) {
         if ( el === ' ' ) {
             newH1.innerHTML += ' '
         } else {

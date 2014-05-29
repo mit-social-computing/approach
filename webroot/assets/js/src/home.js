@@ -1,4 +1,4 @@
-/*global SuperGif*/
+/*global SuperGif,updateLogoColors*/
 'use strict';
 
 var principles = document.getElementById('principles'),
@@ -37,6 +37,9 @@ window.addEventListener('DOMContentLoaded', function() {
 
 principles.addEventListener('mouseover', function(e) {
     if ( e.target.nodeName === 'A' && !e.target.classList.contains('disabled') ) {
+        var logo = document.getElementById('logo')
+        updateLogoColors(logo)
+
         if (stage.children[0].id === 'initGif') {
             stage.removeChild(stage.children[0])
         }
@@ -51,10 +54,3 @@ principles.addEventListener('mouseover', function(e) {
         gifs[e.target.hash.slice(1)].play()
     }
 }, true)
-
-// principles.addEventListener('mouseleave', function(e) {
-//     if ( e.target.nodeName === 'A' && !e.target.classList.contains('disabled') ) {
-//         e.target.gif.get_canvas().classList.remove('show')
-//         e.target.gif.pause()
-//     }
-// }, true)
