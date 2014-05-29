@@ -5,7 +5,8 @@
     "imagesloaded": "~3.1.5",
     "isotope": "~2.0.0",
     "lodash": "~2.4.1",
-    "skrollr": "~0.6.25"
+    "skrollr": "~0.6.25",
+    "requirejs": "~2.1.13"
   },
   "version": "0.1",
   "authors": [
