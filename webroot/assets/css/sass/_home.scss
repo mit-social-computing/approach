@@ -20,25 +20,20 @@
 
 .gif-stage {
     display: none;
-    height: 145px;
+    //height: 145px;
     position: relative;
     margin-bottom: 15px;
+    text-align: center;
 
     img {
         opacity: 0;
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-        max-width: 100%;
-        max-height: 100%;
-
         @include transition(opacity 150ms ease);
     }
 
-    img.show {
+    .init-gif {
         opacity: 1;
+        max-width: 100%;
+        max-height: 100%;
     }
 }
 
@@ -63,6 +58,20 @@
 @media #{$medium-up} {
     .gif-stage {
         display: block;
+
+        canvas {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            opacity: 0;
+            @include transition(opacity 150ms);
+
+            &.show {
+                opacity: 1;
+            }
+        }
     }
 
     .principles-text {
@@ -73,6 +82,14 @@
 
         a {
             height: 22px;
+
+            &.disabled {
+                color: $gradient1;
+
+                &:hover {
+                    cursor: default;
+                }
+            }
         }
     }
 }

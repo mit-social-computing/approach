@@ -3861,31 +3861,26 @@ body::-webkit-scrollbar-thumb {
 /* line 21, sass/_home.scss */
 .gif-stage {
   display: none;
-  height: 145px;
   position: relative;
   margin-bottom: 15px;
+  text-align: center;
 }
-/* line 27, sass/_home.scss */
+/* line 28, sass/_home.scss */
 .gif-stage img {
   opacity: 0;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  max-width: 100%;
-  max-height: 100%;
   -webkit-transition: opacity 150ms ease;
   -moz-transition: opacity 150ms ease;
   -o-transition: opacity 150ms ease;
   transition: opacity 150ms ease;
 }
-/* line 40, sass/_home.scss */
-.gif-stage img.show {
+/* line 33, sass/_home.scss */
+.gif-stage .init-gif {
   opacity: 1;
+  max-width: 100%;
+  max-height: 100%;
 }
 
-/* line 45, sass/_home.scss */
+/* line 40, sass/_home.scss */
 .principles-text {
   color: #70becd;
   text-align: center;
@@ -3897,27 +3892,52 @@ body::-webkit-scrollbar-thumb {
   margin: 0 auto;
   max-width: 800px;
 }
-/* line 58, sass/_home.scss */
+/* line 53, sass/_home.scss */
 .principles-text a {
   height: 18px;
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 64, sass/_home.scss */
+  /* line 59, sass/_home.scss */
   .gif-stage {
     display: block;
   }
+  /* line 62, sass/_home.scss */
+  .gif-stage canvas {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    opacity: 0;
+    -webkit-transition: opacity 150ms;
+    -moz-transition: opacity 150ms;
+    -o-transition: opacity 150ms;
+    transition: opacity 150ms;
+  }
+  /* line 71, sass/_home.scss */
+  .gif-stage canvas.show {
+    opacity: 1;
+  }
 
-  /* line 68, sass/_home.scss */
+  /* line 77, sass/_home.scss */
   .principles-text {
     font-size: 1.375rem;
     letter-spacing: 2.1px;
     line-height: 1.15;
     padding: 0;
   }
-  /* line 74, sass/_home.scss */
+  /* line 83, sass/_home.scss */
   .principles-text a {
     height: 22px;
+  }
+  /* line 86, sass/_home.scss */
+  .principles-text a.disabled {
+    color: #70becd;
+  }
+  /* line 89, sass/_home.scss */
+  .principles-text a.disabled:hover {
+    cursor: default;
   }
 }
 /* line 1, sass/_resources.scss */
