@@ -6,7 +6,6 @@ var principles = document.getElementById('principles'),
         'adults' : undefined
         , 'authentic' : undefined
         , 'dots' : undefined
-        , 'everyone' : undefined
         , 'everyone2' : undefined
         , 'materials' : undefined
         , 'nature' : undefined
@@ -14,9 +13,7 @@ var principles = document.getElementById('principles'),
         , 'research' : undefined
         , 'storefront' : undefined
     },
-    gifTemp = '/assets/img/gifs/{{gif}}.gif',
-    stage = document.getElementById('gifStage'),
-    principleText = document.getElementById('principles')
+    stage = document.getElementById('gifStage')
 
 function removeDisabled(gif) {
     var href = '#' + gif.id,
@@ -27,40 +24,31 @@ function removeDisabled(gif) {
 
 window.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
-        Array.prototype.forEach.call(principleText.children, function(el) {
-            el.gif = new SuperGif({
-                gif : document.getElementById(el.hash.slice(1)),
+        Object.keys(gifs).forEach(function(gif){
+            gifs[gif] = new SuperGif({
+                gif : document.getElementById(gif),
                 auto_play : 0,
                 c_h : 145
             })
-            el.gif.load(removeDisabled)
+            gifs[gif].load(removeDisabled)
         })
     }, 2250)
 })
-// Object.keys(gifs).forEach(function(key) {
-//     var img = document.createElement('img')
-//     img.src = gifTemp.replace('{{gif}}', key)
-//     gifs[key] = img
-//     if ( key === 'authentic' ) {
-//         img.onload = function (e) {
-//             stage.appendChild(this)
-//             this.classList.add('show')
-//         }
-//     }
-// })
 
-principles.addEventListener('mouseenter', function(e) {
+principles.addEventListener('mouseover', function(e) {
     if ( e.target.nodeName === 'A' && !e.target.classList.contains('disabled') ) {
         if (stage.children[0].id === 'initGif') {
             stage.removeChild(stage.children[0])
         }
 
-        Array.prototype.forEach.call(stage.children, function(jsgif) {
-            jsgif.children[0].classList.remove('show')
+        Object.keys(gifs).forEach(function(gif){
+            gifs[gif].pause()
+            gifs[gif].get_canvas().classList.remove('show')
         })
-        e.target.gif.move_to(0)
-        e.target.gif.get_canvas().classList.add('show')
-        e.target.gif.play()
+
+        gifs[e.target.hash.slice(1)].move_to(1)
+        gifs[e.target.hash.slice(1)].get_canvas().classList.add('show')
+        gifs[e.target.hash.slice(1)].play()
     }
 }, true)
 

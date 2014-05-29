@@ -53,7 +53,6 @@ menuButton.addEventListener('click', function(e) {
     menu.classList.toggle('show')
 }, false)
 
-
 Modernizr.load({
     test: Modernizr.touch,
     nope : "/assets/bower_components/skrollr/dist/skrollr.min.js",
