@@ -157,6 +157,7 @@ body::-webkit-scrollbar-track {
     background-image: url('/assets/img/scrollbars/red-scrollbar.png');
 }
 
+.blog::-webkit-scrollbar-track,
 .resources-detail::-webkit-scrollbar-track,
 .resources::-webkit-scrollbar-track {
     background-image: url('/assets/img/scrollbars/blue-scrollbar.png');

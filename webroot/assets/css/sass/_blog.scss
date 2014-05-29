@@ -1,0 +1,36 @@
+.blog .content {
+    margin: 0 auto;
+    max-width: 766px;
+    padding: 0 25px;
+}
+
+.blog-post {
+    header, 
+    h2 {
+        font-family: kim;
+        letter-spacing: 2px;
+        color: $body-text;
+        @extend .antialiased;
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    h2 {
+        margin: 0;
+        margin-bottom: 5px;
+    }
+}
+
+.article-body {
+    .white-mask {
+        margin-bottom: 15px;
+
+        &:before {
+            content: '';
+            display: block;
+        }
+    }
+}

@@ -126,7 +126,6 @@
 
 .resources-aside {
     font-family: kim;
-    @include flex(1);
     @extend .antialiased;
 
     h2 {
@@ -176,7 +175,7 @@
     }
 
     .resources-aside {
-        padding-right: 25px;
+        @include flex(1);
 
         h2 {
             font-size: rem-calc(35);
@@ -184,9 +183,11 @@
             line-height: 0.75;
             margin-bottom: 15px;
             text-align: left;
+            padding-right: 25px;
         }
 
         .resource-tags {
+            padding-right: 25px;
             @include justify-content(flex-start);
         }
 

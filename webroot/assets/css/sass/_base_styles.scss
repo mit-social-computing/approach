@@ -40,3 +40,24 @@ p {
     letter-spacing: 1px;
     @extend .antialiased;
 }
+
+ .quote {
+     border: none;
+
+     &,
+     cite {
+         font-family: kim;
+         text-align: center;
+         color: $body-text;
+         font-size: rem-calc(22);
+         line-height: 1.25;
+         letter-spacing: 1.9px;
+         padding: 0 65px;
+
+         @extend .antialiased;
+     }
+
+     cite {
+         font-style: normal;
+     }
+ }
