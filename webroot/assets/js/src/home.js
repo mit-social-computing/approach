@@ -51,19 +51,22 @@ window.addEventListener('DOMContentLoaded', function() {
 
 principles.addEventListener('mouseenter', function(e) {
     if ( e.target.nodeName === 'A' && !e.target.classList.contains('disabled') ) {
-        e.target.gif.move_to(0)
-        e.target.gif.get_canvas().classList.add('show')
-        e.target.gif.play()
-
         if (stage.children[0].id === 'initGif') {
             stage.removeChild(stage.children[0])
         }
+
+        Array.prototype.forEach.call(stage.children, function(jsgif) {
+            jsgif.children[0].classList.remove('show')
+        })
+        e.target.gif.move_to(0)
+        e.target.gif.get_canvas().classList.add('show')
+        e.target.gif.play()
     }
 }, true)
 
-principles.addEventListener('mouseleave', function(e) {
-    if ( e.target.nodeName === 'A' && !e.target.classList.contains('disabled') ) {
-        e.target.gif.get_canvas().classList.remove('show')
-        e.target.gif.pause()
-    }
-}, true)
+// principles.addEventListener('mouseleave', function(e) {
+//     if ( e.target.nodeName === 'A' && !e.target.classList.contains('disabled') ) {
+//         e.target.gif.get_canvas().classList.remove('show')
+//         e.target.gif.pause()
+//     }
+// }, true)
