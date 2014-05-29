@@ -3885,7 +3885,7 @@ body::-webkit-scrollbar-thumb {
 
 /* line 40, sass/_home.scss */
 .principles-text {
-  color: #70becd;
+  color: #b6a2cd;
   text-align: center;
   font-family: kim, sans-serif;
   font-size: 1.125rem;
@@ -3936,7 +3936,7 @@ body::-webkit-scrollbar-thumb {
   }
   /* line 86, sass/_home.scss */
   .principles-text a.disabled {
-    color: #70becd;
+    color: #b6a2cd;
   }
   /* line 89, sass/_home.scss */
   .principles-text a.disabled:hover {

@@ -38,7 +38,7 @@
 }
 
 .principles-text {
-    color: $gradient1;
+    color: $gradient2;
     text-align: center;
     font-family: kim, sans-serif;
     font-size: rem-calc(18);
@@ -84,7 +84,7 @@
             height: 22px;
 
             &.disabled {
-                color: $gradient1;
+                color: $gradient2;
 
                 &:hover {
                     cursor: default;
