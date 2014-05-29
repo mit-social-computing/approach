@@ -1,0 +1,612 @@
+@import "compass/utilities/sprites/base";
+
+// General Sprite Defaults
+// You can override them before you import this file.
+$network-sprite-base-class: ".network-sprite" !default;
+$network-sprite-dimensions: false !default;
+$network-position: 0% !default;
+$network-spacing: 0 !default;
+$network-repeat: no-repeat !default;
+$network-prefix: '' !default;
+$network-clean-up: true !default;
+$network-layout:vertical !default;
+$network-inline: false !default;
+
+  
+ // These variables control the generated sprite output
+ // You can override them selectively before you import this file.
+ 
+   $network-network_0000_Layer-67-position: $network-position !default;
+   $network-network_0000_Layer-67-spacing:  $network-spacing !default;
+   $network-network_0000_Layer-67-repeat:   $network-repeat !default;
+ 
+   $network-network_0001_Layer-66-position: $network-position !default;
+   $network-network_0001_Layer-66-spacing:  $network-spacing !default;
+   $network-network_0001_Layer-66-repeat:   $network-repeat !default;
+ 
+   $network-network_0002_Layer-65-position: $network-position !default;
+   $network-network_0002_Layer-65-spacing:  $network-spacing !default;
+   $network-network_0002_Layer-65-repeat:   $network-repeat !default;
+ 
+   $network-network_0003_Layer-64-position: $network-position !default;
+   $network-network_0003_Layer-64-spacing:  $network-spacing !default;
+   $network-network_0003_Layer-64-repeat:   $network-repeat !default;
+ 
+   $network-network_0004_Layer-63-position: $network-position !default;
+   $network-network_0004_Layer-63-spacing:  $network-spacing !default;
+   $network-network_0004_Layer-63-repeat:   $network-repeat !default;
+ 
+   $network-network_0005_Layer-62-position: $network-position !default;
+   $network-network_0005_Layer-62-spacing:  $network-spacing !default;
+   $network-network_0005_Layer-62-repeat:   $network-repeat !default;
+ 
+   $network-network_0006_Layer-61-position: $network-position !default;
+   $network-network_0006_Layer-61-spacing:  $network-spacing !default;
+   $network-network_0006_Layer-61-repeat:   $network-repeat !default;
+ 
+   $network-network_0007_Layer-60-position: $network-position !default;
+   $network-network_0007_Layer-60-spacing:  $network-spacing !default;
+   $network-network_0007_Layer-60-repeat:   $network-repeat !default;
+ 
+   $network-network_0008_Layer-59-position: $network-position !default;
+   $network-network_0008_Layer-59-spacing:  $network-spacing !default;
+   $network-network_0008_Layer-59-repeat:   $network-repeat !default;
+ 
+   $network-network_0009_Layer-58-position: $network-position !default;
+   $network-network_0009_Layer-58-spacing:  $network-spacing !default;
+   $network-network_0009_Layer-58-repeat:   $network-repeat !default;
+ 
+   $network-network_0010_Layer-57-position: $network-position !default;
+   $network-network_0010_Layer-57-spacing:  $network-spacing !default;
+   $network-network_0010_Layer-57-repeat:   $network-repeat !default;
+ 
+   $network-network_0011_Layer-56-position: $network-position !default;
+   $network-network_0011_Layer-56-spacing:  $network-spacing !default;
+   $network-network_0011_Layer-56-repeat:   $network-repeat !default;
+ 
+   $network-network_0012_Layer-55-position: $network-position !default;
+   $network-network_0012_Layer-55-spacing:  $network-spacing !default;
+   $network-network_0012_Layer-55-repeat:   $network-repeat !default;
+ 
+   $network-network_0013_Layer-54-position: $network-position !default;
+   $network-network_0013_Layer-54-spacing:  $network-spacing !default;
+   $network-network_0013_Layer-54-repeat:   $network-repeat !default;
+ 
+   $network-network_0014_Layer-53-position: $network-position !default;
+   $network-network_0014_Layer-53-spacing:  $network-spacing !default;
+   $network-network_0014_Layer-53-repeat:   $network-repeat !default;
+ 
+   $network-network_0015_Layer-52-position: $network-position !default;
+   $network-network_0015_Layer-52-spacing:  $network-spacing !default;
+   $network-network_0015_Layer-52-repeat:   $network-repeat !default;
+ 
+   $network-network_0016_Layer-51-position: $network-position !default;
+   $network-network_0016_Layer-51-spacing:  $network-spacing !default;
+   $network-network_0016_Layer-51-repeat:   $network-repeat !default;
+ 
+   $network-network_0017_Layer-50-position: $network-position !default;
+   $network-network_0017_Layer-50-spacing:  $network-spacing !default;
+   $network-network_0017_Layer-50-repeat:   $network-repeat !default;
+ 
+   $network-network_0018_Layer-49-position: $network-position !default;
+   $network-network_0018_Layer-49-spacing:  $network-spacing !default;
+   $network-network_0018_Layer-49-repeat:   $network-repeat !default;
+ 
+   $network-network_0019_Layer-48-position: $network-position !default;
+   $network-network_0019_Layer-48-spacing:  $network-spacing !default;
+   $network-network_0019_Layer-48-repeat:   $network-repeat !default;
+ 
+   $network-network_0020_Layer-47-position: $network-position !default;
+   $network-network_0020_Layer-47-spacing:  $network-spacing !default;
+   $network-network_0020_Layer-47-repeat:   $network-repeat !default;
+ 
+   $network-network_0021_Layer-46-position: $network-position !default;
+   $network-network_0021_Layer-46-spacing:  $network-spacing !default;
+   $network-network_0021_Layer-46-repeat:   $network-repeat !default;
+ 
+   $network-network_0022_Layer-45-position: $network-position !default;
+   $network-network_0022_Layer-45-spacing:  $network-spacing !default;
+   $network-network_0022_Layer-45-repeat:   $network-repeat !default;
+ 
+   $network-network_0023_Layer-44-position: $network-position !default;
+   $network-network_0023_Layer-44-spacing:  $network-spacing !default;
+   $network-network_0023_Layer-44-repeat:   $network-repeat !default;
+ 
+   $network-network_0024_Layer-43-position: $network-position !default;
+   $network-network_0024_Layer-43-spacing:  $network-spacing !default;
+   $network-network_0024_Layer-43-repeat:   $network-repeat !default;
+ 
+   $network-network_0025_Layer-42-position: $network-position !default;
+   $network-network_0025_Layer-42-spacing:  $network-spacing !default;
+   $network-network_0025_Layer-42-repeat:   $network-repeat !default;
+ 
+   $network-network_0026_Layer-41-position: $network-position !default;
+   $network-network_0026_Layer-41-spacing:  $network-spacing !default;
+   $network-network_0026_Layer-41-repeat:   $network-repeat !default;
+ 
+   $network-network_0027_Layer-40-position: $network-position !default;
+   $network-network_0027_Layer-40-spacing:  $network-spacing !default;
+   $network-network_0027_Layer-40-repeat:   $network-repeat !default;
+ 
+   $network-network_0028_Layer-39-position: $network-position !default;
+   $network-network_0028_Layer-39-spacing:  $network-spacing !default;
+   $network-network_0028_Layer-39-repeat:   $network-repeat !default;
+ 
+   $network-network_0029_Layer-38-position: $network-position !default;
+   $network-network_0029_Layer-38-spacing:  $network-spacing !default;
+   $network-network_0029_Layer-38-repeat:   $network-repeat !default;
+ 
+   $network-network_0030_Layer-37-position: $network-position !default;
+   $network-network_0030_Layer-37-spacing:  $network-spacing !default;
+   $network-network_0030_Layer-37-repeat:   $network-repeat !default;
+ 
+   $network-network_0031_Layer-36-position: $network-position !default;
+   $network-network_0031_Layer-36-spacing:  $network-spacing !default;
+   $network-network_0031_Layer-36-repeat:   $network-repeat !default;
+ 
+   $network-network_0032_Layer-35-position: $network-position !default;
+   $network-network_0032_Layer-35-spacing:  $network-spacing !default;
+   $network-network_0032_Layer-35-repeat:   $network-repeat !default;
+ 
+   $network-network_0033_Layer-34-position: $network-position !default;
+   $network-network_0033_Layer-34-spacing:  $network-spacing !default;
+   $network-network_0033_Layer-34-repeat:   $network-repeat !default;
+ 
+   $network-network_0034_Layer-33-position: $network-position !default;
+   $network-network_0034_Layer-33-spacing:  $network-spacing !default;
+   $network-network_0034_Layer-33-repeat:   $network-repeat !default;
+ 
+   $network-network_0035_Layer-32-position: $network-position !default;
+   $network-network_0035_Layer-32-spacing:  $network-spacing !default;
+   $network-network_0035_Layer-32-repeat:   $network-repeat !default;
+ 
+   $network-network_0036_Layer-31-position: $network-position !default;
+   $network-network_0036_Layer-31-spacing:  $network-spacing !default;
+   $network-network_0036_Layer-31-repeat:   $network-repeat !default;
+ 
+   $network-network_0037_Layer-30-position: $network-position !default;
+   $network-network_0037_Layer-30-spacing:  $network-spacing !default;
+   $network-network_0037_Layer-30-repeat:   $network-repeat !default;
+ 
+   $network-network_0038_Layer-29-position: $network-position !default;
+   $network-network_0038_Layer-29-spacing:  $network-spacing !default;
+   $network-network_0038_Layer-29-repeat:   $network-repeat !default;
+ 
+   $network-network_0039_Layer-28-position: $network-position !default;
+   $network-network_0039_Layer-28-spacing:  $network-spacing !default;
+   $network-network_0039_Layer-28-repeat:   $network-repeat !default;
+ 
+   $network-network_0040_Layer-27-position: $network-position !default;
+   $network-network_0040_Layer-27-spacing:  $network-spacing !default;
+   $network-network_0040_Layer-27-repeat:   $network-repeat !default;
+ 
+   $network-network_0041_Layer-26-position: $network-position !default;
+   $network-network_0041_Layer-26-spacing:  $network-spacing !default;
+   $network-network_0041_Layer-26-repeat:   $network-repeat !default;
+ 
+   $network-network_0042_Layer-25-position: $network-position !default;
+   $network-network_0042_Layer-25-spacing:  $network-spacing !default;
+   $network-network_0042_Layer-25-repeat:   $network-repeat !default;
+ 
+   $network-network_0043_Layer-24-position: $network-position !default;
+   $network-network_0043_Layer-24-spacing:  $network-spacing !default;
+   $network-network_0043_Layer-24-repeat:   $network-repeat !default;
+ 
+   $network-network_0044_Layer-23-position: $network-position !default;
+   $network-network_0044_Layer-23-spacing:  $network-spacing !default;
+   $network-network_0044_Layer-23-repeat:   $network-repeat !default;
+ 
+   $network-network_0045_Layer-22-position: $network-position !default;
+   $network-network_0045_Layer-22-spacing:  $network-spacing !default;
+   $network-network_0045_Layer-22-repeat:   $network-repeat !default;
+ 
+   $network-network_0046_Layer-21-position: $network-position !default;
+   $network-network_0046_Layer-21-spacing:  $network-spacing !default;
+   $network-network_0046_Layer-21-repeat:   $network-repeat !default;
+ 
+   $network-network_0047_Layer-20-position: $network-position !default;
+   $network-network_0047_Layer-20-spacing:  $network-spacing !default;
+   $network-network_0047_Layer-20-repeat:   $network-repeat !default;
+ 
+   $network-network_0048_Layer-19-position: $network-position !default;
+   $network-network_0048_Layer-19-spacing:  $network-spacing !default;
+   $network-network_0048_Layer-19-repeat:   $network-repeat !default;
+ 
+   $network-network_0049_Layer-18-position: $network-position !default;
+   $network-network_0049_Layer-18-spacing:  $network-spacing !default;
+   $network-network_0049_Layer-18-repeat:   $network-repeat !default;
+ 
+   $network-network_0050_Layer-17-position: $network-position !default;
+   $network-network_0050_Layer-17-spacing:  $network-spacing !default;
+   $network-network_0050_Layer-17-repeat:   $network-repeat !default;
+ 
+   $network-network_0051_Layer-16-position: $network-position !default;
+   $network-network_0051_Layer-16-spacing:  $network-spacing !default;
+   $network-network_0051_Layer-16-repeat:   $network-repeat !default;
+ 
+   $network-network_0052_Layer-15-position: $network-position !default;
+   $network-network_0052_Layer-15-spacing:  $network-spacing !default;
+   $network-network_0052_Layer-15-repeat:   $network-repeat !default;
+ 
+   $network-network_0053_Layer-14-position: $network-position !default;
+   $network-network_0053_Layer-14-spacing:  $network-spacing !default;
+   $network-network_0053_Layer-14-repeat:   $network-repeat !default;
+ 
+   $network-network_0054_Layer-13-position: $network-position !default;
+   $network-network_0054_Layer-13-spacing:  $network-spacing !default;
+   $network-network_0054_Layer-13-repeat:   $network-repeat !default;
+ 
+   $network-network_0055_Layer-12-position: $network-position !default;
+   $network-network_0055_Layer-12-spacing:  $network-spacing !default;
+   $network-network_0055_Layer-12-repeat:   $network-repeat !default;
+ 
+   $network-network_0056_Layer-11-position: $network-position !default;
+   $network-network_0056_Layer-11-spacing:  $network-spacing !default;
+   $network-network_0056_Layer-11-repeat:   $network-repeat !default;
+ 
+   $network-network_0057_Layer-10-position: $network-position !default;
+   $network-network_0057_Layer-10-spacing:  $network-spacing !default;
+   $network-network_0057_Layer-10-repeat:   $network-repeat !default;
+ 
+   $network-network_0058_Layer-9-position: $network-position !default;
+   $network-network_0058_Layer-9-spacing:  $network-spacing !default;
+   $network-network_0058_Layer-9-repeat:   $network-repeat !default;
+ 
+   $network-network_0059_Layer-8-position: $network-position !default;
+   $network-network_0059_Layer-8-spacing:  $network-spacing !default;
+   $network-network_0059_Layer-8-repeat:   $network-repeat !default;
+ 
+   $network-network_0060_Layer-7-position: $network-position !default;
+   $network-network_0060_Layer-7-spacing:  $network-spacing !default;
+   $network-network_0060_Layer-7-repeat:   $network-repeat !default;
+ 
+   $network-network_0061_Layer-6-position: $network-position !default;
+   $network-network_0061_Layer-6-spacing:  $network-spacing !default;
+   $network-network_0061_Layer-6-repeat:   $network-repeat !default;
+ 
+   $network-network_0062_Layer-5-position: $network-position !default;
+   $network-network_0062_Layer-5-spacing:  $network-spacing !default;
+   $network-network_0062_Layer-5-repeat:   $network-repeat !default;
+ 
+   $network-network_0063_Layer-4-position: $network-position !default;
+   $network-network_0063_Layer-4-spacing:  $network-spacing !default;
+   $network-network_0063_Layer-4-repeat:   $network-repeat !default;
+ 
+   $network-network_0064_Layer-3-position: $network-position !default;
+   $network-network_0064_Layer-3-spacing:  $network-spacing !default;
+   $network-network_0064_Layer-3-repeat:   $network-repeat !default;
+ 
+   $network-network_0065_Layer-2-position: $network-position !default;
+   $network-network_0065_Layer-2-spacing:  $network-spacing !default;
+   $network-network_0065_Layer-2-repeat:   $network-repeat !default;
+ 
+   $network-network_0066_Layer-1-position: $network-position !default;
+   $network-network_0066_Layer-1-spacing:  $network-spacing !default;
+   $network-network_0066_Layer-1-repeat:   $network-repeat !default;
+ 
+
+ $network-sprites: sprite-map("gifs/network/*.png",
+ 
+   $network-network_0000_Layer-67-position: $network-network_0000_Layer-67-position, 
+   $network-network_0000_Layer-67-spacing:  $network-network_0000_Layer-67-spacing, 
+   $network-network_0000_Layer-67-repeat:   $network-network_0000_Layer-67-repeat,
+ 
+   $network-network_0001_Layer-66-position: $network-network_0001_Layer-66-position, 
+   $network-network_0001_Layer-66-spacing:  $network-network_0001_Layer-66-spacing, 
+   $network-network_0001_Layer-66-repeat:   $network-network_0001_Layer-66-repeat,
+ 
+   $network-network_0002_Layer-65-position: $network-network_0002_Layer-65-position, 
+   $network-network_0002_Layer-65-spacing:  $network-network_0002_Layer-65-spacing, 
+   $network-network_0002_Layer-65-repeat:   $network-network_0002_Layer-65-repeat,
+ 
+   $network-network_0003_Layer-64-position: $network-network_0003_Layer-64-position, 
+   $network-network_0003_Layer-64-spacing:  $network-network_0003_Layer-64-spacing, 
+   $network-network_0003_Layer-64-repeat:   $network-network_0003_Layer-64-repeat,
+ 
+   $network-network_0004_Layer-63-position: $network-network_0004_Layer-63-position, 
+   $network-network_0004_Layer-63-spacing:  $network-network_0004_Layer-63-spacing, 
+   $network-network_0004_Layer-63-repeat:   $network-network_0004_Layer-63-repeat,
+ 
+   $network-network_0005_Layer-62-position: $network-network_0005_Layer-62-position, 
+   $network-network_0005_Layer-62-spacing:  $network-network_0005_Layer-62-spacing, 
+   $network-network_0005_Layer-62-repeat:   $network-network_0005_Layer-62-repeat,
+ 
+   $network-network_0006_Layer-61-position: $network-network_0006_Layer-61-position, 
+   $network-network_0006_Layer-61-spacing:  $network-network_0006_Layer-61-spacing, 
+   $network-network_0006_Layer-61-repeat:   $network-network_0006_Layer-61-repeat,
+ 
+   $network-network_0007_Layer-60-position: $network-network_0007_Layer-60-position, 
+   $network-network_0007_Layer-60-spacing:  $network-network_0007_Layer-60-spacing, 
+   $network-network_0007_Layer-60-repeat:   $network-network_0007_Layer-60-repeat,
+ 
+   $network-network_0008_Layer-59-position: $network-network_0008_Layer-59-position, 
+   $network-network_0008_Layer-59-spacing:  $network-network_0008_Layer-59-spacing, 
+   $network-network_0008_Layer-59-repeat:   $network-network_0008_Layer-59-repeat,
+ 
+   $network-network_0009_Layer-58-position: $network-network_0009_Layer-58-position, 
+   $network-network_0009_Layer-58-spacing:  $network-network_0009_Layer-58-spacing, 
+   $network-network_0009_Layer-58-repeat:   $network-network_0009_Layer-58-repeat,
+ 
+   $network-network_0010_Layer-57-position: $network-network_0010_Layer-57-position, 
+   $network-network_0010_Layer-57-spacing:  $network-network_0010_Layer-57-spacing, 
+   $network-network_0010_Layer-57-repeat:   $network-network_0010_Layer-57-repeat,
+ 
+   $network-network_0011_Layer-56-position: $network-network_0011_Layer-56-position, 
+   $network-network_0011_Layer-56-spacing:  $network-network_0011_Layer-56-spacing, 
+   $network-network_0011_Layer-56-repeat:   $network-network_0011_Layer-56-repeat,
+ 
+   $network-network_0012_Layer-55-position: $network-network_0012_Layer-55-position, 
+   $network-network_0012_Layer-55-spacing:  $network-network_0012_Layer-55-spacing, 
+   $network-network_0012_Layer-55-repeat:   $network-network_0012_Layer-55-repeat,
+ 
+   $network-network_0013_Layer-54-position: $network-network_0013_Layer-54-position, 
+   $network-network_0013_Layer-54-spacing:  $network-network_0013_Layer-54-spacing, 
+   $network-network_0013_Layer-54-repeat:   $network-network_0013_Layer-54-repeat,
+ 
+   $network-network_0014_Layer-53-position: $network-network_0014_Layer-53-position, 
+   $network-network_0014_Layer-53-spacing:  $network-network_0014_Layer-53-spacing, 
+   $network-network_0014_Layer-53-repeat:   $network-network_0014_Layer-53-repeat,
+ 
+   $network-network_0015_Layer-52-position: $network-network_0015_Layer-52-position, 
+   $network-network_0015_Layer-52-spacing:  $network-network_0015_Layer-52-spacing, 
+   $network-network_0015_Layer-52-repeat:   $network-network_0015_Layer-52-repeat,
+ 
+   $network-network_0016_Layer-51-position: $network-network_0016_Layer-51-position, 
+   $network-network_0016_Layer-51-spacing:  $network-network_0016_Layer-51-spacing, 
+   $network-network_0016_Layer-51-repeat:   $network-network_0016_Layer-51-repeat,
+ 
+   $network-network_0017_Layer-50-position: $network-network_0017_Layer-50-position, 
+   $network-network_0017_Layer-50-spacing:  $network-network_0017_Layer-50-spacing, 
+   $network-network_0017_Layer-50-repeat:   $network-network_0017_Layer-50-repeat,
+ 
+   $network-network_0018_Layer-49-position: $network-network_0018_Layer-49-position, 
+   $network-network_0018_Layer-49-spacing:  $network-network_0018_Layer-49-spacing, 
+   $network-network_0018_Layer-49-repeat:   $network-network_0018_Layer-49-repeat,
+ 
+   $network-network_0019_Layer-48-position: $network-network_0019_Layer-48-position, 
+   $network-network_0019_Layer-48-spacing:  $network-network_0019_Layer-48-spacing, 
+   $network-network_0019_Layer-48-repeat:   $network-network_0019_Layer-48-repeat,
+ 
+   $network-network_0020_Layer-47-position: $network-network_0020_Layer-47-position, 
+   $network-network_0020_Layer-47-spacing:  $network-network_0020_Layer-47-spacing, 
+   $network-network_0020_Layer-47-repeat:   $network-network_0020_Layer-47-repeat,
+ 
+   $network-network_0021_Layer-46-position: $network-network_0021_Layer-46-position, 
+   $network-network_0021_Layer-46-spacing:  $network-network_0021_Layer-46-spacing, 
+   $network-network_0021_Layer-46-repeat:   $network-network_0021_Layer-46-repeat,
+ 
+   $network-network_0022_Layer-45-position: $network-network_0022_Layer-45-position, 
+   $network-network_0022_Layer-45-spacing:  $network-network_0022_Layer-45-spacing, 
+   $network-network_0022_Layer-45-repeat:   $network-network_0022_Layer-45-repeat,
+ 
+   $network-network_0023_Layer-44-position: $network-network_0023_Layer-44-position, 
+   $network-network_0023_Layer-44-spacing:  $network-network_0023_Layer-44-spacing, 
+   $network-network_0023_Layer-44-repeat:   $network-network_0023_Layer-44-repeat,
+ 
+   $network-network_0024_Layer-43-position: $network-network_0024_Layer-43-position, 
+   $network-network_0024_Layer-43-spacing:  $network-network_0024_Layer-43-spacing, 
+   $network-network_0024_Layer-43-repeat:   $network-network_0024_Layer-43-repeat,
+ 
+   $network-network_0025_Layer-42-position: $network-network_0025_Layer-42-position, 
+   $network-network_0025_Layer-42-spacing:  $network-network_0025_Layer-42-spacing, 
+   $network-network_0025_Layer-42-repeat:   $network-network_0025_Layer-42-repeat,
+ 
+   $network-network_0026_Layer-41-position: $network-network_0026_Layer-41-position, 
+   $network-network_0026_Layer-41-spacing:  $network-network_0026_Layer-41-spacing, 
+   $network-network_0026_Layer-41-repeat:   $network-network_0026_Layer-41-repeat,
+ 
+   $network-network_0027_Layer-40-position: $network-network_0027_Layer-40-position, 
+   $network-network_0027_Layer-40-spacing:  $network-network_0027_Layer-40-spacing, 
+   $network-network_0027_Layer-40-repeat:   $network-network_0027_Layer-40-repeat,
+ 
+   $network-network_0028_Layer-39-position: $network-network_0028_Layer-39-position, 
+   $network-network_0028_Layer-39-spacing:  $network-network_0028_Layer-39-spacing, 
+   $network-network_0028_Layer-39-repeat:   $network-network_0028_Layer-39-repeat,
+ 
+   $network-network_0029_Layer-38-position: $network-network_0029_Layer-38-position, 
+   $network-network_0029_Layer-38-spacing:  $network-network_0029_Layer-38-spacing, 
+   $network-network_0029_Layer-38-repeat:   $network-network_0029_Layer-38-repeat,
+ 
+   $network-network_0030_Layer-37-position: $network-network_0030_Layer-37-position, 
+   $network-network_0030_Layer-37-spacing:  $network-network_0030_Layer-37-spacing, 
+   $network-network_0030_Layer-37-repeat:   $network-network_0030_Layer-37-repeat,
+ 
+   $network-network_0031_Layer-36-position: $network-network_0031_Layer-36-position, 
+   $network-network_0031_Layer-36-spacing:  $network-network_0031_Layer-36-spacing, 
+   $network-network_0031_Layer-36-repeat:   $network-network_0031_Layer-36-repeat,
+ 
+   $network-network_0032_Layer-35-position: $network-network_0032_Layer-35-position, 
+   $network-network_0032_Layer-35-spacing:  $network-network_0032_Layer-35-spacing, 
+   $network-network_0032_Layer-35-repeat:   $network-network_0032_Layer-35-repeat,
+ 
+   $network-network_0033_Layer-34-position: $network-network_0033_Layer-34-position, 
+   $network-network_0033_Layer-34-spacing:  $network-network_0033_Layer-34-spacing, 
+   $network-network_0033_Layer-34-repeat:   $network-network_0033_Layer-34-repeat,
+ 
+   $network-network_0034_Layer-33-position: $network-network_0034_Layer-33-position, 
+   $network-network_0034_Layer-33-spacing:  $network-network_0034_Layer-33-spacing, 
+   $network-network_0034_Layer-33-repeat:   $network-network_0034_Layer-33-repeat,
+ 
+   $network-network_0035_Layer-32-position: $network-network_0035_Layer-32-position, 
+   $network-network_0035_Layer-32-spacing:  $network-network_0035_Layer-32-spacing, 
+   $network-network_0035_Layer-32-repeat:   $network-network_0035_Layer-32-repeat,
+ 
+   $network-network_0036_Layer-31-position: $network-network_0036_Layer-31-position, 
+   $network-network_0036_Layer-31-spacing:  $network-network_0036_Layer-31-spacing, 
+   $network-network_0036_Layer-31-repeat:   $network-network_0036_Layer-31-repeat,
+ 
+   $network-network_0037_Layer-30-position: $network-network_0037_Layer-30-position, 
+   $network-network_0037_Layer-30-spacing:  $network-network_0037_Layer-30-spacing, 
+   $network-network_0037_Layer-30-repeat:   $network-network_0037_Layer-30-repeat,
+ 
+   $network-network_0038_Layer-29-position: $network-network_0038_Layer-29-position, 
+   $network-network_0038_Layer-29-spacing:  $network-network_0038_Layer-29-spacing, 
+   $network-network_0038_Layer-29-repeat:   $network-network_0038_Layer-29-repeat,
+ 
+   $network-network_0039_Layer-28-position: $network-network_0039_Layer-28-position, 
+   $network-network_0039_Layer-28-spacing:  $network-network_0039_Layer-28-spacing, 
+   $network-network_0039_Layer-28-repeat:   $network-network_0039_Layer-28-repeat,
+ 
+   $network-network_0040_Layer-27-position: $network-network_0040_Layer-27-position, 
+   $network-network_0040_Layer-27-spacing:  $network-network_0040_Layer-27-spacing, 
+   $network-network_0040_Layer-27-repeat:   $network-network_0040_Layer-27-repeat,
+ 
+   $network-network_0041_Layer-26-position: $network-network_0041_Layer-26-position, 
+   $network-network_0041_Layer-26-spacing:  $network-network_0041_Layer-26-spacing, 
+   $network-network_0041_Layer-26-repeat:   $network-network_0041_Layer-26-repeat,
+ 
+   $network-network_0042_Layer-25-position: $network-network_0042_Layer-25-position, 
+   $network-network_0042_Layer-25-spacing:  $network-network_0042_Layer-25-spacing, 
+   $network-network_0042_Layer-25-repeat:   $network-network_0042_Layer-25-repeat,
+ 
+   $network-network_0043_Layer-24-position: $network-network_0043_Layer-24-position, 
+   $network-network_0043_Layer-24-spacing:  $network-network_0043_Layer-24-spacing, 
+   $network-network_0043_Layer-24-repeat:   $network-network_0043_Layer-24-repeat,
+ 
+   $network-network_0044_Layer-23-position: $network-network_0044_Layer-23-position, 
+   $network-network_0044_Layer-23-spacing:  $network-network_0044_Layer-23-spacing, 
+   $network-network_0044_Layer-23-repeat:   $network-network_0044_Layer-23-repeat,
+ 
+   $network-network_0045_Layer-22-position: $network-network_0045_Layer-22-position, 
+   $network-network_0045_Layer-22-spacing:  $network-network_0045_Layer-22-spacing, 
+   $network-network_0045_Layer-22-repeat:   $network-network_0045_Layer-22-repeat,
+ 
+   $network-network_0046_Layer-21-position: $network-network_0046_Layer-21-position, 
+   $network-network_0046_Layer-21-spacing:  $network-network_0046_Layer-21-spacing, 
+   $network-network_0046_Layer-21-repeat:   $network-network_0046_Layer-21-repeat,
+ 
+   $network-network_0047_Layer-20-position: $network-network_0047_Layer-20-position, 
+   $network-network_0047_Layer-20-spacing:  $network-network_0047_Layer-20-spacing, 
+   $network-network_0047_Layer-20-repeat:   $network-network_0047_Layer-20-repeat,
+ 
+   $network-network_0048_Layer-19-position: $network-network_0048_Layer-19-position, 
+   $network-network_0048_Layer-19-spacing:  $network-network_0048_Layer-19-spacing, 
+   $network-network_0048_Layer-19-repeat:   $network-network_0048_Layer-19-repeat,
+ 
+   $network-network_0049_Layer-18-position: $network-network_0049_Layer-18-position, 
+   $network-network_0049_Layer-18-spacing:  $network-network_0049_Layer-18-spacing, 
+   $network-network_0049_Layer-18-repeat:   $network-network_0049_Layer-18-repeat,
+ 
+   $network-network_0050_Layer-17-position: $network-network_0050_Layer-17-position, 
+   $network-network_0050_Layer-17-spacing:  $network-network_0050_Layer-17-spacing, 
+   $network-network_0050_Layer-17-repeat:   $network-network_0050_Layer-17-repeat,
+ 
+   $network-network_0051_Layer-16-position: $network-network_0051_Layer-16-position, 
+   $network-network_0051_Layer-16-spacing:  $network-network_0051_Layer-16-spacing, 
+   $network-network_0051_Layer-16-repeat:   $network-network_0051_Layer-16-repeat,
+ 
+   $network-network_0052_Layer-15-position: $network-network_0052_Layer-15-position, 
+   $network-network_0052_Layer-15-spacing:  $network-network_0052_Layer-15-spacing, 
+   $network-network_0052_Layer-15-repeat:   $network-network_0052_Layer-15-repeat,
+ 
+   $network-network_0053_Layer-14-position: $network-network_0053_Layer-14-position, 
+   $network-network_0053_Layer-14-spacing:  $network-network_0053_Layer-14-spacing, 
+   $network-network_0053_Layer-14-repeat:   $network-network_0053_Layer-14-repeat,
+ 
+   $network-network_0054_Layer-13-position: $network-network_0054_Layer-13-position, 
+   $network-network_0054_Layer-13-spacing:  $network-network_0054_Layer-13-spacing, 
+   $network-network_0054_Layer-13-repeat:   $network-network_0054_Layer-13-repeat,
+ 
+   $network-network_0055_Layer-12-position: $network-network_0055_Layer-12-position, 
+   $network-network_0055_Layer-12-spacing:  $network-network_0055_Layer-12-spacing, 
+   $network-network_0055_Layer-12-repeat:   $network-network_0055_Layer-12-repeat,
+ 
+   $network-network_0056_Layer-11-position: $network-network_0056_Layer-11-position, 
+   $network-network_0056_Layer-11-spacing:  $network-network_0056_Layer-11-spacing, 
+   $network-network_0056_Layer-11-repeat:   $network-network_0056_Layer-11-repeat,
+ 
+   $network-network_0057_Layer-10-position: $network-network_0057_Layer-10-position, 
+   $network-network_0057_Layer-10-spacing:  $network-network_0057_Layer-10-spacing, 
+   $network-network_0057_Layer-10-repeat:   $network-network_0057_Layer-10-repeat,
+ 
+   $network-network_0058_Layer-9-position: $network-network_0058_Layer-9-position, 
+   $network-network_0058_Layer-9-spacing:  $network-network_0058_Layer-9-spacing, 
+   $network-network_0058_Layer-9-repeat:   $network-network_0058_Layer-9-repeat,
+ 
+   $network-network_0059_Layer-8-position: $network-network_0059_Layer-8-position, 
+   $network-network_0059_Layer-8-spacing:  $network-network_0059_Layer-8-spacing, 
+   $network-network_0059_Layer-8-repeat:   $network-network_0059_Layer-8-repeat,
+ 
+   $network-network_0060_Layer-7-position: $network-network_0060_Layer-7-position, 
+   $network-network_0060_Layer-7-spacing:  $network-network_0060_Layer-7-spacing, 
+   $network-network_0060_Layer-7-repeat:   $network-network_0060_Layer-7-repeat,
+ 
+   $network-network_0061_Layer-6-position: $network-network_0061_Layer-6-position, 
+   $network-network_0061_Layer-6-spacing:  $network-network_0061_Layer-6-spacing, 
+   $network-network_0061_Layer-6-repeat:   $network-network_0061_Layer-6-repeat,
+ 
+   $network-network_0062_Layer-5-position: $network-network_0062_Layer-5-position, 
+   $network-network_0062_Layer-5-spacing:  $network-network_0062_Layer-5-spacing, 
+   $network-network_0062_Layer-5-repeat:   $network-network_0062_Layer-5-repeat,
+ 
+   $network-network_0063_Layer-4-position: $network-network_0063_Layer-4-position, 
+   $network-network_0063_Layer-4-spacing:  $network-network_0063_Layer-4-spacing, 
+   $network-network_0063_Layer-4-repeat:   $network-network_0063_Layer-4-repeat,
+ 
+   $network-network_0064_Layer-3-position: $network-network_0064_Layer-3-position, 
+   $network-network_0064_Layer-3-spacing:  $network-network_0064_Layer-3-spacing, 
+   $network-network_0064_Layer-3-repeat:   $network-network_0064_Layer-3-repeat,
+ 
+   $network-network_0065_Layer-2-position: $network-network_0065_Layer-2-position, 
+   $network-network_0065_Layer-2-spacing:  $network-network_0065_Layer-2-spacing, 
+   $network-network_0065_Layer-2-repeat:   $network-network_0065_Layer-2-repeat,
+ 
+   $network-network_0066_Layer-1-position: $network-network_0066_Layer-1-position, 
+   $network-network_0066_Layer-1-spacing:  $network-network_0066_Layer-1-spacing, 
+   $network-network_0066_Layer-1-repeat:   $network-network_0066_Layer-1-repeat,
+ 
+ $layout: $network-layout,
+ $cleanup: $network-clean-up
+ );
+
+
+// All sprites should extend this class
+// The network-sprite mixin will do so for you.
+@if $network-inline {
+  #{$network-sprite-base-class} {
+    background-image: inline-sprite($network-sprites);
+  } 
+} @else {
+  #{$network-sprite-base-class} {
+    background: $network-sprites no-repeat;
+  }
+}
+//sass functions to return the dimensions of a sprite image as units
+
+  @function network-sprite-width($name) {
+    $file: sprite_file($network-sprites, $name);
+    @return image-width($file);
+  }
+
+  @function network-sprite-height($name) {
+    $file: sprite_file($network-sprites, $name);
+    @return image-height($file);
+  }
+
+
+// Use this to set the dimensions of an element
+// based on the size of the original image.
+@mixin network-sprite-dimensions($name) {
+  @include sprite-dimensions($network-sprites, $name)
+}
+
+// Move the background position to display the sprite.
+@mixin network-sprite-position($name, $offset-x: 0, $offset-y: 0) {
+  @include sprite-background-position($network-sprites, $name, $offset-x, $offset-y)
+}
+
+// Extends the sprite base class and set the background position for the desired sprite.
+// It will also apply the image dimensions if $dimensions is true.
+@mixin network-sprite($name, $dimensions: $network-sprite-dimensions, $offset-x: 0, $offset-y: 0) {
+  @extend #{$network-sprite-base-class};
+  @include sprite($network-sprites, $name, $dimensions, $offset-x, $offset-y)
+}
+
+@mixin network-sprites($sprite-names, $dimensions: $network-sprite-dimensions, $prefix: sprite-map-name($network-sprites), $offset-x: 0, $offset-y: 0) {
+  @include sprites($network-sprites, $sprite-names, $network-sprite-base-class, $dimensions, $prefix, $offset-x, $offset-y)
+}
+
+// Generates a class for each sprited image.
+@mixin all-network-sprites($dimensions: $network-sprite-dimensions, $prefix: sprite-map-name($network-sprites), $offset-x: 0, $offset-y: 0) {
+  @include network-sprites(network_0000_Layer-67 network_0001_Layer-66 network_0002_Layer-65 network_0003_Layer-64 network_0004_Layer-63 network_0005_Layer-62 network_0006_Layer-61 network_0007_Layer-60 network_0008_Layer-59 network_0009_Layer-58 network_0010_Layer-57 network_0011_Layer-56 network_0012_Layer-55 network_0013_Layer-54 network_0014_Layer-53 network_0015_Layer-52 network_0016_Layer-51 network_0017_Layer-50 network_0018_Layer-49 network_0019_Layer-48 network_0020_Layer-47 network_0021_Layer-46 network_0022_Layer-45 network_0023_Layer-44 network_0024_Layer-43 network_0025_Layer-42 network_0026_Layer-41 network_0027_Layer-40 network_0028_Layer-39 network_0029_Layer-38 network_0030_Layer-37 network_0031_Layer-36 network_0032_Layer-35 network_0033_Layer-34 network_0034_Layer-33 network_0035_Layer-32 network_0036_Layer-31 network_0037_Layer-30 network_0038_Layer-29 network_0039_Layer-28 network_0040_Layer-27 network_0041_Layer-26 network_0042_Layer-25 network_0043_Layer-24 network_0044_Layer-23 network_0045_Layer-22 network_0046_Layer-21 network_0047_Layer-20 network_0048_Layer-19 network_0049_Layer-18 network_0050_Layer-17 network_0051_Layer-16 network_0052_Layer-15 network_0053_Layer-14 network_0054_Layer-13 network_0055_Layer-12 network_0056_Layer-11 network_0057_Layer-10 network_0058_Layer-9 network_0059_Layer-8 network_0060_Layer-7 network_0061_Layer-6 network_0062_Layer-5 network_0063_Layer-4 network_0064_Layer-3 network_0065_Layer-2 network_0066_Layer-1, $dimensions, $prefix, $offset-x, $offset-y);
+}

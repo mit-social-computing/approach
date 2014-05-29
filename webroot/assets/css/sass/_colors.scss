@@ -27,13 +27,22 @@ $body-text: #a59dae;
 $link: #d9959e;
 $link-hover: #fdc52f;
 
-//Category Boxes
+// Resource Filters
 // Normal
-$category-text: #70becd;
-$cateogry-bg: #dfedef;
-//Selected
-$category-text-active: #b6a2cd;
-$category-bg-active: #eeeaf2;
+$category-text: #b6a2cd;
+$category-bg: #eeeaf2;
 //Hover
 $category-text-hover: #f77e85;
 $category-bg-hover: #f9e5e6;
+//Selected
+$category-text-selected: #70becd;
+$category-bg-selected: #dfedef;
+
+// Resource Tags
+// Normal
+$resource-tag-text: #70becd;
+$resource-tag-bg: #e3f0f2;
+// Hover
+$resource-tag-text-hover: #f77e85;
+$resource-tag-bg-hover: #f9e5e6;
+

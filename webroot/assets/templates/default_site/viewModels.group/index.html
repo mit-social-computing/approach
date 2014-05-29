@@ -1,1 +1,7 @@
-Hello world
+{if segment_2}
+    {exp:stash:embed:{segment_2}}
+{if:elseif segment_1}
+    {exp:stash:embed:{segment_1}}
+{if:else}
+    {exp:stash:embed:overview}
+{/if}

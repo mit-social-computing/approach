@@ -1,0 +1,47 @@
+.download {
+    color: white;
+    font-family: kim;
+    font-size: rem-calc(19);
+    padding: 7px 33px 8px 12px;
+    border-radius: 3px;
+    background: none;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    letter-spacing: 2px;
+    display: block;
+    @include transition(none);
+    @extend .antialiased;
+
+    &.red {
+        background-image: url(/assets/img/buttons/red-button.png);
+    }
+
+    &.blue {
+        background-image: url(/assets/img/buttons/blue-button.png);
+    }
+
+    &:hover {
+        background-color: inherit;
+    }
+}
+
+.tag {
+    font-family: kim;
+    font-size: rem-calc(17);
+    letter-spacing: 1.5px;
+    margin: 2px;
+    padding: 6px 11px 10px 12px;
+    border-radius: 3px;
+    @include transition(background-color 150ms ease, color 150ms ease);
+
+    &:active,
+    &:focus {
+        border: none;
+        outline: none;
+    }
+
+    &.selected {
+        outline: none;
+        border: none;
+    }
+}

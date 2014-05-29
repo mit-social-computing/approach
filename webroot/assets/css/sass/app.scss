@@ -4,10 +4,14 @@
 @import "settings";
 @import "compass/css3/transition";
 @import "compass/css3/images";
+@import "compass/css3/box-shadow";
 @import "foundation";
 @import "lib/flex";
 
+@import "sprites";
 @import "base_styles";
 @import "global_elements";
+@import "interface";
 @import "home";
-
+@import "about";
+@import "resources";

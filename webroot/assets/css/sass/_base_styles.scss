@@ -1,13 +1,29 @@
-body,
-html {
+.container {
+    display: block;
     height: 100%;
+    width: 95%;
+    max-width: 865px;
+    margin: 0 auto;
 }
 
-.container { 
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background-image: url('/assets/img/bkd.jpg');
+.no-touch .container {
+    @include flexbox;
+    @include flex-direction(column);
+}
+
+@media #{$medium-up} {
+    .container.sticky {
+        padding-top: 140px;
+    }
+
+    .resources .container.sticky {
+        padding-top: 185px;
+    }
+}
+
+.about .content {
+    max-width: 670px;
+    margin: 0 auto;
 }
 
 a {
@@ -18,4 +34,9 @@ a {
     &:hover {
         border-bottom-color: rgba($link-hover, 1);
     }
+}
+
+p {
+    letter-spacing: 1px;
+    @extend .antialiased;
 }

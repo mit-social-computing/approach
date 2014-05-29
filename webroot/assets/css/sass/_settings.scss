@@ -41,8 +41,8 @@
 // We use these to control various global styles
 // $body-bg: #fff;
 $body-font-color: $body-text;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-// $body-font-weight: normal;
+$body-font-family: Arial, sans-serif;
+$body-font-weight: 200;
 // $body-font-style: normal;
 
 // We use this to control font-smoothing
@@ -148,9 +148,9 @@ $xxlarge-only: "#{$screen} and (min-width:#{lower-bound($xxlarge-range)}) and (m
 
 // We use these to style paragraphs
 // $paragraph-font-family: inherit;
-// $paragraph-font-weight: normal;
-// $paragraph-font-size: 1rem;
-// $paragraph-line-height: 1.6;
+$paragraph-font-weight: inherit;
+$paragraph-font-size: rem-calc(14);
+$paragraph-line-height: 1.25;
 // $paragraph-margin-bottom: rem-calc(20);
 // $paragraph-aside-font-size: rem-calc(14);
 // $paragraph-aside-line-height: 1.35;
