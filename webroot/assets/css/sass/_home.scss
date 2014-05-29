@@ -66,10 +66,11 @@
             bottom: 0;
             margin: auto;
             opacity: 0;
-            @include transition(opacity 250ms);
+            @include transition(opacity 0ms);
 
             &.show {
                 opacity: 1;
+                @include transition(opacity 250ms);
             }
         }
     }
