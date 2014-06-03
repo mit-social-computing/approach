@@ -45,38 +45,42 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
         return newH1
     }
 
-    logo.parentElement.replaceChild(colorInit(logo), logo)
+    function init () {
+        logo.parentElement.replaceChild(colorInit(logo), logo)
 
-    arrow.addEventListener('click', function (e) {
-        e.preventDefault()
-        $('html, body').animate({scrollTop: 0}, 200)
-    }, false)
+        arrow.addEventListener('click', function (e) {
+            e.preventDefault()
+            $('html, body').animate({scrollTop: 0}, 200)
+        }, false)
 
-    window.addEventListener('load', function() {
-        FastClick.attach(document.body);
-    }, false);
+        window.addEventListener('load', function() {
+            FastClick.attach(document.body);
+        }, false);
 
-    menuButton.addEventListener('click', function(e) {
-        menu.classList.toggle('show')
-    }, false)
+        menuButton.addEventListener('click', function(e) {
+            menu.classList.toggle('show')
+        }, false)
 
-    Modernizr.load({
-        test: Modernizr.touch,
-        nope : "/assets/bower_components/skrollr/dist/skrollr.min.js",
-        callback : function( url, result, key ) {
-            if ( !result && !document.getElementsByClassName('overview').length ) {
-                imagesLoaded('img', function() {
-                    s = skrollr.init({
-                        constants : {
-                            _center : (document.documentElement.scrollHeight - window.innerHeight) / 2
-                        }
+        Modernizr.load({
+            test: Modernizr.touch,
+            nope : "/assets/bower_components/skrollr/dist/skrollr.min.js",
+            callback : function( url, result, key ) {
+                if ( !result && !document.getElementsByClassName('overview').length ) {
+                    imagesLoaded('img', function() {
+                        s = skrollr.init({
+                            constants : {
+                                _center : (document.documentElement.scrollHeight - window.innerHeight) / 2
+                            }
+                        })
                     })
-                })
+                }
             }
-        }
-    })
+        })
+    }
 
     return {
-        updateLogoColors : updateLogoColors
+        updateLogoColors : updateLogoColors,
+        init : init,
+        test : function() { return 'hello' }
     }
 })

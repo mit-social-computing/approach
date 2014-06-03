@@ -12,13 +12,19 @@ module.exports = function(grunt) {
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.dev %>;' +
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
-    jsSrc : '<%= pkg.assetsPath %>js/src/',
+    jsSrc : '<%= pkg.assetsPath %>js/src/*.js',
     jsBuild : '<%= pkg.assetsPath %>js/build/<%= pkg.name %>.js',
     jsMin : '<%= pkg.assetsPath %>js/build/<%= pkg.name %>.min.js',
     sass : '<%= pkg.assetsPath %>css/sass/*',
     css : '<%= pkg.assetsPath %>css/app.css',
     templates : '<%= pkg.assetsPath %>templates/**/*',
     markup : '<%= pkg.assetsPath %>markup/**/*.html',
+
+    shell : {
+        nightwatch : {
+            command : './nightwatch -e chrome,default'
+        }
+    },
 
     replace : {
       build_replace : {
@@ -73,17 +79,6 @@ module.exports = function(grunt) {
         }
     },
 
-    copy: {
-        dev : {
-            files : [{
-                expand : true,
-                cwd : '<%= jsSrc %>',
-                src: ['**/*.js'],
-                dest: '<%= pkg.assetsPath %>js/build/'
-            }]
-        }
-    },
-
     watch: {
         sass : {
             files : ['<%= sass %>'],
@@ -100,20 +95,21 @@ module.exports = function(grunt) {
             files : ['<%= markup %>'],
             options : { livereload : true }
         },
-        jsCopy : {
-            files : ['<%= jsSrc %>/*'],
-            tasks : ['copy:dev'],
-            options : {
-                spawn : false,
-                interrupt : true
-            }
-        },
+        // jsCopy : {
+        //     files : ['<%= jsSrc %>/*'],
+        //     tasks : ['copy:dev'],
+        //     options : {
+        //         spawn : false,
+        //         interrupt : true
+        //     }
+        // },
         reload : {
             files : [
                 '<%= templates %>'
                 , '!<%= pkg.assetsPath %>templates/**/header.html'
                 , '!<%= pkg.assetsPath %>templates/**/footer.html'
                 , '<%= jsBuild %>'
+                , '<%= jsSrc %>'
                 , '<%= css %>'
             ],
             options : { livereload : true }
@@ -135,7 +131,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-replace');
+  grunt.loadNpmTasks('grunt-shell');
 
   // Default task.
+  grunt.registerTask('nightwatch', ['shell:nightwatch']);
 
 };

@@ -24,13 +24,15 @@
     margin-bottom: 15px;
     text-align: center;
     height: 145px;
+    width: 100%;
 
     img {
         display: none;
     }
 
     .init-gif {
-        display: inline;
+        display: block;
+        margin: 0 auto;
         opacity: 1;
         max-width: 100%;
         max-height: 100%;

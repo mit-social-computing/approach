@@ -36,6 +36,7 @@ require.config({
 requirejs(['app/allpages'],
 function( lib ) {
     var path = document.location.pathname
+    lib.init()
 
     if ( path === "/" ) {
         require(['app/home'])

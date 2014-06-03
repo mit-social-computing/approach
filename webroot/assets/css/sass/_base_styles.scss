@@ -1,14 +1,14 @@
 .container {
-    display: block;
+    @include flexbox;
+    @include flex-direction(column);
     height: 100%;
     width: 95%;
     max-width: 865px;
     margin: 0 auto;
 }
 
-.no-touch .container {
-    @include flexbox;
-    @include flex-direction(column);
+.touch .container {
+    display: block;
 }
 
 @media #{$medium-up} {
