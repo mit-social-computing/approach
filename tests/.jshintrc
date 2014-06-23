@@ -32,6 +32,9 @@
     "notDeepEqual",
     "strictEqual",
     "notStrictEqual",
-    "raises"
+    "raises",
+    "describe",
+    "it",
+    "expect"
   ]
 }

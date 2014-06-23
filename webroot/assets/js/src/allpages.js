@@ -1,6 +1,6 @@
 'use strict';
 
-define(['lodash','skrollr','imagesloaded','fastclick','modernizr'],
+define(['lodash', 'skrollr', 'imagesloaded', 'fastclick', 'modernizr', 'jquery'],
 function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
     var menuButton = document.getElementById('menuButton'),
         menu = document.getElementById('nav'),
@@ -13,10 +13,10 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
             , 'green' : [129, 174, 113]
         },
         logo = document.getElementById('logo'),
-        s
+        forEach = Array.prototype.forEach
 
     function updateLogoColors(logo) {
-        Array.prototype.forEach.call(logo.children, function(span) {
+        forEach.call(logo.children, function(span) {
             span.style.color = 'rgb(' + _.sample(colors) + ')'
         })
     }
@@ -24,7 +24,7 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
     function colorInit( logo ) {
         var newH1 = document.createElement('h1')
 
-        Array.prototype.forEach.call(logo.innerHTML, function(el, idx) {
+        forEach.call(logo.innerHTML, function(el, idx) {
             if ( el === ' ' ) {
                 newH1.innerHTML += ' '
             } else {
@@ -67,7 +67,7 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
             callback : function( url, result, key ) {
                 if ( !result && !document.getElementsByClassName('overview').length ) {
                     imagesLoaded('img', function() {
-                        s = skrollr.init({
+                        window.s = skrollr.init({
                             constants : {
                                 _center : (document.documentElement.scrollHeight - window.innerHeight) / 2
                             }
@@ -81,6 +81,6 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
     return {
         updateLogoColors : updateLogoColors,
         init : init,
-        test : function() { return 'hello' }
+        colorInit: colorInit
     }
 })

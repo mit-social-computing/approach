@@ -1,143 +1,50 @@
-Jun 03, 2014 12:40:36 PM org.openqa.grid.selenium.GridLauncher main
+Jun 23, 2014 5:35:59 PM org.openqa.grid.selenium.GridLauncher main
 INFO: Launching a standalone server
-12:40:36.564 INFO - Java: Oracle Corporation 24.51-b03
-12:40:36.565 INFO - OS: Mac OS X 10.9.3 x86_64
-12:40:36.579 INFO - v2.41.0, with Core v2.41.0. Built from revision 3192d8a
-12:40:36.669 INFO - Default driver org.openqa.selenium.ie.InternetExplorerDriver registration is skipped: registration capabilities Capabilities [{platform=WINDOWS, ensureCleanSession=true, browserName=internet explorer, version=}] does not match with current platform: MAC
-12:40:36.710 INFO - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub
-12:40:36.711 INFO - Version Jetty/5.1.x
-12:40:36.712 INFO - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
-12:40:36.713 INFO - Started HttpContext[/selenium-server,/selenium-server]
-12:40:36.713 INFO - Started HttpContext[/,/]
-12:40:36.738 INFO - Started org.openqa.jetty.jetty.servlet.ServletHandler@62b9f149
-12:40:36.738 INFO - Started HttpContext[/wd,/wd]
-12:40:36.743 INFO - Started SocketListener on 0.0.0.0:4444
-12:40:36.744 INFO - Started org.openqa.jetty.jetty.Server@742e84e1
-12:40:37.150 INFO - Executing: [new session: Capabilities [{platform=ANY, javascriptEnabled=true, acceptSslCerts=true, browserName=firefox}]] at URL: /session)
-12:40:37.150 INFO - Executing: [new session: Capabilities [{platform=ANY, javascriptEnabled=true, acceptSslCerts=true, browserName=chrome}]] at URL: /session)
-12:40:37.161 INFO - Creating a new session for Capabilities [{platform=ANY, javascriptEnabled=true, acceptSslCerts=true, browserName=firefox}]
-12:40:37.161 INFO - Creating a new session for Capabilities [{platform=ANY, javascriptEnabled=true, acceptSslCerts=true, browserName=chrome}]
-Starting ChromeDriver (v2.10.267517) on port 33101
+17:35:59.097 INFO - Java: Oracle Corporation 24.51-b03
+17:35:59.098 INFO - OS: Mac OS X 10.9.3 x86_64
+17:35:59.111 INFO - v2.42.2, with Core v2.42.2. Built from revision 6a6995d
+17:35:59.209 INFO - Default driver org.openqa.selenium.ie.InternetExplorerDriver registration is skipped: registration capabilities Capabilities [{platform=WINDOWS, ensureCleanSession=true, browserName=internet explorer, version=}] does not match with current platform: MAC
+17:35:59.248 INFO - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub
+17:35:59.249 INFO - Version Jetty/5.1.x
+17:35:59.250 INFO - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
+17:35:59.251 INFO - Started HttpContext[/selenium-server,/selenium-server]
+17:35:59.251 INFO - Started HttpContext[/,/]
+17:35:59.273 INFO - Started org.openqa.jetty.jetty.servlet.ServletHandler@1d04966e
+17:35:59.273 INFO - Started HttpContext[/wd,/wd]
+17:35:59.279 INFO - Started SocketListener on 0.0.0.0:4444
+17:35:59.279 INFO - Started org.openqa.jetty.jetty.Server@3435cf9c
+17:35:59.514 INFO - Executing: [new session: Capabilities [{platform=ANY, javascriptEnabled=true, acceptSslCerts=true, browserName=chrome}]])
+17:35:59.525 INFO - Creating a new session for Capabilities [{platform=ANY, javascriptEnabled=true, acceptSslCerts=true, browserName=chrome}]
+Starting ChromeDriver (v2.10.267517) on port 28226
 Only local connections are allowed.
-12:40:38.997 INFO - Done: /session
-12:40:39.024 INFO - Executing: [get: http://approach.dev] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/url)
-12:40:40.216 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/url
-12:40:40.341 INFO - Done: /session
-12:40:40.355 INFO - Executing: [get: http://approach.dev] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/url)
-12:40:41.860 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/url
-12:40:46.225 INFO - Executing: [find elements: By.selector: .principles-text a] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/elements)
-12:40:46.280 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/elements
-12:40:46.285 INFO - Executing: [mousemove: 0 false] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto)
-12:40:46.313 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto
-12:40:46.317 INFO - Executing: [find element: By.selector: .jsgif:nth-child(1) canvas] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element)
-12:40:46.336 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element
-12:40:46.340 INFO - Executing: [is displayed: 9 [[ChromeDriver: chrome on MAC (273397e90e68634ca3c288eca4b18537)] -> css selector: .jsgif:nth-child(1) canvas]] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/9/displayed)
-12:40:46.358 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/9/displayed
-12:40:46.362 INFO - Executing: [mousemove: 1 false] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto)
-12:40:46.380 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto
-12:40:46.383 INFO - Executing: [find element: By.selector: .jsgif:nth-child(2) canvas] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element)
-12:40:46.399 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element
-12:40:46.402 INFO - Executing: [is displayed: 10 [[ChromeDriver: chrome on MAC (273397e90e68634ca3c288eca4b18537)] -> css selector: .jsgif:nth-child(2) canvas]] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/10/displayed)
-12:40:46.419 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/10/displayed
-12:40:46.424 INFO - Executing: [mousemove: 2 false] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto)
-12:40:46.444 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto
-12:40:46.447 INFO - Executing: [find element: By.selector: .jsgif:nth-child(3) canvas] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element)
-12:40:46.467 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element
-12:40:46.470 INFO - Executing: [is displayed: 11 [[ChromeDriver: chrome on MAC (273397e90e68634ca3c288eca4b18537)] -> css selector: .jsgif:nth-child(3) canvas]] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/11/displayed)
-12:40:46.486 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/11/displayed
-12:40:46.490 INFO - Executing: [mousemove: 3 false] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto)
-12:40:46.509 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto
-12:40:46.512 INFO - Executing: [find element: By.selector: .jsgif:nth-child(4) canvas] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element)
-12:40:46.534 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element
-12:40:46.538 INFO - Executing: [is displayed: 12 [[ChromeDriver: chrome on MAC (273397e90e68634ca3c288eca4b18537)] -> css selector: .jsgif:nth-child(4) canvas]] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/12/displayed)
-12:40:46.560 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/12/displayed
-12:40:46.564 INFO - Executing: [mousemove: 4 false] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto)
-12:40:46.582 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto
-12:40:46.586 INFO - Executing: [find element: By.selector: .jsgif:nth-child(5) canvas] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element)
-12:40:46.607 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element
-12:40:46.611 INFO - Executing: [is displayed: 13 [[ChromeDriver: chrome on MAC (273397e90e68634ca3c288eca4b18537)] -> css selector: .jsgif:nth-child(5) canvas]] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/13/displayed)
-12:40:46.627 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/13/displayed
-12:40:46.632 INFO - Executing: [mousemove: 5 false] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto)
-12:40:46.651 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto
-12:40:46.667 INFO - Executing: [find element: By.selector: .jsgif:nth-child(6) canvas] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element)
-12:40:46.683 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element
-12:40:46.687 INFO - Executing: [is displayed: 14 [[ChromeDriver: chrome on MAC (273397e90e68634ca3c288eca4b18537)] -> css selector: .jsgif:nth-child(6) canvas]] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/14/displayed)
-12:40:46.706 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/14/displayed
-12:40:46.711 INFO - Executing: [mousemove: 6 false] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto)
-12:40:46.738 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto
-12:40:46.744 INFO - Executing: [find element: By.selector: .jsgif:nth-child(7) canvas] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element)
-12:40:46.759 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element
-12:40:46.762 INFO - Executing: [is displayed: 15 [[ChromeDriver: chrome on MAC (273397e90e68634ca3c288eca4b18537)] -> css selector: .jsgif:nth-child(7) canvas]] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/15/displayed)
-12:40:46.779 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/15/displayed
-12:40:46.782 INFO - Executing: [mousemove: 7 false] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto)
-12:40:46.797 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto
-12:40:46.800 INFO - Executing: [find element: By.selector: .jsgif:nth-child(8) canvas] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element)
-12:40:46.823 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element
-12:40:46.827 INFO - Executing: [is displayed: 16 [[ChromeDriver: chrome on MAC (273397e90e68634ca3c288eca4b18537)] -> css selector: .jsgif:nth-child(8) canvas]] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/16/displayed)
-12:40:46.845 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/16/displayed
-12:40:46.849 INFO - Executing: [mousemove: 8 false] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto)
-12:40:46.875 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/moveto
-12:40:46.878 INFO - Executing: [find element: By.selector: .jsgif:nth-child(9) canvas] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element)
-12:40:46.895 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element
-12:40:46.898 INFO - Executing: [is displayed: 17 [[ChromeDriver: chrome on MAC (273397e90e68634ca3c288eca4b18537)] -> css selector: .jsgif:nth-child(9) canvas]] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/17/displayed)
-12:40:46.915 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f/element/17/displayed
-12:40:46.919 INFO - Executing: [delete session: b6506ca3-8413-4e90-9422-284b0bf4085f] at URL: /session/b6506ca3-8413-4e90-9422-284b0bf4085f)
-12:40:47.482 INFO - Done: /session/b6506ca3-8413-4e90-9422-284b0bf4085f
-12:40:47.866 INFO - Executing: [find elements: By.selector: .principles-text a] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/elements)
-12:40:47.927 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/elements
-12:40:47.932 INFO - Executing: [mousemove: 0 false] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto)
-12:40:47.972 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto
-12:40:47.977 INFO - Executing: [find element: By.selector: .jsgif:nth-child(1) canvas] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element)
-12:40:47.990 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element
-12:40:47.993 INFO - Executing: [is displayed: 9 [[FirefoxDriver: firefox on MAC (1f673f13-c000-f54c-8927-c7610f72bd71)] -> css selector: .jsgif:nth-child(1) canvas]] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/9/displayed)
-12:40:48.006 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/9/displayed
-12:40:48.010 INFO - Executing: [mousemove: 1 false] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto)
-12:40:48.041 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto
-12:40:48.044 INFO - Executing: [find element: By.selector: .jsgif:nth-child(2) canvas] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element)
-12:40:48.058 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element
-12:40:48.061 INFO - Executing: [is displayed: 10 [[FirefoxDriver: firefox on MAC (1f673f13-c000-f54c-8927-c7610f72bd71)] -> css selector: .jsgif:nth-child(2) canvas]] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/10/displayed)
-12:40:48.075 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/10/displayed
-12:40:48.078 INFO - Executing: [mousemove: 2 false] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto)
-12:40:48.111 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto
-12:40:48.115 INFO - Executing: [find element: By.selector: .jsgif:nth-child(3) canvas] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element)
-12:40:48.127 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element
-12:40:48.132 INFO - Executing: [is displayed: 11 [[FirefoxDriver: firefox on MAC (1f673f13-c000-f54c-8927-c7610f72bd71)] -> css selector: .jsgif:nth-child(3) canvas]] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/11/displayed)
-12:40:48.149 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/11/displayed
-12:40:48.152 INFO - Executing: [mousemove: 3 false] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto)
-12:40:48.192 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto
-12:40:48.196 INFO - Executing: [find element: By.selector: .jsgif:nth-child(4) canvas] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element)
-12:40:48.209 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element
-12:40:48.213 INFO - Executing: [is displayed: 12 [[FirefoxDriver: firefox on MAC (1f673f13-c000-f54c-8927-c7610f72bd71)] -> css selector: .jsgif:nth-child(4) canvas]] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/12/displayed)
-12:40:48.226 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/12/displayed
-12:40:48.230 INFO - Executing: [mousemove: 4 false] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto)
-12:40:48.262 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto
-12:40:48.265 INFO - Executing: [find element: By.selector: .jsgif:nth-child(5) canvas] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element)
-12:40:48.276 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element
-12:40:48.280 INFO - Executing: [is displayed: 13 [[FirefoxDriver: firefox on MAC (1f673f13-c000-f54c-8927-c7610f72bd71)] -> css selector: .jsgif:nth-child(5) canvas]] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/13/displayed)
-12:40:48.296 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/13/displayed
-12:40:48.302 INFO - Executing: [mousemove: 5 false] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto)
-12:40:48.337 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto
-12:40:48.341 INFO - Executing: [find element: By.selector: .jsgif:nth-child(6) canvas] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element)
-12:40:48.355 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element
-12:40:48.358 INFO - Executing: [is displayed: 14 [[FirefoxDriver: firefox on MAC (1f673f13-c000-f54c-8927-c7610f72bd71)] -> css selector: .jsgif:nth-child(6) canvas]] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/14/displayed)
-12:40:48.373 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/14/displayed
-12:40:48.379 INFO - Executing: [mousemove: 6 false] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto)
-12:40:48.409 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto
-12:40:48.414 INFO - Executing: [find element: By.selector: .jsgif:nth-child(7) canvas] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element)
-12:40:48.431 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element
-12:40:48.435 INFO - Executing: [is displayed: 15 [[FirefoxDriver: firefox on MAC (1f673f13-c000-f54c-8927-c7610f72bd71)] -> css selector: .jsgif:nth-child(7) canvas]] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/15/displayed)
-12:40:48.446 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/15/displayed
-12:40:48.449 INFO - Executing: [mousemove: 7 false] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto)
-12:40:48.481 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto
-12:40:48.484 INFO - Executing: [find element: By.selector: .jsgif:nth-child(8) canvas] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element)
-12:40:48.525 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element
-12:40:48.528 INFO - Executing: [is displayed: 16 [[FirefoxDriver: firefox on MAC (1f673f13-c000-f54c-8927-c7610f72bd71)] -> css selector: .jsgif:nth-child(8) canvas]] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/16/displayed)
-12:40:48.547 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/16/displayed
-12:40:48.551 INFO - Executing: [mousemove: 8 false] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto)
-12:40:48.594 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/moveto
-12:40:48.597 INFO - Executing: [find element: By.selector: .jsgif:nth-child(9) canvas] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element)
-12:40:48.611 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element
-12:40:48.614 INFO - Executing: [is displayed: 17 [[FirefoxDriver: firefox on MAC (1f673f13-c000-f54c-8927-c7610f72bd71)] -> css selector: .jsgif:nth-child(9) canvas]] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/17/displayed)
-12:40:48.653 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4/element/17/displayed
-12:40:48.657 INFO - Executing: [delete session: f95a219d-94c0-4ae6-b6bf-5af7388982a4] at URL: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4)
-12:40:48.785 INFO - Done: /session/f95a219d-94c0-4ae6-b6bf-5af7388982a4
+17:36:01.300 INFO - Done: [new session: Capabilities [{platform=ANY, javascriptEnabled=true, acceptSslCerts=true, browserName=chrome}]]
+17:36:01.319 INFO - Executing: [get: http://approach.dev/resources])
+17:36:08.111 INFO - Done: [get: http://approach.dev/resources]
+17:36:09.120 INFO - Executing: [find elements: By.selector: .filter])
+17:36:09.157 INFO - Done: [find elements: By.selector: .filter]
+17:36:09.173 INFO - Executing: [find element: By.selector: .filters li:nth-of-type(2) button])
+17:36:09.189 INFO - Done: [find element: By.selector: .filters li:nth-of-type(2) button]
+17:36:09.194 INFO - Executing: [click: 1 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]])
+17:36:09.302 INFO - Done: [click: 1 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]]
+17:36:09.311 INFO - Executing: [find element: By.selector: .filters li:nth-of-type(1) button])
+17:36:09.411 INFO - Done: [find element: By.selector: .filters li:nth-of-type(1) button]
+17:36:09.416 INFO - Executing: [click: 0 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]])
+17:36:09.530 INFO - Done: [click: 0 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]]
+17:36:09.537 INFO - Executing: [find element: By.selector: .filters li:nth-of-type(3) button])
+17:36:09.559 INFO - Done: [find element: By.selector: .filters li:nth-of-type(3) button]
+17:36:09.567 INFO - Executing: [click: 2 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]])
+17:36:09.650 INFO - Done: [click: 2 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]]
+17:36:09.658 INFO - Executing: [find element: By.selector: .filters li:nth-of-type(1) button])
+17:36:09.673 INFO - Done: [find element: By.selector: .filters li:nth-of-type(1) button]
+17:36:09.680 INFO - Executing: [click: 0 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]])
+17:36:09.751 INFO - Done: [click: 0 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]]
+17:36:09.761 INFO - Executing: [find element: By.selector: .filters li:nth-of-type(4) button])
+17:36:09.803 INFO - Done: [find element: By.selector: .filters li:nth-of-type(4) button]
+17:36:09.809 INFO - Executing: [click: 3 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]])
+17:36:09.885 INFO - Done: [click: 3 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]]
+17:36:09.891 INFO - Executing: [find element: By.selector: .filters li:nth-of-type(1) button])
+17:36:09.908 INFO - Done: [find element: By.selector: .filters li:nth-of-type(1) button]
+17:36:09.914 INFO - Executing: [click: 0 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]])
+17:36:09.998 INFO - Done: [click: 0 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]]
+17:36:10.005 INFO - Executing: [delete session: d5c792bd-7c7b-409a-99c0-f7c7d2335506])
+17:36:10.587 INFO - Done: [delete session: d5c792bd-7c7b-409a-99c0-f7c7d2335506]

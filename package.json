@@ -1,7 +1,7 @@
 {
-  "title": "Another ExpressionEngine Website",
+  "title": "Wildflower Philosophy Approach",
   "name": "",
-  "homepage": "www.example.com",
+  "homepage": "wildflowermontessorischool.org",
   "author": {
     "agency": "",
     "dev": "",
@@ -34,6 +34,7 @@
     "bower-requirejs": "^0.11.0",
     "grunt-shell": "^0.7.0",
     "requirejs": "^2.1.14",
-    "karma-requirejs": "^0.2.2"
+    "karma-requirejs": "^0.2.2",
+    "nightwatch" : "^0.5.6"
   }
 }

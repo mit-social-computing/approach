@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites name="home"
-             errors="0"
-             failures="0"
-             tests="10">
+             errors="1"
+             failures="1"
+             tests="5">
   
-  <testsuite errors="0" failures="0" hostname="" id=""
-    name="home page" package="home" skipped="0"
-    tests="10" time="" timestamp="">
+  <testsuite errors="1" failures="1" hostname="" id=""
+    name="home page" package="home" skipped="1"
+    tests="5" time="" timestamp="">
     
     
       <testcase name="Assertion passed: 9">
@@ -24,41 +24,17 @@
         
       </testcase>
     
-      <testcase name="Testing if element &lt;.jsgif:nth-child(3) canvas&gt; is visible.">
+      <testcase name="Testing if element &lt;.jsgif:nth-child(3) canvas&gt; is visible. Element could not be located.">
+        
+          <failure message="Expected &quot;true&quot; but got: &quot;null&quot;"></failure>
         
         
       </testcase>
     
-      <testcase name="Testing if element &lt;.jsgif:nth-child(4) canvas&gt; is visible.">
-        
-        
-      </testcase>
     
-      <testcase name="Testing if element &lt;.jsgif:nth-child(5) canvas&gt; is visible.">
-        
-        
-      </testcase>
-    
-      <testcase name="Testing if element &lt;.jsgif:nth-child(6) canvas&gt; is visible.">
-        
-        
-      </testcase>
-    
-      <testcase name="Testing if element &lt;.jsgif:nth-child(7) canvas&gt; is visible.">
-        
-        
-      </testcase>
-    
-      <testcase name="Testing if element &lt;.jsgif:nth-child(8) canvas&gt; is visible.">
-        
-        
-      </testcase>
-    
-      <testcase name="Testing if element &lt;.jsgif:nth-child(9) canvas&gt; is visible.">
-        
-        
-      </testcase>
-    
+      <system-err>
+        Unable to locate element: &quot;.jsgif:nth-child(3) canvas&quot; using: css selector
+      </system-err>
     
     </testsuite>
   
