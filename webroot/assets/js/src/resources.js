@@ -1,10 +1,11 @@
-/*global Isotope,imagesLoaded,s*/
+/*global Isotope,imagesLoaded,s,sessionStorage*/
 'use strict';
 
 define(['isotope', 'imagesloaded'],
 function(Isotope, imagesLoaded) {
     var resources = document.getElementById('resourcesGrid'),
         filters = document.getElementById('filters'),
+        tags = document.getElementById('resourceTags'),
         iso = new Isotope(resources, {
             itemSelector : '.thumb',
             layoutMode : 'masonry',
@@ -14,17 +15,19 @@ function(Isotope, imagesLoaded) {
                 isFitWidth : true
             }
         }).on('layoutComplete', function() {
-            if (s) {
+            try {
                 s.refresh()
-            }
+            } catch(e) {}
         }),
         imgWatcher,
         filterStore = {}
 
+    console.log(tags)
+
     function updateHistory( filters ) {
-        if ( window.history ) {
+        if ( window.history && window.sessionStorage ) {
             window.history.pushState({ filter : filters }, '')
-            document.cookie = 'filter=' + filters
+            sessionStorage.setItem('filter', filters)
         }
     }
 
@@ -125,34 +128,32 @@ function(Isotope, imagesLoaded) {
         }
     })
 
-    window.addEventListener('DOMContentLoaded', function() {
-        if ( window.history ) {
-            var filterButtons = document.querySelectorAll('.filter'),
-                state = window.history.state
+    if ( window.history && window.sessionStorage ) {
+        var filterButtons = document.querySelectorAll('.filter'),
+            state = window.history.state
 
-            Array.prototype.forEach.call(filterButtons, function(b) {
-                filterStore[b.dataset.filter] = false
-            })
+        Array.prototype.forEach.call(filterButtons, function(b) {
+            filterStore[b.dataset.filter] = false
+        })
 
-            if ( state || document.cookie.match('filter') ) {
-                if ( state ) {
-                    state = state.filter
-                } else {
-                    state = document.cookie.match(/filter=(.*)/)[1]
-                }
-                state.split('.').slice(1).forEach(function(f) {
-                    updateFilters('.' + f, true)
-                })
-                iso.arrange({
-                    filter : state
-                })
-                // ".for-parents.for-teachers.for-researchers"
-                setFilterButtons(state)
+        if ( state || sessionStorage.getItem('filter') ) {
+            if ( state ) {
+                state = state.filter
             } else {
-                window.history.replaceState({ filter: '*' }, '')
-                document.cookie = 'filter=*'
-                filterStore['*'] = true
+                state = sessionStorage.getItem('filter')
             }
+            state.split('.').slice(1).forEach(function(f) {
+                updateFilters('.' + f, true)
+            })
+            iso.arrange({
+                filter : state
+            })
+            // ".for-parents.for-teachers.for-researchers"
+            setFilterButtons(state)
+        } else {
+            window.history.replaceState({ filter: '*' }, '')
+            sessionStorage.setItem('filter', '*')
+            filterStore['*'] = true
         }
-    })
+    }
 })

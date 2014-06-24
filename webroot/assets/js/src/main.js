@@ -1,3 +1,4 @@
+/*global sessionStorage*/
 'use strict';
 
 require.config({
@@ -35,7 +36,8 @@ require.config({
 
 requirejs(['app/allpages'],
 function( lib ) {
-    var path = document.location.pathname
+    var path = document.location.pathname,
+        tags
 
     lib.init()
 
@@ -43,8 +45,17 @@ function( lib ) {
         require(['app/home'])
     }
 
-    if ( path.match(/resources/) && path.split('/').length === 2 ) {
-        require(['app/resources'])
+    if ( path.match(/resources/) ) {
+        if ( path.split('/').length === 2 ) {
+            require(['app/resources'])
+        } else if ( path.split('/').length === 3 ) {
+            tags = document.getElementById('resourceTags')
+            tags.addEventListener('click', function(e) {
+                if ( e.target.nodeName === 'A' && window.sessionStorage ) {
+                    sessionStorage.setItem('filter', e.target.dataset.filter)
+                }
+            }, false)
+        }
     }
 
 })
