@@ -1,50 +1,713 @@
-Jun 23, 2014 5:35:59 PM org.openqa.grid.selenium.GridLauncher main
+Jun 24, 2014 7:15:52 AM org.openqa.grid.selenium.GridLauncher main
 INFO: Launching a standalone server
-17:35:59.097 INFO - Java: Oracle Corporation 24.51-b03
-17:35:59.098 INFO - OS: Mac OS X 10.9.3 x86_64
-17:35:59.111 INFO - v2.42.2, with Core v2.42.2. Built from revision 6a6995d
-17:35:59.209 INFO - Default driver org.openqa.selenium.ie.InternetExplorerDriver registration is skipped: registration capabilities Capabilities [{platform=WINDOWS, ensureCleanSession=true, browserName=internet explorer, version=}] does not match with current platform: MAC
-17:35:59.248 INFO - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub
-17:35:59.249 INFO - Version Jetty/5.1.x
-17:35:59.250 INFO - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
-17:35:59.251 INFO - Started HttpContext[/selenium-server,/selenium-server]
-17:35:59.251 INFO - Started HttpContext[/,/]
-17:35:59.273 INFO - Started org.openqa.jetty.jetty.servlet.ServletHandler@1d04966e
-17:35:59.273 INFO - Started HttpContext[/wd,/wd]
-17:35:59.279 INFO - Started SocketListener on 0.0.0.0:4444
-17:35:59.279 INFO - Started org.openqa.jetty.jetty.Server@3435cf9c
-17:35:59.514 INFO - Executing: [new session: Capabilities [{platform=ANY, javascriptEnabled=true, acceptSslCerts=true, browserName=chrome}]])
-17:35:59.525 INFO - Creating a new session for Capabilities [{platform=ANY, javascriptEnabled=true, acceptSslCerts=true, browserName=chrome}]
-Starting ChromeDriver (v2.10.267517) on port 28226
+07:15:52.398 INFO - Java: Oracle Corporation 24.51-b03
+07:15:52.399 INFO - OS: Mac OS X 10.9.3 x86_64
+07:15:52.412 INFO - v2.42.2, with Core v2.42.2. Built from revision 6a6995d
+07:15:52.504 INFO - Default driver org.openqa.selenium.ie.InternetExplorerDriver registration is skipped: registration capabilities Capabilities [{platform=WINDOWS, ensureCleanSession=true, browserName=internet explorer, version=}] does not match with current platform: MAC
+07:15:52.592 INFO - RemoteWebDriver instances should connect to: http://127.0.0.1:4444/wd/hub
+07:15:52.594 INFO - Version Jetty/5.1.x
+07:15:52.594 INFO - Started HttpContext[/selenium-server/driver,/selenium-server/driver]
+07:15:52.595 INFO - Started HttpContext[/selenium-server,/selenium-server]
+07:15:52.595 INFO - Started HttpContext[/,/]
+07:15:52.621 INFO - Started org.openqa.jetty.jetty.servlet.ServletHandler@2e8ebcab
+07:15:52.622 INFO - Started HttpContext[/wd,/wd]
+07:15:52.628 INFO - Started SocketListener on 0.0.0.0:4444
+07:15:52.628 INFO - Started org.openqa.jetty.jetty.Server@31932839
+07:15:52.913 INFO - Executing: [new session: Capabilities [{platform=ANY, javascriptEnabled=true, acceptSslCerts=true, browserName=chrome}]])
+07:15:52.924 INFO - Creating a new session for Capabilities [{platform=ANY, javascriptEnabled=true, acceptSslCerts=true, browserName=chrome}]
+Starting ChromeDriver (v2.10.267517) on port 2479
 Only local connections are allowed.
-17:36:01.300 INFO - Done: [new session: Capabilities [{platform=ANY, javascriptEnabled=true, acceptSslCerts=true, browserName=chrome}]]
-17:36:01.319 INFO - Executing: [get: http://approach.dev/resources])
-17:36:08.111 INFO - Done: [get: http://approach.dev/resources]
-17:36:09.120 INFO - Executing: [find elements: By.selector: .filter])
-17:36:09.157 INFO - Done: [find elements: By.selector: .filter]
-17:36:09.173 INFO - Executing: [find element: By.selector: .filters li:nth-of-type(2) button])
-17:36:09.189 INFO - Done: [find element: By.selector: .filters li:nth-of-type(2) button]
-17:36:09.194 INFO - Executing: [click: 1 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]])
-17:36:09.302 INFO - Done: [click: 1 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]]
-17:36:09.311 INFO - Executing: [find element: By.selector: .filters li:nth-of-type(1) button])
-17:36:09.411 INFO - Done: [find element: By.selector: .filters li:nth-of-type(1) button]
-17:36:09.416 INFO - Executing: [click: 0 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]])
-17:36:09.530 INFO - Done: [click: 0 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]]
-17:36:09.537 INFO - Executing: [find element: By.selector: .filters li:nth-of-type(3) button])
-17:36:09.559 INFO - Done: [find element: By.selector: .filters li:nth-of-type(3) button]
-17:36:09.567 INFO - Executing: [click: 2 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]])
-17:36:09.650 INFO - Done: [click: 2 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]]
-17:36:09.658 INFO - Executing: [find element: By.selector: .filters li:nth-of-type(1) button])
-17:36:09.673 INFO - Done: [find element: By.selector: .filters li:nth-of-type(1) button]
-17:36:09.680 INFO - Executing: [click: 0 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]])
-17:36:09.751 INFO - Done: [click: 0 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]]
-17:36:09.761 INFO - Executing: [find element: By.selector: .filters li:nth-of-type(4) button])
-17:36:09.803 INFO - Done: [find element: By.selector: .filters li:nth-of-type(4) button]
-17:36:09.809 INFO - Executing: [click: 3 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]])
-17:36:09.885 INFO - Done: [click: 3 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]]
-17:36:09.891 INFO - Executing: [find element: By.selector: .filters li:nth-of-type(1) button])
-17:36:09.908 INFO - Done: [find element: By.selector: .filters li:nth-of-type(1) button]
-17:36:09.914 INFO - Executing: [click: 0 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]])
-17:36:09.998 INFO - Done: [click: 0 [[ChromeDriver: chrome on MAC (c9c0ef6e351bb85dc581e9fed28161a5)] -> css selector: .filter]]
-17:36:10.005 INFO - Executing: [delete session: d5c792bd-7c7b-409a-99c0-f7c7d2335506])
-17:36:10.587 INFO - Done: [delete session: d5c792bd-7c7b-409a-99c0-f7c7d2335506]
+07:15:54.987 INFO - Done: [new session: Capabilities [{platform=ANY, javascriptEnabled=true, acceptSslCerts=true, browserName=chrome}]]
+07:15:55.003 INFO - Executing: [get: http://approach.dev/resources])
+07:15:57.754 INFO - Done: [get: http://approach.dev/resources]
+07:15:57.761 INFO - Executing: [find elements: By.selector: .filter])
+07:15:57.822 INFO - Done: [find elements: By.selector: .filter]
+07:15:57.840 INFO - Executing: [find element: By.selector: .filters li:nth-child(1) button])
+07:15:57.862 INFO - Done: [find element: By.selector: .filters li:nth-child(1) button]
+07:15:57.869 INFO - Executing: [get element attribute: 0 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter], data-filter])
+07:15:57.889 INFO - Done: [get element attribute: 0 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter], data-filter]
+07:15:57.895 INFO - Executing: [find element: By.selector: .filters li:nth-child(2) button])
+07:15:57.915 INFO - Done: [find element: By.selector: .filters li:nth-child(2) button]
+07:15:57.920 INFO - Executing: [get element attribute: 1 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter], data-filter])
+07:15:57.937 INFO - Done: [get element attribute: 1 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter], data-filter]
+07:15:57.942 INFO - Executing: [find element: By.selector: .filters li:nth-child(3) button])
+07:15:57.963 INFO - Done: [find element: By.selector: .filters li:nth-child(3) button]
+07:15:57.968 INFO - Executing: [get element attribute: 2 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter], data-filter])
+07:15:57.984 INFO - Done: [get element attribute: 2 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter], data-filter]
+07:15:57.990 INFO - Executing: [find element: By.selector: .filters li:nth-child(4) button])
+07:15:58.010 INFO - Done: [find element: By.selector: .filters li:nth-child(4) button]
+07:15:58.016 INFO - Executing: [get element attribute: 3 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter], data-filter])
+07:15:58.037 INFO - Done: [get element attribute: 3 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter], data-filter]
+07:15:58.042 INFO - Executing: [find element: By.selector: .filters li:nth-child(5) button])
+07:15:58.062 INFO - Done: [find element: By.selector: .filters li:nth-child(5) button]
+07:15:58.067 INFO - Executing: [get element attribute: 4 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter], data-filter])
+07:15:58.082 INFO - Done: [get element attribute: 4 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter], data-filter]
+07:15:58.088 INFO - Executing: [find element: By.selector: .filters li:nth-child(6) button])
+07:15:58.106 INFO - Done: [find element: By.selector: .filters li:nth-child(6) button]
+07:15:58.110 INFO - Executing: [get element attribute: 5 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter], data-filter])
+07:15:58.124 INFO - Done: [get element attribute: 5 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter], data-filter]
+07:15:58.132 INFO - Executing: [find elements: By.selector: .thumb])
+07:15:58.177 INFO - Done: [find elements: By.selector: .thumb]
+07:15:58.185 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(1)])
+07:15:58.204 INFO - Done: [find element: By.selector: .thumb:nth-of-type(1)]
+07:15:58.209 INFO - Executing: [get element attribute: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.221 INFO - Done: [get element attribute: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.227 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(2)])
+07:15:58.244 INFO - Done: [find element: By.selector: .thumb:nth-of-type(2)]
+07:15:58.249 INFO - Executing: [get element attribute: 7 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.263 INFO - Done: [get element attribute: 7 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.269 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(3)])
+07:15:58.287 INFO - Done: [find element: By.selector: .thumb:nth-of-type(3)]
+07:15:58.292 INFO - Executing: [get element attribute: 8 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.305 INFO - Done: [get element attribute: 8 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.310 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(4)])
+07:15:58.327 INFO - Done: [find element: By.selector: .thumb:nth-of-type(4)]
+07:15:58.334 INFO - Executing: [get element attribute: 9 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.346 INFO - Done: [get element attribute: 9 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.350 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(5)])
+07:15:58.365 INFO - Done: [find element: By.selector: .thumb:nth-of-type(5)]
+07:15:58.369 INFO - Executing: [get element attribute: 10 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.381 INFO - Done: [get element attribute: 10 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.386 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(6)])
+07:15:58.402 INFO - Done: [find element: By.selector: .thumb:nth-of-type(6)]
+07:15:58.405 INFO - Executing: [get element attribute: 11 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.419 INFO - Done: [get element attribute: 11 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.424 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(7)])
+07:15:58.441 INFO - Done: [find element: By.selector: .thumb:nth-of-type(7)]
+07:15:58.445 INFO - Executing: [get element attribute: 12 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.456 INFO - Done: [get element attribute: 12 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.460 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(8)])
+07:15:58.477 INFO - Done: [find element: By.selector: .thumb:nth-of-type(8)]
+07:15:58.480 INFO - Executing: [get element attribute: 13 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.493 INFO - Done: [get element attribute: 13 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.497 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(9)])
+07:15:58.513 INFO - Done: [find element: By.selector: .thumb:nth-of-type(9)]
+07:15:58.517 INFO - Executing: [get element attribute: 14 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.528 INFO - Done: [get element attribute: 14 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.532 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(10)])
+07:15:58.547 INFO - Done: [find element: By.selector: .thumb:nth-of-type(10)]
+07:15:58.551 INFO - Executing: [get element attribute: 15 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.563 INFO - Done: [get element attribute: 15 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.568 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(11)])
+07:15:58.584 INFO - Done: [find element: By.selector: .thumb:nth-of-type(11)]
+07:15:58.588 INFO - Executing: [get element attribute: 16 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.599 INFO - Done: [get element attribute: 16 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.603 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(12)])
+07:15:58.618 INFO - Done: [find element: By.selector: .thumb:nth-of-type(12)]
+07:15:58.622 INFO - Executing: [get element attribute: 17 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.634 INFO - Done: [get element attribute: 17 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.639 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(13)])
+07:15:58.654 INFO - Done: [find element: By.selector: .thumb:nth-of-type(13)]
+07:15:58.657 INFO - Executing: [get element attribute: 18 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.669 INFO - Done: [get element attribute: 18 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.673 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(14)])
+07:15:58.689 INFO - Done: [find element: By.selector: .thumb:nth-of-type(14)]
+07:15:58.693 INFO - Executing: [get element attribute: 19 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.704 INFO - Done: [get element attribute: 19 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.708 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(15)])
+07:15:58.722 INFO - Done: [find element: By.selector: .thumb:nth-of-type(15)]
+07:15:58.725 INFO - Executing: [get element attribute: 20 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.737 INFO - Done: [get element attribute: 20 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.742 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(16)])
+07:15:58.758 INFO - Done: [find element: By.selector: .thumb:nth-of-type(16)]
+07:15:58.761 INFO - Executing: [get element attribute: 21 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.773 INFO - Done: [get element attribute: 21 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.777 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(17)])
+07:15:58.792 INFO - Done: [find element: By.selector: .thumb:nth-of-type(17)]
+07:15:58.795 INFO - Executing: [get element attribute: 22 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.807 INFO - Done: [get element attribute: 22 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.812 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(18)])
+07:15:58.829 INFO - Done: [find element: By.selector: .thumb:nth-of-type(18)]
+07:15:58.839 INFO - Executing: [get element attribute: 23 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.855 INFO - Done: [get element attribute: 23 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.859 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(19)])
+07:15:58.875 INFO - Done: [find element: By.selector: .thumb:nth-of-type(19)]
+07:15:58.878 INFO - Executing: [get element attribute: 24 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.895 INFO - Done: [get element attribute: 24 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.900 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(20)])
+07:15:58.921 INFO - Done: [find element: By.selector: .thumb:nth-of-type(20)]
+07:15:58.925 INFO - Executing: [get element attribute: 25 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.938 INFO - Done: [get element attribute: 25 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.942 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(21)])
+07:15:58.962 INFO - Done: [find element: By.selector: .thumb:nth-of-type(21)]
+07:15:58.967 INFO - Executing: [get element attribute: 26 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:58.980 INFO - Done: [get element attribute: 26 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:58.987 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(22)])
+07:15:59.008 INFO - Done: [find element: By.selector: .thumb:nth-of-type(22)]
+07:15:59.012 INFO - Executing: [get element attribute: 27 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:59.026 INFO - Done: [get element attribute: 27 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:59.030 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(23)])
+07:15:59.052 INFO - Done: [find element: By.selector: .thumb:nth-of-type(23)]
+07:15:59.057 INFO - Executing: [get element attribute: 28 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:59.071 INFO - Done: [get element attribute: 28 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:59.074 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(24)])
+07:15:59.088 INFO - Done: [find element: By.selector: .thumb:nth-of-type(24)]
+07:15:59.092 INFO - Executing: [get element attribute: 29 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:59.103 INFO - Done: [get element attribute: 29 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:59.107 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(25)])
+07:15:59.143 INFO - Done: [find element: By.selector: .thumb:nth-of-type(25)]
+07:15:59.146 INFO - Executing: [get element attribute: 30 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class])
+07:15:59.157 INFO - Done: [get element attribute: 30 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb], class]
+07:15:59.164 INFO - Executing: [find element: By.selector: button[data-filter=for-parents]])
+07:15:59.179 INFO - Done: [find element: By.selector: button[data-filter=for-parents]]
+07:15:59.182 INFO - Executing: [click: 1 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]])
+07:15:59.255 INFO - Done: [click: 1 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]]
+07:15:59.765 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(1)])
+07:15:59.774 INFO - Done: [find element: By.selector: .thumb:nth-of-type(1)]
+07:15:59.777 INFO - Executing: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:15:59.791 INFO - Done: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:15:59.796 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(2)])
+07:15:59.803 INFO - Done: [find element: By.selector: .thumb:nth-of-type(2)]
+07:15:59.807 INFO - Executing: [is displayed: 7 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:15:59.821 INFO - Done: [is displayed: 7 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:15:59.825 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(3)])
+07:15:59.835 INFO - Done: [find element: By.selector: .thumb:nth-of-type(3)]
+07:15:59.838 INFO - Executing: [is displayed: 8 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:15:59.855 INFO - Done: [is displayed: 8 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:15:59.860 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(4)])
+07:15:59.867 INFO - Done: [find element: By.selector: .thumb:nth-of-type(4)]
+07:15:59.870 INFO - Executing: [is displayed: 9 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:15:59.882 INFO - Done: [is displayed: 9 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:15:59.887 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(5)])
+07:15:59.896 INFO - Done: [find element: By.selector: .thumb:nth-of-type(5)]
+07:15:59.898 INFO - Executing: [is displayed: 10 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:15:59.912 INFO - Done: [is displayed: 10 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:15:59.917 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(6)])
+07:15:59.926 INFO - Done: [find element: By.selector: .thumb:nth-of-type(6)]
+07:15:59.929 INFO - Executing: [is displayed: 11 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:15:59.941 INFO - Done: [is displayed: 11 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:15:59.945 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(7)])
+07:15:59.953 INFO - Done: [find element: By.selector: .thumb:nth-of-type(7)]
+07:15:59.956 INFO - Executing: [is displayed: 12 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:15:59.973 INFO - Done: [is displayed: 12 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:15:59.977 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(8)])
+07:15:59.984 INFO - Done: [find element: By.selector: .thumb:nth-of-type(8)]
+07:15:59.987 INFO - Executing: [is displayed: 13 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.002 INFO - Done: [is displayed: 13 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.007 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(9)])
+07:16:00.016 INFO - Done: [find element: By.selector: .thumb:nth-of-type(9)]
+07:16:00.018 INFO - Executing: [is displayed: 14 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.034 INFO - Done: [is displayed: 14 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.039 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(10)])
+07:16:00.047 INFO - Done: [find element: By.selector: .thumb:nth-of-type(10)]
+07:16:00.050 INFO - Executing: [is displayed: 15 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.064 INFO - Done: [is displayed: 15 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.067 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(11)])
+07:16:00.075 INFO - Done: [find element: By.selector: .thumb:nth-of-type(11)]
+07:16:00.078 INFO - Executing: [is displayed: 16 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.094 INFO - Done: [is displayed: 16 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.097 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(12)])
+07:16:00.105 INFO - Done: [find element: By.selector: .thumb:nth-of-type(12)]
+07:16:00.109 INFO - Executing: [is displayed: 17 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.121 INFO - Done: [is displayed: 17 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.125 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(13)])
+07:16:00.133 INFO - Done: [find element: By.selector: .thumb:nth-of-type(13)]
+07:16:00.136 INFO - Executing: [is displayed: 18 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.154 INFO - Done: [is displayed: 18 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.159 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(14)])
+07:16:00.167 INFO - Done: [find element: By.selector: .thumb:nth-of-type(14)]
+07:16:00.170 INFO - Executing: [is displayed: 19 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.183 INFO - Done: [is displayed: 19 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.187 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(15)])
+07:16:00.196 INFO - Done: [find element: By.selector: .thumb:nth-of-type(15)]
+07:16:00.201 INFO - Executing: [is displayed: 20 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.213 INFO - Done: [is displayed: 20 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.218 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(16)])
+07:16:00.226 INFO - Done: [find element: By.selector: .thumb:nth-of-type(16)]
+07:16:00.229 INFO - Executing: [is displayed: 21 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.242 INFO - Done: [is displayed: 21 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.245 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(17)])
+07:16:00.253 INFO - Done: [find element: By.selector: .thumb:nth-of-type(17)]
+07:16:00.257 INFO - Executing: [is displayed: 22 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.271 INFO - Done: [is displayed: 22 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.275 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(18)])
+07:16:00.287 INFO - Done: [find element: By.selector: .thumb:nth-of-type(18)]
+07:16:00.289 INFO - Executing: [is displayed: 23 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.302 INFO - Done: [is displayed: 23 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.307 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(19)])
+07:16:00.315 INFO - Done: [find element: By.selector: .thumb:nth-of-type(19)]
+07:16:00.318 INFO - Executing: [is displayed: 24 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.331 INFO - Done: [is displayed: 24 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.336 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(20)])
+07:16:00.344 INFO - Done: [find element: By.selector: .thumb:nth-of-type(20)]
+07:16:00.346 INFO - Executing: [is displayed: 25 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.359 INFO - Done: [is displayed: 25 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.363 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(21)])
+07:16:00.371 INFO - Done: [find element: By.selector: .thumb:nth-of-type(21)]
+07:16:00.374 INFO - Executing: [is displayed: 26 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.389 INFO - Done: [is displayed: 26 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.393 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(22)])
+07:16:00.401 INFO - Done: [find element: By.selector: .thumb:nth-of-type(22)]
+07:16:00.403 INFO - Executing: [is displayed: 27 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.417 INFO - Done: [is displayed: 27 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.420 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(23)])
+07:16:00.428 INFO - Done: [find element: By.selector: .thumb:nth-of-type(23)]
+07:16:00.431 INFO - Executing: [is displayed: 28 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.443 INFO - Done: [is displayed: 28 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.447 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(24)])
+07:16:00.457 INFO - Done: [find element: By.selector: .thumb:nth-of-type(24)]
+07:16:00.460 INFO - Executing: [is displayed: 29 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.473 INFO - Done: [is displayed: 29 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.476 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(25)])
+07:16:00.484 INFO - Done: [find element: By.selector: .thumb:nth-of-type(25)]
+07:16:00.488 INFO - Executing: [is displayed: 30 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.507 INFO - Done: [is displayed: 30 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.511 INFO - Executing: [find element: By.selector: .filters li:nth-child(1) button])
+07:16:00.520 INFO - Done: [find element: By.selector: .filters li:nth-child(1) button]
+07:16:00.523 INFO - Executing: [click: 0 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]])
+07:16:00.587 INFO - Done: [click: 0 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]]
+07:16:00.591 INFO - Executing: [find element: By.selector: .thumb])
+07:16:00.621 INFO - Done: [find element: By.selector: .thumb]
+07:16:00.629 INFO - Executing: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:00.641 INFO - Done: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:00.645 INFO - Executing: [find element: By.selector: button[data-filter=for-teachers]])
+07:16:00.666 INFO - Done: [find element: By.selector: button[data-filter=for-teachers]]
+07:16:00.671 INFO - Executing: [click: 2 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]])
+07:16:00.757 INFO - Done: [click: 2 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]]
+07:16:01.261 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(1)])
+07:16:01.270 INFO - Done: [find element: By.selector: .thumb:nth-of-type(1)]
+07:16:01.273 INFO - Executing: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.280 INFO - Done: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.286 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(2)])
+07:16:01.292 INFO - Done: [find element: By.selector: .thumb:nth-of-type(2)]
+07:16:01.295 INFO - Executing: [is displayed: 7 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.301 INFO - Done: [is displayed: 7 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.305 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(3)])
+07:16:01.312 INFO - Done: [find element: By.selector: .thumb:nth-of-type(3)]
+07:16:01.315 INFO - Executing: [is displayed: 8 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.325 INFO - Done: [is displayed: 8 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.329 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(4)])
+07:16:01.338 INFO - Done: [find element: By.selector: .thumb:nth-of-type(4)]
+07:16:01.346 INFO - Executing: [is displayed: 9 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.352 INFO - Done: [is displayed: 9 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.362 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(5)])
+07:16:01.370 INFO - Done: [find element: By.selector: .thumb:nth-of-type(5)]
+07:16:01.372 INFO - Executing: [is displayed: 10 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.379 INFO - Done: [is displayed: 10 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.385 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(6)])
+07:16:01.393 INFO - Done: [find element: By.selector: .thumb:nth-of-type(6)]
+07:16:01.396 INFO - Executing: [is displayed: 11 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.404 INFO - Done: [is displayed: 11 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.410 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(7)])
+07:16:01.419 INFO - Done: [find element: By.selector: .thumb:nth-of-type(7)]
+07:16:01.422 INFO - Executing: [is displayed: 12 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.430 INFO - Done: [is displayed: 12 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.434 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(8)])
+07:16:01.443 INFO - Done: [find element: By.selector: .thumb:nth-of-type(8)]
+07:16:01.445 INFO - Executing: [is displayed: 13 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.452 INFO - Done: [is displayed: 13 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.455 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(9)])
+07:16:01.462 INFO - Done: [find element: By.selector: .thumb:nth-of-type(9)]
+07:16:01.466 INFO - Executing: [is displayed: 14 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.473 INFO - Done: [is displayed: 14 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.476 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(10)])
+07:16:01.485 INFO - Done: [find element: By.selector: .thumb:nth-of-type(10)]
+07:16:01.489 INFO - Executing: [is displayed: 15 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.496 INFO - Done: [is displayed: 15 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.500 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(11)])
+07:16:01.507 INFO - Done: [find element: By.selector: .thumb:nth-of-type(11)]
+07:16:01.509 INFO - Executing: [is displayed: 16 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.516 INFO - Done: [is displayed: 16 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.520 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(12)])
+07:16:01.526 INFO - Done: [find element: By.selector: .thumb:nth-of-type(12)]
+07:16:01.529 INFO - Executing: [is displayed: 17 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.539 INFO - Done: [is displayed: 17 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.545 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(13)])
+07:16:01.552 INFO - Done: [find element: By.selector: .thumb:nth-of-type(13)]
+07:16:01.556 INFO - Executing: [is displayed: 18 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.565 INFO - Done: [is displayed: 18 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.569 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(14)])
+07:16:01.576 INFO - Done: [find element: By.selector: .thumb:nth-of-type(14)]
+07:16:01.579 INFO - Executing: [is displayed: 19 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.587 INFO - Done: [is displayed: 19 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.591 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(15)])
+07:16:01.598 INFO - Done: [find element: By.selector: .thumb:nth-of-type(15)]
+07:16:01.601 INFO - Executing: [is displayed: 20 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.609 INFO - Done: [is displayed: 20 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.612 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(16)])
+07:16:01.621 INFO - Done: [find element: By.selector: .thumb:nth-of-type(16)]
+07:16:01.626 INFO - Executing: [is displayed: 21 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.633 INFO - Done: [is displayed: 21 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.637 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(17)])
+07:16:01.644 INFO - Done: [find element: By.selector: .thumb:nth-of-type(17)]
+07:16:01.647 INFO - Executing: [is displayed: 22 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.653 INFO - Done: [is displayed: 22 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.658 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(18)])
+07:16:01.668 INFO - Done: [find element: By.selector: .thumb:nth-of-type(18)]
+07:16:01.671 INFO - Executing: [is displayed: 23 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.679 INFO - Done: [is displayed: 23 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.682 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(19)])
+07:16:01.690 INFO - Done: [find element: By.selector: .thumb:nth-of-type(19)]
+07:16:01.694 INFO - Executing: [is displayed: 24 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.702 INFO - Done: [is displayed: 24 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.706 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(20)])
+07:16:01.713 INFO - Done: [find element: By.selector: .thumb:nth-of-type(20)]
+07:16:01.718 INFO - Executing: [is displayed: 25 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.727 INFO - Done: [is displayed: 25 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.731 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(21)])
+07:16:01.738 INFO - Done: [find element: By.selector: .thumb:nth-of-type(21)]
+07:16:01.742 INFO - Executing: [is displayed: 26 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.750 INFO - Done: [is displayed: 26 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.754 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(22)])
+07:16:01.762 INFO - Done: [find element: By.selector: .thumb:nth-of-type(22)]
+07:16:01.767 INFO - Executing: [is displayed: 27 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.776 INFO - Done: [is displayed: 27 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.780 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(23)])
+07:16:01.789 INFO - Done: [find element: By.selector: .thumb:nth-of-type(23)]
+07:16:01.794 INFO - Executing: [is displayed: 28 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.802 INFO - Done: [is displayed: 28 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.805 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(24)])
+07:16:01.812 INFO - Done: [find element: By.selector: .thumb:nth-of-type(24)]
+07:16:01.815 INFO - Executing: [is displayed: 29 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.824 INFO - Done: [is displayed: 29 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.828 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(25)])
+07:16:01.836 INFO - Done: [find element: By.selector: .thumb:nth-of-type(25)]
+07:16:01.839 INFO - Executing: [is displayed: 30 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.846 INFO - Done: [is displayed: 30 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.849 INFO - Executing: [find element: By.selector: .filters li:nth-child(1) button])
+07:16:01.857 INFO - Done: [find element: By.selector: .filters li:nth-child(1) button]
+07:16:01.860 INFO - Executing: [click: 0 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]])
+07:16:01.921 INFO - Done: [click: 0 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]]
+07:16:01.925 INFO - Executing: [find element: By.selector: .thumb])
+07:16:01.951 INFO - Done: [find element: By.selector: .thumb]
+07:16:01.956 INFO - Executing: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:01.975 INFO - Done: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:01.979 INFO - Executing: [find element: By.selector: button[data-filter=for-researchers]])
+07:16:02.002 INFO - Done: [find element: By.selector: button[data-filter=for-researchers]]
+07:16:02.007 INFO - Executing: [click: 3 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]])
+07:16:02.108 INFO - Done: [click: 3 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]]
+07:16:02.614 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(1)])
+07:16:02.624 INFO - Done: [find element: By.selector: .thumb:nth-of-type(1)]
+07:16:02.627 INFO - Executing: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:02.634 INFO - Done: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:02.638 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(2)])
+07:16:02.645 INFO - Done: [find element: By.selector: .thumb:nth-of-type(2)]
+07:16:02.648 INFO - Executing: [is displayed: 7 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:02.656 INFO - Done: [is displayed: 7 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:02.659 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(3)])
+07:16:02.667 INFO - Done: [find element: By.selector: .thumb:nth-of-type(3)]
+07:16:02.670 INFO - Executing: [is displayed: 8 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:02.676 INFO - Done: [is displayed: 8 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:02.680 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(4)])
+07:16:02.688 INFO - Done: [find element: By.selector: .thumb:nth-of-type(4)]
+07:16:02.691 INFO - Executing: [is displayed: 9 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:02.698 INFO - Done: [is displayed: 9 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:02.716 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(5)])
+07:16:02.723 INFO - Done: [find element: By.selector: .thumb:nth-of-type(5)]
+07:16:02.726 INFO - Executing: [is displayed: 10 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:02.734 INFO - Done: [is displayed: 10 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:02.737 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(6)])
+07:16:02.745 INFO - Done: [find element: By.selector: .thumb:nth-of-type(6)]
+07:16:02.748 INFO - Executing: [is displayed: 11 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:02.757 INFO - Done: [is displayed: 11 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:02.761 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(7)])
+07:16:02.768 INFO - Done: [find element: By.selector: .thumb:nth-of-type(7)]
+07:16:02.770 INFO - Executing: [is displayed: 12 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:02.778 INFO - Done: [is displayed: 12 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:02.783 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(8)])
+07:16:02.790 INFO - Done: [find element: By.selector: .thumb:nth-of-type(8)]
+07:16:02.793 INFO - Executing: [is displayed: 13 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:02.803 INFO - Done: [is displayed: 13 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:02.807 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(9)])
+07:16:02.815 INFO - Done: [find element: By.selector: .thumb:nth-of-type(9)]
+07:16:02.818 INFO - Executing: [is displayed: 14 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:02.827 INFO - Done: [is displayed: 14 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:02.832 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(10)])
+07:16:02.842 INFO - Done: [find element: By.selector: .thumb:nth-of-type(10)]
+07:16:02.845 INFO - Executing: [is displayed: 15 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:02.851 INFO - Done: [is displayed: 15 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:02.855 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(11)])
+07:16:02.862 INFO - Done: [find element: By.selector: .thumb:nth-of-type(11)]
+07:16:02.864 INFO - Executing: [is displayed: 16 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:02.872 INFO - Done: [is displayed: 16 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:02.876 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(12)])
+07:16:02.885 INFO - Done: [find element: By.selector: .thumb:nth-of-type(12)]
+07:16:02.888 INFO - Executing: [is displayed: 17 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:02.895 INFO - Done: [is displayed: 17 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:02.898 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(13)])
+07:16:02.906 INFO - Done: [find element: By.selector: .thumb:nth-of-type(13)]
+07:16:02.909 INFO - Executing: [is displayed: 18 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:02.916 INFO - Done: [is displayed: 18 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:02.920 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(14)])
+07:16:02.927 INFO - Done: [find element: By.selector: .thumb:nth-of-type(14)]
+07:16:02.930 INFO - Executing: [is displayed: 19 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:02.938 INFO - Done: [is displayed: 19 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:02.942 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(15)])
+07:16:02.950 INFO - Done: [find element: By.selector: .thumb:nth-of-type(15)]
+07:16:02.953 INFO - Executing: [is displayed: 20 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:02.959 INFO - Done: [is displayed: 20 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:02.963 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(16)])
+07:16:02.971 INFO - Done: [find element: By.selector: .thumb:nth-of-type(16)]
+07:16:02.973 INFO - Executing: [is displayed: 21 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:02.989 INFO - Done: [is displayed: 21 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:02.993 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(17)])
+07:16:02.999 INFO - Done: [find element: By.selector: .thumb:nth-of-type(17)]
+07:16:03.002 INFO - Executing: [is displayed: 22 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:03.008 INFO - Done: [is displayed: 22 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:03.012 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(18)])
+07:16:03.019 INFO - Done: [find element: By.selector: .thumb:nth-of-type(18)]
+07:16:03.022 INFO - Executing: [is displayed: 23 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:03.029 INFO - Done: [is displayed: 23 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:03.032 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(19)])
+07:16:03.042 INFO - Done: [find element: By.selector: .thumb:nth-of-type(19)]
+07:16:03.045 INFO - Executing: [is displayed: 24 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:03.052 INFO - Done: [is displayed: 24 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:03.057 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(20)])
+07:16:03.067 INFO - Done: [find element: By.selector: .thumb:nth-of-type(20)]
+07:16:03.070 INFO - Executing: [is displayed: 25 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:03.078 INFO - Done: [is displayed: 25 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:03.081 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(21)])
+07:16:03.089 INFO - Done: [find element: By.selector: .thumb:nth-of-type(21)]
+07:16:03.092 INFO - Executing: [is displayed: 26 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:03.101 INFO - Done: [is displayed: 26 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:03.105 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(22)])
+07:16:03.113 INFO - Done: [find element: By.selector: .thumb:nth-of-type(22)]
+07:16:03.117 INFO - Executing: [is displayed: 27 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:03.124 INFO - Done: [is displayed: 27 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:03.130 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(23)])
+07:16:03.137 INFO - Done: [find element: By.selector: .thumb:nth-of-type(23)]
+07:16:03.140 INFO - Executing: [is displayed: 28 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:03.148 INFO - Done: [is displayed: 28 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:03.151 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(24)])
+07:16:03.160 INFO - Done: [find element: By.selector: .thumb:nth-of-type(24)]
+07:16:03.163 INFO - Executing: [is displayed: 29 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:03.171 INFO - Done: [is displayed: 29 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:03.175 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(25)])
+07:16:03.183 INFO - Done: [find element: By.selector: .thumb:nth-of-type(25)]
+07:16:03.185 INFO - Executing: [is displayed: 30 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:03.192 INFO - Done: [is displayed: 30 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:03.208 INFO - Executing: [find element: By.selector: .filters li:nth-child(1) button])
+07:16:03.218 INFO - Done: [find element: By.selector: .filters li:nth-child(1) button]
+07:16:03.221 INFO - Executing: [click: 0 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]])
+07:16:03.271 INFO - Done: [click: 0 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]]
+07:16:03.274 INFO - Executing: [find element: By.selector: .thumb])
+07:16:03.303 INFO - Done: [find element: By.selector: .thumb]
+07:16:03.306 INFO - Executing: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:03.323 INFO - Done: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:03.327 INFO - Executing: [find element: By.selector: button[data-filter=lessons]])
+07:16:03.366 INFO - Done: [find element: By.selector: button[data-filter=lessons]]
+07:16:03.377 INFO - Executing: [click: 4 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]])
+07:16:03.493 INFO - Done: [click: 4 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]]
+07:16:03.999 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(1)])
+07:16:04.010 INFO - Done: [find element: By.selector: .thumb:nth-of-type(1)]
+07:16:04.012 INFO - Executing: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.019 INFO - Done: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.023 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(2)])
+07:16:04.032 INFO - Done: [find element: By.selector: .thumb:nth-of-type(2)]
+07:16:04.034 INFO - Executing: [is displayed: 7 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.042 INFO - Done: [is displayed: 7 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.046 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(3)])
+07:16:04.053 INFO - Done: [find element: By.selector: .thumb:nth-of-type(3)]
+07:16:04.056 INFO - Executing: [is displayed: 8 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.063 INFO - Done: [is displayed: 8 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.066 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(4)])
+07:16:04.076 INFO - Done: [find element: By.selector: .thumb:nth-of-type(4)]
+07:16:04.078 INFO - Executing: [is displayed: 9 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.086 INFO - Done: [is displayed: 9 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.090 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(5)])
+07:16:04.098 INFO - Done: [find element: By.selector: .thumb:nth-of-type(5)]
+07:16:04.100 INFO - Executing: [is displayed: 10 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.106 INFO - Done: [is displayed: 10 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.110 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(6)])
+07:16:04.119 INFO - Done: [find element: By.selector: .thumb:nth-of-type(6)]
+07:16:04.122 INFO - Executing: [is displayed: 11 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.129 INFO - Done: [is displayed: 11 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.132 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(7)])
+07:16:04.141 INFO - Done: [find element: By.selector: .thumb:nth-of-type(7)]
+07:16:04.143 INFO - Executing: [is displayed: 12 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.152 INFO - Done: [is displayed: 12 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.155 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(8)])
+07:16:04.164 INFO - Done: [find element: By.selector: .thumb:nth-of-type(8)]
+07:16:04.166 INFO - Executing: [is displayed: 13 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.175 INFO - Done: [is displayed: 13 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.179 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(9)])
+07:16:04.187 INFO - Done: [find element: By.selector: .thumb:nth-of-type(9)]
+07:16:04.189 INFO - Executing: [is displayed: 14 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.197 INFO - Done: [is displayed: 14 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.200 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(10)])
+07:16:04.208 INFO - Done: [find element: By.selector: .thumb:nth-of-type(10)]
+07:16:04.211 INFO - Executing: [is displayed: 15 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.218 INFO - Done: [is displayed: 15 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.222 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(11)])
+07:16:04.230 INFO - Done: [find element: By.selector: .thumb:nth-of-type(11)]
+07:16:04.233 INFO - Executing: [is displayed: 16 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.239 INFO - Done: [is displayed: 16 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.243 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(12)])
+07:16:04.251 INFO - Done: [find element: By.selector: .thumb:nth-of-type(12)]
+07:16:04.254 INFO - Executing: [is displayed: 17 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.260 INFO - Done: [is displayed: 17 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.264 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(13)])
+07:16:04.273 INFO - Done: [find element: By.selector: .thumb:nth-of-type(13)]
+07:16:04.276 INFO - Executing: [is displayed: 18 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.284 INFO - Done: [is displayed: 18 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.287 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(14)])
+07:16:04.301 INFO - Done: [find element: By.selector: .thumb:nth-of-type(14)]
+07:16:04.303 INFO - Executing: [is displayed: 19 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.309 INFO - Done: [is displayed: 19 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.313 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(15)])
+07:16:04.322 INFO - Done: [find element: By.selector: .thumb:nth-of-type(15)]
+07:16:04.325 INFO - Executing: [is displayed: 20 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.331 INFO - Done: [is displayed: 20 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.335 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(16)])
+07:16:04.342 INFO - Done: [find element: By.selector: .thumb:nth-of-type(16)]
+07:16:04.344 INFO - Executing: [is displayed: 21 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.351 INFO - Done: [is displayed: 21 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.355 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(17)])
+07:16:04.364 INFO - Done: [find element: By.selector: .thumb:nth-of-type(17)]
+07:16:04.366 INFO - Executing: [is displayed: 22 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.375 INFO - Done: [is displayed: 22 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.378 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(18)])
+07:16:04.386 INFO - Done: [find element: By.selector: .thumb:nth-of-type(18)]
+07:16:04.389 INFO - Executing: [is displayed: 23 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.396 INFO - Done: [is displayed: 23 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.400 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(19)])
+07:16:04.407 INFO - Done: [find element: By.selector: .thumb:nth-of-type(19)]
+07:16:04.409 INFO - Executing: [is displayed: 24 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.416 INFO - Done: [is displayed: 24 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.421 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(20)])
+07:16:04.430 INFO - Done: [find element: By.selector: .thumb:nth-of-type(20)]
+07:16:04.432 INFO - Executing: [is displayed: 25 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.440 INFO - Done: [is displayed: 25 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.444 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(21)])
+07:16:04.452 INFO - Done: [find element: By.selector: .thumb:nth-of-type(21)]
+07:16:04.456 INFO - Executing: [is displayed: 26 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.463 INFO - Done: [is displayed: 26 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.466 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(22)])
+07:16:04.475 INFO - Done: [find element: By.selector: .thumb:nth-of-type(22)]
+07:16:04.477 INFO - Executing: [is displayed: 27 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.485 INFO - Done: [is displayed: 27 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.488 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(23)])
+07:16:04.495 INFO - Done: [find element: By.selector: .thumb:nth-of-type(23)]
+07:16:04.498 INFO - Executing: [is displayed: 28 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.514 INFO - Done: [is displayed: 28 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.518 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(24)])
+07:16:04.525 INFO - Done: [find element: By.selector: .thumb:nth-of-type(24)]
+07:16:04.527 INFO - Executing: [is displayed: 29 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.533 INFO - Done: [is displayed: 29 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.536 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(25)])
+07:16:04.543 INFO - Done: [find element: By.selector: .thumb:nth-of-type(25)]
+07:16:04.546 INFO - Executing: [is displayed: 30 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.553 INFO - Done: [is displayed: 30 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.557 INFO - Executing: [find element: By.selector: .filters li:nth-child(1) button])
+07:16:04.565 INFO - Done: [find element: By.selector: .filters li:nth-child(1) button]
+07:16:04.568 INFO - Executing: [click: 0 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]])
+07:16:04.623 INFO - Done: [click: 0 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]]
+07:16:04.627 INFO - Executing: [find element: By.selector: .thumb])
+07:16:04.653 INFO - Done: [find element: By.selector: .thumb]
+07:16:04.657 INFO - Executing: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:04.673 INFO - Done: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:04.677 INFO - Executing: [find element: By.selector: button[data-filter=food]])
+07:16:04.704 INFO - Done: [find element: By.selector: button[data-filter=food]]
+07:16:04.707 INFO - Executing: [click: 5 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]])
+07:16:04.829 INFO - Done: [click: 5 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]]
+07:16:05.335 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(1)])
+07:16:05.344 INFO - Done: [find element: By.selector: .thumb:nth-of-type(1)]
+07:16:05.347 INFO - Executing: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.352 INFO - Done: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.355 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(2)])
+07:16:05.362 INFO - Done: [find element: By.selector: .thumb:nth-of-type(2)]
+07:16:05.365 INFO - Executing: [is displayed: 7 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.371 INFO - Done: [is displayed: 7 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.375 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(3)])
+07:16:05.382 INFO - Done: [find element: By.selector: .thumb:nth-of-type(3)]
+07:16:05.384 INFO - Executing: [is displayed: 8 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.391 INFO - Done: [is displayed: 8 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.394 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(4)])
+07:16:05.403 INFO - Done: [find element: By.selector: .thumb:nth-of-type(4)]
+07:16:05.406 INFO - Executing: [is displayed: 9 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.413 INFO - Done: [is displayed: 9 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.419 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(5)])
+07:16:05.426 INFO - Done: [find element: By.selector: .thumb:nth-of-type(5)]
+07:16:05.429 INFO - Executing: [is displayed: 10 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.436 INFO - Done: [is displayed: 10 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.439 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(6)])
+07:16:05.446 INFO - Done: [find element: By.selector: .thumb:nth-of-type(6)]
+07:16:05.449 INFO - Executing: [is displayed: 11 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.458 INFO - Done: [is displayed: 11 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.461 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(7)])
+07:16:05.468 INFO - Done: [find element: By.selector: .thumb:nth-of-type(7)]
+07:16:05.471 INFO - Executing: [is displayed: 12 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.477 INFO - Done: [is displayed: 12 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.482 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(8)])
+07:16:05.490 INFO - Done: [find element: By.selector: .thumb:nth-of-type(8)]
+07:16:05.493 INFO - Executing: [is displayed: 13 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.502 INFO - Done: [is displayed: 13 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.506 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(9)])
+07:16:05.514 INFO - Done: [find element: By.selector: .thumb:nth-of-type(9)]
+07:16:05.516 INFO - Executing: [is displayed: 14 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.523 INFO - Done: [is displayed: 14 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.526 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(10)])
+07:16:05.533 INFO - Done: [find element: By.selector: .thumb:nth-of-type(10)]
+07:16:05.535 INFO - Executing: [is displayed: 15 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.542 INFO - Done: [is displayed: 15 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.546 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(11)])
+07:16:05.555 INFO - Done: [find element: By.selector: .thumb:nth-of-type(11)]
+07:16:05.558 INFO - Executing: [is displayed: 16 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.565 INFO - Done: [is displayed: 16 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.568 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(12)])
+07:16:05.575 INFO - Done: [find element: By.selector: .thumb:nth-of-type(12)]
+07:16:05.578 INFO - Executing: [is displayed: 17 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.586 INFO - Done: [is displayed: 17 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.590 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(13)])
+07:16:05.597 INFO - Done: [find element: By.selector: .thumb:nth-of-type(13)]
+07:16:05.600 INFO - Executing: [is displayed: 18 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.608 INFO - Done: [is displayed: 18 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.611 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(14)])
+07:16:05.617 INFO - Done: [find element: By.selector: .thumb:nth-of-type(14)]
+07:16:05.620 INFO - Executing: [is displayed: 19 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.629 INFO - Done: [is displayed: 19 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.632 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(15)])
+07:16:05.639 INFO - Done: [find element: By.selector: .thumb:nth-of-type(15)]
+07:16:05.642 INFO - Executing: [is displayed: 20 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.648 INFO - Done: [is displayed: 20 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.653 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(16)])
+07:16:05.661 INFO - Done: [find element: By.selector: .thumb:nth-of-type(16)]
+07:16:05.663 INFO - Executing: [is displayed: 21 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.670 INFO - Done: [is displayed: 21 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.673 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(17)])
+07:16:05.680 INFO - Done: [find element: By.selector: .thumb:nth-of-type(17)]
+07:16:05.682 INFO - Executing: [is displayed: 22 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.692 INFO - Done: [is displayed: 22 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.696 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(18)])
+07:16:05.703 INFO - Done: [find element: By.selector: .thumb:nth-of-type(18)]
+07:16:05.706 INFO - Executing: [is displayed: 23 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.713 INFO - Done: [is displayed: 23 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.716 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(19)])
+07:16:05.724 INFO - Done: [find element: By.selector: .thumb:nth-of-type(19)]
+07:16:05.726 INFO - Executing: [is displayed: 24 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.733 INFO - Done: [is displayed: 24 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.738 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(20)])
+07:16:05.746 INFO - Done: [find element: By.selector: .thumb:nth-of-type(20)]
+07:16:05.749 INFO - Executing: [is displayed: 25 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.755 INFO - Done: [is displayed: 25 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.759 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(21)])
+07:16:05.767 INFO - Done: [find element: By.selector: .thumb:nth-of-type(21)]
+07:16:05.770 INFO - Executing: [is displayed: 26 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.776 INFO - Done: [is displayed: 26 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.780 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(22)])
+07:16:05.789 INFO - Done: [find element: By.selector: .thumb:nth-of-type(22)]
+07:16:05.792 INFO - Executing: [is displayed: 27 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.798 INFO - Done: [is displayed: 27 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.801 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(23)])
+07:16:05.808 INFO - Done: [find element: By.selector: .thumb:nth-of-type(23)]
+07:16:05.811 INFO - Executing: [is displayed: 28 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.817 INFO - Done: [is displayed: 28 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.821 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(24)])
+07:16:05.828 INFO - Done: [find element: By.selector: .thumb:nth-of-type(24)]
+07:16:05.832 INFO - Executing: [is displayed: 29 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.841 INFO - Done: [is displayed: 29 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.845 INFO - Executing: [find element: By.selector: .thumb:nth-of-type(25)])
+07:16:05.853 INFO - Done: [find element: By.selector: .thumb:nth-of-type(25)]
+07:16:05.855 INFO - Executing: [is displayed: 30 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.863 INFO - Done: [is displayed: 30 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.866 INFO - Executing: [find element: By.selector: .filters li:nth-child(1) button])
+07:16:05.873 INFO - Done: [find element: By.selector: .filters li:nth-child(1) button]
+07:16:05.875 INFO - Executing: [click: 0 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]])
+07:16:05.925 INFO - Done: [click: 0 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .filter]]
+07:16:05.929 INFO - Executing: [find element: By.selector: .thumb])
+07:16:05.955 INFO - Done: [find element: By.selector: .thumb]
+07:16:05.958 INFO - Executing: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]])
+07:16:05.974 INFO - Done: [is displayed: 6 [[ChromeDriver: chrome on MAC (48517d9800e8ff8e02b45f9f94241bcb)] -> css selector: .thumb]]
+07:16:05.977 INFO - Executing: [delete session: 0fe2fc68-0dd1-43f2-9f59-5d5527a85a42])
+07:16:06.550 INFO - Done: [delete session: 0fe2fc68-0dd1-43f2-9f59-5d5527a85a42]
+07:16:06.575 INFO - Shutting down...

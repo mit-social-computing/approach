@@ -1,39 +1,49 @@
 'use strict';
 
+var filters,
+    thumbs
 
 module.exports = {
-    "resources" : function(browser) {
+    'get filters' : function(browser) {
         browser
-            .url("http://approach.dev/resources")
-            .pause(1000)
+            .url('http://approach.dev/resources')
             .elements('css selector', '.filter', function(res) {
-                for (var i = 1; i < res.value.length; i++) {
-                    console.log('i', i)
-                    if (i === 1) {
-                        continue
-                    } else {
-                        browser.click('.filters li:nth-of-type(' + i + ') button')
-                        browser.elements('css selector', '.thumb', function(thumbs) {
-                            for (var j = 1; j < thumbs.value.length; j++) {
-                                console.log('j', j)
-                                browser.getAttribute('.thumb:nth-of-type(' + j + ')', 'class', function(className) {
-                                    console.log('className', className.value)
-                                    browser.getAttribute('.filters li:nth-of-type(' + i + ') button', 'data-filter', function(filter) {
-                                        console.log('filter', filter.value)
-                                        console.log(className.value.indexOf(filter.value.slice(1)))
-                                        if (className.value.indexOf(filter.value.slice(1)) === -1) {
-                                            browser.assert.hidden('.thumb:nth-of-type(' + j + ')')
-                                        } else {
-                                            browser.assert.visible('.thumb:nth-of-type(' + j + ')')
-                                        }
-                                    })
-                                })
-                            }
-                        })
-                    }
-                    browser.click('.filters li:nth-of-type(1) button')
-                }
+                filters = res.value
+                filters.forEach(function(obj, i) {
+                    i++
+                    browser.getAttribute('.filters li:nth-child(' + i + ') button', 'data-filter', function(filter) {
+                        filters[i-1].filter = filter.value
+                    })
+                })
             })
-            .end()
+    },
+    'get thumbnails' : function(browser) {
+        browser.elements('css selector', '.thumb', function(res) {
+            thumbs = res.value
+            thumbs.forEach(function(obj, i) {
+                i++
+                browser.getAttribute('.thumb:nth-of-type(' + i + ')', 'class', function(className) {
+                    thumbs[i-1].className = className.value
+                })
+            })
+        })
+    },
+    'test' : function(browser) {
+        filters.forEach(function(filter, i) {
+            if (i !== 0) {
+                i++
+                browser.click('button[data-filter=' + filter.filter + ']').pause(500)
+                thumbs.forEach(function(thumb, j) {
+                    j++
+                    if (thumb.className.indexOf(filter.filter) === -1) {
+                        browser.assert.hidden('.thumb:nth-of-type(' + j + ')')
+                    } else {
+                        browser.assert.visible('.thumb:nth-of-type(' + j + ')')
+                    }
+                })
+                browser.click('.filters li:nth-child(1) button').assert.visible('.thumb')
+            }
+        })
+        browser.end()
     }
 }

@@ -76,7 +76,7 @@ function(Isotope, imagesLoaded) {
             newFilters = filterString.split('.').slice(1)
 
             Array.prototype.forEach.call(filters, function(el) {
-                if ( newFilters.indexOf(el.dataset.filter.slice(1)) !== -1 ) {
+                if ( newFilters.indexOf(el.dataset.filter) !== -1 ) {
                     el.classList.add('selected')
                 } else {
                     el.classList.remove('selected')
@@ -108,12 +108,13 @@ function(Isotope, imagesLoaded) {
 
     filters.addEventListener('click', function (e) {
         if ( e.target.nodeName === 'BUTTON' ) {
-            if ( e.target.classList.contains('selected') && e.target.dataset.filter === '*' ) {
+            var f = e.target.dataset.filter === '*' ? '*' : '.' + e.target.dataset.filter
+            if ( e.target.classList.contains('selected') && filter === '*' ) {
                 return
             } else {
                 var addOrRemove = e.target.classList.toggle('selected')
                 // ".for-teachers"
-                filter(e.target.dataset.filter, addOrRemove)
+                filter(f, addOrRemove)
             }
         }
     })
@@ -133,7 +134,13 @@ function(Isotope, imagesLoaded) {
             state = window.history.state
 
         Array.prototype.forEach.call(filterButtons, function(b) {
-            filterStore[b.dataset.filter] = false
+            var f
+            if ( b.dataset.filter !== '*' ) {
+                f = '.' + b.dataset.filter
+            } else {
+                f = '*'
+            }
+            filterStore[f] = false
         })
 
         if ( state || sessionStorage.getItem('filter') ) {
