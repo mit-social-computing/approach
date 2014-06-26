@@ -9,8 +9,8 @@ if [ -z $1 ]; then
     echo "One of 'd' for development, 's' for staging, 'p' for production."
     exit 
 elif [ $1 == 's' -o $1 == 'p' -o $1 == 'd' ]; then
-    LOCALURL='principles.dev'
-    LOCALPATH='/Library/WebServer/Documents/principles/'
+    LOCALURL='approach.dev'
+    LOCALPATH='/Library/WebServer/Documents/approach/'
     LOCALDB=$(read_cfg dev database)
     echo "Getting local values"
     echo
