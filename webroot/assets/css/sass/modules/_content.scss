@@ -1,0 +1,14 @@
+.content-image-zoom {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    display: block;
+    right: 16px;
+    bottom: 13px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.content-image-zoom--blue {
+    background-image: url('/assets/img/blue-plus.png');
+}

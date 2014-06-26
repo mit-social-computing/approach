@@ -29,7 +29,8 @@ function( SuperGif, lib ) {
                 gifs[gif] = new SuperGif({
                     gif : document.getElementById(gif),
                     auto_play : 0,
-                    c_h : 145
+                    //c_h : 145,
+                    max_width: 559
                 })
                 gifs[gif].load(removeDisabled)
             })

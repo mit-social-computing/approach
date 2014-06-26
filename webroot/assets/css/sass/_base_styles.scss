@@ -5,6 +5,11 @@
     width: 95%;
     max-width: 865px;
     margin: 0 auto;
+    position: relative;
+
+    .resources & {
+        display: block;
+    }
 }
 
 .touch .container {

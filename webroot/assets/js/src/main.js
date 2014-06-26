@@ -52,7 +52,10 @@ function( lib ) {
             tags = document.getElementById('resourceTags')
             tags.addEventListener('click', function(e) {
                 if ( e.target.nodeName === 'A' && window.sessionStorage ) {
-                    sessionStorage.setItem('filter', e.target.dataset.filter)
+                    // filters stored in sessionStorage and state
+                    // as dot delimited strings that start with a dot as well
+                    // e.g. .for-parents.research
+                    sessionStorage.setItem('filter', '.' + e.target.dataset.filter)
                 }
             }, false)
         }

@@ -5,7 +5,6 @@ define(['isotope', 'imagesloaded'],
 function(Isotope, imagesLoaded) {
     var resources = document.getElementById('resourcesGrid'),
         filters = document.getElementById('filters'),
-        tags = document.getElementById('resourceTags'),
         iso = new Isotope(resources, {
             itemSelector : '.thumb',
             layoutMode : 'masonry',
@@ -15,25 +14,26 @@ function(Isotope, imagesLoaded) {
                 isFitWidth : true
             }
         }).on('layoutComplete', function() {
-            try {
-                s.refresh()
-            } catch(e) {}
+            $('html, body').animate({scrollTop: 0}, 200)
         }),
         imgWatcher,
         filterStore = {}
 
-    console.log(tags)
-
     function updateHistory( filters ) {
         if ( window.history && window.sessionStorage ) {
+            // filters stored in sessionStorage and state
+            // as dot delimited strings that start with a dot as well
+            // e.g. .for-parents.research
             window.history.pushState({ filter : filters }, '')
             sessionStorage.setItem('filter', filters)
         }
     }
 
     function updateFilters( filterChoice, addSwitch ) {
-        var filters,
-            selected,
+        // filterChoice
+        // for-parents
+
+        var selected = [],
             filterString = '',
             f
 
@@ -47,14 +47,18 @@ function(Isotope, imagesLoaded) {
             filterStore['*'] = false
             filterStore[filterChoice] = addSwitch
             for ( f in filterStore ) {
-                filterString += filterStore[f] ? f : ''
+                if ( filterStore[f] ) {
+                    selected.push(f)
+                }
             }
         }
 
-        return filterString ? filterString : '*'
+        return selected.length ? '.' + selected.join('.') : '*'
     }
 
     function setFilterButtons( filterString ) {
+        // filterString
+        // ".for-parents.for-teachers.for-researchers"
         var newFilters, filters,
             selected,
             //viewAll = document.getElementById('viewAll')
@@ -87,7 +91,7 @@ function(Isotope, imagesLoaded) {
 
     function filter( filterChoice, addOrRemove ) {
         // filterChoice
-        // .filter
+        // for-parents
         var filterString = updateFilters(filterChoice, addOrRemove)
 
         // filters
@@ -108,12 +112,13 @@ function(Isotope, imagesLoaded) {
 
     filters.addEventListener('click', function (e) {
         if ( e.target.nodeName === 'BUTTON' ) {
-            var f = e.target.dataset.filter === '*' ? '*' : '.' + e.target.dataset.filter
+            var f = e.target.dataset.filter === '*' ? '*' : e.target.dataset.filter
+
             if ( e.target.classList.contains('selected') && filter === '*' ) {
                 return
             } else {
                 var addOrRemove = e.target.classList.toggle('selected')
-                // ".for-teachers"
+                // e.g. f = "for-teachers"
                 filter(f, addOrRemove)
             }
         }
@@ -136,7 +141,7 @@ function(Isotope, imagesLoaded) {
         Array.prototype.forEach.call(filterButtons, function(b) {
             var f
             if ( b.dataset.filter !== '*' ) {
-                f = '.' + b.dataset.filter
+                f = b.dataset.filter
             } else {
                 f = '*'
             }
@@ -150,7 +155,7 @@ function(Isotope, imagesLoaded) {
                 state = sessionStorage.getItem('filter')
             }
             state.split('.').slice(1).forEach(function(f) {
-                updateFilters('.' + f, true)
+                updateFilters(f, true)
             })
             iso.arrange({
                 filter : state

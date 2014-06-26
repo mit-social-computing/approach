@@ -15,7 +15,7 @@ module.exports = function(grunt) {
     jsSrc : '<%= pkg.assetsPath %>js/src/*.js',
     jsBuild : '<%= pkg.assetsPath %>js/build/<%= pkg.name %>.js',
     jsMin : '<%= pkg.assetsPath %>js/build/<%= pkg.name %>.min.js',
-    sass : '<%= pkg.assetsPath %>css/sass/*',
+    sass : '<%= pkg.assetsPath %>css/sass/**/*.scss',
     css : '<%= pkg.assetsPath %>css/app.css',
     templates : '<%= pkg.assetsPath %>templates/**/*',
     markup : '<%= pkg.assetsPath %>markup/**/*.html',
