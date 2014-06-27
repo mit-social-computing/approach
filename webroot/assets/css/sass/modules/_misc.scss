@@ -1,14 +1,20 @@
-.content-image-zoom {
+.image-zoom {
     position: absolute;
     height: 24px;
     width: 24px;
     display: block;
-    right: 16px;
-    bottom: 13px;
+    right: 4%;
+    bottom: 4%;
     cursor: pointer;
     z-index: 2;
 }
 
-.content-image-zoom--blue {
+.image-zoom--blue {
     background-image: url('/assets/img/blue-plus.png');
+}
+
+.lightbox {
+    display: inline;
+    border: none;
+    @include transition(none);
 }
