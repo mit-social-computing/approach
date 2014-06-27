@@ -33,24 +33,35 @@
         position: fixed;
         z-index: 1;
         top: 0;
-        left: 15px;
-        right: 15px;
+        left: 0;
+        right: 0;
         -webkit-backface-visibility: hidden;
         @include box-shadow(0 10px 10px 0px rgba(255,255,255,0.5));
 
         &:after {
             content: '';
             display: block;
-            width: 100%;
             height: 11px;
             position: absolute;
             bottom: -6px;
+            left: 5px;
+            right: 5px;
+            margin: auto;
             background-image: url('/assets/img/wavy-line.png');
             background-repeat: no-repeat;
             background-position: center center;
         }
     }
 }
+
+@media #{$screen} and (min-width: 730px) {
+    .sticky .main-header:after {
+        left: 15px;
+        right: 15px;
+    }
+}
+
+
 
 .main-header .wrapper {
     @include flexbox;
@@ -113,10 +124,14 @@
 .main-menu {
     padding: 0;
     max-width: 670px;
-    margin: 0 auto 15px;
+    margin: 0 10px 15px;
     list-style-type: none;
     display: none;
     @extend .antialiased;
+
+    @media #{$screen} and (min-width: 730px) {
+        margin: 0 auto 15px;
+    }
 
     &.show {
         display: block;
@@ -141,8 +156,9 @@
     }
 }
 
-@media #{$medium-up} {
-    .main-menu {
+.main-menu,
+.main-menu.show {
+    @media #{$medium-up} {
         @include flexbox;
         @include justify-content(space-between);
     }
@@ -193,6 +209,7 @@ body::-webkit-scrollbar-thumb {
         background-image: url(/assets/img/arrows/red-arrow.png);
     }
 
+    .blog &,
     .resources-detail &,
     .resources & {
         background-image: url(/assets/img/arrows/blue-arrow.png);
