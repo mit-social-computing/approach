@@ -1,0 +1,38 @@
+.form-centered {
+    max-width: 512px;
+    width: 100%;
+    margin: 0 auto;
+}
+.form-centered--purple {
+    font-family: kim;
+    letter-spacing: 1.9px;
+    color: $purple;
+    font-size: rem-calc(18);
+}
+
+.label-purple,
+.input-purple {
+    display: block;
+    width: 100%;
+}
+
+.label-purple--inline,
+.input-purple--inline {
+    display: inline;
+}
+
+.label-purple {
+    margin-bottom: 2px;
+}
+
+.input-purple {
+    border: 1px solid $purple;
+    border-radius: 3px;
+    background: $light-purple;
+    height: 30px;
+    letter-spacing: 1.9px;
+
+    &:focus {
+        outline: none;
+    }
+}
