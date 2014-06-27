@@ -63,16 +63,6 @@
 }
 
 // detail page container
-.resources-detail {
-
-    .content {
-        margin: 0 auto;
-        max-width: 766px;
-        padding: 0 25px;
-    }
-
-}
-
 .resources-aside {
     font-family: kim;
     @extend .antialiased;
@@ -109,18 +99,18 @@
 }
 
 @media #{$medium-up} {
-    .resources-detail {
-        .content {
-            padding: 0;
-            @include flexbox;
-        }
-        main {
-            @include flex(2);
-        }
-    }
+    //.resources-detail {
+    //    .content {
+    //        padding: 0;
+    //        @include flexbox;
+    //    }
+    //    main {
+    //        @include flex(2);
+    //    }
+    //}
 
     .resources-aside {
-        @include flex(1);
+        //@include flex(1);
 
         h2 {
             font-size: rem-calc(35);

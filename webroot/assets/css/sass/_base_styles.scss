@@ -26,11 +26,6 @@
     }
 }
 
-.about .content {
-    max-width: 670px;
-    margin: 0 auto;
-}
-
 a {
     display: inline-block;
     border-bottom: 1px solid rgba($link-hover, 0);
@@ -66,3 +61,8 @@ p {
          font-style: normal;
      }
  }
+
+button {
+    @include appearance(none);
+    border: none;
+}
