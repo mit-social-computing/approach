@@ -30,13 +30,52 @@
 }
 
 .l-inline-row {
-    > div {
-        margin-bottom: 1rem;
+    @extend .clearfix;
+}
+.l-inline {
+    margin-bottom: 1rem;
+    &:only-child {
+        margin: 0 auto;
+        float: none;
+    }
+
+    @media #{$medium-up} {
+        padding: 0 7px;
+        float: left;
+
+        &:first-of-type {
+            padding-left: 0;
+        }
+        &:last-of-type {
+            padding-right: 0;
+        }
+    }
+
+}
+
+.l-inline--nobreak {
+    white-space: nowrap;
+}
+
+.l-inline-auto {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+@media #{$medium-up} {
+    @for $i from 1 through 8 {
+        .l-inline-#{$i} {
+            width: $i/8 * 100%;
+        }
+    }
+    .l-inline-height50 {
+        height: 50px;
+
+        > * {
+            height: 100%;
+        }
+    }
+    .l-inline--low-row {
+        padding-top: 25px;
     }
 }
-.l-inline-1 {}
-.l-inline-2 {}
-.l-inline-4 {}
-.l-inline-5 {}
-.l-inline-8 {}
-.l-inline-auto {}

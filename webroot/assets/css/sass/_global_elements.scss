@@ -155,6 +155,11 @@
         &:hover {
             color: $pink;
         }
+
+        &:focus {
+            outline: none;
+            border-bottom: 1px $purple dotted;
+        }
     }
 }
 
