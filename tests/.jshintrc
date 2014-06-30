@@ -17,7 +17,7 @@
   "predef": [
     "require",
     "define",
-    "jQuery",
+    "$",
     "QUnit",
     "module",
     "test",
