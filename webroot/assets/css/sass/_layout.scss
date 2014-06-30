@@ -10,6 +10,10 @@
     padding: 65px 25px;
 }
 
+.l-content--slim {
+    padding: 0;
+}
+
 @media #{$medium-up} {
     .l-content--flex {
         padding: 0;

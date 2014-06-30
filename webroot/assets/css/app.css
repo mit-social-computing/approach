@@ -2797,8 +2797,13 @@ blockquote p {
   padding: 65px 25px;
 }
 
+/* line 13, sass/_layout.scss */
+.l-content--slim {
+  padding: 0;
+}
+
 @media only screen and (min-width: 40.063em) {
-  /* line 14, sass/_layout.scss */
+  /* line 18, sass/_layout.scss */
   .l-content--flex {
     padding: 0;
     display: -webkit-box;
@@ -2809,7 +2814,7 @@ blockquote p {
     display: -ms-flexbox;
   }
 
-  /* line 18, sass/_layout.scss */
+  /* line 22, sass/_layout.scss */
   .l-content--flex-main {
     -webkit-box-flex: 2;
     -moz-box-flex: 2;
@@ -2819,7 +2824,7 @@ blockquote p {
     flex: 2;
   }
 
-  /* line 21, sass/_layout.scss */
+  /* line 25, sass/_layout.scss */
   .l-content--flex-aside {
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
@@ -2829,100 +2834,100 @@ blockquote p {
     flex: 1;
   }
 }
-/* line 26, sass/_layout.scss */
+/* line 30, sass/_layout.scss */
 .layout-image {
   position: relative;
   margin-bottom: 1.25rem;
   z-index: 0;
 }
 
-/* line 35, sass/_layout.scss */
+/* line 39, sass/_layout.scss */
 .l-inline {
   margin-bottom: 1rem;
 }
-/* line 37, sass/_layout.scss */
+/* line 41, sass/_layout.scss */
 .l-inline:only-child {
   margin: 0 auto;
   float: none;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 35, sass/_layout.scss */
+  /* line 39, sass/_layout.scss */
   .l-inline {
     padding: 0 7px;
     float: left;
   }
-  /* line 46, sass/_layout.scss */
+  /* line 50, sass/_layout.scss */
   .l-inline:first-of-type {
     padding-left: 0;
   }
-  /* line 49, sass/_layout.scss */
+  /* line 53, sass/_layout.scss */
   .l-inline:last-of-type {
     padding-right: 0;
   }
 }
 
-/* line 56, sass/_layout.scss */
+/* line 60, sass/_layout.scss */
 .l-inline--nobreak {
   white-space: nowrap;
 }
 
-/* line 60, sass/_layout.scss */
+/* line 64, sass/_layout.scss */
 .l-inline-auto {
   display: inline-block;
   margin-bottom: 0;
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 67, sass/_layout.scss */
+  /* line 71, sass/_layout.scss */
   .l-inline-1 {
     width: 12.5%;
   }
 
-  /* line 67, sass/_layout.scss */
+  /* line 71, sass/_layout.scss */
   .l-inline-2 {
     width: 25%;
   }
 
-  /* line 67, sass/_layout.scss */
+  /* line 71, sass/_layout.scss */
   .l-inline-3 {
     width: 37.5%;
   }
 
-  /* line 67, sass/_layout.scss */
+  /* line 71, sass/_layout.scss */
   .l-inline-4 {
     width: 50%;
   }
 
-  /* line 67, sass/_layout.scss */
+  /* line 71, sass/_layout.scss */
   .l-inline-5 {
     width: 62.5%;
   }
 
-  /* line 67, sass/_layout.scss */
+  /* line 71, sass/_layout.scss */
   .l-inline-6 {
     width: 75%;
   }
 
-  /* line 67, sass/_layout.scss */
+  /* line 71, sass/_layout.scss */
   .l-inline-7 {
     width: 87.5%;
   }
 
-  /* line 67, sass/_layout.scss */
+  /* line 71, sass/_layout.scss */
   .l-inline-8 {
     width: 100%;
   }
 
-  /* line 71, sass/_layout.scss */
+  /* line 75, sass/_layout.scss */
   .l-inline-height50 {
     height: 50px;
   }
-  /* line 74, sass/_layout.scss */
+  /* line 78, sass/_layout.scss */
   .l-inline-height50 > * {
     height: 100%;
   }
 
-  /* line 78, sass/_layout.scss */
+  /* line 82, sass/_layout.scss */
   .l-inline--low-row {
     padding-top: 25px;
   }
@@ -3310,14 +3315,15 @@ i {
 /* line 35, sass/modules/_mask.scss */
 .mask-image {
   width: 100%;
+  padding: 1px;
 }
 
-/* line 39, sass/modules/_mask.scss */
+/* line 40, sass/modules/_mask.scss */
 .mask-image.loaded {
   opacity: 1;
 }
 
-/* line 43, sass/modules/_mask.scss */
+/* line 44, sass/modules/_mask.scss */
 .mask-image--color {
   width: 275px;
   padding: 5px;
@@ -3335,27 +3341,27 @@ i {
   transition: opacity 150ms ease, -webkit-filter 150ms ease, filter 150ms ease;
 }
 
-/* line 56, sass/modules/_mask.scss */
+/* line 57, sass/modules/_mask.scss */
 .mask1 {
   background-image: url("/assets/img/frames/frame1.png");
 }
 
-/* line 60, sass/modules/_mask.scss */
+/* line 61, sass/modules/_mask.scss */
 .mask2 {
   background-image: url("/assets/img/frames/frame2.png");
 }
 
-/* line 63, sass/modules/_mask.scss */
+/* line 64, sass/modules/_mask.scss */
 .mask3 {
   background-image: url("/assets/img/frames/frame3.png");
 }
 
-/* line 66, sass/modules/_mask.scss */
+/* line 67, sass/modules/_mask.scss */
 .mask4 {
   background-image: url("/assets/img/frames/frame4.png");
 }
 
-/* line 70, sass/modules/_mask.scss */
+/* line 71, sass/modules/_mask.scss */
 .mask-white {
   background-image: url("/assets/img/frames/white-border.png");
 }
@@ -3601,6 +3607,92 @@ body::-webkit-scrollbar-thumb {
   padding: 10px 28px 11px 11px;
   background-image: url(/assets/img/patterns/purple-swatch.png);
   background-position: -81px -32px;
+}
+
+/* line 3, sass/modules/_slideshow.scss */
+.hidden {
+  display: none;
+}
+
+/* line 7, sass/modules/_slideshow.scss */
+.lightbox-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  z-index: 1;
+}
+
+/* line 17, sass/modules/_slideshow.scss */
+.lightbox-close {
+  position: absolute;
+  top: 15px;
+  right: 48px;
+  height: 25px;
+  width: 25px;
+  background: none;
+  padding: 0;
+}
+
+/* line 27, sass/modules/_slideshow.scss */
+.lightbox-fixbody {
+  overflow: hidden;
+}
+
+/* line 31, sass/modules/_slideshow.scss */
+.lightbox-body {
+  height: 100%;
+}
+
+/* line 36, sass/modules/_slideshow.scss */
+.lightbox-body .slick-slider {
+  margin: 0;
+  height: 100%;
+}
+
+/* line 44, sass/modules/_slideshow.scss */
+.lightbox-body .slick-list,
+.lightbox-body .slick-track {
+  height: 100%;
+}
+/* line 48, sass/modules/_slideshow.scss */
+.lightbox-body .slick-track {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  display: -ms-flexbox;
+}
+/* line 52, sass/modules/_slideshow.scss */
+.lightbox-body .slick-initialized .slick-slide {
+  height: auto;
+  margin: auto;
+  padding: 25px;
+}
+/* line 58, sass/modules/_slideshow.scss */
+.lightbox-body .slick-prev {
+  left: 50px;
+}
+/* line 60, sass/modules/_slideshow.scss */
+.lightbox-body .slick-prev:before {
+  color: black;
+}
+/* line 65, sass/modules/_slideshow.scss */
+.lightbox-body .slick-next {
+  right: 50px;
+}
+/* line 67, sass/modules/_slideshow.scss */
+.lightbox-body .slick-next:before {
+  color: black;
+}
+
+/* line 74, sass/modules/_slideshow.scss */
+.slick-slide img,
+.lightbox-image {
+  margin: 0 auto;
 }
 
 /* line 1, sass/modules/_text.scss */

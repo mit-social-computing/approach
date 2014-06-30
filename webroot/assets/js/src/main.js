@@ -9,7 +9,8 @@ require.config({
         },
         "modernizr" : {
             exports : "Modernizr"
-        }
+        },
+        "slick" : ['jquery']
     },
     paths: {
         app : "../js/src",
@@ -26,8 +27,10 @@ require.config({
         skrollr: "skrollr/src/skrollr",
         modernizr : "../js/lib/modernizr/custom.modernizr",
         lodash : "../js/lib/lodash/lodash.min",
-        jquery : "../js/lib/jquery/animate-jquery",
+        //jquery : "../js/lib/jquery/animate-jquery",
+        jquery : "../js/lib/jquery/jquery.min",
         libgif : "../js/lib/libgif/libgif",
+        slick : "slick-carousel/slick/slick"
     },
     packages: [
 
@@ -47,6 +50,7 @@ function( lib ) {
         if ( path.split('/').length === 2 ) {
             require(['app/resources'])
         } else if ( path.split('/').length === 3 ) {
+            require(['app/lightbox'])
             tags = document.getElementById('resourceTags')
             tags.addEventListener('click', function(e) {
                 if ( e.target.nodeName === 'A' && window.sessionStorage ) {
@@ -62,6 +66,8 @@ function( lib ) {
             var f = document.getElementById('startForm')
             f.addEventListener('submit', lib.sendForm, false)
         })
+    } else if ( path.match(/blog/) ) {
+        require(['app/lightbox'])
     }
 
 

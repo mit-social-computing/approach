@@ -6,6 +6,9 @@
         <title>Wildflower Montessori Approach</title>
 
         <link href="/assets/css/app.@@hash.css" rel="stylesheet">
+        {if '{stash:nav}' == 'blog' || '{stash:nav}' == 'resources-detail'}
+        <link href="/assets/bower_components/slick-carousel/slick/slick.css" rel="stylesheet">
+        {/if}
         <script data-main="/assets/js/src/main" src="/assets/bower_components/requirejs/require.js"></script>
     </head>
     <body class="{stash:nav}" id="{stash:nav}">

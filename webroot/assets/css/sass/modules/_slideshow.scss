@@ -1,0 +1,76 @@
+// slideshow
+
+.hidden {
+    display: none;
+}
+
+.lightbox-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    z-index: 1;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 48px;
+    height: 25px;
+    width: 25px;
+    background: none;
+    padding: 0;
+}
+
+.lightbox-fixbody {
+    overflow: hidden;
+}
+
+.lightbox-body {
+    //@include flexbox;
+    height: 100%;
+}
+
+.lightbox-body .slick-slider {
+    margin: 0;
+    height: 100%;
+}
+
+.lightbox-body {
+
+    .slick-list,
+    .slick-track {
+        height: 100%;
+    }
+
+    .slick-track {
+        @include flexbox;
+    }
+
+    .slick-initialized .slick-slide {
+        height: auto;
+        margin: auto;
+        padding: 25px;
+    }
+
+    .slick-prev {
+        left: 50px;
+        &:before {
+            color: black;
+        }
+    }
+
+    .slick-next {
+        right: 50px;
+        &:before {
+            color: black;
+        }
+    }
+}
+
+.slick-slide img,
+.lightbox-image {
+    margin: 0 auto;
+}
