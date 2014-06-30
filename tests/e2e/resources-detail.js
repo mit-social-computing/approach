@@ -8,7 +8,7 @@ module.exports = {
         browser
             .init()
             .waitForElementVisible('body', 1000)
-            .click('#resources')
+            .click('#resourcesNav')
             .waitForElementVisible('body', 1000)
             .click('.thumb:first-of-type a')
             .waitForElementVisible('body', 1000)
