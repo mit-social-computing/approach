@@ -65,7 +65,7 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
             test: Modernizr.touch,
             nope : "/assets/bower_components/skrollr/dist/skrollr.min.js",
             callback : function( url, result, key ) {
-                if ( !result && !document.getElementsByClassName('overview').length ) {
+                if ( !result && ( !document.getElementById('overview') && !document.getElementById('start-a-school') ) ) {
                     imagesLoaded('img', function() {
                         window.s = skrollr.init({
                             constants : {
