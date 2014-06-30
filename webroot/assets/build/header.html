@@ -12,7 +12,11 @@
         <script data-main="/assets/js/src/main" src="/assets/bower_components/requirejs/require.js"></script>
     </head>
     <body class="{stash:nav}" id="{stash:nav}">
+        {if "{stash:nav}" == "classroom"}
+        <div class="container container-flush sticky">
+        {if:else}
         <div class="container{if "{stash:nav}" != "overview"} sticky{/if}">
+        {/if}
             <header class="main-header" id="mainHeader">
                 <div class="wrapper">
                     <button class="menu-button" id="menuButton">&#x2261;</button>

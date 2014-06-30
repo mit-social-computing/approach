@@ -12,6 +12,15 @@
     }
 }
 
+.container-flush {
+    max-width: none;
+    width: 100%;
+
+    &.container.sticky {
+        padding: 0;
+    }
+}
+
 .touch .container {
     display: block;
 }

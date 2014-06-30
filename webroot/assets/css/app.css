@@ -2958,22 +2958,32 @@ blockquote p {
 }
 
 /* line 15, sass/_base_styles.scss */
+.container-flush {
+  max-width: none;
+  width: 100%;
+}
+/* line 19, sass/_base_styles.scss */
+.container-flush.container.sticky {
+  padding: 0;
+}
+
+/* line 24, sass/_base_styles.scss */
 .touch .container {
   display: block;
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 20, sass/_base_styles.scss */
+  /* line 29, sass/_base_styles.scss */
   .container.sticky {
     padding-top: 140px;
   }
 
-  /* line 24, sass/_base_styles.scss */
+  /* line 33, sass/_base_styles.scss */
   .resources .container.sticky {
     padding-top: 185px;
   }
 }
-/* line 29, sass/_base_styles.scss */
+/* line 38, sass/_base_styles.scss */
 a {
   display: inline-block;
   border-bottom: 1px solid rgba(253, 197, 47, 0);
@@ -2982,21 +2992,21 @@ a {
   -o-transition: border-bottom-color 150ms ease, color 150ms ease;
   transition: border-bottom-color 150ms ease, color 150ms ease;
 }
-/* line 34, sass/_base_styles.scss */
+/* line 43, sass/_base_styles.scss */
 a:hover {
   border-bottom-color: #fdc52f;
 }
 
-/* line 39, sass/_base_styles.scss */
+/* line 48, sass/_base_styles.scss */
 p {
   letter-spacing: 1px;
 }
 
-/* line 44, sass/_base_styles.scss */
+/* line 53, sass/_base_styles.scss */
 .quote {
   border: none;
 }
-/* line 48, sass/_base_styles.scss */
+/* line 57, sass/_base_styles.scss */
 .quote,
 .quote cite {
   font-family: kim;
@@ -3007,12 +3017,12 @@ p {
   letter-spacing: 1.9px;
   padding: 0 65px;
 }
-/* line 60, sass/_base_styles.scss */
+/* line 69, sass/_base_styles.scss */
 .quote cite {
   font-style: normal;
 }
 
-/* line 65, sass/_base_styles.scss */
+/* line 74, sass/_base_styles.scss */
 button {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -3020,7 +3030,7 @@ button {
   border: none;
 }
 
-/* line 70, sass/_base_styles.scss */
+/* line 79, sass/_base_styles.scss */
 i {
   font-style: normal;
 }
@@ -3086,15 +3096,27 @@ i {
     background-repeat: no-repeat;
     background-position: center center;
   }
+
+  /* line 56, sass/_global_elements.scss */
+  .sticky.container-flush .main-header {
+    background: transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+  /* line 60, sass/_global_elements.scss */
+  .sticky.container-flush .main-header:after {
+    content: none;
+  }
 }
 @media only screen and (min-width: 730px) {
-  /* line 58, sass/_global_elements.scss */
+  /* line 67, sass/_global_elements.scss */
   .sticky .main-header:after {
     left: 15px;
     right: 15px;
   }
 }
-/* line 66, sass/_global_elements.scss */
+/* line 75, sass/_global_elements.scss */
 .main-header .wrapper {
   display: -webkit-box;
   display: -moz-box;
@@ -3114,7 +3136,7 @@ i {
   align-items: center;
 }
 
-/* line 72, sass/_global_elements.scss */
+/* line 81, sass/_global_elements.scss */
 .menu-button {
   font-size: 1.625rem;
   background: none;
@@ -3128,26 +3150,26 @@ i {
   -o-transition: color 150ms ease;
   transition: color 150ms ease;
 }
-/* line 83, sass/_global_elements.scss */
+/* line 92, sass/_global_elements.scss */
 .menu-button:focus, .menu-button:active {
   color: inherit;
   outline: none;
   border: none;
   background: none;
 }
-/* line 90, sass/_global_elements.scss */
+/* line 99, sass/_global_elements.scss */
 .menu-button:hover {
   color: #f77e85;
   background: none;
 }
 
-/* line 96, sass/_global_elements.scss */
+/* line 105, sass/_global_elements.scss */
 .logo {
   color: white;
   margin: 0;
   letter-spacing: 2.1px;
 }
-/* line 102, sass/_global_elements.scss */
+/* line 111, sass/_global_elements.scss */
 .logo span {
   font-family: kim;
   font-size: 1.5625rem;
@@ -3159,22 +3181,22 @@ i {
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 111, sass/_global_elements.scss */
+  /* line 120, sass/_global_elements.scss */
   .main-header .wrapper {
     display: block;
   }
 
-  /* line 115, sass/_global_elements.scss */
+  /* line 124, sass/_global_elements.scss */
   .menu-button {
     display: none;
   }
 
-  /* line 120, sass/_global_elements.scss */
+  /* line 129, sass/_global_elements.scss */
   .logo span {
     font-size: 2.1875rem;
   }
 }
-/* line 126, sass/_global_elements.scss */
+/* line 135, sass/_global_elements.scss */
 .main-menu {
   height: 22px;
   padding: 0;
@@ -3184,41 +3206,41 @@ i {
   display: none;
 }
 @media only screen and (min-width: 730px) {
-  /* line 126, sass/_global_elements.scss */
+  /* line 135, sass/_global_elements.scss */
   .main-menu {
     margin: 0 auto 15px;
   }
 }
-/* line 139, sass/_global_elements.scss */
+/* line 148, sass/_global_elements.scss */
 .main-menu.show {
   display: block;
 }
-/* line 143, sass/_global_elements.scss */
+/* line 152, sass/_global_elements.scss */
 .main-menu li {
   font-size: 1.4375rem;
   letter-spacing: 2.1px;
 }
-/* line 148, sass/_global_elements.scss */
+/* line 157, sass/_global_elements.scss */
 .main-menu a {
   color: #b6a2cd;
   border: none;
 }
-/* line 152, sass/_global_elements.scss */
+/* line 161, sass/_global_elements.scss */
 .main-menu a.selected {
   color: #70becd;
 }
-/* line 156, sass/_global_elements.scss */
+/* line 165, sass/_global_elements.scss */
 .main-menu a:hover {
   color: #f77e85;
 }
-/* line 160, sass/_global_elements.scss */
+/* line 169, sass/_global_elements.scss */
 .main-menu a:focus {
   outline: none;
   border-bottom: 1px #b6a2cd dotted;
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 168, sass/_global_elements.scss */
+  /* line 177, sass/_global_elements.scss */
   .main-menu,
   .main-menu.show {
     display: -webkit-box;
@@ -3235,7 +3257,7 @@ i {
   }
 }
 
-/* line 175, sass/_global_elements.scss */
+/* line 184, sass/_global_elements.scss */
 .arrow {
   display: block;
   position: fixed;
@@ -3249,25 +3271,25 @@ i {
   -o-transition: opacity 50ms;
   transition: opacity 50ms;
 }
-/* line 185, sass/_global_elements.scss */
+/* line 194, sass/_global_elements.scss */
 .arrow:hover {
   border: none;
 }
-/* line 189, sass/_global_elements.scss */
+/* line 198, sass/_global_elements.scss */
 .about .arrow {
   background-image: url(/assets/img/arrows/red-arrow.png);
 }
-/* line 195, sass/_global_elements.scss */
+/* line 204, sass/_global_elements.scss */
 .blog .arrow, .resources-detail .arrow, .resources .arrow {
   background-image: url(/assets/img/arrows/blue-arrow.png);
 }
-/* line 199, sass/_global_elements.scss */
+/* line 208, sass/_global_elements.scss */
 .resources-detail .arrow {
   left: 50px;
   right: auto;
 }
 @media only screen and (min-width: 930px) {
-  /* line 205, sass/_global_elements.scss */
+  /* line 214, sass/_global_elements.scss */
   .resources-detail .arrow {
     right: 45px;
     left: auto;
@@ -3275,7 +3297,7 @@ i {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 213, sass/_global_elements.scss */
+  /* line 222, sass/_global_elements.scss */
   .arrow {
     display: none;
   }
@@ -3368,6 +3390,14 @@ i {
 }
 
 /* line 2, sass/modules/_misc.scss */
+.plus-icon {
+  height: 24px;
+  width: 24px;
+  display: block;
+  cursor: pointer;
+}
+
+/* line 9, sass/modules/_misc.scss */
 .image-zoom {
   position: absolute;
   height: 24px;
@@ -3379,12 +3409,17 @@ i {
   z-index: 2;
 }
 
-/* line 13, sass/modules/_misc.scss */
+/* line 20, sass/modules/_misc.scss */
 .image-zoom--blue {
   background-image: url("/assets/img/blue-plus.png");
 }
 
-/* line 17, sass/modules/_misc.scss */
+/* line 24, sass/modules/_misc.scss */
+.plus-icon--pink {
+  background-image: url("/assets/img/pink-plus.png");
+}
+
+/* line 28, sass/modules/_misc.scss */
 .white-arrow {
   background-image: url(/assets/img/sprites/right-arrow.png);
   height: 14px;
@@ -3395,7 +3430,7 @@ i {
   top: 10px;
 }
 
-/* line 27, sass/modules/_misc.scss */
+/* line 38, sass/modules/_misc.scss */
 .lightbox {
   display: inline;
   border: none;
@@ -3549,24 +3584,32 @@ i {
   padding: 0;
 }
 
-/* line 1, sass/modules/_scrollbar.scss */
-body::-webkit-scrollbar {
+/* line 5, sass/modules/_scrollbar.scss */
+.start-a-school::-webkit-scrollbar,
+.blog::-webkit-scrollbar,
+.resources-detail::-webkit-scrollbar,
+.resources::-webkit-scrollbar,
+.about::-webkit-scrollbar {
   width: 24px;
   height: auto;
 }
 
-/* line 6, sass/modules/_scrollbar.scss */
-body::-webkit-scrollbar-track {
+/* line 14, sass/modules/_scrollbar.scss */
+.start-a-school::-webkit-scrollbar-track,
+.blog::-webkit-scrollbar-track,
+.resources-detail::-webkit-scrollbar-track,
+.resources::-webkit-scrollbar-track,
+.about::-webkit-scrollbar-track {
   background-color: white;
   background-repeat: no-repeat;
 }
 
-/* line 11, sass/modules/_scrollbar.scss */
+/* line 19, sass/modules/_scrollbar.scss */
 .about::-webkit-scrollbar-track {
   background-image: url("/assets/img/scrollbars/red-scrollbar.png");
 }
 
-/* line 18, sass/modules/_scrollbar.scss */
+/* line 26, sass/modules/_scrollbar.scss */
 .start-a-school::-webkit-scrollbar-track,
 .blog::-webkit-scrollbar-track,
 .resources-detail::-webkit-scrollbar-track,
@@ -3574,8 +3617,12 @@ body::-webkit-scrollbar-track {
   background-image: url("/assets/img/scrollbars/blue-scrollbar.png");
 }
 
-/* line 22, sass/modules/_scrollbar.scss */
-body::-webkit-scrollbar-thumb {
+/* line 34, sass/modules/_scrollbar.scss */
+.start-a-school::-webkit-scrollbar-thumb,
+.blog::-webkit-scrollbar-thumb,
+.resources-detail::-webkit-scrollbar-thumb,
+.resources::-webkit-scrollbar-thumb,
+.about::-webkit-scrollbar-thumb {
   background-color: white;
   border-left: 10px solid transparent;
   border-right: 5px solid transparent;
@@ -3705,6 +3752,42 @@ body::-webkit-scrollbar-thumb {
   text-align: center;
   color: #70becd;
   margin-bottom: 2.75rem;
+}
+
+/* line 1, sass/modules/_classroom.scss */
+.classroom-wrapper {
+  background: black;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: scroll;
+}
+
+/* line 11, sass/modules/_classroom.scss */
+.classroom-layer {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  -webkit-transition: opacity 150ms ease;
+  -moz-transition: opacity 150ms ease;
+  -o-transition: opacity 150ms ease;
+  transition: opacity 150ms ease;
+}
+/* line 19, sass/modules/_classroom.scss */
+.classroom-layer.fade-out {
+  opacity: 0;
+}
+
+/* line 24, sass/modules/_classroom.scss */
+.classroom-layer--black {
+  opacity: 0.45;
+  background: black;
+  position: fixed;
+  bottom: 0;
 }
 
 /* line 1, sass/_interface.scss */

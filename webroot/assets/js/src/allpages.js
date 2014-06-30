@@ -66,7 +66,7 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
             nope : "/assets/bower_components/skrollr/dist/skrollr.min.js",
             callback : function( url, result, key ) {
                 if ( !result &&
-                    ( !document.getElementById('overview') && !document.getElementById('start-a-school') && !document.getElementById('contact') ) ) {
+                    ( !document.getElementById('overview') && !document.getElementById('start-a-school') && !document.getElementById('contact') && !document.getElementById('classroom') )) {
                     imagesLoaded('img', function() {
                         window.s = skrollr.init({
                             constants : {

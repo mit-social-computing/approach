@@ -52,6 +52,15 @@
             background-position: center center;
         }
     }
+
+    .sticky.container-flush .main-header {
+        background: transparent;
+        @include box-shadow(none);
+
+        &:after {
+            content: none;
+        }
+    }
 }
 
 @media #{$screen} and (min-width: 730px) {
