@@ -3176,6 +3176,7 @@ i {
 }
 /* line 126, sass/_global_elements.scss */
 .main-menu {
+  height: 22px;
   padding: 0;
   max-width: 670px;
   margin: 0 10px 15px;
@@ -3188,36 +3189,36 @@ i {
     margin: 0 auto 15px;
   }
 }
-/* line 138, sass/_global_elements.scss */
+/* line 139, sass/_global_elements.scss */
 .main-menu.show {
   display: block;
 }
-/* line 142, sass/_global_elements.scss */
+/* line 143, sass/_global_elements.scss */
 .main-menu li {
   font-size: 1.4375rem;
   letter-spacing: 2.1px;
 }
-/* line 147, sass/_global_elements.scss */
+/* line 148, sass/_global_elements.scss */
 .main-menu a {
   color: #b6a2cd;
   border: none;
 }
-/* line 151, sass/_global_elements.scss */
+/* line 152, sass/_global_elements.scss */
 .main-menu a.selected {
   color: #70becd;
 }
-/* line 155, sass/_global_elements.scss */
+/* line 156, sass/_global_elements.scss */
 .main-menu a:hover {
   color: #f77e85;
 }
-/* line 159, sass/_global_elements.scss */
+/* line 160, sass/_global_elements.scss */
 .main-menu a:focus {
   outline: none;
   border-bottom: 1px #b6a2cd dotted;
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 167, sass/_global_elements.scss */
+  /* line 168, sass/_global_elements.scss */
   .main-menu,
   .main-menu.show {
     display: -webkit-box;
@@ -3234,7 +3235,7 @@ i {
   }
 }
 
-/* line 174, sass/_global_elements.scss */
+/* line 175, sass/_global_elements.scss */
 .arrow {
   display: block;
   position: fixed;
@@ -3248,25 +3249,25 @@ i {
   -o-transition: opacity 50ms;
   transition: opacity 50ms;
 }
-/* line 184, sass/_global_elements.scss */
+/* line 185, sass/_global_elements.scss */
 .arrow:hover {
   border: none;
 }
-/* line 188, sass/_global_elements.scss */
+/* line 189, sass/_global_elements.scss */
 .about .arrow {
   background-image: url(/assets/img/arrows/red-arrow.png);
 }
-/* line 194, sass/_global_elements.scss */
+/* line 195, sass/_global_elements.scss */
 .blog .arrow, .resources-detail .arrow, .resources .arrow {
   background-image: url(/assets/img/arrows/blue-arrow.png);
 }
-/* line 198, sass/_global_elements.scss */
+/* line 199, sass/_global_elements.scss */
 .resources-detail .arrow {
   left: 50px;
   right: auto;
 }
 @media only screen and (min-width: 930px) {
-  /* line 204, sass/_global_elements.scss */
+  /* line 205, sass/_global_elements.scss */
   .resources-detail .arrow {
     right: 45px;
     left: auto;
@@ -3274,7 +3275,7 @@ i {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 212, sass/_global_elements.scss */
+  /* line 213, sass/_global_elements.scss */
   .arrow {
     display: none;
   }
