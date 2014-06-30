@@ -2,64 +2,74 @@
 
 <section class="l-content l-content--centered">
     <h1 class="visuallyhidden">contact us</h1>
-    <p class="text-centered"></p>
-    <form action="#" class="form-centered form-centered--purple" id="start-a-school">
+    <p class="text-centered">
+        starting a school... lorem ipsum dolor sit amet, te oportere hendrerit usu. semper possim sensibus ne pri. eos ut dicit deleniti interpretaris, his laudem civibus omittam id, id possit integre ius. rebum animal quo ex, odio recusabo voluptatum ea nam, posse interpretaris eam in. eam ea omnium iracundia, eum scripserit efficiantur consequuntur ne.
+    </p>
+    <form action="#" class="form-centered form-centered--purple" id="startForm">
+        <div class="toggle-box" id="errorsBox">
+            <ul id="errors" class="toggle-box-list"></ul>
+        </div>
         <div class="l-inline-row">
-            <div class="l-inline-8">
+            <div class="l-inline l-inline-7">
                 <label class="label-purple" for="fullName">your name</label>
-                <input class="input-purple" id="fullName" name="fullName" type="text" />
+                <input class="input-purple" id="fullName" name="fullName" required type="text"/>
             </div>
-            <div class="l-inline-1">
+            <div class="l-inline l-inline-1 l-inline--nobreak">
                 <label class="label-purple" for="age">child age</label>
-                <input class="input-purple" id="age" name="age" type="number" />
+                <input class="input-purple" id="age" name="age" pattern="\d+" required title="Enter a number, e.g. 4" type="text" />
             </div>
         </div>
         <!-- .l-inline-row -->
         <div class="l-inline-row">
-            <div class="l-inline-4">
+            <div class="l-inline l-inline-3">
                 <label class="label-purple" for="city">city</label>
-                <input class="input-purple" id="city" name="city" type="text" />
+                <input class="input-purple" id="city" name="city" required type="text" />
             </div>
-            <div class="l-inline-1">
+            <div class="l-inline l-inline-1">
                 <label class="label-purple" for="state">state</label>
-                <input class="input-purple" id="state" name="state" type="text" />
+                <input class="input-purple" id="state" maxlength="2" name="state" pattern="[A-Za-z]{2}" required title="Enter the two-letter abbreviation, e.g. MA" type="text" />
             </div>
-            <div class="l-inline-2">
+            <div class="l-inline l-inline-2">
                 <label class="label-purple" for="zip">zip</label>
-                <input class="input-purple" id="zip" name="zip" type="number" />
+                <input class="input-purple" id="zip" name="zip" pattern="\d{5}" required title="Enter the five-digit zip, e.g. 11222" type="text" />
             </div>
-            <div class="l-inline-2">
+            <div class="l-inline l-inline-2">
                 <label class="label-purple" for="country">country</label>
-                <input class="input-purple" id="country" name="country" type="text" />
+                <input class="input-purple" id="country" name="country" required type="text" />
             </div>
         </div>
         <!-- .l-inline-row -->
         <div class="l-inline-row">
-            <div class="l-inline-4">
+            <div class="l-inline l-inline-3">
                 <label class="label-purple" for="email">email</label>
-                <input class="input-purple" id="email" name="email" type="email" />
+                <input class="input-purple" id="email" name="email" required type="email" />
             </div>
-            <div class="l-inline-5">
-                <div class="l-inline-row">
-                    <div class="l-inline-auto">
-                        <span class="label-purple">are you a</span>
+            <div class="l-inline l-inline-5 l-inline-height50">
+                <div class="l-inline-row l-inline--low-row">
+                    <div class="l-inline l-inline-auto">
+                        <span class="label-purple label-purple--dark label-purple--inline">are you a</span>
                     </div>
-                    <div class="l-inline-auto">
+                    <div class="l-inline l-inline-auto">
                         <input id="teacher" class="input-purple input-purple--inline" type="checkbox" name="role" value="teacher" />
-                        <label class="label-purple label-purple--inline" for="teacher">teacher</label>
+                        <label class="label-purple label-purple--inline label-purple--check label-purple--dark" for="teacher">teacher</label>
                     </div>
-                    <div class="l-inline-auto">
-                        <span class="label-purple">and/or</span>
+                    <div class="l-inline l-inline-auto">
+                        <span class="label-purple label-purple--inline label-purple--dark">and/or</span>
                     </div>
-                    <div class="l-inline-auto">
+                    <div class="l-inline l-inline-auto">
                         <input id="parent" class="input-purple input-purple--inline" type="checkbox" name="role" value="parent" />
-                        <label class="label-purple label-purple--inline" for="parent">parent?</label>
+                        <label class="label-purple label-purple--inline label-purple--check label-purple--dark" for="parent">parent?</label>
                     </div>
                 </div>
                 <!-- .l-inline-row -->
             </div>
         </div>
         <!-- .l-inline-row -->
+        <div class="l-inline-row">
+            <div class="l-inline l-inline-3">
+                <button class="btn btn--purple">send<i class="white-arrow"></i></button>
+            </div>
+        </div>
     </form>
     <!-- .form-centered -->
 </section>
