@@ -1,3 +1,4 @@
+/*global sessionStorage*/
 'use strict';
 
 require.config({
@@ -8,10 +9,11 @@ require.config({
         },
         "modernizr" : {
             exports : "Modernizr"
-        }
+        },
+        "slick" : ['jquery']
     },
     paths: {
-        app : "../js/src",
+        app : "../js/build",
         fastclick: "fastclick/lib/fastclick",
         foundation: "foundation/js/foundation",
         imagesloaded: "imagesloaded/imagesloaded.pkgd.min",
@@ -25,8 +27,10 @@ require.config({
         skrollr: "skrollr/src/skrollr",
         modernizr : "../js/lib/modernizr/custom.modernizr",
         lodash : "../js/lib/lodash/lodash.min",
-        jquery : "../js/lib/jquery/animate-jquery",
+        //jquery : "../js/lib/jquery/animate-jquery",
+        jquery : "../js/lib/jquery/jquery.min",
         libgif : "../js/lib/libgif/libgif",
+        slick : "slick-carousel/slick/slick"
     },
     packages: [
 
@@ -35,14 +39,39 @@ require.config({
 
 requirejs(['app/allpages'],
 function( lib ) {
-    var path = document.location.pathname
+    var path = document.location.pathname,
+        tags
 
-    if ( path === "/" ) {
+    lib.init()
+
+    if ( path === '/' ) {
         require(['app/home'])
-    }
-
-    if ( path.match(/resources/) && path.split('/').length === 2 ) {
-        require(['app/resources'])
+    } else if ( path.match(/^\/resources/) ) {
+        if ( path.split('/').length === 2 ) {
+            require(['app/resources'])
+        } else if ( path.split('/').length === 3 ) {
+            require(['app/lightbox'])
+            tags = document.getElementById('resourceTags')
+            tags.addEventListener('click', function(e) {
+                if ( e.target.nodeName === 'A' && window.sessionStorage ) {
+                    // filters stored in sessionStorage and state
+                    // as dot delimited strings that start with a dot as well
+                    // e.g. .for-parents.research
+                    sessionStorage.setItem('filter', '.' + e.target.dataset.filter)
+                }
+            }, false)
+        }
+    } else if ( path.match(/^\/start-a-school/) ) {
+        require(['app/forms'], function(lib) {
+            var f = document.getElementById('startForm')
+            f.addEventListener('submit', lib.sendForm, false)
+        })
+    } else if ( path.match(/^\/blog/) ) {
+        require(['app/lightbox'])
+    } else if ( path.match(/^\/classroom/) ) {
+        require(['app/classroom'], function(classroom) {
+            classroom.init()
+        })
     }
 
 })

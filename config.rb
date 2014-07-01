@@ -5,9 +5,9 @@ add_import_path "webroot/assets/bower_components/foundation/scss"
 # Set this to the root of your project when deployed:
 http_path = "webroot/"
 css_dir = "webroot/assets/css"
-sass_dir = "webroot/assets/css/sass"
+sass_dir = "source/sass"
 images_dir = "webroot/assets/img"
-javascripts_dir = "webroot/assets/js"
+javascripts_dir = "webroot/assets/js/build"
 
 # You can select your preferred output style here (can be overridden via the command line):
 output_style = environment == :production ? :compressed : :expanded

@@ -29,8 +29,7 @@ function( SuperGif, lib ) {
                 gifs[gif] = new SuperGif({
                     gif : document.getElementById(gif),
                     auto_play : 0,
-                    c_h : 145,
-                    c_w : 716
+                    max_width: 559
                 })
                 gifs[gif].load(removeDisabled)
             })
@@ -56,4 +55,8 @@ function( SuperGif, lib ) {
             gifs[e.target.hash.slice(1)].play()
         }
     }, true)
+
+    principles.addEventListener('click', function(e) {
+        e.preventDefault()
+    }, false)
 })

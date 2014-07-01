@@ -168,4 +168,6 @@ function(Isotope, imagesLoaded) {
             filterStore['*'] = true
         }
     }
+
+    return iso
 })

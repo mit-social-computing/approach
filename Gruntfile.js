@@ -12,13 +12,12 @@ module.exports = function(grunt) {
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.dev %>;' +
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
-    jsSrc : '<%= pkg.assetsPath %>js/src/*.js',
+    jsSrc : 'source/js/*.js',
+    jsDev : '<%= pkg.assetsPath %>js/build',
     jsBuild : '<%= pkg.assetsPath %>js/build/<%= pkg.name %>.js',
     jsMin : '<%= pkg.assetsPath %>js/build/<%= pkg.name %>.min.js',
-    sass : '<%= pkg.assetsPath %>css/sass/**/*.scss',
-    css : '<%= pkg.assetsPath %>css/app.css',
-    templates : '<%= pkg.assetsPath %>templates/**/*',
-    markup : '<%= pkg.assetsPath %>markup/**/*.html',
+    sass : 'source/sass/**/*.scss',
+    templates : 'source/ee_templates/**/*.html',
 
     shell : {
         nightwatch : {
@@ -37,39 +36,19 @@ module.exports = function(grunt) {
           {
             flatten : true,
             expand : true,
-            src: ['<%= pkg.assetsPath %>build/header.html', '<%= pkg.assetsPath %>build/footer.html'],
-            dest: '<%= pkg.assetsPath %>templates/default_site/views/partials/'
+            src: ['source/hashed/header.html'],
+            dest: 'source/ee_templates/default_site/views/partials/'
           }
         ]
       }
     },
 
-    concat: {
-      options: {
-        banner: '<%= banner %>',
-        stripBanners: true
-      },
-      dist: {
-        src: ['<%= jsSrc %>'],
-        dest: '<%= jsBuild %>'
-      },
-    },
-
-    uglify: {
-      options: {
-        banner: '<%= banner %>'
-      },
-      dist: {
-        src: '<%= concat.dist.dest %>',
-        dest: '<%= jsMin %>'
-      },
-    },
-
-    qunit: {
-        all : {
-            options : {
-                urls : ['']
-            }
+    copy : {
+        dev : {
+            src : [ '<%= jsSrc %>' ],
+            dest : '<%= jsDev %>/',
+            expand : true,
+            flatten : true
         }
     },
 
@@ -81,39 +60,27 @@ module.exports = function(grunt) {
     },
 
     watch: {
+        options : {
+            livereload : true
+        },
+        files : [
+            '<%= templates %>'
+            , '<%= jsDev %>/*.js'
+            , '<%= pkg.assetsPath %>css/*.css'
+        ],
         sass : {
             files : ['<%= sass %>'],
             tasks : ['compass:dev']
         },
         hashed : {
             files : [
-                '<%= pkg.assetsPath %>build/header.html'
-                , '<%= pkg.assetsPath %>build/footer.html'
+                'source/hashed/header.html'
             ],
             tasks : ['replace']
         },
-        markup : {
-            files : ['<%= markup %>'],
-            options : { livereload : true }
-        },
-        // jsCopy : {
-        //     files : ['<%= jsSrc %>/*'],
-        //     tasks : ['copy:dev'],
-        //     options : {
-        //         spawn : false,
-        //         interrupt : true
-        //     }
-        // },
-        reload : {
-            files : [
-                '<%= templates %>'
-                , '!<%= pkg.assetsPath %>templates/**/header.html'
-                , '!<%= pkg.assetsPath %>templates/**/footer.html'
-                , '<%= jsBuild %>'
-                , '<%= jsSrc %>'
-                , '<%= css %>'
-            ],
-            options : { livereload : true }
+        js : {
+            files : ['<%= jsSrc %>'],
+            tasks : ['copy:dev']
         },
     },
 

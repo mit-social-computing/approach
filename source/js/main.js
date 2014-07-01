@@ -13,7 +13,7 @@ require.config({
         "slick" : ['jquery']
     },
     paths: {
-        app : "../js/src",
+        app : "../js/build",
         fastclick: "fastclick/lib/fastclick",
         foundation: "foundation/js/foundation",
         imagesloaded: "imagesloaded/imagesloaded.pkgd.min",

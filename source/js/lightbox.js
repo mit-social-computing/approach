@@ -4,6 +4,23 @@ define(['jquery', 'slick'],
 function($) {
     var $bg, $close
 
+    function keyHandler(e) {
+        var key = e.which
+        if ( key === 39 ) { // right arrow 
+            $('#slideshow').slickNext()
+        } else if ( key === 37 ) {
+            $('#slideshow').slickPrev()
+        } else if ( key === 27 ) {
+            close()
+        }
+    }
+
+    function close() {
+        $bg.remove()
+        $('body').removeClass('l-fixbody')
+        $('window').off('keyup', keyHandler)
+    }
+
     document.addEventListener('click', function(e){
         if (e.target.classList.contains('is-lightbox')) {
             e.preventDefault()
@@ -18,10 +35,9 @@ function($) {
 
             $('body').addClass('l-fixbody').append($bg)
             $('#slideshow').slick()
+            $(window).on('keyup', keyHandler)
         } else if ( e.target.id === 'close' ) {
-            $bg.remove()
-            $('body').removeClass('l-fixbody')
-            $bg = null
+            close()
         }
     }, true)
 })

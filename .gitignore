@@ -22,3 +22,5 @@ bower_components/
 webroot/images/
 *.psd
 tests/reports/*
+
+ignore/
