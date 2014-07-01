@@ -24,8 +24,12 @@
     }
 }
 
-.touch .container {
+.touch :not(.contact) .container {
     display: block;
+}
+
+.touch .container {
+    min-height: 100%;
 }
 
 @media #{$medium-up} {

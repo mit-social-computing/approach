@@ -20,7 +20,10 @@
         overflow: hidden;
         width: 275px;
         z-index: 0;
-        margin-right: 13px;
+
+        @media #{$medium-up} {
+            margin-right: 13px;
+        }
 
         &:nth-child(3n) {
             margin-right: 0;
