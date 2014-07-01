@@ -1,27 +1,35 @@
 // icons
-.plus-icon {
-    height: 24px;
-    width: 24px;
-    display: block;
-    cursor: pointer;
+.icon {
+    position: absolute;
+    border: none;
+    @include transition(none);
 }
 
-.image-zoom {
-    position: absolute;
-    height: 24px;
-    width: 24px;
-    display: block;
+.icon-inline {
+    position: relative;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.icon-zoom {
     right: 4%;
     bottom: 4%;
-    cursor: pointer;
     z-index: 2;
 }
 
-.image-zoom--blue {
+.icon-plus {
+    display: block;
+}
+
+.icon-plus--blue {
+    height: 24px;
+    width: 24px;
     background-image: url('/assets/img/blue-plus.png');
 }
 
-.plus-icon--pink {
+.icon-plus--pink {
+    height: 48px;
+    width: 51px;
     background-image: url('/assets/img/pink-plus.png');
 }
 
@@ -33,10 +41,4 @@
     position: absolute;
     right: 10px;
     top: 10px;
-}
-
-.lightbox {
-    display: inline;
-    border: none;
-    @include transition(none);
 }

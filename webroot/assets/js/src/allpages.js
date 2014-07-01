@@ -46,7 +46,12 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
     }
 
     function init () {
-        logo.parentElement.replaceChild(colorInit(logo), logo)
+        var newLogo = colorInit(logo)
+        logo.parentElement.replaceChild(newLogo, logo)
+
+        setTimeout(function() {
+            newLogo.classList.add('loaded')
+        }, 0)
 
         arrow.addEventListener('click', function (e) {
             e.preventDefault()

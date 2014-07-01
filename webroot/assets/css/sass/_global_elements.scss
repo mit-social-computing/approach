@@ -103,7 +103,7 @@
 }
 
 .logo {
-    color: white;
+    color: transparent;
     margin: 0;
     letter-spacing: 2.1px;
     @extend .antialiased;
@@ -112,8 +112,13 @@
         font-family: kim;
         font-size: rem-calc(25);
         vertical-align: text-top;
-        @include transition(color 200ms ease);
+        opacity: 0;
+        @include transition(color 200ms ease, opacity 150ms ease);
     }
+}
+
+.logo.loaded span {
+    opacity: 1;
 }
 
 @media #{$medium-up} {

@@ -1,9 +1,44 @@
 .text-centered {
-    font-family: kim;
-    font-size: rem-calc(22);
     max-width: 615px;
     margin: 0 auto;
     text-align: center;
-    color: $teal;
+}
+
+.text-centered--wide {
+    max-width: 800px;
+    padding: 0 15px;
+}
+
+.text-centered--bottom {
     margin-bottom: rem-calc(44);
+}
+
+.text-body {
+    color: $teal;
+    font-family: kim;
+    font-size: rem-calc(22);
+    margin-bottom: 0;
+    letter-spacing: 2.1px;
+    line-height: 1;
+
+    @extend .antialiased;
+
+    @media #{$medium-up} {
+        font-size: rem-calc(22);
+        letter-spacing: 2.1px;
+        line-height: 1.15;
+        padding: 0;
+    }
+}
+
+.text-body--display {
+    font-size: rem-calc(56);
+    color: white;
+    max-width: 402px;
+    line-height: 0.8;
+    margin: 0 auto;
+}
+
+.text-body--purple {
+    color: $purple;
 }

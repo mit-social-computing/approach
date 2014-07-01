@@ -45,6 +45,19 @@ a {
     }
 }
 
+a.tall-link {
+    height: 18px;
+
+    @media #{$medium-up} {
+        height: 22px;
+
+        &.disabled {
+            color: $gradient2;
+            pointer-events: none;
+        }
+    }
+}
+
 p {
     letter-spacing: 1px;
     @extend .antialiased;

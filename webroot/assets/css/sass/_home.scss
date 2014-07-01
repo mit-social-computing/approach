@@ -23,7 +23,7 @@
     position: relative;
     margin-bottom: 15px;
     text-align: center;
-    height: 145px;
+    height: 185px;
     width: 100%;
 
     img {
@@ -36,24 +36,6 @@
         opacity: 1;
         max-width: 100%;
         max-height: 100%;
-    }
-}
-
-.principles-text {
-    color: $gradient2;
-    text-align: center;
-    font-family: kim, sans-serif;
-    font-size: rem-calc(18);
-    letter-spacing: 2.1px;
-    line-height: 1;
-    padding: 0 15px;
-    margin: 0 auto;
-    max-width: 800px;
-
-    @extend .antialiased;
-
-    a {
-        height: 18px;
     }
 }
 
@@ -73,25 +55,6 @@
             &.show {
                 opacity: 1;
                 @include transition(opacity 250ms);
-            }
-        }
-    }
-
-    .principles-text {
-        font-size: rem-calc(22);
-        letter-spacing: 2.1px;
-        line-height: 1.15;
-        padding: 0;
-
-        a {
-            height: 22px;
-
-            &.disabled {
-                color: $gradient2;
-
-                &:hover {
-                    cursor: default;
-                }
             }
         }
     }

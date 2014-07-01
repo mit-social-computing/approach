@@ -44,9 +44,9 @@ function( lib ) {
 
     lib.init()
 
-    if ( path === "/" ) {
+    if ( path === '/' ) {
         require(['app/home'])
-    } else if ( path.match(/resources/) ) {
+    } else if ( path.match(/^\/resources/) ) {
         if ( path.split('/').length === 2 ) {
             require(['app/resources'])
         } else if ( path.split('/').length === 3 ) {
@@ -61,15 +61,17 @@ function( lib ) {
                 }
             }, false)
         }
-    } else if ( path.match(/start-a-school/) ) {
+    } else if ( path.match(/^\/start-a-school/) ) {
         require(['app/forms'], function(lib) {
             var f = document.getElementById('startForm')
             f.addEventListener('submit', lib.sendForm, false)
         })
-    } else if ( path.match(/blog/) ) {
+    } else if ( path.match(/^\/blog/) ) {
         require(['app/lightbox'])
+    } else if ( path.match(/^\/classroom/) ) {
+        require(['app/classroom'], function(classroom) {
+            classroom.init()
+        })
     }
-
-
 
 })

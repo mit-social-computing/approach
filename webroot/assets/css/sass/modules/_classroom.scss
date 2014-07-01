@@ -9,6 +9,7 @@
 }
 
 .classroom-layer {
+    max-width: initial;
     position: absolute;
     margin: auto;
     left: 0;
@@ -26,4 +27,51 @@
     background: black;
     position: fixed;
     bottom: 0;
+}
+
+.classroom-layer--icons {
+    bottom: 0;
+    max-width: 1200px;
+}
+
+.classroom-wrapper.is-intro {
+    overflow: hidden;
+
+    .classroom-layer--black {
+        opacity: 0.65;
+    }
+
+    :not(.classroom-layer--black):not(.classroom-layer--base) {
+        opacity: 0;
+    }
+}
+
+.classroom-wrapper.is-default {
+    :not(.classroom-layer--black):not(.classroom-layer--base) {
+        opacity: 1;
+    }
+}
+
+.classroom-icon {
+    position: absolute;
+
+    &:nth-child(1) {
+        top: 293px;
+        left: 89px;
+    }
+
+    &:nth-child(2) {
+        top: 438px;
+        left: 310px;
+    }
+
+    &:nth-child(3) {
+        top: 202px;
+        left: 742px;
+    }
+
+    &:nth-child(4) {
+        top: 381px;
+        left: 987px;
+    }
 }

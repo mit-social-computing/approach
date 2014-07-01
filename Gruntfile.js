@@ -74,15 +74,16 @@ module.exports = function(grunt) {
     },
 
     compass : {
-        create : {
-            config: '/config.rb'
+        dev : {
+            config: '/config.rb',
+            environment : 'development'
         }
     },
 
     watch: {
         sass : {
             files : ['<%= sass %>'],
-            tasks : ['compass']
+            tasks : ['compass:dev']
         },
         hashed : {
             files : [
@@ -135,5 +136,6 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('nightwatch', ['shell:nightwatch']);
+  grunt.registerTask('default', ['watch']);
 
 };
