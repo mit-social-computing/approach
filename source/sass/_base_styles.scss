@@ -18,6 +18,7 @@
 .container-flush {
     max-width: none;
     width: 100%;
+    min-height: 100%;
 
     &.container.sticky {
         padding: 0;
