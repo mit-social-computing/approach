@@ -15,6 +15,9 @@ function(Isotope, imagesLoaded) {
             }
         }).on('layoutComplete', function() {
             $('html, body').animate({scrollTop: 0}, 200)
+            try {
+                s.refresh()
+            } catch(e) {}
         }),
         imgWatcher,
         filterStore = {}

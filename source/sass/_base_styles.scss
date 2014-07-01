@@ -1,7 +1,6 @@
 .container {
     @include flexbox;
     @include flex-direction(column);
-    height: 100%;
     width: 95%;
     max-width: 865px;
     margin: 0 auto;
@@ -9,6 +8,10 @@
 
     .resources & {
         display: block;
+    }
+
+    @media #{$screen} and (min-height: 700px) {
+        height: 100%;
     }
 }
 
