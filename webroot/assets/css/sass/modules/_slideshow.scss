@@ -17,11 +17,15 @@
 .lightbox-close {
     position: absolute;
     top: 15px;
-    right: 48px;
+    right: 15px;
     height: 25px;
     width: 25px;
     background: none;
     padding: 0;
+
+    @media #{$medium-up} {
+        right: 48px;
+    }
 }
 
 .lightbox-body {
@@ -69,4 +73,11 @@
 .slick-slide img,
 .lightbox-image {
     margin: 0 auto;
+}
+
+.touch {
+    .slick-prev,
+    .slick-next {
+        display: none !important;
+    }
 }

@@ -63,26 +63,30 @@ p {
     @extend .antialiased;
 }
 
- .quote {
-     border: none;
+.quote {
+    border: none;
 
-     &,
-     cite {
-         font-family: kim;
-         text-align: center;
-         color: $body-text;
-         font-size: rem-calc(22);
-         line-height: 1.25;
-         letter-spacing: 1.9px;
-         padding: 0 65px;
+    &,
+    cite {
+        font-family: kim;
+        text-align: center;
+        color: $body-text;
+        font-size: rem-calc(22);
+        line-height: 1.25;
+        letter-spacing: 1.9px;
+        padding: 0 5px;
 
-         @extend .antialiased;
-     }
+        @media #{$medium-up} {
+            padding: 0 65px;
+        }
 
-     cite {
-         font-style: normal;
-     }
- }
+        @extend .antialiased;
+    }
+
+    cite {
+        font-style: normal;
+    }
+}
 
 button {
     @include appearance(none);
