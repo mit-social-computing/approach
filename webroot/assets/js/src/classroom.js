@@ -28,6 +28,7 @@ function($) {
             window.timer = setTimeout(setup, 2000)
 
             $('.icon').hover(enter, exit)
+            $('.icon').click(function(e) { e.preventDefault() })
         }
     }
 })

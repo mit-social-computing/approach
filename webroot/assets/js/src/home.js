@@ -55,4 +55,8 @@ function( SuperGif, lib ) {
             gifs[e.target.hash.slice(1)].play()
         }
     }, true)
+
+    principles.addEventListener('click', function(e) {
+        e.preventDefault()
+    }, false)
 })
