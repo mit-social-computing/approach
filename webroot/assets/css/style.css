@@ -3222,12 +3222,21 @@ i {
 }
 
 /* line 112, ../../../source/sass/_global_elements.scss */
+.undecorated {
+  border: none;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+
+/* line 117, ../../../source/sass/_global_elements.scss */
 .logo {
   color: transparent;
   margin: 0;
   letter-spacing: 2.1px;
 }
-/* line 118, ../../../source/sass/_global_elements.scss */
+/* line 123, ../../../source/sass/_global_elements.scss */
 .logo span {
   font-family: kim;
   font-size: 1.5625rem;
@@ -3239,28 +3248,28 @@ i {
   transition: color 200ms ease, opacity 150ms ease;
 }
 
-/* line 127, ../../../source/sass/_global_elements.scss */
+/* line 132, ../../../source/sass/_global_elements.scss */
 .logo.loaded span {
   opacity: 1;
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 132, ../../../source/sass/_global_elements.scss */
+  /* line 137, ../../../source/sass/_global_elements.scss */
   .main-header .wrapper {
     display: block;
   }
 
-  /* line 136, ../../../source/sass/_global_elements.scss */
+  /* line 141, ../../../source/sass/_global_elements.scss */
   .menu-button {
     display: none;
   }
 
-  /* line 141, ../../../source/sass/_global_elements.scss */
+  /* line 146, ../../../source/sass/_global_elements.scss */
   .logo span {
     font-size: 2.1875rem;
   }
 }
-/* line 147, ../../../source/sass/_global_elements.scss */
+/* line 152, ../../../source/sass/_global_elements.scss */
 .main-menu {
   padding: 0;
   max-width: 670px;
@@ -3269,42 +3278,42 @@ i {
   display: none;
 }
 @media only screen and (min-width: 730px) {
-  /* line 147, ../../../source/sass/_global_elements.scss */
+  /* line 152, ../../../source/sass/_global_elements.scss */
   .main-menu {
     margin: 0 auto 15px;
     height: 22px;
   }
 }
-/* line 160, ../../../source/sass/_global_elements.scss */
+/* line 165, ../../../source/sass/_global_elements.scss */
 .main-menu.show {
   display: block;
 }
-/* line 164, ../../../source/sass/_global_elements.scss */
+/* line 169, ../../../source/sass/_global_elements.scss */
 .main-menu li {
   font-size: 1.4375rem;
   letter-spacing: 2.1px;
 }
-/* line 169, ../../../source/sass/_global_elements.scss */
+/* line 174, ../../../source/sass/_global_elements.scss */
 .main-menu a {
   color: #b6a2cd;
   border: none;
 }
-/* line 173, ../../../source/sass/_global_elements.scss */
+/* line 178, ../../../source/sass/_global_elements.scss */
 .main-menu a.selected {
   color: #70becd;
 }
-/* line 177, ../../../source/sass/_global_elements.scss */
+/* line 182, ../../../source/sass/_global_elements.scss */
 .main-menu a:hover {
   color: #f77e85;
 }
-/* line 181, ../../../source/sass/_global_elements.scss */
+/* line 186, ../../../source/sass/_global_elements.scss */
 .main-menu a:focus {
   outline: none;
   border-bottom: 1px #b6a2cd dotted;
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 189, ../../../source/sass/_global_elements.scss */
+  /* line 194, ../../../source/sass/_global_elements.scss */
   .main-menu,
   .main-menu.show {
     display: -webkit-box;
@@ -3321,7 +3330,7 @@ i {
   }
 }
 
-/* line 196, ../../../source/sass/_global_elements.scss */
+/* line 201, ../../../source/sass/_global_elements.scss */
 .arrow {
   display: block;
   position: fixed;
@@ -3335,25 +3344,25 @@ i {
   -o-transition: opacity 50ms;
   transition: opacity 50ms;
 }
-/* line 206, ../../../source/sass/_global_elements.scss */
+/* line 211, ../../../source/sass/_global_elements.scss */
 .arrow:hover {
   border: none;
 }
-/* line 210, ../../../source/sass/_global_elements.scss */
+/* line 215, ../../../source/sass/_global_elements.scss */
 .about .arrow {
   background-image: url(/assets/img/arrows/red-arrow.png);
 }
-/* line 216, ../../../source/sass/_global_elements.scss */
+/* line 221, ../../../source/sass/_global_elements.scss */
 .blog .arrow, .resources-detail .arrow, .resources .arrow {
   background-image: url(/assets/img/arrows/blue-arrow.png);
 }
-/* line 221, ../../../source/sass/_global_elements.scss */
+/* line 226, ../../../source/sass/_global_elements.scss */
 .blog .arrow, .resources-detail .arrow {
   left: 50px;
   right: auto;
 }
 @media only screen and (min-width: 930px) {
-  /* line 228, ../../../source/sass/_global_elements.scss */
+  /* line 233, ../../../source/sass/_global_elements.scss */
   .blog .arrow, .resources-detail .arrow {
     right: 45px;
     left: auto;
@@ -3361,7 +3370,7 @@ i {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 236, ../../../source/sass/_global_elements.scss */
+  /* line 241, ../../../source/sass/_global_elements.scss */
   .arrow {
     display: none;
   }

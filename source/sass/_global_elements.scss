@@ -109,6 +109,11 @@
     }
 }
 
+.undecorated {
+    border: none;
+    @include transition(none);
+}
+
 .logo {
     color: transparent;
     margin: 0;
