@@ -2,16 +2,15 @@
     width: 100%;
     margin: 0 auto;
     max-width: 766px;
-    padding: 0 25px;
-
-    @media #{$small-only} {
-        padding-bottom: 1rem;
-    }
+    padding: 0 25px 25px;
 }
 
 .l-content--centered {
     margin: auto;
-    padding: 65px 25px;
+
+    @media #{$medium-up} {
+        padding: 65px 25px;
+    }
 }
 
 .l-content--slim {

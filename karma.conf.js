@@ -27,7 +27,7 @@ module.exports = function(config) {
       'tests/unit/test-main.js',
       {pattern : 'webroot/index.php', watched: false, included: false},
       {pattern: 'tests/unit/*.js', included: false},
-      {pattern: 'webroot/assets/js/src/**/*.js', included: false},
+      {pattern: 'webroot/assets/js/build/**/*.js', included: false},
       {pattern: 'webroot/assets/bower_components/**/*.js', included: false},
       {pattern: 'webroot/assets/js/lib/**/*.js', included: false}
     ],
@@ -37,7 +37,7 @@ module.exports = function(config) {
     exclude: [
       '**/*.swp',
       '**/.*.un~',
-      'webroot/assets/js/src/main.js'
+      'webroot/assets/js/build/main.js'
     ],
 
 

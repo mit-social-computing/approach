@@ -5,7 +5,7 @@ module.exports = {
         browser
             .url("http://approach.dev")
             .pause(6000)
-            .elements('css selector', '.principles-text a', function(res) {
+            .elements('css selector', '#principles a', function(res) {
                 this.assert.equal(res.value.length, 9)
 
                 res.value.forEach(function(obj, idx) {

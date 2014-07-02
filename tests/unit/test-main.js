@@ -32,7 +32,7 @@ require.config({
         }
     },
     paths: {
-        app             : "webroot/assets/js/src",
+        app             : "webroot/assets/js/build",
         fastclick       : "webroot/assets/bower_components/fastclick/lib/fastclick",
         foundation      : "webroot/assets/bower_components/foundation/js/foundation",
         imagesloaded    : "webroot/assets/bower_components/imagesloaded/imagesloaded.pkgd.min",

@@ -25,7 +25,8 @@ function($) {
             message = document.getElementById('message')
             stage = document.getElementById('classStage')
             veil = document.getElementById('blackLayer')
-            window.timer = setTimeout(setup, 2000)
+
+            window.timer = setTimeout(setup, 1000)
 
             $('.icon').hover(enter, exit)
             $('.icon').click(function(e) { e.preventDefault() })

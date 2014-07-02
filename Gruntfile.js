@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 
     shell : {
         nightwatch : {
-            command : './nightwatch -e chrome,default'
+            command : 'nightwatch -e chrome,default'
         }
     },
 

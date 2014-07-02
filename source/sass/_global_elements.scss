@@ -8,8 +8,10 @@
     margin-bottom: rem-calc(16);
 }
 
-.overview .main-header {
-    margin-bottom: 0;
+@media #{$medium-up} {
+    .overview .main-header {
+        margin-bottom: 0;
+    }
 }
 
 .classroom .main-header {
@@ -174,6 +176,7 @@
     a {
         color: $purple;
         border: none;
+        display: block;
 
         &.selected {
             color: $selected;
