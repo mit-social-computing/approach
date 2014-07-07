@@ -13,21 +13,28 @@
     @include flex-wrap(wrap);
     @include justify-content(center);
 
-    .thumb {
-        margin-bottom: 20px;
-        position: relative;
-        height: 293px;
-        overflow: hidden;
-        width: 275px;
-        z-index: 0;
+}
 
-        @media #{$medium-up} {
-            margin-right: 13px;
-        }
+.thumb {
+    margin-bottom: 20px;
+    position: relative;
+    height: 293px;
+    overflow: hidden;
+    width: 275px;
+    z-index: 0;
+    opacity: 0;
+    @include transition(opacity 250ms ease-out);
 
-        &:nth-child(3n) {
-            margin-right: 0;
-        }
+    &.loaded {
+        opacity: 1;
+    }
+
+    @media #{$medium-up} {
+        margin-right: 13px;
+    }
+
+    &:nth-child(3n) {
+        margin-right: 0;
     }
 }
 

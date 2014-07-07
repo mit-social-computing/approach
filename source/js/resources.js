@@ -109,8 +109,8 @@ function(Isotope, imagesLoaded) {
 
     imgWatcher = imagesLoaded(resources)
 
-    imgWatcher.on('progress', function(il, img) {
-        img.img.classList.add('loaded')
+    imgWatcher.on('progress', function(il, i) {
+        i.img.parentElement.classList.add('loaded')
     })
 
     filters.addEventListener('click', function (e) {
