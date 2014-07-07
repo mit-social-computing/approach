@@ -16,14 +16,14 @@
     background-repeat: no-repeat repeat;
 }
 
-.about::-webkit-scrollbar-track {
+.resources::-webkit-scrollbar-track {
     background-image: url('/assets/img/scrollbars/red-scrollbar.png');
 }
 
+.resources-detail::-webkit-scrollbar-track,
 .start-a-school::-webkit-scrollbar-track,
 .blog::-webkit-scrollbar-track,
-.resources-detail::-webkit-scrollbar-track,
-.resources::-webkit-scrollbar-track {
+.about::-webkit-scrollbar-track {
     background-image: url('/assets/img/scrollbars/blue-scrollbar.png');
 }
 

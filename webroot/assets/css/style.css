@@ -3361,11 +3361,11 @@ i {
   border: none;
 }
 /* line 219, ../../../source/sass/_global_elements.scss */
-.about .arrow {
+.resources .arrow {
   background-image: url(/assets/img/arrows/red-arrow.png);
 }
 /* line 225, ../../../source/sass/_global_elements.scss */
-.blog .arrow, .resources-detail .arrow, .resources .arrow {
+.blog .arrow, .resources-detail .arrow, .about .arrow {
   background-image: url(/assets/img/arrows/blue-arrow.png);
 }
 /* line 230, ../../../source/sass/_global_elements.scss */
@@ -3694,15 +3694,15 @@ i {
 }
 
 /* line 19, ../../../source/sass/modules/_scrollbar.scss */
-.about::-webkit-scrollbar-track {
+.resources::-webkit-scrollbar-track {
   background-image: url("/assets/img/scrollbars/red-scrollbar.png");
 }
 
 /* line 26, ../../../source/sass/modules/_scrollbar.scss */
+.resources-detail::-webkit-scrollbar-track,
 .start-a-school::-webkit-scrollbar-track,
 .blog::-webkit-scrollbar-track,
-.resources-detail::-webkit-scrollbar-track,
-.resources::-webkit-scrollbar-track {
+.about::-webkit-scrollbar-track {
   background-image: url("/assets/img/scrollbars/blue-scrollbar.png");
 }
 
