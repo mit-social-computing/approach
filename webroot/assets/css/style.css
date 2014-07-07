@@ -4034,18 +4034,23 @@ i {
   margin: 2px;
   padding: 6px 11px 10px 12px;
   border-radius: 3px;
+  border: none;
   -webkit-transition: background-color 150ms ease, color 150ms ease;
   -moz-transition: background-color 150ms ease, color 150ms ease;
   -o-transition: background-color 150ms ease, color 150ms ease;
   transition: background-color 150ms ease, color 150ms ease;
 }
 /* line 38, ../../../source/sass/_interface.scss */
+.tag:hover, .filter:hover, .resources-aside .resource-tag:hover {
+  border: none;
+}
+/* line 43, ../../../source/sass/_interface.scss */
 .tag:active, .filter:active, .resources-aside .resource-tag:active, .tag:focus,
 .filter:focus, .resources-aside .resource-tag:focus {
   border: none;
   outline: none;
 }
-/* line 43, ../../../source/sass/_interface.scss */
+/* line 48, ../../../source/sass/_interface.scss */
 .tag.selected, .selected.filter, .resources-aside .selected.resource-tag {
   outline: none;
   border: none;
@@ -4212,24 +4217,24 @@ i {
 /* line 58, ../../../source/sass/_resources.scss */
 .filter:active,
 .filter:focus {
-  background-color: rgba(238, 234, 242, 0.2);
+  background-color: #f3eff7;
   color: #b6a2cd;
 }
 
 /* line 64, ../../../source/sass/_resources.scss */
 .filter {
   color: #b6a2cd;
-  background-color: rgba(238, 234, 242, 0.2);
+  background-color: #f3eff7;
 }
 /* line 69, ../../../source/sass/_resources.scss */
 .filter:hover {
   color: #f77e85;
-  background-color: rgba(249, 229, 230, 0.2);
+  background-color: #fee9ea;
 }
 /* line 74, ../../../source/sass/_resources.scss */
 .filter.selected {
   color: #70becd;
-  background-color: rgba(223, 237, 239, 0.2);
+  background-color: #e7f4f7;
 }
 
 /* line 81, ../../../source/sass/_resources.scss */
@@ -4254,12 +4259,12 @@ i {
 /* line 96, ../../../source/sass/_resources.scss */
 .resources-aside .resource-tag {
   color: #70becd;
-  background-color: rgba(227, 240, 242, 0.2);
+  background-color: #e7f4f7;
 }
 /* line 101, ../../../source/sass/_resources.scss */
 .resources-aside .resource-tag:hover {
   color: #f77e85;
-  background-color: rgba(249, 229, 230, 0.2);
+  background-color: #fee9ea;
 }
 /* line 107, ../../../source/sass/_resources.scss */
 .resources-aside .back {

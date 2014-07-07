@@ -32,7 +32,12 @@
     margin: 2px;
     padding: 6px 11px 10px 12px;
     border-radius: 3px;
+    border: none;
     @include transition(background-color 150ms ease, color 150ms ease);
+
+    &:hover {
+        border: none;
+    }
 
     &:active,
     &:focus {

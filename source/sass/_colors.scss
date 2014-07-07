@@ -32,19 +32,19 @@ $link-hover: #fdc52f;
 // Resource Filters
 // Normal
 $category-text: #b6a2cd;
-$category-bg: #eeeaf2;
+$category-bg: #f3eff7;
 //Hover
 $category-text-hover: #f77e85;
-$category-bg-hover: #f9e5e6;
+$category-bg-hover: #fee9ea;
 //Selected
 $category-text-selected: #70becd;
-$category-bg-selected: #dfedef;
+$category-bg-selected: #e7f4f7;
 
 // Resource Tags
 // Normal
 $resource-tag-text: #70becd;
-$resource-tag-bg: #e3f0f2;
+$resource-tag-bg: $category-bg-selected;
 // Hover
 $resource-tag-text-hover: #f77e85;
-$resource-tag-bg-hover: #f9e5e6;
+$resource-tag-bg-hover: $category-bg-hover;
 

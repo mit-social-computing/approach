@@ -57,23 +57,23 @@
 .filter:active,
 .filter:focus {
     @extend .tag;
-    background-color: rgba($category-bg, 0.2);
+    background-color: $category-bg;
     color: $category-text;
 }
 
 .filter {
     @extend .tag;
     color: $category-text;
-    background-color: rgba($category-bg, 0.2);
+    background-color: $category-bg;
 
     &:hover {
         color: $category-text-hover;
-        background-color: rgba($category-bg-hover, 0.2);
+        background-color: $category-bg-hover;
     }
 
     &.selected {
         color: $category-text-selected;
-        background-color: rgba($category-bg-selected, 0.2);
+        background-color: $category-bg-selected;
     }
 }
 
@@ -96,11 +96,11 @@
     .resource-tag {
         @extend .tag;
         color: $resource-tag-text;
-        background-color: rgba($resource-tag-bg, 0.2);
+        background-color: $resource-tag-bg;
 
         &:hover {
             color: $resource-tag-text-hover;
-            background-color: rgba($resource-tag-bg-hover, 0.2);
+            background-color: $resource-tag-bg-hover;
         }
     }
 
