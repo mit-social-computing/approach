@@ -649,7 +649,7 @@ img {
 
 /* line 347, ../bower_components/foundation/scss/foundation/components/_global.scss */
 .antialiased, p, .quote,
-.quote cite, .logo, .main-menu, .mask p, .btn, .text-body, .download, .tag, .filter:active,
+.quote cite, .logo, .main-menu, .mask p, .form-centered--purple, .btn, .text-body, .download, .tag, .filter:active,
 .filter:focus, .filter, .resources-aside .resource-tag, .resources-aside, .resources-aside .back, .article-header,
 .article-header > h2 {
   -webkit-font-smoothing: antialiased;
@@ -3568,19 +3568,19 @@ i {
   color: #b6a2cd;
   font-size: 1.125rem;
 }
-/* line 13, ../../../source/sass/modules/_forms.scss */
+/* line 14, ../../../source/sass/modules/_forms.scss */
 .form-centered--purple.error {
   border: 1px solid #f77e85;
 }
 
-/* line 19, ../../../source/sass/modules/_forms.scss */
+/* line 20, ../../../source/sass/modules/_forms.scss */
 .label-purple,
 .input-purple {
   display: block;
   width: 100%;
 }
 
-/* line 25, ../../../source/sass/modules/_forms.scss */
+/* line 26, ../../../source/sass/modules/_forms.scss */
 .label-purple--inline,
 .input-purple--inline {
   display: inline;
@@ -3589,17 +3589,17 @@ i {
   vertical-align: middle;
 }
 
-/* line 32, ../../../source/sass/modules/_forms.scss */
+/* line 33, ../../../source/sass/modules/_forms.scss */
 .label-purple {
   margin-bottom: 2px;
 }
 
-/* line 36, ../../../source/sass/modules/_forms.scss */
+/* line 37, ../../../source/sass/modules/_forms.scss */
 .label-purple--dark {
   color: #a59dae;
 }
 
-/* line 40, ../../../source/sass/modules/_forms.scss */
+/* line 41, ../../../source/sass/modules/_forms.scss */
 .input-purple {
   border: 1px solid #b6a2cd;
   box-shadow: inset 0px 0px 7px -2px rgba(182, 162, 205, 0.75);
@@ -3613,23 +3613,23 @@ i {
   -o-transition: box-shadow 150ms linear;
   transition: box-shadow 150ms linear;
 }
-/* line 50, ../../../source/sass/modules/_forms.scss */
+/* line 51, ../../../source/sass/modules/_forms.scss */
 .input-purple:focus {
   outline: none;
   box-shadow: inset 0px 0px 7px -1px rgba(182, 162, 205, 0);
 }
-/* line 55, ../../../source/sass/modules/_forms.scss */
+/* line 56, ../../../source/sass/modules/_forms.scss */
 .input-purple[type=checkbox] {
   position: absolute;
   left: -9999px;
 }
 
-/* line 61, ../../../source/sass/modules/_forms.scss */
+/* line 62, ../../../source/sass/modules/_forms.scss */
 .input-purple[type=checkbox]:focus + .label-purple--check:before {
   outline: 1px #b6a2cd dotted;
 }
 
-/* line 65, ../../../source/sass/modules/_forms.scss */
+/* line 66, ../../../source/sass/modules/_forms.scss */
 .input-purple[type=checkbox]:checked + .label-purple--check:after {
   opacity: 1;
   -webkit-transform: scale(1, 1);
@@ -3639,12 +3639,12 @@ i {
   transform: scale(1, 1);
 }
 
-/* line 70, ../../../source/sass/modules/_forms.scss */
+/* line 71, ../../../source/sass/modules/_forms.scss */
 .label-purple--check {
   position: relative;
   padding-left: 15px;
 }
-/* line 74, ../../../source/sass/modules/_forms.scss */
+/* line 75, ../../../source/sass/modules/_forms.scss */
 .label-purple--check:before {
   content: '';
   position: absolute;
@@ -3656,7 +3656,7 @@ i {
   border: 1px solid #b6a2cd;
   border-radius: 2px;
 }
-/* line 86, ../../../source/sass/modules/_forms.scss */
+/* line 87, ../../../source/sass/modules/_forms.scss */
 .label-purple--check:after {
   content: '';
   position: absolute;
@@ -3677,7 +3677,7 @@ i {
   transition: opacity 150ms ease, transform 150ms ease;
 }
 
-/* line 100, ../../../source/sass/modules/_forms.scss */
+/* line 101, ../../../source/sass/modules/_forms.scss */
 .toggle-box {
   opacity: 0;
   height: 0px;
@@ -3686,12 +3686,12 @@ i {
   -o-transition: opacity 150ms ease, height 150ms ease;
   transition: opacity 150ms ease, height 150ms ease;
 }
-/* line 105, ../../../source/sass/modules/_forms.scss */
+/* line 106, ../../../source/sass/modules/_forms.scss */
 .toggle-box.show {
   opacity: 1;
 }
 
-/* line 109, ../../../source/sass/modules/_forms.scss */
+/* line 110, ../../../source/sass/modules/_forms.scss */
 .toggle-box-list {
   list-style-type: none;
   margin: 0;
