@@ -25,7 +25,7 @@ function($) {
         if (e.target.classList.contains('is-lightbox')) {
             e.preventDefault()
             var el = e.target,
-                $slides = $(el.parentElement.previousElementSibling).clone().removeClass('hidden').attr('id', 'slideshow')
+                $slides = $(el.previousElementSibling).clone().removeClass('hidden').attr('id', 'slideshow')
 
             $bg = $('<div/>').addClass('lightbox-bg').append('<div class="lightbox-body"/>')
             $bg.find('.lightbox-body').append($slides)

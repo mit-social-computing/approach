@@ -3496,7 +3496,6 @@ i {
 .icon-zoom {
   right: 4%;
   bottom: 4%;
-  z-index: 2;
 }
 
 /* line 20, ../../../source/sass/modules/_misc.scss */
@@ -3857,6 +3856,11 @@ i {
 .touch .slick-prev,
 .touch .slick-next {
   display: none !important;
+}
+
+/* line 92, ../../../source/sass/modules/_slideshow.scss */
+.is-lightbox {
+  cursor: pointer;
 }
 
 /* line 1, ../../../source/sass/modules/_text.scss */
