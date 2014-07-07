@@ -38,6 +38,19 @@
     }
 }
 
+@media #{$screen} and (min-width: rem-calc(730)) {
+    .l-content--flex-resources {
+        padding: 0;
+        @include flexbox;
+    }
+    .l-content--flex-resources-main {
+        @include flex(2);
+    }
+    .l-content--flex-resources-aside {
+        @include flex(1);
+    }
+}
+
 .layout-image {
     position: relative;
     margin-bottom: 1.25rem;

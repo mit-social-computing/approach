@@ -118,21 +118,10 @@
         font-size: rem-calc(16);
         margin-bottom: 15px;
     }
-}
 
-@media #{$medium-up} {
-    //.resources-detail {
-    //    .content {
-    //        padding: 0;
-    //        @include flexbox;
-    //    }
-    //    main {
-    //        @include flex(2);
-    //    }
-    //}
-
-    .resources-aside {
-        //@include flex(1);
+    @media #{$screen} and (min-width: rem-calc(730)) {
+        position: fixed;
+        max-width: 255px;
 
         h2 {
             font-size: rem-calc(35);
@@ -152,5 +141,23 @@
             margin: 0;
             margin-bottom: 15px;
         }
+    }
+
+}
+
+@media #{$medium-up} {
+    //.resources-detail {
+    //    .content {
+    //        padding: 0;
+    //        @include flexbox;
+    //    }
+    //    main {
+    //        @include flex(2);
+    //    }
+    //}
+
+    .resources-aside {
+        //@include flex(1);
+
     }
 }
