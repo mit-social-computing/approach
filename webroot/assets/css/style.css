@@ -649,7 +649,8 @@ img {
 
 /* line 347, ../bower_components/foundation/scss/foundation/components/_global.scss */
 .antialiased, p, .quote,
-.quote cite, .logo, .main-menu, .mask p, .btn, .text-body, .download, .resources-aside, .resources-aside .back, .article-header,
+.quote cite, .logo, .main-menu, .mask p, .btn, .text-body, .download, .tag, .filter:active,
+.filter:focus, .filter, .resources-aside .resource-tag, .resources-aside, .resources-aside .back, .article-header,
 .article-header > h2 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -4040,17 +4041,17 @@ i {
   -o-transition: background-color 150ms ease, color 150ms ease;
   transition: background-color 150ms ease, color 150ms ease;
 }
-/* line 38, ../../../source/sass/_interface.scss */
+/* line 39, ../../../source/sass/_interface.scss */
 .tag:hover, .filter:hover, .resources-aside .resource-tag:hover {
   border: none;
 }
-/* line 43, ../../../source/sass/_interface.scss */
+/* line 44, ../../../source/sass/_interface.scss */
 .tag:active, .filter:active, .resources-aside .resource-tag:active, .tag:focus,
 .filter:focus, .resources-aside .resource-tag:focus {
   border: none;
   outline: none;
 }
-/* line 48, ../../../source/sass/_interface.scss */
+/* line 49, ../../../source/sass/_interface.scss */
 .tag.selected, .selected.filter, .resources-aside .selected.resource-tag {
   outline: none;
   border: none;
