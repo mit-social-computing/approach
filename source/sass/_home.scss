@@ -19,11 +19,9 @@
 }
 
 .gif-stage {
-    display: none;
     position: relative;
     margin-bottom: 15px;
     text-align: center;
-    height: 185px;
     width: 100%;
 
     img {
@@ -39,9 +37,13 @@
     }
 }
 
+.jsgif {
+    display: none;
+}
+
 @media #{$medium-up} {
     .gif-stage {
-        display: block;
+        height: 185px;
 
         canvas {
             position: absolute;
@@ -57,5 +59,9 @@
                 @include transition(opacity 250ms);
             }
         }
+    }
+
+    .jsgif {
+        display: block;
     }
 }

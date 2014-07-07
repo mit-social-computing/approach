@@ -55,9 +55,19 @@ a {
 
 a.tall-link {
     height: 18px;
+    pointer-events: none;
+    color: $purple;
+    border: none;
 
     @media #{$medium-up} {
         height: 22px;
+        pointer-events: all;
+        color: $link;
+        border-bottom: 1px solid rgba($link-hover, 0);
+
+        &:hover {
+            border-bottom-color: rgba($link-hover, 1);
+        }
 
         &.disabled {
             color: $gradient2;
