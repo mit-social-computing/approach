@@ -33,7 +33,8 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
 
     function staggerLoad(logo) {
         var chars = logo.children,
-            starters = 0
+            starters = 0,
+            DURATION = 800
 
         forEach.call(chars, function(span, i) {
             if ( starters < 2 && Math.random() < 0.5 ) {
@@ -42,7 +43,7 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
             } else if ( i === chars.length - 1 && starters === 0 ) {
                 span.style.webkitTransitionDelay = '0ms'
             } else {
-                span.style.webkitTransitionDelay = Math.floor(Math.random() * 250) + 'ms'
+                span.style.webkitTransitionDelay = Math.floor(Math.random() * DURATION) + 'ms'
             }
         })
     }
