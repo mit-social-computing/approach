@@ -128,7 +128,7 @@
         font-size: rem-calc(25);
         vertical-align: text-top;
         opacity: 0;
-        @include transition(color 200ms ease, opacity 150ms ease);
+        @include transition(color 200ms ease, opacity 750ms ease);
     }
 }
 

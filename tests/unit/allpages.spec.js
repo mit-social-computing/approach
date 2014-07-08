@@ -1,54 +1,68 @@
-/*global describe,it*/
+/*global describe,it,beforeEach,afterEach*/
 'use strict';
 define(['app/allpages'], function(lib) {
-    var forEach = Array.prototype.forEach
+    var forEach = Array.prototype.forEach,
+        logo = document.createElement('h1'),
+        newLogo = document.createElement('h1')
+
+    logo.innerHTML = 'wildflower montessori'
+
+    function setup(el) {
+        var span = document.createElement('span')
+        span.innerHTML = el
+        newLogo.appendChild(span)
+    }
 
     describe('page init', function() {
-        var logo = document.createElement('h1'),
-            newLogo
-        logo.innerHTML = 'wildflower montessori'
-        newLogo = lib.colorInit(logo)
+
+        beforeEach(function() {
+            forEach.call(logo.innerHTML, setup)
+            forEach.call(newLogo.children, lib.colorInit)
+        })
+        afterEach(function() {
+            newLogo = document.createElement('h1')
+        })
 
         describe('colorInit', function() {
 
-            it('should return a new H1 with proper attributes', function() {
-                expect(newLogo.nodeName).toBe('H1')
-                expect(newLogo.className).toBe('logo')
-                expect(newLogo.id).toBe('logo')
+            it('should have elements equal to one less than the base text', function() {
+                expect(newLogo.children.length).toEqual(logo.innerHTML.length)
             })
-
-            it('should wrap a span with a color style around each letter', function() {
-                forEach.call(newLogo.children, function(el) {
-                    expect(el.nodeName).toBe('SPAN')
+            it('should add an inline color declaration', function(){
+                forEach.call(newLogo.children, function(el){
                     expect(el.style.color).not.toBe('')
                 })
             })
-
-            it ('should create a span for each letter, but not whitespace', function() {
-                var chars = []
-                forEach.call(logo.innerHTML, function(c) {
-                    if ( c !== ' ' ) {
-                        chars.push(c)
-                    }
+            it('should add skrollr attributes', function(){
+                forEach.call(newLogo.children, function(el) {
+                    expect(el.dataset.start).toBeDefined()
+                    expect(el.dataset._center).toBeDefined()
+                    expect(el.dataset.end).toBeDefined()
                 })
-                expect(chars.length).toEqual(newLogo.children.length)
             })
         })
 
-        describe('updateLogoColors', function() {
-            var startColors = [],
-                newColors = []
+        describe('staggerLoad', function() {
+            it ('should add a random set of transition delays to each span', function() {
+                var copy = newLogo.cloneNode(true),
+                    copyTransitions = [],
+                    originalTransitions = []
 
-            forEach.call(newLogo.children, function(el) {
-                startColors.push(el.style.color)
-            })
-            lib.updateLogoColors(newLogo)
-            forEach.call(newLogo.children,function(el) {
-                newColors.push(el.style.color)
-            })
-            it('should change the declared color styles', function() {
-                expect(startColors).not.toEqual(newColors)
+                expect(copy.childElementCount).toEqual(newLogo.childElementCount)
+                lib.staggerLoad(copy)
+                lib.staggerLoad(newLogo)
+                forEach.call([copy, newLogo], function(l, i) {
+                    forEach.call(l.children, function(span) {
+                        if ( i === 0 ) {
+                            copyTransitions.push(span.style.webkitTransitionDelay)
+                        } else {
+                            originalTransitions.push(span.style.webkitTransitionDelay)
+                        }
+                    })
+                })
+                expect(copyTransitions).not.toEqual(originalTransitions)
             })
         })
+
     })
 })

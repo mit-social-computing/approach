@@ -15,42 +15,38 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
         logo = document.getElementById('logo'),
         forEach = Array.prototype.forEach
 
-    function updateLogoColors(logo) {
-        forEach.call(logo.children, function(span) {
-            span.style.color = 'rgb(' + _.sample(colors) + ')'
-        })
+    function colorInit( el, idx ) {
+        if ( el !== ' ' ) {
+            el.style.color = 'rgb(' + _.sample(colors) + ')'
+
+            el.dataset.start = 'color: ' + el.style.color
+            el.dataset._center = 'color: rgb(' + _.sample(colors) + ');'
+            el.dataset.end = 'color: rgb(' + _.sample(colors) + ');'
+        }
     }
 
-    function colorInit( logo ) {
-        var newH1 = document.createElement('h1')
+    function staggerLoad(logo) {
+        var chars = logo.children,
+            starters = 0
 
-        forEach.call(logo.innerHTML, function(el, idx) {
-            if ( el === ' ' ) {
-                newH1.innerHTML += ' '
+        forEach.call(chars, function(span, i) {
+            if ( starters < 2 && Math.random() < 0.5 ) {
+                span.style.webkitTransitionDelay = '0ms'
+                starters++
+            } else if ( i === chars.length - 1 && starters === 0 ) {
+                span.style.webkitTransitionDelay = '0ms'
             } else {
-                var span = document.createElement('span')
-                span.innerHTML = el
-                span.style.color = 'rgb(' + _.sample(colors) + ')'
-
-                span.dataset.start = 'color: ' + span.style.color
-                span.dataset._center = 'color: rgb(' + _.sample(colors) + ');'
-                span.dataset.end = 'color: rgb(' + _.sample(colors) + ');'
-
-                newH1.appendChild(span)
+                span.style.webkitTransitionDelay = Math.floor(Math.random() * 250) + 'ms'
             }
         })
-
-        newH1.id = 'logo'
-        newH1.classList.add('logo')
-        return newH1
     }
 
     function init () {
-        var newLogo = colorInit(logo)
-        logo.parentElement.replaceChild(newLogo, logo)
+        forEach.call(logo.children, colorInit)
 
         setTimeout(function() {
-            newLogo.classList.add('loaded')
+            logo.classList.add('loaded')
+            staggerLoad(logo)
         }, 0)
 
         arrow.addEventListener('click', function (e) {
@@ -85,8 +81,8 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
     }
 
     return {
-        updateLogoColors : updateLogoColors,
         init : init,
-        colorInit: colorInit
+        colorInit: colorInit,
+        staggerLoad : staggerLoad
     }
 })
