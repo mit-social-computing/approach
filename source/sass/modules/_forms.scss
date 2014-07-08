@@ -46,11 +46,13 @@
     height: 30px;
     letter-spacing: 1.9px;
     padding-left: 5px;
-    @include transition(box-shadow 150ms linear);
+    @include transition(box-shadow 150ms linear, background 150ms linear);
+    @extend .antialiased;
 
     &:focus {
         outline: none;
         box-shadow: inset 0px 0px 7px -1px rgba($purple, 0);
+        background: white;
     }
 
     &[type=checkbox] {
