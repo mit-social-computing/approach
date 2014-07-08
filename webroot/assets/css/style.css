@@ -2887,95 +2887,104 @@ blockquote p {
   position: relative;
   margin-bottom: 1.25rem;
   z-index: 0;
+  opacity: 0;
+  -webkit-transition: opacity 250ms ease-out;
+  -moz-transition: opacity 250ms ease-out;
+  -o-transition: opacity 250ms ease-out;
+  transition: opacity 250ms ease-out;
+}
+/* line 61, ../../../source/sass/_layout.scss */
+.layout-image-is-visible .layout-image {
+  opacity: 1;
 }
 
-/* line 63, ../../../source/sass/_layout.scss */
+/* line 69, ../../../source/sass/_layout.scss */
 .l-inline {
   margin-bottom: 1rem;
 }
-/* line 65, ../../../source/sass/_layout.scss */
+/* line 71, ../../../source/sass/_layout.scss */
 .l-inline:only-child {
   margin: 0 auto;
   float: none;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 63, ../../../source/sass/_layout.scss */
+  /* line 69, ../../../source/sass/_layout.scss */
   .l-inline {
     padding: 0 7px;
     float: left;
   }
-  /* line 74, ../../../source/sass/_layout.scss */
+  /* line 80, ../../../source/sass/_layout.scss */
   .l-inline:first-of-type {
     padding-left: 0;
   }
-  /* line 77, ../../../source/sass/_layout.scss */
+  /* line 83, ../../../source/sass/_layout.scss */
   .l-inline:last-of-type {
     padding-right: 0;
   }
 }
 
-/* line 84, ../../../source/sass/_layout.scss */
+/* line 90, ../../../source/sass/_layout.scss */
 .l-inline--nobreak {
   white-space: nowrap;
 }
 
-/* line 88, ../../../source/sass/_layout.scss */
+/* line 94, ../../../source/sass/_layout.scss */
 .l-inline-auto {
   display: inline-block;
   margin-bottom: 0;
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 95, ../../../source/sass/_layout.scss */
+  /* line 101, ../../../source/sass/_layout.scss */
   .l-inline-1 {
     width: 12.5%;
   }
 
-  /* line 95, ../../../source/sass/_layout.scss */
+  /* line 101, ../../../source/sass/_layout.scss */
   .l-inline-2 {
     width: 25%;
   }
 
-  /* line 95, ../../../source/sass/_layout.scss */
+  /* line 101, ../../../source/sass/_layout.scss */
   .l-inline-3 {
     width: 37.5%;
   }
 
-  /* line 95, ../../../source/sass/_layout.scss */
+  /* line 101, ../../../source/sass/_layout.scss */
   .l-inline-4 {
     width: 50%;
   }
 
-  /* line 95, ../../../source/sass/_layout.scss */
+  /* line 101, ../../../source/sass/_layout.scss */
   .l-inline-5 {
     width: 62.5%;
   }
 
-  /* line 95, ../../../source/sass/_layout.scss */
+  /* line 101, ../../../source/sass/_layout.scss */
   .l-inline-6 {
     width: 75%;
   }
 
-  /* line 95, ../../../source/sass/_layout.scss */
+  /* line 101, ../../../source/sass/_layout.scss */
   .l-inline-7 {
     width: 87.5%;
   }
 
-  /* line 95, ../../../source/sass/_layout.scss */
+  /* line 101, ../../../source/sass/_layout.scss */
   .l-inline-8 {
     width: 100%;
   }
 
-  /* line 99, ../../../source/sass/_layout.scss */
+  /* line 105, ../../../source/sass/_layout.scss */
   .l-inline-height50 {
     height: 50px;
   }
-  /* line 102, ../../../source/sass/_layout.scss */
+  /* line 108, ../../../source/sass/_layout.scss */
   .l-inline-height50 > * {
     height: 100%;
   }
 
-  /* line 106, ../../../source/sass/_layout.scss */
+  /* line 112, ../../../source/sass/_layout.scss */
   .l-inline--low-row {
     padding-top: 25px;
   }

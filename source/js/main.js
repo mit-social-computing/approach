@@ -68,6 +68,11 @@ function( lib ) {
         if ( path.split('/').length === 2 ) {
             require(['app/resources'])
         } else if ( path.split('/').length === 3 ) {
+            require(['imagesloaded', 'app/lightbox'], function(imagesLoaded) {
+                imagesLoaded('#resources-detail', function(){
+                    $(this.elements).addClass('layout-image-is-visible')
+                })
+            })
             require(['app/lightbox'])
             tags = document.getElementById('resourceTags')
             tags.addEventListener('click', function(e) {
@@ -85,7 +90,11 @@ function( lib ) {
             f.addEventListener('submit', lib.sendForm, false)
         })
     } else if ( path.match(/^\/blog/) ) {
-        require(['app/lightbox'])
+        require(['imagesloaded', 'app/lightbox'], function(imagesLoaded) {
+            imagesLoaded('#blog', function(){
+                $(this.elements).addClass('layout-image-is-visible')
+            })
+        })
     } else if ( path.match(/^\/classroom/) ) {
         require(['app/classroom'], function(classroom) {
             classroom.init()

@@ -55,6 +55,12 @@
     position: relative;
     margin-bottom: 1.25rem;
     z-index: 0;
+    opacity: 0;
+    @include transition(opacity 250ms ease-out);
+
+    .layout-image-is-visible & {
+        opacity: 1;
+    }
 }
 
 .l-inline-row {
