@@ -19,20 +19,6 @@ function(Isotope, imagesLoaded) {
         filterStore = {}, f,
         forEach = Array.prototype.forEach
 
-    if ( window.history && window.sessionStorage ) {
-        f = sessionStorage.getItem('filter')
-        if ( f && f !== '*' ) {
-            iOps.filter = f
-        }
-    }
-
-    iso = new Isotope(resources, iOps).on('layoutComplete', function() {
-        $('html, body').animate({scrollTop: 0}, 200)
-        try {
-            s.refresh()
-        } catch(e) {}
-    })
-
     function updateHistory( filters ) {
         if ( window.history && window.sessionStorage ) {
             // filters stored in sessionStorage and state
@@ -123,12 +109,6 @@ function(Isotope, imagesLoaded) {
         })
     }
 
-    imgWatcher = imagesLoaded(resources)
-
-    imgWatcher.on('progress', function(il, i) {
-        i.img.parentElement.classList.add('loaded')
-    })
-
     filters.addEventListener('click', function (e) {
         if ( e.target.nodeName === 'BUTTON' ) {
             var f = e.target.dataset.filter === '*' ? '*' : e.target.dataset.filter
@@ -151,6 +131,29 @@ function(Isotope, imagesLoaded) {
             // ".for-parents.for-teachers.for-researchers"
             setFilterButtons(history.state.filter)
         }
+    })
+
+
+    iso = new Isotope(resources, iOps).on('layoutComplete', function() {
+        $('html, body').animate({scrollTop: 0}, 200)
+        try {
+            s.refresh()
+        } catch(e) {}
+    })
+
+    if ( window.history && window.sessionStorage ) {
+        f = sessionStorage.getItem('filter')
+        if ( f && f !== '*' ) {
+            iso.arrange({ filter : f })
+        }
+    }
+
+    imgWatcher = imagesLoaded(resources)
+
+    imgWatcher.on('progress', function(il, i) {
+        setTimeout(function() {
+            i.img.parentElement.classList.add('loaded')
+        }, 500)
     })
 
     if ( window.history && window.sessionStorage ) {
@@ -176,9 +179,9 @@ function(Isotope, imagesLoaded) {
             state.split('.').slice(1).forEach(function(f) {
                 updateFilters(f, true)
             })
-            //iso.arrange({
-            //    filter : state
-            //})
+            // iso.arrange({
+            //     filter : state
+            // })
             // ".for-parents.for-teachers.for-researchers"
             // launching with just one active filter; radio vs checkbox
             // ".for-parents"
