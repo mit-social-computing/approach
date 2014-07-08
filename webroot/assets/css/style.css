@@ -4200,24 +4200,43 @@ i {
   padding: 20px 10px;
 }
 
+/* line 18, ../../../source/sass/_home.scss */
+.overview #principles,
+.overview #nav,
+.overview #homeFooter {
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 250ms ease-out;
+  -moz-transition: opacity 250ms ease-out;
+  -o-transition: opacity 250ms ease-out;
+  transition: opacity 250ms ease-out;
+}
+/* line 23, ../../../source/sass/_home.scss */
+.overview #principles.loaded,
+.overview #nav.loaded,
+.overview #homeFooter.loaded {
+  pointer-events: all;
+  opacity: 1;
+}
+
 @media only screen and (min-width: 40.063em) {
-  /* line 16, ../../../source/sass/_home.scss */
+  /* line 31, ../../../source/sass/_home.scss */
   .overview .content {
     padding: 65px 25px;
   }
 }
-/* line 21, ../../../source/sass/_home.scss */
+/* line 36, ../../../source/sass/_home.scss */
 .gif-stage {
   position: relative;
   margin-bottom: 15px;
   text-align: center;
   width: 100%;
 }
-/* line 27, ../../../source/sass/_home.scss */
+/* line 42, ../../../source/sass/_home.scss */
 .gif-stage img {
   display: none;
 }
-/* line 31, ../../../source/sass/_home.scss */
+/* line 46, ../../../source/sass/_home.scss */
 .gif-stage .init-gif {
   display: block;
   margin: 0 auto;
@@ -4226,17 +4245,17 @@ i {
   max-height: 100%;
 }
 
-/* line 40, ../../../source/sass/_home.scss */
+/* line 55, ../../../source/sass/_home.scss */
 .jsgif {
   display: none;
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 45, ../../../source/sass/_home.scss */
+  /* line 60, ../../../source/sass/_home.scss */
   .gif-stage {
     height: 185px;
   }
-  /* line 48, ../../../source/sass/_home.scss */
+  /* line 63, ../../../source/sass/_home.scss */
   .gif-stage canvas {
     position: absolute;
     left: 0;
@@ -4249,7 +4268,7 @@ i {
     -o-transition: opacity 0ms;
     transition: opacity 0ms;
   }
-  /* line 57, ../../../source/sass/_home.scss */
+  /* line 72, ../../../source/sass/_home.scss */
   .gif-stage canvas.show {
     opacity: 1;
     -webkit-transition: opacity 250ms;
@@ -4258,7 +4277,7 @@ i {
     transition: opacity 250ms;
   }
 
-  /* line 64, ../../../source/sass/_home.scss */
+  /* line 79, ../../../source/sass/_home.scss */
   .jsgif {
     display: block;
   }

@@ -12,6 +12,21 @@
     padding: 20px 10px;
 }
 
+.overview {
+    #principles,
+    #nav,
+    #homeFooter {
+        pointer-events: none;
+        opacity: 0;
+        @include transition(opacity 250ms ease-out);
+
+        &.loaded {
+            pointer-events: all;
+            opacity: 1;
+        }
+    }
+}
+
 @media #{$medium-up} {
     .overview .content {
         padding: 65px 25px;

@@ -42,10 +42,29 @@ function( lib ) {
     var path = document.location.pathname,
         tags
 
-    lib.init()
+    if ( path !== '/' ) {
+        lib.init()
+    }
 
     if ( path === '/' ) {
-        require(['app/home'])
+        require(['app/home'], function(iL) {
+            iL.on('always', function (iL) {
+                if ( iL.isComplete ) {
+                    setTimeout(function() {
+                        lib.init()
+                        setTimeout(function() {
+                            $('#nav').addClass('loaded')
+                            setTimeout(function() {
+                                $('#principles').addClass('loaded')
+                                setTimeout(function() {
+                                    $('#homeFooter').addClass('loaded')
+                                }, 500)
+                            }, 500)
+                        }, 900)
+                    }, 2500)
+                }
+            })
+        })
     } else if ( path.match(/^\/resources/) ) {
         if ( path.split('/').length === 2 ) {
             require(['app/resources'])

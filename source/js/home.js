@@ -1,7 +1,7 @@
 'use strict';
 
-define([ 'libgif', 'app/allpages' ],
-function( SuperGif, lib ) {
+define([ 'exports', 'libgif', 'app/allpages', 'imagesloaded', 'jquery' ],
+function( exports, SuperGif, lib, imagesLoaded, $ ) {
     var principles = document.getElementById('principles'),
         gifs = {
             'adults' : undefined
@@ -14,7 +14,8 @@ function( SuperGif, lib ) {
             , 'research' : undefined
             , 'storefront' : undefined
         },
-        stage = document.getElementById('gifStage')
+        stage = document.getElementById('gifStage'),
+        iL = imagesLoaded('#initGif')
 
     function removeDisabled(gif) {
         var href = '#' + gif.id,
@@ -59,4 +60,7 @@ function( SuperGif, lib ) {
     principles.addEventListener('click', function(e) {
         e.preventDefault()
     }, false)
+
+    return iL
+
 })
