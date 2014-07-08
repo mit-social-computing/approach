@@ -5,7 +5,7 @@ define(['isotope', 'imagesloaded'],
 function(Isotope, imagesLoaded) {
     var resources = document.getElementById('resourcesGrid'),
         filters = document.getElementById('filters'),
-        iso = new Isotope(resources, {
+        iOps = {
             itemSelector : '.grid-item',
             layoutMode : 'masonry',
             masonry : {
@@ -13,14 +13,25 @@ function(Isotope, imagesLoaded) {
                 gutter : 13,
                 isFitWidth : true
             }
-        }).on('layoutComplete', function() {
-            $('html, body').animate({scrollTop: 0}, 200)
-            try {
-                s.refresh()
-            } catch(e) {}
-        }),
+        },
+        iso,
         imgWatcher,
-        filterStore = {}
+        filterStore = {}, f,
+        forEach = Array.prototype.forEach
+
+    if ( window.history && window.sessionStorage ) {
+        f = sessionStorage.getItem('filter')
+        if ( f && f !== '*' ) {
+            iOps.filter = f
+        }
+    }
+
+    iso = new Isotope(resources, iOps).on('layoutComplete', function() {
+        $('html, body').animate({scrollTop: 0}, 200)
+        try {
+            s.refresh()
+        } catch(e) {}
+    })
 
     function updateHistory( filters ) {
         if ( window.history && window.sessionStorage ) {
@@ -62,6 +73,9 @@ function(Isotope, imagesLoaded) {
     function setFilterButtons( filterString ) {
         // filterString
         // ".for-parents.for-teachers.for-researchers"
+        // launching with just one active filter at a time; radio vs checkbox
+        // filterString
+        // ".filter"
         var newFilters, filters,
             selected,
             //viewAll = document.getElementById('viewAll')
@@ -78,11 +92,11 @@ function(Isotope, imagesLoaded) {
 
             viewAll.classList.add('selected')
         } else {
-            viewAll.classList.remove('selected')
+        //    viewAll.classList.remove('selected')
             filters = document.querySelectorAll('.filter')
             newFilters = filterString.split('.').slice(1)
 
-            Array.prototype.forEach.call(filters, function(el) {
+            forEach.call(filters, function(el) {
                 if ( newFilters.indexOf(el.dataset.filter) !== -1 ) {
                     el.classList.add('selected')
                 } else {
@@ -94,8 +108,10 @@ function(Isotope, imagesLoaded) {
 
     function filter( filterChoice, addOrRemove ) {
         // filterChoice
+        // launching with only one filter choice; radio button vs checkbox
         // for-parents
-        var filterString = updateFilters(filterChoice, addOrRemove)
+        // var filterString = updateFilters(filterChoice, addOrRemove)
+        var filterString = filterChoice === '*' ? '*' : '.' + filterChoice
 
         // filters
         // ".filter" or ".filter1.filter2"
@@ -141,7 +157,7 @@ function(Isotope, imagesLoaded) {
         var filterButtons = document.querySelectorAll('.filter'),
             state = window.history.state
 
-        Array.prototype.forEach.call(filterButtons, function(b) {
+        forEach.call(filterButtons, function(b) {
             var f
             if ( b.dataset.filter !== '*' ) {
                 f = b.dataset.filter
@@ -160,10 +176,12 @@ function(Isotope, imagesLoaded) {
             state.split('.').slice(1).forEach(function(f) {
                 updateFilters(f, true)
             })
-            iso.arrange({
-                filter : state
-            })
+            //iso.arrange({
+            //    filter : state
+            //})
             // ".for-parents.for-teachers.for-researchers"
+            // launching with just one active filter; radio vs checkbox
+            // ".for-parents"
             setFilterButtons(state)
         } else {
             window.history.replaceState({ filter: '*' }, '')
