@@ -59,7 +59,7 @@ function( lib ) {
                                 $('#principles, #homeFooter').addClass('loaded')
                             }, 2500)
                         }, 500)
-                    }, 2800)
+                    }, 2200)
                 }
             })
         })
