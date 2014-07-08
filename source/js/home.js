@@ -24,18 +24,16 @@ function( exports, SuperGif, lib, imagesLoaded, $ ) {
         anchor.classList.remove('disabled')
     }
 
-    //window.addEventListener('DOMContentLoaded', function() {
-        setTimeout(function() {
-            Object.keys(gifs).forEach(function(gif){
-                gifs[gif] = new SuperGif({
-                    gif : document.getElementById(gif),
-                    auto_play : 0,
-                    max_width: 559
-                })
-                gifs[gif].load(removeDisabled)
+    function canvasInit() {
+        Object.keys(gifs).forEach(function(gif){
+            gifs[gif] = new SuperGif({
+                gif : document.getElementById(gif),
+                auto_play : 0,
+                max_width: 559
             })
-        }, 2250)
-    //})
+            gifs[gif].load(removeDisabled)
+        })
+    }
 
     principles.addEventListener('mouseover', function(e) {
         if ( e.target.nodeName === 'A' && !e.target.classList.contains('disabled') ) {
@@ -61,6 +59,9 @@ function( exports, SuperGif, lib, imagesLoaded, $ ) {
         e.preventDefault()
     }, false)
 
-    return iL
+    return {
+        iL : iL,
+        c : canvasInit
+    }
 
 })

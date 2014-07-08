@@ -47,8 +47,8 @@ function( lib ) {
     }
 
     if ( path === '/' ) {
-        require(['app/home'], function(iL) {
-            iL.on('always', function (iL) {
+        require(['app/home'], function(home) {
+            home.iL.on('always', function (iL) {
                 if ( iL.isComplete ) {
                     lib.init(true)
                     setTimeout(function() {
@@ -57,6 +57,7 @@ function( lib ) {
                             $('#initGif').addClass('loaded')
                             setTimeout(function() {
                                 $('#principles, #homeFooter').addClass('loaded')
+                                home.c()
                             }, 2500)
                         }, 500)
                     }, 2200)
