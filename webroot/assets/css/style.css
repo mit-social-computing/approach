@@ -4066,6 +4066,19 @@ i {
 }
 
 /* line 13, ../../../source/sass/modules/_grid.scss */
+.grid--fade-in {
+  opacity: 0;
+  -webkit-transition: opacity 250ms ease-out;
+  -moz-transition: opacity 250ms ease-out;
+  -o-transition: opacity 250ms ease-out;
+  transition: opacity 250ms ease-out;
+}
+/* line 17, ../../../source/sass/modules/_grid.scss */
+.grid-is-visible .grid--fade-in {
+  opacity: 1;
+}
+
+/* line 22, ../../../source/sass/modules/_grid.scss */
 .grid-item {
   margin-bottom: 40px;
   position: relative;
@@ -4078,7 +4091,7 @@ i {
   flex: 1 0 260px;
 }
 
-/* line 21, ../../../source/sass/modules/_grid.scss */
+/* line 30, ../../../source/sass/modules/_grid.scss */
 .grid-item--polaroid {
   height: 293px;
   width: 275px;
@@ -4090,22 +4103,22 @@ i {
   -o-transition: opacity 250ms ease-out;
   transition: opacity 250ms ease-out;
 }
-/* line 29, ../../../source/sass/modules/_grid.scss */
+/* line 38, ../../../source/sass/modules/_grid.scss */
 .grid-item--polaroid.loaded {
   opacity: 1;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 21, ../../../source/sass/modules/_grid.scss */
+  /* line 30, ../../../source/sass/modules/_grid.scss */
   .grid-item--polaroid {
     margin-right: 13px;
   }
 }
-/* line 37, ../../../source/sass/modules/_grid.scss */
+/* line 46, ../../../source/sass/modules/_grid.scss */
 .grid-item--polaroid:nth-child(3n) {
   margin-right: 0;
 }
 
-/* line 41, ../../../source/sass/modules/_grid.scss */
+/* line 50, ../../../source/sass/modules/_grid.scss */
 .grid-content {
   text-align: center;
   font-family: kim;
@@ -4113,7 +4126,7 @@ i {
   color: #b6a2cd;
 }
 
-/* line 49, ../../../source/sass/modules/_grid.scss */
+/* line 58, ../../../source/sass/modules/_grid.scss */
 .grid-header {
   font-family: kim;
   color: #b6a2cd;
@@ -4122,14 +4135,14 @@ i {
   margin: 0;
 }
 
-/* line 56, ../../../source/sass/modules/_grid.scss */
+/* line 65, ../../../source/sass/modules/_grid.scss */
 .grid-text {
   font-size: 1.4375rem;
   margin: 0.625rem 0;
   line-height: 1;
 }
 
-/* line 61, ../../../source/sass/modules/_grid.scss */
+/* line 70, ../../../source/sass/modules/_grid.scss */
 .grid-link {
   color: #b6a2cd;
   font-size: 1.125rem;

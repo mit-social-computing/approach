@@ -99,6 +99,12 @@ function( lib ) {
         require(['app/classroom'], function(classroom) {
             classroom.init()
         })
+    } else if ( path.match(/^\/contact/) ) {
+        require(['imagesloaded'], function(imagesLoaded) {
+            imagesLoaded('#contact', function() {
+                $(this.elements).addClass('grid-is-visible')
+            })
+        })
     }
 
 })

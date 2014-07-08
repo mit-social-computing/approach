@@ -10,6 +10,15 @@
     @include align-content(space-around);
 }
 
+.grid--fade-in {
+    opacity: 0;
+    @include transition(opacity 250ms ease-out);
+
+    .grid-is-visible & {
+        opacity: 1;
+    }
+}
+
 .grid-item {
     margin-bottom: 40px;
     position: relative;
