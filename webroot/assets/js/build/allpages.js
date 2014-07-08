@@ -15,6 +15,12 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
         logo = document.getElementById('logo'),
         forEach = Array.prototype.forEach
 
+    function updateLogoColors(logo) {
+        forEach.call(logo.children, function(span) {
+            span.style.color = 'rgb(' + _.sample(colors) + ')'
+        })
+    }
+
     function colorInit( el, idx ) {
         if ( el !== ' ' ) {
             el.style.color = 'rgb(' + _.sample(colors) + ')'
@@ -83,6 +89,7 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
     return {
         init : init,
         colorInit: colorInit,
-        staggerLoad : staggerLoad
+        staggerLoad : staggerLoad,
+        updateLogoColors : updateLogoColors
     }
 })

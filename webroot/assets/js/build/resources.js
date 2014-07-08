@@ -6,7 +6,7 @@ function(Isotope, imagesLoaded) {
     var resources = document.getElementById('resourcesGrid'),
         filters = document.getElementById('filters'),
         iso = new Isotope(resources, {
-            itemSelector : '.thumb',
+            itemSelector : '.grid-item',
             layoutMode : 'masonry',
             masonry : {
                 columnWidth: 275,
