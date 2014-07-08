@@ -43,7 +43,7 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
             } else if ( i === chars.length - 1 && starters === 0 ) {
                 span.style.webkitTransitionDelay = '0ms'
             } else {
-                span.style.webkitTransitionDelay = Math.floor(Math.random() * DURATION) + 'ms'
+                span.style.webkitTransitionDelay = '0ms, ' + Math.floor(Math.random() * DURATION) + 'ms'
             }
         })
     }
