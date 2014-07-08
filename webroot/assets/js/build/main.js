@@ -54,7 +54,10 @@ function( lib ) {
                     setTimeout(function() {
                         $('#nav').addClass('loaded')
                         setTimeout(function() {
-                            $('#principles, #initGif, #homeFooter').addClass('loaded')
+                            $('#initGif').addClass('loaded')
+                            setTimeout(function() {
+                                $('#principles, #homeFooter').addClass('loaded')
+                            }, 2500)
                         }, 500)
                     }, 2800)
                 }
