@@ -50,18 +50,13 @@ function( lib ) {
         require(['app/home'], function(iL) {
             iL.on('always', function (iL) {
                 if ( iL.isComplete ) {
+                    lib.init(true)
                     setTimeout(function() {
-                        lib.init()
+                        $('#nav').addClass('loaded')
                         setTimeout(function() {
-                            $('#nav').addClass('loaded')
-                            setTimeout(function() {
-                                $('#principles').addClass('loaded')
-                                setTimeout(function() {
-                                    $('#homeFooter').addClass('loaded')
-                                }, 500)
-                            }, 500)
-                        }, 900)
-                    }, 2500)
+                            $('#principles, #initGif, #homeFooter').addClass('loaded')
+                        }, 500)
+                    }, 2800)
                 }
             })
         })

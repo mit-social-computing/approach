@@ -31,10 +31,10 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
         }
     }
 
-    function staggerLoad(logo) {
+    function staggerLoad(logo, home) {
         var chars = logo.children,
             starters = 0,
-            DURATION = 800
+            DURATION = home ? 2500 : 800
 
         forEach.call(chars, function(span, i) {
             if ( starters < 2 && Math.random() < 0.5 ) {
@@ -48,12 +48,12 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
         })
     }
 
-    function init () {
+    function init(home) {
         forEach.call(logo.children, colorInit)
 
         setTimeout(function() {
             logo.classList.add('loaded')
-            staggerLoad(logo)
+            staggerLoad(logo, home)
         }, 0)
 
         arrow.addEventListener('click', function (e) {
