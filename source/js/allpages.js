@@ -5,6 +5,7 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
     var menuButton = document.getElementById('menuButton'),
         menu = document.getElementById('nav'),
         arrow = document.getElementById('arrow'),
+        resourcesLink = document.getElementById('resourcesNav'),
         colors = {
             'teal' : [112, 190, 205]
             , 'dark-yellow' : [231, 181, 44]
@@ -73,6 +74,13 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
 
         menuButton.addEventListener('click', function(e) {
             menu.classList.toggle('show')
+        }, false)
+
+        resourcesLink.addEventListener('click', function(e) {
+            if ( window.sessionStorage && window.history ) {
+                history.replaceState({ filter : '*' }, '')
+                sessionStorage.clear()
+            }
         }, false)
 
         Modernizr.load({
