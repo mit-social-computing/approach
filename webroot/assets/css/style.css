@@ -3568,13 +3568,13 @@ i {
   /* line 26, ../../../source/sass/modules/_misc.scss */
   .icon-plus--blue-expanded {
     background-size: 100%;
-    height: 11px;
-    width: 21.5px;
-    font-size: 0.625rem;
+    height: 16.5px;
+    width: 32.25px;
+    font-size: 1rem;
   }
   /* line 52, ../../../source/sass/modules/_misc.scss */
   .icon-plus--blue-expanded:before {
-    font-size: 0.6875rem;
+    font-size: 1.1875rem;
   }
 }
 
@@ -3588,8 +3588,8 @@ i {
   /* line 58, ../../../source/sass/modules/_misc.scss */
   .icon-plus--blue {
     background-size: 100%;
-    height: 11px;
-    width: 11px;
+    height: 14px;
+    width: 14px;
   }
 }
 
