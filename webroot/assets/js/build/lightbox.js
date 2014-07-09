@@ -6,11 +6,11 @@ function($) {
 
     function keyHandler(e) {
         var key = e.which
-        if ( key === 39 ) { // right arrow 
+        if ( key === 39 ) { // right arrow
             $('#slideshow').slickNext()
-        } else if ( key === 37 ) {
+        } else if ( key === 37 ) { // left arrow
             $('#slideshow').slickPrev()
-        } else if ( key === 27 ) {
+        } else if ( key === 27 ) { // excape key
             close()
         }
     }
@@ -30,11 +30,22 @@ function($) {
             $bg = $('<div/>').addClass('lightbox-bg').append('<div class="lightbox-body"/>')
             $bg.find('.lightbox-body').append($slides)
 
-            $close = $('<button>X</button>').addClass('lightbox-close').appendTo($bg)
+            $close = $('<button></button>').addClass('lightbox-close').appendTo($bg)
             $close.attr('id', 'close')
 
             $('body').addClass('l-fixbody').append($bg)
-            $('#slideshow').slick()
+
+            $('#slideshow').slick({
+                responsive : [
+                    {
+                        breakpoint : 480,
+                        settings: {
+                            arrows : false
+                        }
+                    }
+                ]
+            })
+
             $(window).on('keyup', keyHandler)
         } else if ( e.target.id === 'close' ) {
             close()
