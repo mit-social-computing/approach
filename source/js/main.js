@@ -31,12 +31,12 @@ require.config({
         jquery : "../js/lib/jquery/jquery.min",
         libgif : "../js/lib/libgif/libgif",
         slick : "slick-carousel/slick/slick",
-        'allpages' : 'allpages.1404940902863671822',
-        'home' : 'home.1404940902863671822',
-        'resources' : 'resources.1404940902863671822',
-        'lightbox' : 'lightbox.1404940902863671822',
-        'forms' : 'forms.1404940902863671822',
-        'classroom' : 'clssroom.1404940902863671822',
+        'allpages' : 'allpages.1404944842609722662',
+        'home' : 'home.1404944842609722662',
+        'resources' : 'resources.1404944842609722662',
+        'lightbox' : 'lightbox.1404944842609722662',
+        'forms' : 'forms.1404944842609722662',
+        'classroom' : 'clssroom.1404944842609722662',
     },
     packages: [
 
