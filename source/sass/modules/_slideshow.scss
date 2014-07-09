@@ -24,6 +24,14 @@
     background-image: url('/assets/img/lightbox-close.png');
     background-repeat: no-repeat;
     padding: 0;
+
+    @media
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi) {
+        height: 20px;
+        width: 20px;
+        background-size: 100%;
+    }
 }
 
 .lightbox-body {
