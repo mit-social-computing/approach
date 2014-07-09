@@ -38,6 +38,12 @@ module.exports = function(grunt) {
             expand : true,
             src: ['source/hashed/header.html'],
             dest: 'source/ee_templates/default_site/views/partials/'
+          },
+          {
+            flatten : true,
+            expand : true,
+            src: ['source/hashed/main.js'],
+            dest: 'source/js/'
           }
         ]
       }
@@ -74,7 +80,8 @@ module.exports = function(grunt) {
         },
         hashed : {
             files : [
-                'source/hashed/header.html'
+                'source/hashed/header.html',
+                'source/hashed/main.js'
             ],
             tasks : ['replace']
         },

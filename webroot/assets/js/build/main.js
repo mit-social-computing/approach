@@ -30,7 +30,13 @@ require.config({
         //jquery : "../js/lib/jquery/animate-jquery",
         jquery : "../js/lib/jquery/jquery.min",
         libgif : "../js/lib/libgif/libgif",
-        slick : "slick-carousel/slick/slick"
+        slick : "slick-carousel/slick/slick",
+        'allpages' : 'allpages.1404940902863671822',
+        'home' : 'home.1404940902863671822',
+        'resources' : 'resources.1404940902863671822',
+        'lightbox' : 'lightbox.1404940902863671822',
+        'forms' : 'forms.1404940902863671822',
+        'classroom' : 'clssroom.1404940902863671822',
     },
     packages: [
 
@@ -74,7 +80,7 @@ function( lib ) {
                     $(this.elements).addClass('layout-image-is-visible')
                 })
             })
-            require(['app/lightbox'])
+            //require(['app/lightbox'])
             tags = document.getElementById('resourceTags')
             tags.addEventListener('click', function(e) {
                 if ( e.target.nodeName === 'A' && window.sessionStorage ) {
