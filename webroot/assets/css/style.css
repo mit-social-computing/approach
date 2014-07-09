@@ -649,7 +649,7 @@ img {
 
 /* line 347, ../bower_components/foundation/scss/foundation/components/_global.scss */
 .antialiased, p, .quote,
-.quote cite, .logo, .main-menu, .mask p, .form-centered--purple, .input-purple, .btn, .text-body, .grid-content, .download, .tag, .filter:active,
+.quote cite, .logo, .main-menu, .mask p, .icon-plus--blue-expanded, .form-centered--purple, .input-purple, .btn, .text-body, .grid-content, .download, .tag, .filter:active,
 .filter:focus, .filter, .resources-aside .resource-tag, .resources-aside, .resources-aside .back, .article-header,
 .article-header > h2 {
   -webkit-font-smoothing: antialiased;
@@ -3511,6 +3511,11 @@ i {
   background-image: url("/assets/img/frames/white-border.png");
 }
 
+/* line 71, ../../../source/sass/modules/_mask.scss */
+.mask-white-vertical {
+  background-image: url("/assets/img/frames/white-border-vertical.png");
+}
+
 /* line 2, ../../../source/sass/modules/_misc.scss */
 .icon {
   position: absolute;
@@ -3537,23 +3542,37 @@ i {
 /* line 20, ../../../source/sass/modules/_misc.scss */
 .icon-plus {
   display: block;
+  background-repeat: no-repeat;
 }
 
-/* line 24, ../../../source/sass/modules/_misc.scss */
+/* line 25, ../../../source/sass/modules/_misc.scss */
+.icon-plus--blue-expanded {
+  height: 22px;
+  width: 43px;
+  background-image: url("/assets/img/blue-plus-expanded.png");
+  color: white;
+  font-family: kim;
+  text-align: left;
+  padding-left: 22px;
+  padding-top: 2px;
+  font-size: 1.1875rem;
+}
+
+/* line 38, ../../../source/sass/modules/_misc.scss */
 .icon-plus--blue {
-  height: 24px;
-  width: 24px;
+  height: 22px;
+  width: 22px;
   background-image: url("/assets/img/blue-plus.png");
 }
 
-/* line 30, ../../../source/sass/modules/_misc.scss */
+/* line 44, ../../../source/sass/modules/_misc.scss */
 .icon-plus--pink {
   height: 48px;
   width: 51px;
   background-image: url("/assets/img/pink-plus.png");
 }
 
-/* line 36, ../../../source/sass/modules/_misc.scss */
+/* line 50, ../../../source/sass/modules/_misc.scss */
 .white-arrow {
   background-image: url(/assets/img/sprites/right-arrow.png);
   height: 14px;
