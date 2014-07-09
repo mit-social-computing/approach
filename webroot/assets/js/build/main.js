@@ -54,7 +54,8 @@ function( lib ) {
                     setTimeout(function() {
                         $('#nav').addClass('loaded')
                         setTimeout(function() {
-                            $('#initGif').addClass('loaded')
+                            home.gif()
+                            $('#initGif').attr('src', '/assets/img/gifs/authentic.gif')
                             setTimeout(function() {
                                 $('#principles, #homeFooter').addClass('loaded')
                                 home.c()

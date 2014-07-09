@@ -41,11 +41,15 @@ function(_, skrollr, imagesLoaded, FastClick, Modernizr) {
             d = Math.floor(Math.random() * DURATION)
             if ( starters < 2 && Math.random() < 0.5 ) {
                 span.style.webkitTransitionDelay = '0ms, 10ms'
+                span.style.mozTransitionDelay = '0ms, 10ms'
+                span.style.transitionDelay = '0ms, 10ms'
                 starters++
             } else if ( i === chars.length - 1 && starters === 0 ) {
                 span.style.webkitTransitionDelay = '0ms, 10ms'
+                span.style.transitionDelay = '0ms, 10ms'
             } else {
                 span.style.webkitTransitionDelay = '0ms, ' + ( d === 0 ? '50' : d ) + 'ms'
+                span.style.transitionDelay = '0ms, ' + ( d === 0 ? '50' : d ) + 'ms'
             }
         })
     }

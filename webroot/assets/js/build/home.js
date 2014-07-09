@@ -35,6 +35,16 @@ function( exports, SuperGif, lib, imagesLoaded, $ ) {
         })
     }
 
+    function addBlockGif() {
+        var img = new Image()
+        img.className = 'init-gif'
+        img.id = 'initGif'
+        img.onload = function() {
+            this.classList.add('loaded')
+        }
+        $('#gifStage').prepend(img)
+    }
+
     principles.addEventListener('mouseover', function(e) {
         if ( e.target.nodeName === 'A' && !e.target.classList.contains('disabled') ) {
             var logo = document.getElementById('logo')
@@ -61,7 +71,8 @@ function( exports, SuperGif, lib, imagesLoaded, $ ) {
 
     return {
         iL : iL,
-        c : canvasInit
+        c : canvasInit,
+        gif : addBlockGif
     }
 
 })
