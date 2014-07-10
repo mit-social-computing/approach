@@ -6,6 +6,7 @@ function(Isotope, imagesLoaded) {
     var resources = document.getElementById('resourcesGrid'),
         filters = document.getElementById('filters'),
         iOps = {
+            transitionDuration : '0',
             itemSelector : '.grid-item',
             layoutMode : 'masonry',
             masonry : {
@@ -105,6 +106,7 @@ function(Isotope, imagesLoaded) {
         updateHistory(filterString)
 
         iso.arrange({
+            transitionDuration : '250ms',
             filter : filterString
         })
     }
@@ -126,7 +128,8 @@ function(Isotope, imagesLoaded) {
     window.addEventListener('popstate', function() {
         if ( history.state && history.state.filter ) {
             iso.arrange({
-                filter : history.state.filter
+                filter : history.state.filter,
+                transitionDuration : '250ms'
             })
             // ".for-parents.for-teachers.for-researchers"
             setFilterButtons(history.state.filter)
@@ -144,16 +147,19 @@ function(Isotope, imagesLoaded) {
     if ( window.history && window.sessionStorage ) {
         f = sessionStorage.getItem('filter')
         if ( f && f !== '*' ) {
-            iso.arrange({ filter : f })
+            iso.arrange({
+                //transitionDuration : '250ms',
+                filter : f 
+            })
         }
     }
 
     imgWatcher = imagesLoaded(resources)
 
     imgWatcher.on('progress', function(il, i) {
-        setTimeout(function() {
+        //setTimeout(function() {
             i.img.parentElement.classList.add('loaded')
-        }, 500)
+        //}, 100)
     })
 
     if ( window.history && window.sessionStorage ) {
