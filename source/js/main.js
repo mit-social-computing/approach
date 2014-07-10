@@ -80,7 +80,6 @@ function( lib ) {
                     $(this.elements).addClass('layout-image-is-visible')
                 })
             })
-            //require(['app/lightbox'])
             tags = document.getElementById('resourceTags')
             tags.addEventListener('click', function(e) {
                 if ( e.target.nodeName === 'A' && window.sessionStorage ) {

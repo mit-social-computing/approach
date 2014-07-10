@@ -127,12 +127,16 @@ function(Isotope, imagesLoaded) {
 
     window.addEventListener('popstate', function() {
         if ( history.state && history.state.filter ) {
+            var f = history.state.filter
             iso.arrange({
-                filter : history.state.filter,
+                filter : f,
                 transitionDuration : '250ms'
             })
             // ".for-parents.for-teachers.for-researchers"
-            setFilterButtons(history.state.filter)
+            setFilterButtons(f)
+            if ( window.sessionStorage ) {
+                sessionStorage.setItem('filter', f)
+            }
         }
     })
 
@@ -148,8 +152,7 @@ function(Isotope, imagesLoaded) {
         f = sessionStorage.getItem('filter')
         if ( f && f !== '*' ) {
             iso.arrange({
-                //transitionDuration : '250ms',
-                filter : f 
+                filter : f
             })
         }
     }
@@ -157,9 +160,7 @@ function(Isotope, imagesLoaded) {
     imgWatcher = imagesLoaded(resources)
 
     imgWatcher.on('progress', function(il, i) {
-        //setTimeout(function() {
-            i.img.parentElement.classList.add('loaded')
-        //}, 100)
+        i.img.parentElement.classList.add('loaded')
     })
 
     if ( window.history && window.sessionStorage ) {
@@ -181,19 +182,17 @@ function(Isotope, imagesLoaded) {
                 state = state.filter
             } else {
                 state = sessionStorage.getItem('filter')
+                history.replaceState({ filter : state }, '')
             }
             state.split('.').slice(1).forEach(function(f) {
                 updateFilters(f, true)
             })
-            // iso.arrange({
-            //     filter : state
-            // })
             // ".for-parents.for-teachers.for-researchers"
             // launching with just one active filter; radio vs checkbox
             // ".for-parents"
             setFilterButtons(state)
         } else {
-            window.history.replaceState({ filter: '*' }, '')
+            history.replaceState({ filter: '*' }, '')
             sessionStorage.setItem('filter', '*')
             filterStore['*'] = true
         }
