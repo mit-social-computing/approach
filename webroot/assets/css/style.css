@@ -3955,8 +3955,7 @@ i {
 
 /* line 103, ../../../source/sass/modules/_slideshow.scss */
 .ss-content {
-  padding: 95px 25px;
-  height: 100%;
+  padding: 95px 25px 0;
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -3979,7 +3978,7 @@ i {
   flex-flow: column nowrap;
 }
 
-/* line 112, ../../../source/sass/modules/_slideshow.scss */
+/* line 111, ../../../source/sass/modules/_slideshow.scss */
 .ss-title {
   color: #70becd;
   font-family: kim, sans-serif;
@@ -3988,7 +3987,7 @@ i {
   margin-bottom: 0.9375rem;
 }
 
-/* line 121, ../../../source/sass/modules/_slideshow.scss */
+/* line 120, ../../../source/sass/modules/_slideshow.scss */
 .ss-caption {
   color: #70becd;
   font-family: "kim", sans-serif;
@@ -3998,13 +3997,13 @@ i {
   margin: 1rem auto 0;
 }
 
-/* line 132, ../../../source/sass/modules/_slideshow.scss */
+/* line 131, ../../../source/sass/modules/_slideshow.scss */
 .touch .slick-prev,
 .touch .slick-next {
   display: none !important;
 }
 
-/* line 137, ../../../source/sass/modules/_slideshow.scss */
+/* line 136, ../../../source/sass/modules/_slideshow.scss */
 .is-lightbox {
   cursor: pointer;
 }

@@ -101,8 +101,7 @@
 }
 
 .ss-content {
-    padding: 95px 25px;
-    height: 100%;
+    padding: 95px 25px 0;
     @include flexbox;
     @include justify-content(center);
     @include align-items(center);

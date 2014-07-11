@@ -43,7 +43,10 @@ function($) {
                             arrows : false
                         }
                     }
-                ]
+                ],
+                onInit : function() {
+                    $('.ss-content img').css('max-height', window.innerHeight - 190 + 'px')
+                }
             })
 
             $(window).on('keyup', keyHandler)
@@ -51,4 +54,10 @@ function($) {
             close()
         }
     }, true)
+
+    var adjustImageHeight = _.debounce(function(e) {
+        $('.ss-content img').css('max-height', window.innerHeight - 190 + 'px')
+        console.log('hit')
+    }, 100)
+    $(window).on('resize', adjustImageHeight)
 })

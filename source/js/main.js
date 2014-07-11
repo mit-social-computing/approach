@@ -31,12 +31,12 @@ require.config({
         jquery : "../js/lib/jquery/jquery.min",
         libgif : "../js/lib/libgif/libgif",
         slick : "slick-carousel/slick/slick",
-        'allpages' : 'allpages.140502254629614879',
-        'home' : 'home.140502254629614879',
-        'resources' : 'resources.140502254629614879',
-        'lightbox' : 'lightbox.140502254629614879',
-        'forms' : 'forms.140502254629614879',
-        'classroom' : 'clssroom.140502254629614879',
+        'allpages' : 'allpages.1405092546265395308',
+        'home' : 'home.1405092546265395308',
+        'resources' : 'resources.1405092546265395308',
+        'lightbox' : 'lightbox.1405092546265395308',
+        'forms' : 'forms.1405092546265395308',
+        'classroom' : 'clssroom.1405092546265395308',
     },
     packages: [
 
@@ -80,6 +80,7 @@ function( lib ) {
                     $(this.elements).addClass('layout-image-is-visible')
                 })
             })
+            //require(['app/lightbox'])
             tags = document.getElementById('resourceTags')
             tags.addEventListener('click', function(e) {
                 if ( e.target.nodeName === 'A' && window.sessionStorage ) {
