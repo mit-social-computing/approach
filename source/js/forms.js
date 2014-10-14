@@ -1,8 +1,9 @@
 'use strict';
 
-define(['jquery'],
-function($) {
-    var forEach = Array.prototype.forEach
+// define(['jquery'],
+// function($) {
+if ( path.match(/^\/start-a-school/) ) {
+    //var forEach = Array.prototype.forEach
     function splitName(fullName) {
         var firstLast = []
         firstLast[0] = fullName.split(' ')[0]
@@ -33,10 +34,11 @@ function($) {
         vals.lastName = firstLast[1]
         console.log(JSON.stringify(vals))
     }
+}
 
-    return {
-        getFormValues : getFormValues,
-        splitName : splitName,
-        sendForm : sendForm
-    }
-})
+//    return {
+//        getFormValues : getFormValues,
+//        splitName : splitName,
+//        sendForm : sendForm
+//    }
+//})

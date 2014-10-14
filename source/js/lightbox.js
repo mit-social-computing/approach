@@ -1,7 +1,8 @@
 'use strict';
 
-define(['jquery', 'slick'],
-function($) {
+// define(['jquery', 'slick'],
+// function($) {
+if ( path.split('/').length === 3 ) {
     var $bg, $close
 
     function keyHandler(e) {
@@ -60,4 +61,9 @@ function($) {
         console.log('hit')
     }, 100)
     $(window).on('resize', adjustImageHeight)
-})
+
+    imagesLoaded('#resources-detail', function(){
+        $(this.elements).addClass('layout-image-is-visible')
+    })
+}
+//})

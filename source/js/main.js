@@ -1,117 +1,134 @@
 /*global sessionStorage*/
 'use strict';
 
-require.config({
-    baseUrl : "/assets/bower_components/",
-    shim: {
-        "libgif" : {
-             exports : "SuperGif"
-        },
-        "modernizr" : {
-            exports : "Modernizr"
-        },
-        "slick" : ['jquery']
+var menuButton = document.getElementById('menuButton'),
+    menu = document.getElementById('nav'),
+    arrow = document.getElementById('arrow'),
+    resourcesLink = document.getElementById('resourcesNav'),
+    colors = {
+        'teal' : [112, 190, 205]
+        , 'dark-yellow' : [231, 181, 44]
+        , 'light-yellow' : [255, 202, 43]
+        , 'pink' : [247, 126, 133]
+        , 'green' : [129, 174, 113]
     },
-    paths: {
-        app : "../js/build",
-        fastclick: "fastclick/lib/fastclick",
-        foundation: "foundation/js/foundation",
-        imagesloaded: "imagesloaded/imagesloaded.pkgd.min",
-        item: "isotope/js/item",
-        "layout-mode": "isotope/js/layout-mode",
-        isotope: "isotope/dist/isotope.pkgd.min",
-        //vertical: "isotope/js/layout-modes/vertical",
-        "fit-rows": "isotope/js/layout-modes/fit-rows",
-        //masonry: "isotope/js/layout-modes/masonry",
-        //requirejs: "requirejs/require",
-        skrollr: "skrollr/src/skrollr",
-        modernizr : "../js/lib/modernizr/custom.modernizr",
-        lodash : "../js/lib/lodash/lodash.min",
-        //jquery : "../js/lib/jquery/animate-jquery",
-        jquery : "../js/lib/jquery/jquery.min",
-        libgif : "../js/lib/libgif/libgif",
-        slick : "slick-carousel/slick/slick",
-        'allpages' : 'allpages.1405092546265395308',
-        'home' : 'home.1405092546265395308',
-        'resources' : 'resources.1405092546265395308',
-        'lightbox' : 'lightbox.1405092546265395308',
-        'forms' : 'forms.1405092546265395308',
-        'classroom' : 'clssroom.1405092546265395308',
-    },
-    packages: [
+    logo = document.getElementById('logo'),
+    forEach = Array.prototype.forEach,
+    path = document.location.pathname,
+    tags
 
-    ]
-});
+function updateLogoColors(logo) {
+    forEach.call(logo.children, function(span) {
+        span.style.color = 'rgb(' + _.sample(colors) + ')'
+    })
+}
 
-requirejs(['app/allpages'],
-function( lib ) {
-    var path = document.location.pathname,
-        tags
+function colorInit( el, idx ) {
+    if ( el !== ' ' ) {
+        el.style.color = 'rgb(' + _.sample(colors) + ')'
 
-    if ( path !== '/' ) {
-        lib.init()
+        el.dataset.start = 'color: ' + el.style.color
+        el.dataset._center = 'color: rgb(' + _.sample(colors) + ');'
+        el.dataset.end = 'color: rgb(' + _.sample(colors) + ');'
     }
+}
 
-    if ( path === '/' ) {
-        require(['app/home'], function(home) {
-            home.iL.on('always', function (iL) {
-                if ( iL.isComplete ) {
-                    lib.init(true)
-                    setTimeout(function() {
-                        $('#nav').addClass('loaded')
-                        setTimeout(function() {
-                            home.gif()
-                            $('#initGif').attr('src', '/assets/img/gifs/authentic.gif')
-                            setTimeout(function() {
-                                $('#principles, #homeFooter').addClass('loaded')
-                                home.c()
-                            }, 2500)
-                        }, 500)
-                    }, 1600)
-                }
-            })
-        })
-    } else if ( path.match(/^\/resources/) ) {
-        if ( path.split('/').length === 2 ) {
-            require(['app/resources'])
-        } else if ( path.split('/').length === 3 ) {
-            require(['imagesloaded', 'app/lightbox'], function(imagesLoaded) {
-                imagesLoaded('#resources-detail', function(){
-                    $(this.elements).addClass('layout-image-is-visible')
-                })
-            })
-            //require(['app/lightbox'])
-            tags = document.getElementById('resourceTags')
-            tags.addEventListener('click', function(e) {
-                if ( e.target.nodeName === 'A' && window.sessionStorage ) {
-                    // filters stored in sessionStorage and state
-                    // as dot delimited strings that start with a dot as well
-                    // e.g. .for-parents.research
-                    sessionStorage.setItem('filter', '.' + e.target.dataset.filter)
-                }
-            }, false)
+function staggerLoad(logo) {
+    var chars = logo.children,
+        starters = 0,
+        DURATION = 800,
+        d
+
+    forEach.call(chars, function(span, i) {
+        d = Math.floor(Math.random() * DURATION)
+        if ( starters < 2 && Math.random() < 0.5 ) {
+            span.style.webkitTransitionDelay = '0ms, 10ms'
+            span.style.mozTransitionDelay = '0ms, 10ms'
+            span.style.transitionDelay = '0ms, 10ms'
+            starters++
+        } else if ( i === chars.length - 1 && starters === 0 ) {
+            span.style.webkitTransitionDelay = '0ms, 10ms'
+            span.style.transitionDelay = '0ms, 10ms'
+        } else {
+            span.style.webkitTransitionDelay = '0ms, ' + ( d === 0 ? '50' : d ) + 'ms'
+            span.style.transitionDelay = '0ms, ' + ( d === 0 ? '50' : d ) + 'ms'
         }
-    } else if ( path.match(/^\/start-a-school/) ) {
-        require(['app/forms'], function(lib) {
-            var f = document.getElementById('startForm')
-            f.addEventListener('submit', lib.sendForm, false)
-        })
-    } else if ( path.match(/^\/blog/) ) {
-        require(['imagesloaded', 'app/lightbox'], function(imagesLoaded) {
-            imagesLoaded('#blog', function(){
-                $(this.elements).addClass('layout-image-is-visible')
-            })
-        })
-    } else if ( path.match(/^\/classroom/) ) {
-        require(['app/classroom'], function(classroom) {
-            classroom.init()
-        })
-    } else if ( path.match(/^\/contact/) ) {
-        require(['imagesloaded'], function(imagesLoaded) {
-            imagesLoaded('#contact', function() {
-                $(this.elements).addClass('grid-is-visible')
-            })
-        })
-    }
+    })
+}
 
-})
+(function init() {
+    forEach.call(logo.children, colorInit)
+
+    setTimeout(function() {
+        logo.classList.add('loaded')
+        staggerLoad(logo)
+    }, 0)
+
+    arrow.addEventListener('click', function (e) {
+        e.preventDefault()
+        $('html, body').animate({scrollTop: 0}, 200)
+    }, false)
+
+    window.addEventListener('load', function() {
+        FastClick.attach(document.body);
+    }, false);
+
+    menuButton.addEventListener('click', function(e) {
+        menu.classList.toggle('show')
+    }, false)
+
+    resourcesLink.addEventListener('click', function(e) {
+        if ( window.sessionStorage && window.history ) {
+            history.replaceState({ filter : '*' }, '')
+            sessionStorage.clear()
+        }
+    }, false)
+
+    Modernizr.load({
+        test: Modernizr.touch,
+        nope : "/assets/bower_components/skrollr/dist/skrollr.min.js",
+        callback : function( url, result, key ) {
+            if ( !result &&
+                ( !document.getElementById('overview') && !document.getElementById('start-a-school') && !document.getElementById('contact') && !document.getElementById('classroom') )) {
+                imagesLoaded('img', function() {
+                    window.s = skrollr.init({
+                        constants : {
+                            _center : (document.documentElement.scrollHeight - window.innerHeight) / 2
+                        }
+                    })
+                })
+            }
+        }
+    })
+})()
+
+
+if ( path === '/' ) {
+    $('#nav').addClass('loaded')
+    setTimeout(function() {
+        $('#principles, #homeFooter').addClass('loaded')
+    }, 1500)
+} else if ( path.match(/^\/resources/) ) {
+    if ( path.split('/').length === 3 ) {
+        tags = document.getElementById('resourceTags')
+        tags.addEventListener('click', function(e) {
+            if ( e.target.nodeName === 'A' && window.sessionStorage ) {
+                // filters stored in sessionStorage and state
+                // as dot delimited strings that start with a dot as well
+                // e.g. .for-parents.research
+                sessionStorage.setItem('filter', '.' + e.target.dataset.filter)
+            }
+        }, false)
+    }
+} else if ( path.match(/^\/start-a-school/) ) {
+    var f = document.getElementById('startForm')
+    f.addEventListener('submit', sendForm, false)
+} else if ( path.match(/^\/blog/) ) {
+    imagesLoaded('#blog', function(){
+        $(this.elements).addClass('layout-image-is-visible')
+    })
+} else if ( path.match(/^\/contact/) ) {
+    imagesLoaded('#contact', function() {
+        $(this.elements).addClass('grid-is-visible')
+    })
+}

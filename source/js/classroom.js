@@ -1,7 +1,8 @@
 'use strict';
 
-define(['jquery'],
-function($) {
+//define(['jquery'],
+//function($) {
+if ( path.match(/^\/classroom/) ) {
     var stage, message, veil
 
     function setup() {
@@ -20,16 +21,17 @@ function($) {
         $('.classroom-layer--section').removeClass('fade-out')
     }
 
-    return {
-        init : function() {
-            message = document.getElementById('message')
-            stage = document.getElementById('classStage')
-            veil = document.getElementById('blackLayer')
+    //return {
+    function classroom() {
+        message = document.getElementById('message')
+        stage = document.getElementById('classStage')
+        veil = document.getElementById('blackLayer')
 
-            window.timer = setTimeout(setup, 1000)
+        window.timer = setTimeout(setup, 1000)
 
-            $('.icon').hover(enter, exit)
-            $('.icon').click(function(e) { e.preventDefault() })
-        }
+        $('.icon').hover(enter, exit)
+        $('.icon').click(function(e) { e.preventDefault() })
     }
-})
+//}
+}
+//})

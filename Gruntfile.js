@@ -1,115 +1,172 @@
-'use strict';
-
+'use strict'; 
 module.exports = function(grunt) {
 
-  // Project configuration.
-  grunt.initConfig({
-    // Metadata.
-    pkg: grunt.file.readJSON('package.json'),
-    banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
-      '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.dev %>;' +
-      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
-    // Task configuration.
-    jsSrc : 'source/js/*.js',
-    jsDev : '<%= pkg.assetsPath %>js/build',
-    jsBuild : '<%= pkg.assetsPath %>js/build/<%= pkg.name %>.js',
-    jsMin : '<%= pkg.assetsPath %>js/build/<%= pkg.name %>.min.js',
-    sass : 'source/sass/**/*.scss',
-    templates : 'source/ee_templates/**/*.html',
+    var mainJs = [
+         'source/js/lib/modernizr/custom.modernizr.js'
+        , 'source/js/lib/lodash/lodash.js'
+        , 'source/bower_components/jquery/dist/jquery.js'
+        , 'source/js/lib/libgif/libgif.js'
+        , 'source/bower_components/slick-carousel/slick/slick.js'
+        , 'source/bower_components/imagesloaded/imagesloaded.pkgd.js'
+        , 'source/bower_components/isotope/dist/isotope.pkgd.js' // TODO split out into a separate file for photo pages
+        , 'source/bower_components/fastclick/lib/fastclick.js'
+        //, 'source/bower_components/foundation/js/foundation.js'
+        , 'source/bower_components/skrollr/src/skrollr.js'
+        , 'source/js/main.js'
+        , 'source/js/resources.js'
+        , 'source/js/lightbox.js'
+        , 'source/js/forms.js'
+        , 'source/js/classroom.js'
+    ]
 
-    shell : {
-        nightwatch : {
-            command : 'nightwatch -e chrome,default'
-        }
-    },
+    // Project configuration.
+    grunt.initConfig({
 
-    replace : {
-      build_replace : {
-        options : {
-          variables : {
-            'hash' : '<%= ( (new Date()).valueOf().toString() ) + ( Math.floor( (Math.random()*1000000)+1 ).toString() ) %>'
-          }
+        shell : {
+            nightwatch : {
+                command : 'nightwatch -e chrome,default'
+            }
         },
-        files : [
-          {
-            flatten : true,
-            expand : true,
-            src: ['source/hashed/header.html'],
-            dest: 'source/ee_templates/default_site/views/partials/'
-          },
-          {
-            flatten : true,
-            expand : true,
-            src: ['source/hashed/main.js'],
-            dest: 'source/js/'
-          }
-        ]
-      }
-    },
 
-    copy : {
-        dev : {
-            src : [ '<%= jsSrc %>' ],
-            dest : '<%= jsDev %>/',
-            expand : true,
-            flatten : true
-        }
-    },
-
-    compass : {
-        dev : {
-            config: '/config.rb',
-            environment : 'development'
-        }
-    },
-
-    watch: {
-        options : {
-            livereload : true
-        },
-        files : [
-            '<%= templates %>'
-            , '<%= jsDev %>/*.js'
-            , '<%= pkg.assetsPath %>css/*.css'
-        ],
-        sass : {
-            files : ['<%= sass %>'],
-            tasks : ['compass:dev']
-        },
-        hashed : {
+        watch : {
+            options : {
+                livereload : true
+            },
             files : [
-                'source/hashed/header.html',
-                'source/hashed/main.js'
+                'source/templates/**/*.html'
+                , 'webroot/assets/js/scripts.min.js'
+                , 'webroot/assets/css/style.min.css'
+                , 'webroot/assets/css/style.concat.css'
             ],
-            tasks : ['replace']
+            sass : {
+                files : ['source/sass/**/*.scss'],
+                tasks : ['compass']
+            },
+            autoprefixer : {
+                files : ['webroot/assets/css/style.css'],
+                tasks : ['autoprefixer:css']
+            },
+            css : {
+                files : ['webroot/assets/css/style.fixed.css'],
+                tasks : ['concat:css']
+            },
+            scripts : {
+                files : ['source/js/**/*.js'],
+                tasks : ['uglify:dev', 'concat:js']
+            }
         },
-        js : {
-            files : ['<%= jsSrc %>'],
-            tasks : ['copy:dev']
+        uglify : {
+            dev : {
+                options : {
+                    sourceMap : true,
+                    sourceMapIncludeSources : true,
+                    compress : {
+                        global_defs : {
+                            "DEBUG" : true
+                        }
+                    }
+                },
+                files : {
+                    'webroot/assets/js/scripts.min.js' : mainJs,
+                }
+            },
+            build : {
+                options : {
+                    compess : {
+                        drop_console : true,
+                        global_defs : {
+                            "DEBUG" : false
+                        }
+                    }
+                },
+                files : {
+                    'webroot/assets/js/scripts.min.js' : mainJs,
+                }
+            }
         },
-    },
+        compass : {
+            dev : {
+                options : {
+                    config : "./config.rb"
+                }
+            }
+        },
+        autoprefixer : {
+            options : {},
+            css : {
+                src : 'webroot/assets/css/style.css',
+                dest : 'webroot/assets/css/style.fixed.css'
+            }
+        },
+        modernizr : {
+            dist : {
+                devFile : 'source/bower_components/modernizr/modernizr.js',
+                outputFile :  'source/bower_components/modernizr/modernizr.build.js',
+                uglify : false,
+                extra : {
+                    shiv : false,
+                    load : false
+                },
+                files : {
+                    src : [
+                        'source/js/**/*.js'
+                        , 'source/sass/**/*.scss'
+                        , '!source/sass/phase1/**/*.scss'
+                    ]
+                }
+            }
+        },
+        cssmin : {
+            build : {
+                files : {
+                    'webroot/assets/css/style.min.css' : 'webroot/assets/css/style.concat.css'
+                },
+                options : {
+                    noAdvanced : true
+                }
+            }
+        },
+        concat : {
+            css : {
+                files :  {
+                    'webroot/assets/css/style.concat.css' : [
+                        'source/bower_components/slick-carousel/slick/slick.css'
+                        , 'webroot/assets/css/style.fixed.css'
+                    ]
+                }
+            },
+            js : {
+                files : {
+                    'webroot/assets/js/scripts.concat.js' : mainJs,
+                }
+            }
+        }
+    })
 
-    clean: {
-        build : "build"
-    }
+    // These plugins provide necessary tasks.
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.loadNpmTasks('grunt-contrib-cssmin')
+    grunt.loadNpmTasks('grunt-modernizr')
+    grunt.loadNpmTasks('grunt-autoprefixer')
 
-  });
+    grunt.registerTask('default', ['watch'])
+    grunt.registerTask('nightwatch', ['shell:nightwatch']);
+    grunt.registerTask('build', [
+        'modernizr'
+        , 'uglify:build'
+        , 'compass'
+        , 'autoprefixer:css'
+        , 'concat:css'
+        , 'cssmin:build'
+    ])
+    grunt.registerTask('css', [
+        'compass'
+        , 'autoprefixer:css'
+        , 'concat:css'
+        , 'cssmin:build'
+    ])
 
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-compass');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-replace');
-  grunt.loadNpmTasks('grunt-shell');
-
-  // Default task.
-  grunt.registerTask('nightwatch', ['shell:nightwatch']);
-  grunt.registerTask('default', ['watch']);
-
-};
+}
