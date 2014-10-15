@@ -84,3 +84,27 @@
     right: 10px;
     top: 10px;
 }
+
+.right-divider {
+    position: relative;
+    padding-right: 1rem;
+
+    &:after {
+        display: none;
+
+        @media #{$medium-up} {
+            display: block;
+        }
+
+        content: '';
+        width: 7px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background-image: url(/assets/img/v-line.png);
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}

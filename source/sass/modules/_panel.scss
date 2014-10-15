@@ -4,6 +4,8 @@
     border: none;
     width: 100%;
 
+    @include transition(background-color 150ms ease, color 150ms ease);
+
     &:hover {
         border: none;
     }
@@ -11,11 +13,21 @@
     p:last-child {
         margin-bottom: 0;
     }
+
+    &.panel--hover {
+        background-color: transparent;
+    }
 }
 
 .panel--purple {
     background-color: rgba($purple, 0.1);
     color: $purple;
+
+    &.selected,
+    &.panel--hover:hover {
+        background-color: rgba($teal, 0.1);
+        color: $teal;
+    }
 }
 
 .panel--green {

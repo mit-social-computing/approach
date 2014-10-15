@@ -2,7 +2,7 @@
 
 // define(['jquery'],
 // function($) {
-if ( path.match(/^\/start-a-school/) ) {
+if ( path.match(/^\/apply/) ) {
     //var forEach = Array.prototype.forEach
     function splitName(fullName) {
         var firstLast = []

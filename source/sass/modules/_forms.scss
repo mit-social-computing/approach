@@ -1,16 +1,10 @@
-.form-centered {
-    max-width: 512px;
+.form-purple {
     width: 100%;
-    margin: 0 auto 1rem;
-}
-
-.form-centered--purple {
     font-family: kim;
     letter-spacing: 1.9px;
     color: $purple;
     font-size: rem-calc(18);
     @extend .antialiased;
-
     &.error {
         border: 1px solid $pink;
     }

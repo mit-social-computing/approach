@@ -29,8 +29,6 @@ img {
 }
 
 .container {
-    @include flexbox;
-    @include flex-direction(column);
     width: 95%;
     max-width: 865px;
     margin: 0 auto;
@@ -38,6 +36,11 @@ img {
 
     .resources & {
         display: block;
+    }
+
+    @media #{$medium-up} {
+        @include flexbox;
+        @include flex-direction(column);
     }
 
     @media #{$screen} and (min-height: 700px) {

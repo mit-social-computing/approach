@@ -116,9 +116,24 @@ if ( path === '/' ) {
             }
         }, false)
     }
-} else if ( path.match(/^\/start-a-school/) ) {
-    var f = document.getElementById('startForm')
-    f.addEventListener('submit', sendForm, false)
+} else if ( path.match(/^\/apply/) ) {
+    //var f = document.getElementById('startForm')
+    //f.addEventListener('submit', sendForm, false)
+    $("form").submit(sendForm)
+    $('a.panel').click(function(e) {
+        e.preventDefault()
+        var $this = $(this),
+            idx = $this.index()
+
+        $this.siblings().removeClass('selected')
+        $this.addClass('selected')
+        $('#viewer').children().eq(idx).addClass('selected')
+        $('#viewer').children().eq(idx).siblings().removeClass('selected')
+
+    })
+    setTimeout(function() {
+        $('a.panel').first().click()
+    })
 } else if ( path.match(/^\/blog/) ) {
     imagesLoaded('#blog', function(){
         $(this.elements).addClass('layout-image-is-visible')

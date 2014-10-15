@@ -9,6 +9,7 @@
     margin: 0 auto;
     background-repeat: no-repeat;
     @extend .antialiased;
+    @include transition(color 150ms ease, background-color 150ms ease);
 
     &:focus {
         outline: 1px $purple dotted;
@@ -20,7 +21,14 @@
 }
 
 .btn--purple {
-    padding: 10px 28px 11px 11px;
-    background-image: url(/assets/img/patterns/purple-swatch.png);
-    background-position: -81px -32px;
+    margin: 0;
+    padding: 25px;
+    border-radius: 3px;
+    background-color: rgba($purple, 0.1);
+    color: $purple;
+
+    &:hover {
+        color: $pink;
+        background-color: rgba($purple, 0.5);
+    }
 }
