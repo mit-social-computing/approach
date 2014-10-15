@@ -2,7 +2,7 @@
 
 // define(['jquery', 'slick'],
 // function($) {
-if ( path.split('/').length === 3 ) {
+if ( path.split('/').length === 3 || path.match(/^\/blog/)) {
     var $bg, $close
 
     function keyHandler(e) {

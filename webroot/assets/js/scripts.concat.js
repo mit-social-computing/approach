@@ -19393,7 +19393,7 @@ if ( path.match(/^\/resources/) ) {
 
 // define(['jquery', 'slick'],
 // function($) {
-if ( path.split('/').length === 3 ) {
+if ( path.split('/').length === 3 || path.match(/^\/blog/)) {
     var $bg, $close
 
     function keyHandler(e) {
@@ -19502,44 +19502,6 @@ if ( path.match(/^\/start-a-school/) ) {
 //        splitName : splitName,
 //        sendForm : sendForm
 //    }
-//})
-
-'use strict';
-
-//define(['jquery'],
-//function($) {
-if ( path.match(/^\/classroom/) ) {
-    var stage, message, veil
-
-    function setup() {
-        message.parentElement.removeChild(message)
-        stage.classList.remove('is-intro')
-        stage.insertBefore(veil, document.getElementById('1'))
-    }
-
-    function enter(e) {
-        /*jshint validthis:true*/
-        var targetLayer = this.hash
-        $('.classroom-layer--section:not(' + targetLayer + ')').addClass('fade-out')
-    }
-
-    function exit(e) {
-        $('.classroom-layer--section').removeClass('fade-out')
-    }
-
-    //return {
-    function classroom() {
-        message = document.getElementById('message')
-        stage = document.getElementById('classStage')
-        veil = document.getElementById('blackLayer')
-
-        window.timer = setTimeout(setup, 1000)
-
-        $('.icon').hover(enter, exit)
-        $('.icon').click(function(e) { e.preventDefault() })
-    }
-//}
-}
 //})
 
 'use strict';

@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         , 'source/js/resources.js'
         , 'source/js/lightbox.js'
         , 'source/js/forms.js'
-        , 'source/js/classroom.js'
+        //, 'source/js/classroom.js'
         , 'source/js/approach.js'
     ]
 
