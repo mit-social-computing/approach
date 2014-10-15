@@ -1,5 +1,5 @@
 /* Modernizr (Custom Build) | MIT & BSD
- * Build: http://modernizr.com/download/#-load-cssclasses-touch-history-flexbox
+ * Build: http://modernizr.com/download/#-cssclasses-touch-history-flexbox
  */
 ;
 
@@ -279,9 +279,6 @@ window.Modernizr = (function( window, document, undefined ) {
     return Modernizr;
 
 })(this, this.document);
-
-(function(a,b,c){function d(a){return"[object Function]"==o.call(a)}function e(a){return"string"==typeof a}function f(){}function g(a){return!a||"loaded"==a||"complete"==a||"uninitialized"==a}function h(){var a=p.shift();q=1,a?a.t?m(function(){("c"==a.t?B.injectCss:B.injectJs)(a.s,0,a.a,a.x,a.e,1)},0):(a(),h()):q=0}function i(a,c,d,e,f,i,j){function k(b){if(!o&&g(l.readyState)&&(u.r=o=1,!q&&h(),l.onload=l.onreadystatechange=null,b)){"img"!=a&&m(function(){t.removeChild(l)},50);for(var d in y[c])y[c].hasOwnProperty(d)&&y[c][d].onload()}}var j=j||B.errorTimeout,l=b.createElement(a),o=0,r=0,u={t:d,s:c,e:f,a:i,x:j};1===y[c]&&(r=1,y[c]=[]),"object"==a?l.data=c:(l.src=c,l.type=a),l.width=l.height="0",l.onerror=l.onload=l.onreadystatechange=function(){k.call(this,r)},p.splice(e,0,u),"img"!=a&&(r||2===y[c]?(t.insertBefore(l,s?null:n),m(k,j)):y[c].push(l))}function j(a,b,c,d,f){return q=0,b=b||"j",e(a)?i("c"==b?v:u,a,b,this.i++,c,d,f):(p.splice(this.i++,0,a),1==p.length&&h()),this}function k(){var a=B;return a.loader={load:j,i:0},a}var l=b.documentElement,m=a.setTimeout,n=b.getElementsByTagName("script")[0],o={}.toString,p=[],q=0,r="MozAppearance"in l.style,s=r&&!!b.createRange().compareNode,t=s?l:n.parentNode,l=a.opera&&"[object Opera]"==o.call(a.opera),l=!!b.attachEvent&&!l,u=r?"object":l?"script":"img",v=l?"script":u,w=Array.isArray||function(a){return"[object Array]"==o.call(a)},x=[],y={},z={timeout:function(a,b){return b.length&&(a.timeout=b[0]),a}},A,B;B=function(a){function b(a){var a=a.split("!"),b=x.length,c=a.pop(),d=a.length,c={url:c,origUrl:c,prefixes:a},e,f,g;for(f=0;f<d;f++)g=a[f].split("="),(e=z[g.shift()])&&(c=e(c,g));for(f=0;f<b;f++)c=x[f](c);return c}function g(a,e,f,g,h){var i=b(a),j=i.autoCallback;i.url.split(".").pop().split("?").shift(),i.bypass||(e&&(e=d(e)?e:e[a]||e[g]||e[a.split("/").pop().split("?")[0]]),i.instead?i.instead(a,e,f,g,h):(y[i.url]?i.noexec=!0:y[i.url]=1,f.load(i.url,i.forceCSS||!i.forceJS&&"css"==i.url.split(".").pop().split("?").shift()?"c":c,i.noexec,i.attrs,i.timeout),(d(e)||d(j))&&f.load(function(){k(),e&&e(i.origUrl,h,g),j&&j(i.origUrl,h,g),y[i.url]=2})))}function h(a,b){function c(a,c){if(a){if(e(a))c||(j=function(){var a=[].slice.call(arguments);k.apply(this,a),l()}),g(a,j,b,0,h);else if(Object(a)===a)for(n in m=function(){var b=0,c;for(c in a)a.hasOwnProperty(c)&&b++;return b}(),a)a.hasOwnProperty(n)&&(!c&&!--m&&(d(j)?j=function(){var a=[].slice.call(arguments);k.apply(this,a),l()}:j[n]=function(a){return function(){var b=[].slice.call(arguments);a&&a.apply(this,b),l()}}(k[n])),g(a[n],j,b,n,h))}else!c&&l()}var h=!!a.test,i=a.load||a.both,j=a.callback||f,k=j,l=a.complete||f,m,n;c(h?a.yep:a.nope,!!i),i&&c(i)}var i,j,l=this.yepnope.loader;if(e(a))g(a,0,l,0);else if(w(a))for(i=0;i<a.length;i++)j=a[i],e(j)?g(j,0,l,0):w(j)?B(j):Object(j)===j&&h(j,l);else Object(a)===a&&h(a,l)},B.addPrefix=function(a,b){z[a]=b},B.addFilter=function(a){x.push(a)},B.errorTimeout=1e4,null==b.readyState&&b.addEventListener&&(b.readyState="loading",b.addEventListener("DOMContentLoaded",A=function(){b.removeEventListener("DOMContentLoaded",A,0),b.readyState="complete"},0)),a.yepnope=k(),a.yepnope.executeStack=h,a.yepnope.injectJs=function(a,c,d,e,i,j){var k=b.createElement("script"),l,o,e=e||B.errorTimeout;k.src=a;for(o in d)k.setAttribute(o,d[o]);c=j?h:c||f,k.onreadystatechange=k.onload=function(){!l&&g(k.readyState)&&(l=1,c(),k.onload=k.onreadystatechange=null)},m(function(){l||(l=1,c(1))},e),i?k.onload():n.parentNode.insertBefore(k,n)},a.yepnope.injectCss=function(a,c,d,e,g,i){var e=b.createElement("link"),j,c=i?h:c||f;e.href=a,e.rel="stylesheet",e.type="text/css";for(j in d)e.setAttribute(j,d[j]);g||(n.parentNode.insertBefore(e,n),m(c,0))}})(this,document);
-Modernizr.load=function(){yepnope.apply(window,[].slice.call(arguments,0));};
 ;
 /**
  * @license
@@ -10906,863 +10903,6 @@ return jQuery;
 }));
 
 /*
-    SuperGif
-
-    Example usage:
-
-        <img src="./example1_preview.gif" rel:animated_src="./example1.gif" width="360" height="360" rel:auto_play="1" />
-
-        <script type="text/javascript">
-            $$('img').each(function (img_tag) {
-                if (/.*\.gif/.test(img_tag.src)) {
-                    var rub = new SuperGif({ gif: img_tag } );
-                    rub.load();
-                }
-            });
-        </script>
-
-    Image tag attributes:
-
-        rel:animated_src -    If this url is specified, it's loaded into the player instead of src.
-                            This allows a preview frame to be shown until animated gif data is streamed into the canvas
-
-        rel:auto_play -        Defaults to 1 if not specified. If set to zero, a call to the play() method is needed
-
-    Constructor options args
-
-        gif                 Required. The DOM element of an img tag.
-        auto_play             Optional. Same as the rel:auto_play attribute above, this arg overrides the img tag info.
-        max_width            Optional. Scale images over max_width down to max_width. Helpful with mobile.
-
-    Instance methods
-
-        // loading
-        load( callback )    Loads the gif into a canvas element and then calls callback if one is passed
-
-        // play controls
-        play -                Start playing the gif
-        pause -                Stop playing the gif
-        move_to(i) -        Move to frame i of the gif
-        move_relative(i) -    Move i frames ahead (or behind if i < 0)
-
-        // getters
-        get_canvas            The canvas element that the gif is playing in. Handy for assigning event handlers to.
-        get_playing            Whether or not the gif is currently playing
-        get_loading            Whether or not the gif has finished loading/parsing
-        get_auto_play        Whether or not the gif is set to play automatically
-        get_length            The number of frames in the gif
-        get_current_frame    The index of the currently displayed frame of the gif
-
-        For additional customization (viewport inside iframe) these params may be passed:
-        c_w, c_h - width and height of canvas
-        vp_t, vp_l, vp_ w, vp_h - top, left, width and height of the viewport
-
-        A bonus: few articles to understand what is going on
-            http://enthusiasms.org/post/16976438906
-            http://www.matthewflickinger.com/lab/whatsinagif/bits_and_bytes.asp
-            http://humpy77.deviantart.com/journal/Frame-Delay-Times-for-Animated-GIFs-214150546
-
-*/
-
-// Generic functions
-var bitsToNum = function (ba) {
-    return ba.reduce(function (s, n) {
-        return s * 2 + n;
-    }, 0);
-};
-
-var byteToBitArr = function (bite) {
-    var a = [];
-    for (var i = 7; i >= 0; i--) {
-        a.push( !! (bite & (1 << i)));
-    }
-    return a;
-};
-
-// Stream
-/**
- * @constructor
- */
-// Make compiler happy.
-var Stream = function (data) {
-    this.data = data;
-    this.len = this.data.length;
-    this.pos = 0;
-
-    this.readByte = function () {
-        if (this.pos >= this.data.length) {
-            throw new Error('Attempted to read past end of stream.');
-        }
-        return data.charCodeAt(this.pos++) & 0xFF;
-    };
-
-    this.readBytes = function (n) {
-        var bytes = [];
-        for (var i = 0; i < n; i++) {
-            bytes.push(this.readByte());
-        }
-        return bytes;
-    };
-
-    this.read = function (n) {
-        var s = '';
-        for (var i = 0; i < n; i++) {
-            s += String.fromCharCode(this.readByte());
-        }
-        return s;
-    };
-
-    this.readUnsigned = function () { // Little-endian.
-        var a = this.readBytes(2);
-        return (a[1] << 8) + a[0];
-    };
-};
-
-var lzwDecode = function (minCodeSize, data) {
-    // TODO: Now that the GIF parser is a bit different, maybe this should get an array of bytes instead of a String?
-    var pos = 0; // Maybe this streaming thing should be merged with the Stream?
-    var readCode = function (size) {
-        var code = 0;
-        for (var i = 0; i < size; i++) {
-            if (data.charCodeAt(pos >> 3) & (1 << (pos & 7))) {
-                code |= 1 << i;
-            }
-            pos++;
-        }
-        return code;
-    };
-
-    var output = [];
-
-    var clearCode = 1 << minCodeSize;
-    var eoiCode = clearCode + 1;
-
-    var codeSize = minCodeSize + 1;
-
-    var dict = [];
-
-    var clear = function () {
-        dict = [];
-        codeSize = minCodeSize + 1;
-        for (var i = 0; i < clearCode; i++) {
-            dict[i] = [i];
-        }
-        dict[clearCode] = [];
-        dict[eoiCode] = null;
-
-    };
-
-    var code;
-    var last;
-
-    while (true) {
-        last = code;
-        code = readCode(codeSize);
-
-        if (code === clearCode) {
-            clear();
-            continue;
-        }
-        if (code === eoiCode) break;
-
-        if (code < dict.length) {
-            if (last !== clearCode) {
-                dict.push(dict[last].concat(dict[code][0]));
-            }
-        }
-        else {
-            if (code !== dict.length) throw new Error('Invalid LZW code.');
-            dict.push(dict[last].concat(dict[last][0]));
-        }
-        output.push.apply(output, dict[code]);
-
-        if (dict.length === (1 << codeSize) && codeSize < 12) {
-            // If we're at the last code and codeSize is 12, the next code will be a clearCode, and it'll be 12 bits long.
-            codeSize++;
-        }
-    }
-
-    // I don't know if this is technically an error, but some GIFs do it.
-    //if (Math.ceil(pos / 8) !== data.length) throw new Error('Extraneous LZW bytes.');
-    return output;
-};
-
-
-// The actual parsing; returns an object with properties.
-var parseGIF = function (st, handler) {
-    handler || (handler = {});
-
-    // LZW (GIF-specific)
-    var parseCT = function (entries) { // Each entry is 3 bytes, for RGB.
-        var ct = [];
-        for (var i = 0; i < entries; i++) {
-            ct.push(st.readBytes(3));
-        }
-        return ct;
-    };
-
-    var readSubBlocks = function () {
-        var size, data;
-        data = '';
-        do {
-            size = st.readByte();
-            data += st.read(size);
-        } while (size !== 0);
-        return data;
-    };
-
-    var parseHeader = function () {
-        var hdr = {};
-        hdr.sig = st.read(3);
-        hdr.ver = st.read(3);
-        if (hdr.sig !== 'GIF') throw new Error('Not a GIF file.'); // XXX: This should probably be handled more nicely.
-        hdr.width = st.readUnsigned();
-        hdr.height = st.readUnsigned();
-
-        var bits = byteToBitArr(st.readByte());
-        hdr.gctFlag = bits.shift();
-        hdr.colorRes = bitsToNum(bits.splice(0, 3));
-        hdr.sorted = bits.shift();
-        hdr.gctSize = bitsToNum(bits.splice(0, 3));
-
-        hdr.bgColor = st.readByte();
-        hdr.pixelAspectRatio = st.readByte(); // if not 0, aspectRatio = (pixelAspectRatio + 15) / 64
-        if (hdr.gctFlag) {
-            hdr.gct = parseCT(1 << (hdr.gctSize + 1));
-        }
-        handler.hdr && handler.hdr(hdr);
-    };
-
-    var parseExt = function (block) {
-        var parseGCExt = function (block) {
-            var blockSize = st.readByte(); // Always 4
-            var bits = byteToBitArr(st.readByte());
-            block.reserved = bits.splice(0, 3); // Reserved; should be 000.
-            block.disposalMethod = bitsToNum(bits.splice(0, 3));
-            block.userInput = bits.shift();
-            block.transparencyGiven = bits.shift();
-
-            block.delayTime = st.readUnsigned();
-
-            block.transparencyIndex = st.readByte();
-
-            block.terminator = st.readByte();
-
-            handler.gce && handler.gce(block);
-        };
-
-        var parseComExt = function (block) {
-            block.comment = readSubBlocks();
-            handler.com && handler.com(block);
-        };
-
-        var parsePTExt = function (block) {
-            // No one *ever* uses this. If you use it, deal with parsing it yourself.
-            var blockSize = st.readByte(); // Always 12
-            block.ptHeader = st.readBytes(12);
-            block.ptData = readSubBlocks();
-            handler.pte && handler.pte(block);
-        };
-
-        var parseAppExt = function (block) {
-            var parseNetscapeExt = function (block) {
-                var blockSize = st.readByte(); // Always 3
-                block.unknown = st.readByte(); // ??? Always 1? What is this?
-                block.iterations = st.readUnsigned();
-                block.terminator = st.readByte();
-                handler.app && handler.app.NETSCAPE && handler.app.NETSCAPE(block);
-            };
-
-            var parseUnknownAppExt = function (block) {
-                block.appData = readSubBlocks();
-                // FIXME: This won't work if a handler wants to match on any identifier.
-                handler.app && handler.app[block.identifier] && handler.app[block.identifier](block);
-            };
-
-            var blockSize = st.readByte(); // Always 11
-            block.identifier = st.read(8);
-            block.authCode = st.read(3);
-            switch (block.identifier) {
-            case 'NETSCAPE':
-                parseNetscapeExt(block);
-                break;
-            default:
-                parseUnknownAppExt(block);
-                break;
-            }
-        };
-
-        var parseUnknownExt = function (block) {
-            block.data = readSubBlocks();
-            handler.unknown && handler.unknown(block);
-        };
-
-        block.label = st.readByte();
-        switch (block.label) {
-        case 0xF9:
-            block.extType = 'gce';
-            parseGCExt(block);
-            break;
-        case 0xFE:
-            block.extType = 'com';
-            parseComExt(block);
-            break;
-        case 0x01:
-            block.extType = 'pte';
-            parsePTExt(block);
-            break;
-        case 0xFF:
-            block.extType = 'app';
-            parseAppExt(block);
-            break;
-        default:
-            block.extType = 'unknown';
-            parseUnknownExt(block);
-            break;
-        }
-    };
-
-    var parseImg = function (img) {
-        var deinterlace = function (pixels, width) {
-            // Of course this defeats the purpose of interlacing. And it's *probably*
-            // the least efficient way it's ever been implemented. But nevertheless...
-            var newPixels = new Array(pixels.length);
-            var rows = pixels.length / width;
-            var cpRow = function (toRow, fromRow) {
-                var fromPixels = pixels.slice(fromRow * width, (fromRow + 1) * width);
-                newPixels.splice.apply(newPixels, [toRow * width, width].concat(fromPixels));
-            };
-
-            // See appendix E.
-            var offsets = [0, 4, 2, 1];
-            var steps = [8, 8, 4, 2];
-
-            var fromRow = 0;
-            for (var pass = 0; pass < 4; pass++) {
-                for (var toRow = offsets[pass]; toRow < rows; toRow += steps[pass]) {
-                    cpRow(toRow, fromRow)
-                    fromRow++;
-                }
-            }
-
-            return newPixels;
-        };
-
-        img.leftPos = st.readUnsigned();
-        img.topPos = st.readUnsigned();
-        img.width = st.readUnsigned();
-        img.height = st.readUnsigned();
-
-        var bits = byteToBitArr(st.readByte());
-        img.lctFlag = bits.shift();
-        img.interlaced = bits.shift();
-        img.sorted = bits.shift();
-        img.reserved = bits.splice(0, 2);
-        img.lctSize = bitsToNum(bits.splice(0, 3));
-
-        if (img.lctFlag) {
-            img.lct = parseCT(1 << (img.lctSize + 1));
-        }
-
-        img.lzwMinCodeSize = st.readByte();
-
-        var lzwData = readSubBlocks();
-
-        img.pixels = lzwDecode(img.lzwMinCodeSize, lzwData);
-
-        if (img.interlaced) { // Move
-            img.pixels = deinterlace(img.pixels, img.width);
-        }
-
-        handler.img && handler.img(img);
-    };
-
-    var parseBlock = function () {
-        var block = {};
-        block.sentinel = st.readByte();
-
-        switch (String.fromCharCode(block.sentinel)) { // For ease of matching
-        case '!':
-            block.type = 'ext';
-            parseExt(block);
-            break;
-        case ',':
-            block.type = 'img';
-            parseImg(block);
-            break;
-        case ';':
-            block.type = 'eof';
-            handler.eof && handler.eof(block);
-            break;
-        default:
-            throw new Error('Unknown block: 0x' + block.sentinel.toString(16)); // TODO: Pad this with a 0.
-        }
-
-        if (block.type !== 'eof') setTimeout(parseBlock, 0);
-    };
-
-    var parse = function () {
-        parseHeader();
-        setTimeout(parseBlock, 0);
-    };
-
-    parse();
-};
-
-
-var SuperGif = function ( opts ) {
-    var options = {
-        //viewport position
-        vp_l: 0,
-        vp_t: 0,
-        vp_w: null,
-        vp_h: null,
-        //canvas sizes
-        c_w: null,
-        c_h: null
-    };
-    for (var i in opts ) { options[i] = opts[i] }
-    if (options.vp_w && options.vp_h) options.is_vp = true;
-
-    var stream;
-    var hdr;
-
-    var loadError = null;
-    var loading = false;
-
-    var transparency = null;
-    var delay = null;
-    var disposalMethod = null;
-    var disposalRestoreFromIdx = 0;
-    var lastDisposalMethod = null;
-    var frame = null;
-    var lastImg = null;
-
-    var playing = true;
-    var forward = true;
-
-    var ctx_scaled = false;
-
-    var frames = [];
-
-    var gif = options.gif;
-    if (typeof options.auto_play == 'undefined') 
-        options.auto_play = (!gif.getAttribute('rel:auto_play') || gif.getAttribute('rel:auto_play') == '1');
-
-    var clear = function () {
-        transparency = null;
-        delay = null;
-        lastDisposalMethod = disposalMethod;
-        disposalMethod = null;
-        frame = null;
-    };
-
-    // XXX: There's probably a better way to handle catching exceptions when
-    // callbacks are involved.
-    var doParse = function () {
-        try {
-            parseGIF(stream, handler);
-        }
-        catch (err) {
-            doLoadError('parse');
-        }
-    };
-
-    var doText = function (text) {
-        toolbar.innerHTML = text; // innerText? Escaping? Whatever.
-        toolbar.style.visibility = 'visible';
-    };
-
-    var setSizes = function(w, h) {
-        canvas.width = w * get_canvas_scale();
-        canvas.height = h * get_canvas_scale();
-        toolbar.style.minWidth = ( w * get_canvas_scale() ) + 'px';
-
-        tmpCanvas.width = w;
-        tmpCanvas.height = h;
-        tmpCanvas.style.width = w + 'px';
-        tmpCanvas.style.height = h + 'px';
-        tmpCanvas.getContext('2d').setTransform(1, 0, 0, 1, 0, 0);
-    }
-
-    var doShowProgress = function (pos, length, draw) {
-        if (draw) {
-            var height = 25;
-            var left, mid, top, width;
-            if (options.is_vp) {
-                if (!ctx_scaled) {
-                    top = (options.vp_t + options.vp_h - height);
-                    height = height;
-                    left = options.vp_l;
-                    mid = left + (pos / length) * options.vp_w;
-                    width = canvas.width;
-                } else {
-                    top = (options.vp_t + options.vp_h - height) / get_canvas_scale();
-                    height = height / get_canvas_scale();
-                    left = (options.vp_l / get_canvas_scale() );
-                    mid = left + (pos / length) * (options.vp_w / get_canvas_scale());
-                    width = canvas.width / get_canvas_scale();
-                }
-                //some debugging, draw rect around viewport
-                if (false) {
-                    if (!ctx_scaled) {
-                        var l = options.vp_l, t = options.vp_t;
-                        var w = options.vp_w, h = options.vp_h;
-                    } else {
-                        var l = options.vp_l/get_canvas_scale(), t = options.vp_t/get_canvas_scale();
-                        var w = options.vp_w/get_canvas_scale(), h = options.vp_h/get_canvas_scale();
-                    }
-                    ctx.rect(l,t,w,h);
-                    ctx.stroke();
-                }
-            }
-            else {
-                top = canvas.height - height;
-                mid = (pos / length) * canvas.width;
-                width = canvas.width;
-            }
-            // XXX Figure out alpha fillRect.
-            //ctx.fillStyle = 'salmon';
-            ctx.fillStyle = 'rgba(255,255,255,0.4)';
-            ctx.fillRect(mid, top, width - mid, height);
-
-            //ctx.fillStyle = 'teal';
-            ctx.fillStyle = 'rgba(255,0,22,.8)';
-            ctx.fillRect(0, top, mid, height);
-        }
-    };
-
-    var doLoadError = function (originOfError) {
-        var drawError = function () {
-            ctx.fillStyle = 'black';
-            ctx.fillRect(0, 0, options.c_w ? options.c_w : hdr.width, options.c_h ? options.c_h : hdr.height);
-            ctx.strokeStyle = 'red';
-            ctx.lineWidth = 3;
-            ctx.moveTo(0, 0);
-            ctx.lineTo(options.c_w ? options.c_w : hdr.width, options.c_h ? options.c_h : hdr.height);
-            ctx.moveTo(0, options.c_h ? options.c_h : hdr.height);
-            ctx.lineTo(options.c_w ? options.c_w : hdr.width, 0);
-            ctx.stroke();
-        };
-
-        loadError = originOfError;
-        hdr = {
-            width: gif.width,
-            height: gif.height
-        }; // Fake header.
-        frames = [];
-        drawError();
-    };
-
-    var doHdr = function (_hdr) {
-        hdr = _hdr;
-        setSizes(hdr.width, hdr.height)
-    };
-
-    var doGCE = function (gce) {
-        pushFrame();
-        clear();
-        transparency = gce.transparencyGiven ? gce.transparencyIndex : null;
-        delay = gce.delayTime;
-        disposalMethod = gce.disposalMethod;
-        // We don't have much to do with the rest of GCE.
-    };
-
-    var pushFrame = function () {
-        if (!frame) return;
-        frames.push({
-            data: frame.getImageData(0, 0, hdr.width, hdr.height),
-            delay: delay
-        });
-    };
-
-    var doImg = function (img) {
-        if (!frame) frame = tmpCanvas.getContext('2d');
-
-        var currIdx = frames.length;
-
-        //ct = color table, gct = global color table
-        var ct = img.lctFlag ? img.lct : hdr.gct; // TODO: What if neither exists?
-
-        /*
-        Disposal method indicates the way in which the graphic is to
-        be treated after being displayed.
-
-        Values :    0 - No disposal specified. The decoder is
-                        not required to take any action.
-                    1 - Do not dispose. The graphic is to be left
-                        in place.
-                    2 - Restore to background color. The area used by the
-                        graphic must be restored to the background color.
-                    3 - Restore to previous. The decoder is required to
-                        restore the area overwritten by the graphic with
-                        what was there prior to rendering the graphic.
-
-                        Importantly, "previous" means the frame state
-                        after the last disposal of method 0, 1, or 2.
-        */
-        if (currIdx > 0) {
-            if (lastDisposalMethod === 3) {
-                // Restore to previous
-                frame.putImageData(frames[disposalRestoreFromIdx].data, 0, 0);
-            } else {
-                disposalRestoreFromIdx = currIdx - 1;
-            }
-
-            if (lastDisposalMethod === 2) {
-                // Restore to background color
-                // Browser implementations historically restore to transparent; we do the same.
-                // http://www.wizards-toolkit.org/discourse-server/viewtopic.php?f=1&t=21172#p86079
-                frame.clearRect(lastImg.leftPos, lastImg.topPos, lastImg.width, lastImg.height);
-            }
-        }
-        // else, Undefined/Do not dispose.
-        // frame contains final pixel data from the last frame; do nothing
-
-        //Get existing pixels for img region after applying disposal method
-        var imgData = frame.getImageData(img.leftPos, img.topPos, img.width, img.height);
-
-        //apply color table colors
-        var cdd = imgData.data;
-        img.pixels.forEach(function (pixel, i) {
-            // imgData.data === [R,G,B,A,R,G,B,A,...]
-            if (pixel !== transparency) {
-                cdd[i * 4 + 0] = ct[pixel][0];
-                cdd[i * 4 + 1] = ct[pixel][1];
-                cdd[i * 4 + 2] = ct[pixel][2];
-                cdd[i * 4 + 3] = 255; // Opaque.
-            }
-        });
-        imgData.data = cdd;
-
-        frame.putImageData(imgData, img.leftPos, img.topPos);
-
-        if (!ctx_scaled) {
-            ctx.scale(get_canvas_scale(),get_canvas_scale());
-            ctx_scaled = true;
-        }
-
-        // We could use the on-page canvas directly, except that we draw a progress
-        // bar for each image chunk (not just the final image).
-        ctx.drawImage(tmpCanvas, 0, 0);
-
-        lastImg = img;
-    };
-
-    var player = (function () {
-        var i = -1;
-        var curFrame;
-        var delayInfo;
-        var timer;
-
-        var showingInfo = false;
-        var pinned = false;
-
-        var stepFrame = function (delta) { // XXX: Name is confusing.
-            i = (i + delta + frames.length) % frames.length;
-            curFrame = i + 1;
-            delayInfo = frames[i].delay;
-            putFrame();
-        };
-
-        var step = (function () {
-            var stepping = false;
-
-            var doStep = function () {
-                stepping = playing;
-                if (!stepping) return;
-
-                stepFrame(forward ? 1 : -1);
-                var delay = frames[i].delay * 10;
-                if (!delay) delay = 100; // FIXME: Should this even default at all? What should it be?
-                timer = setTimeout(doStep, delay);
-                stepping = false;
-            };
-
-            return function () {
-                if (!stepping) setTimeout(doStep, 0);
-            };
-        }());
-
-        var putFrame = function () {
-            curFrame = i;
-
-            tmpCanvas.getContext("2d").putImageData(frames[i].data, 0, 0);
-            ctx.globalCompositeOperation = "copy";
-            ctx.drawImage(tmpCanvas, 0, 0);
-
-        };
-
-        var play = function () {
-            playing = true;
-            step();
-        };
-
-        var pause = function () {
-            playing = false;
-            clearTimeout(timer)
-        };
-
-
-        return {
-            init: function () {
-                if (loadError) return;
-
-                if ( ! (options.c_w && options.c_h) ) {
-                    ctx.scale(get_canvas_scale(),get_canvas_scale());
-                }
-
-                if (options.auto_play) {
-                    step();
-                }
-                else {
-                    i = 0;
-                    putFrame();
-                }
-            },
-            current_frame: curFrame,
-            step: step,
-            play: play,
-            pause: pause,
-            playing: playing,
-            move_relative: stepFrame,
-            current_frame: function() { return i; },
-            length: function() { return frames.length },
-            move_to: function ( frame_idx ) {
-                i = frame_idx;
-                putFrame();
-            }
-        }
-    }());
-
-    var doDecodeProgress = function (draw) {
-        doShowProgress(stream.pos, stream.data.length, draw);
-    };
-
-    var doNothing = function () {};
-    /**
-     * @param{boolean=} draw Whether to draw progress bar or not; this is not idempotent because of translucency.
-     *                       Note that this means that the text will be unsynchronized with the progress bar on non-frames;
-     *                       but those are typically so small (GCE etc.) that it doesn't really matter. TODO: Do this properly.
-     */
-    var withProgress = function (fn, draw) {
-        return function (block) {
-            fn(block);
-            doDecodeProgress(draw);
-        };
-    };
-
-
-    var handler = {
-        hdr: withProgress(doHdr),
-        gce: withProgress(doGCE),
-        com: withProgress(doNothing),
-        // I guess that's all for now.
-        app: {
-            // TODO: Is there much point in actually supporting iterations?
-            NETSCAPE: withProgress(doNothing)
-        },
-        img: withProgress(doImg, true),
-        eof: function (block) {
-            //toolbar.style.display = '';
-            pushFrame();
-            doDecodeProgress(false);
-            if ( ! (options.c_w && options.c_h) ) {
-                canvas.width = hdr.width * get_canvas_scale();
-                canvas.height = hdr.height * get_canvas_scale();
-            }
-            player.init();
-            loading = false;
-            if (load_callback) {
-                load_callback(gif);
-            }
-
-        }
-    };
-
-    var init = function () {
-        var parent = gif.parentNode;
-
-        var div = document.createElement('div');
-        canvas = document.createElement('canvas');
-        ctx = canvas.getContext('2d');
-        toolbar = document.createElement('div');
-
-        tmpCanvas = document.createElement('canvas');
-
-        div.width = canvas.width = gif.width;
-        div.height = canvas.height = gif.height;
-        toolbar.style.minWidth = gif.width + 'px';
-
-        div.className = 'jsgif';
-        toolbar.className = 'jsgif_toolbar';
-        div.appendChild(canvas);
-        div.appendChild(toolbar);
-
-        parent.insertBefore(div, gif);
-        parent.removeChild(gif);
-
-        if (options.c_w && options.c_h) setSizes(options.c_w, options.c_h);
-    };
-
-    var get_canvas_scale = function() {
-        var scale;
-        if (options.max_width && hdr && hdr.width > options.max_width) {
-            scale = options.max_width / hdr.width;
-        }
-        else {
-            scale = 1;
-        }
-        return scale;
-    }
-
-    var canvas, ctx, toolbar, tmpCanvas;
-    var initialized = false;
-    var load_callback = false;
-
-    return {
-        // play controls
-        play: player.play,
-        pause: player.pause,
-        move_relative: player.move_relative,
-        move_to: player.move_to,
-
-        // getters for instance vars
-        get_playing      : function() { return player.playing },
-        get_canvas       : function() { return canvas },
-        get_canvas_scale : function() { return get_canvas_scale() },
-        get_loading      : function() { return loading },
-        get_auto_play    : function() { return options.auto_play },
-        get_length       : function() { return player.length() },
-        get_current_frame: function() { return player.current_frame() },
-        load: function (callback) {
-
-            if (callback) load_callback = callback;
-            loading = true;
-
-            var h = new XMLHttpRequest();
-            h.overrideMimeType('text/plain; charset=x-user-defined');
-            h.onloadstart = function() {
-                // Wait until connection is oppened to replace the gif element with a canvas to avoid a blank img
-                if (!initialized ) init();
-            };
-            h.onload = function(e) {
-                stream = new Stream(h.responseText);
-                setTimeout(doParse, 0);
-            };
-            h.onprogress = function (e) {
-                if (e.lengthComputable) doShowProgress(e.loaded, e.total, true);
-            };
-            h.onerror = function() { doLoadError('xhr'); };
-            h.open('GET', gif.getAttribute('rel:animated_src') || gif.src, true);
-            h.send();
-
-        }
-    };
-
-};
-
-/*
      _ _      _       _
  ___| (_) ___| | __  (_)___
 / __| | |/ __| |/ /  | / __|
@@ -11770,7 +10910,7 @@ var SuperGif = function ( opts ) {
 |___/_|_|\___|_|\_(_)/ |___/
                    |__/
 
- Version: 1.3.6
+ Version: 1.3.11
   Author: Ken Wheeler
  Website: http://kenwheeler.github.io
     Docs: http://kenwheeler.github.io/slick
@@ -11785,6 +10925,8 @@ var SuperGif = function ( opts ) {
     'use strict';
     if (typeof define === 'function' && define.amd) {
         define(['jquery'], factory);
+    } else if (typeof exports !== 'undefined') {
+        module.exports = factory(require('jquery'));
     } else {
         factory(jQuery);
     }
@@ -11804,19 +10946,27 @@ var SuperGif = function ( opts ) {
 
             _.defaults = {
                 accessibility: true,
+                adaptiveHeight: false,
+                appendArrows: $(element),
+                appendDots: $(element),
                 arrows: true,
+                asNavFor: null,
+                prevArrow: '<button type="button" data-role="none" class="slick-prev">Previous</button>',
+                nextArrow: '<button type="button" data-role="none" class="slick-next">Next</button>',
                 autoplay: false,
                 autoplaySpeed: 3000,
                 centerMode: false,
                 centerPadding: '50px',
                 cssEase: 'ease',
                 customPaging: function(slider, i) {
-                    return '<button type="button">' + (i + 1) + '</button>';
+                    return '<button type="button" data-role="none">' + (i + 1) + '</button>';
                 },
                 dots: false,
+                dotsClass: 'slick-dots',
                 draggable: true,
                 easing: 'linear',
                 fade: false,
+                focusOnSelect: false,
                 infinite: true,
                 lazyLoad: 'ondemand',
                 onBeforeChange: null,
@@ -11824,20 +10974,26 @@ var SuperGif = function ( opts ) {
                 onInit: null,
                 onReInit: null,
                 pauseOnHover: true,
+                pauseOnDotsHover: false,
                 responsive: null,
+                rtl: false,
                 slide: 'div',
                 slidesToShow: 1,
                 slidesToScroll: 1,
                 speed: 300,
                 swipe: true,
+                swipeToSlide: false,
                 touchMove: true,
                 touchThreshold: 5,
                 useCSS: true,
-                vertical: false
+                variableWidth: false,
+                vertical: false,
+                waitForAnimate: true
             };
 
             _.initials = {
                 animating: false,
+                dragging: false,
                 autoPlayTimer: null,
                 currentSlide: 0,
                 currentLeft: null,
@@ -11900,6 +11056,7 @@ var SuperGif = function ( opts ) {
             _.autoPlay = $.proxy(_.autoPlay, _);
             _.autoPlayClear = $.proxy(_.autoPlayClear, _);
             _.changeSlide = $.proxy(_.changeSlide, _);
+            _.selectHandler = $.proxy(_.selectHandler, _);
             _.setPosition = $.proxy(_.setPosition, _);
             _.swipeHandler = $.proxy(_.swipeHandler, _);
             _.dragHandler = $.proxy(_.dragHandler, _);
@@ -11907,6 +11064,11 @@ var SuperGif = function ( opts ) {
             _.autoPlayIterator = $.proxy(_.autoPlayIterator, _);
 
             _.instanceUid = instanceUid++;
+
+            // A simple way to check for HTML strings
+            // Strict HTML recognition (must start with <)
+            // Extracted from jQuery v1.11 source
+            _.htmlExpr = /^(?:\s*(<[\w\W]+>)[^>]*)$/;
 
             _.init();
 
@@ -11947,9 +11109,13 @@ var SuperGif = function ( opts ) {
 
         _.$slides = _.$slideTrack.children(this.options.slide);
 
-        _.$slideTrack.children(this.options.slide).remove();
+        _.$slideTrack.children(this.options.slide).detach();
 
         _.$slideTrack.append(_.$slides);
+
+        _.$slides.each(function(index, element) {
+            $(element).attr("index",index);
+        });
 
         _.$slidesCache = _.$slides;
 
@@ -11957,11 +11123,18 @@ var SuperGif = function ( opts ) {
 
     };
 
-    Slick.prototype.animateSlide = function(targetLeft,
-        callback) {
+    Slick.prototype.animateSlide = function(targetLeft, callback) {
 
         var animProps = {}, _ = this;
 
+        if(_.options.slidesToShow === 1 && _.options.adaptiveHeight === true && _.options.vertical === false) {
+            var targetHeight = _.$slides.eq(_.currentSlide).outerHeight(true);
+            _.$list.animate({height: targetHeight},_.options.speed);
+        }
+
+        if (_.options.rtl === true && _.options.vertical === false) {
+            targetLeft = -targetLeft;
+        }
         if (_.transformsEnabled === false) {
             if (_.options.vertical === false) {
                 _.$slideTrack.animate({
@@ -12028,6 +11201,11 @@ var SuperGif = function ( opts ) {
 
     };
 
+    Slick.prototype.asNavFor = function(index) {
+        var _ = this, asNavFor = _.options.asNavFor != null ? $(_.options.asNavFor).getSlick() : null;
+        if(asNavFor != null) asNavFor.slideHandler(index, true);
+    };
+
     Slick.prototype.applyTransition = function(slide) {
 
         var _ = this,
@@ -12085,8 +11263,7 @@ var SuperGif = function ( opts ) {
                     _.direction = 0;
                 }
 
-                _.slideHandler(_.currentSlide + _.options
-                    .slidesToScroll);
+                _.slideHandler(_.currentSlide + _.options.slidesToScroll);
 
             } else {
 
@@ -12096,8 +11273,7 @@ var SuperGif = function ( opts ) {
 
                 }
 
-                _.slideHandler(_.currentSlide - _.options
-                    .slidesToScroll);
+                _.slideHandler(_.currentSlide - _.options.slidesToScroll);
 
             }
 
@@ -12115,12 +11291,16 @@ var SuperGif = function ( opts ) {
 
         if (_.options.arrows === true && _.slideCount > _.options.slidesToShow) {
 
-            _.$prevArrow = $(
-                '<button type="button" class="slick-prev">Previous</button>').appendTo(
-                _.$slider);
-            _.$nextArrow = $(
-                '<button type="button" class="slick-next">Next</button>').appendTo(
-                _.$slider);
+            _.$prevArrow = $(_.options.prevArrow);
+            _.$nextArrow = $(_.options.nextArrow);
+
+            if (_.htmlExpr.test(_.options.prevArrow)) {
+                _.$prevArrow.appendTo(_.options.appendArrows);
+            }
+
+            if (_.htmlExpr.test(_.options.nextArrow)) {
+                _.$nextArrow.appendTo(_.options.appendArrows);
+            }
 
             if (_.options.infinite !== true) {
                 _.$prevArrow.addClass('slick-disabled');
@@ -12137,7 +11317,7 @@ var SuperGif = function ( opts ) {
 
         if (_.options.dots === true && _.slideCount > _.options.slidesToShow) {
 
-            dotString = '<ul class="slick-dots">';
+            dotString = '<ul class="' + _.options.dotsClass + '">';
 
             for (i = 0; i <= _.getDotCount(); i += 1) {
                 dotString += '<li>' + _.options.customPaging.call(this, _, i) + '</li>';
@@ -12146,7 +11326,7 @@ var SuperGif = function ( opts ) {
             dotString += '</ul>';
 
             _.$dots = $(dotString).appendTo(
-                _.$slider);
+                _.options.appendDots);
 
             _.$dots.find('li').first().addClass(
                 'slick-active');
@@ -12163,6 +11343,11 @@ var SuperGif = function ( opts ) {
             ':not(.slick-cloned)').addClass(
             'slick-slide');
         _.slideCount = _.$slides.length;
+
+        _.$slides.each(function(index, element) {
+            $(element).attr("index",index);
+        });
+
         _.$slidesCache = _.$slides;
 
         _.$slider.addClass('slick-slider');
@@ -12176,7 +11361,6 @@ var SuperGif = function ( opts ) {
         _.$slideTrack.css('opacity', 0);
 
         if (_.options.centerMode === true) {
-            _.options.infinite = true;
             _.options.slidesToScroll = 1;
             if (_.options.slidesToShow % 2 === 0) {
                 _.options.slidesToShow = 3;
@@ -12191,11 +11375,13 @@ var SuperGif = function ( opts ) {
 
         _.buildDots();
 
+        _.updateDots();
+
         if (_.options.accessibility === true) {
             _.$list.prop('tabIndex', 0);
         }
 
-        _.setSlideClasses(0);
+        _.setSlideClasses(typeof this.currentSlide === 'number' ? this.currentSlide : 0);
 
         if (_.options.draggable === true) {
             _.$list.addClass('draggable');
@@ -12228,14 +11414,14 @@ var SuperGif = function ( opts ) {
                     if (targetBreakpoint !== _.activeBreakpoint) {
                         _.activeBreakpoint =
                             targetBreakpoint;
-                        _.options = $.extend({}, _.defaults,
+                        _.options = $.extend({}, _.options,
                             _.breakpointSettings[
                                 targetBreakpoint]);
                         _.refresh();
                     }
                 } else {
                     _.activeBreakpoint = targetBreakpoint;
-                    _.options = $.extend({}, _.defaults,
+                    _.options = $.extend({}, _.options,
                         _.breakpointSettings[
                             targetBreakpoint]);
                     _.refresh();
@@ -12243,7 +11429,7 @@ var SuperGif = function ( opts ) {
             } else {
                 if (_.activeBreakpoint !== null) {
                     _.activeBreakpoint = null;
-                    _.options = $.extend({}, _.defaults,
+                    _.options = $.extend({}, _.options,
                         _.originalSettings);
                     _.refresh();
                 }
@@ -12255,23 +11441,36 @@ var SuperGif = function ( opts ) {
 
     Slick.prototype.changeSlide = function(event) {
 
-        var _ = this;
+        var _ = this,
+            $target = $(event.target),
+            indexOffset, slideOffset, unevenOffset;
+
+        // If target is a link, prevent default action.
+        $target.is('a') && event.preventDefault();
+
+        unevenOffset = (_.slideCount % _.options.slidesToScroll !== 0);
+        indexOffset = unevenOffset ? 0 : (_.slideCount - _.currentSlide) % _.options.slidesToScroll;
 
         switch (event.data.message) {
 
             case 'previous':
-                _.slideHandler(_.currentSlide - _.options
-                    .slidesToScroll);
+                slideOffset = indexOffset === 0 ? _.options.slidesToScroll : _.options.slidesToShow - indexOffset;
+                if (_.slideCount > _.options.slidesToShow) {
+                    _.slideHandler(_.currentSlide  - slideOffset);
+                }
                 break;
 
             case 'next':
-                _.slideHandler(_.currentSlide + _.options
-                    .slidesToScroll);
+                slideOffset = indexOffset === 0 ? _.options.slidesToScroll : indexOffset;
+                if (_.slideCount > _.options.slidesToShow) {
+                    _.slideHandler(_.currentSlide + slideOffset);
+                }
                 break;
 
             case 'index':
-                _.slideHandler($(event.target).parent().index() * _.options.slidesToScroll);
-                break;
+                var index = event.data.index === 0 ? 0 :
+                    event.data.index || $(event.target).parent().index() * _.options.slidesToScroll;
+                _.slideHandler(index);
 
             default:
                 return false;
@@ -12295,14 +11494,18 @@ var SuperGif = function ( opts ) {
             _.$prevArrow.remove();
             _.$nextArrow.remove();
         }
-        _.$slides.unwrap().unwrap();
+        if (_.$slides.parent().hasClass('slick-track')) {
+            _.$slides.unwrap().unwrap();
+        }
         _.$slides.removeClass(
-            'slick-slide slick-active slick-visible').removeAttr('style');
+            'slick-slide slick-active slick-visible').css('width', '');
         _.$slider.removeClass('slick-slider');
         _.$slider.removeClass('slick-initialized');
 
         _.$list.off('.slick');
         $(window).off('.slick-' + _.instanceUid);
+        $(document).off('.slick-' + _.instanceUid);
+
     };
 
     Slick.prototype.disableTransition = function(slide) {
@@ -12320,7 +11523,7 @@ var SuperGif = function ( opts ) {
 
     };
 
-    Slick.prototype.fadeSlide = function(slideIndex, callback) {
+    Slick.prototype.fadeSlide = function(oldSlide, slideIndex, callback) {
 
         var _ = this;
 
@@ -12334,19 +11537,29 @@ var SuperGif = function ( opts ) {
                 opacity: 1
             }, _.options.speed, _.options.easing, callback);
 
+            _.$slides.eq(oldSlide).animate({
+                opacity: 0
+            }, _.options.speed, _.options.easing);
+
         } else {
 
             _.applyTransition(slideIndex);
+            _.applyTransition(oldSlide);
 
             _.$slides.eq(slideIndex).css({
                 opacity: 1,
                 zIndex: 1000
             });
 
+            _.$slides.eq(oldSlide).css({
+                opacity: 0
+            });
+
             if (callback) {
                 setTimeout(function() {
 
                     _.disableTransition(slideIndex);
+                    _.disableTransition(oldSlide);
 
                     callback.call();
                 }, _.options.speed);
@@ -12364,7 +11577,7 @@ var SuperGif = function ( opts ) {
 
             _.unload();
 
-            _.$slideTrack.children(this.options.slide).remove();
+            _.$slideTrack.children(this.options.slide).detach();
 
             _.$slidesCache.filter(filter).appendTo(_.$slideTrack);
 
@@ -12407,7 +11620,9 @@ var SuperGif = function ( opts ) {
         var _ = this,
             targetLeft,
             verticalHeight,
-            verticalOffset = 0;
+            verticalOffset = 0,
+            slideWidth,
+            targetSlide;
 
         _.slideOffset = 0;
         verticalHeight = _.$slides.first().outerHeight();
@@ -12432,14 +11647,40 @@ var SuperGif = function ( opts ) {
             }
         }
 
-        if (_.options.centerMode === true) {
+        if (_.slideCount <= _.options.slidesToShow){
+            _.slideOffset = 0;
+            verticalOffset = 0;
+        }
+
+        if (_.options.centerMode === true && _.options.infinite === true) {
             _.slideOffset += _.slideWidth * Math.floor(_.options.slidesToShow / 2) - _.slideWidth;
+        } else if (_.options.centerMode === true) {
+            _.slideOffset += _.slideWidth * Math.floor(_.options.slidesToShow / 2);
         }
 
         if (_.options.vertical === false) {
             targetLeft = ((slideIndex * _.slideWidth) * -1) + _.slideOffset;
         } else {
             targetLeft = ((slideIndex * verticalHeight) * -1) + verticalOffset;
+        }
+
+        if (_.options.variableWidth === true) {
+
+            if(_.slideCount <= _.options.slidesToShow || _.options.infinite === false) {
+                targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex);
+            } else {
+                targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex + _.options.slidesToShow);
+            }
+            targetLeft = targetSlide[0] ? targetSlide[0].offsetLeft * -1 : 0;
+            if (_.options.centerMode === true) {
+                if(_.options.infinite === false) {
+                    targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex);
+                } else {
+                    targetSlide = _.$slideTrack.children('.slick-slide').eq(slideIndex + _.options.slidesToShow + 1);
+                }
+                targetLeft = targetSlide[0] ? targetSlide[0].offsetLeft * -1 : 0;
+                targetLeft += (_.$list.width() - targetSlide.outerWidth()) / 2;
+            }
         }
 
         return targetLeft;
@@ -12492,6 +11733,12 @@ var SuperGif = function ( opts ) {
             }, _.changeSlide);
         }
 
+        if (_.options.dots === true && _.options.pauseOnDotsHover === true && _.options.autoplay === true) {
+            $('li', _.$dots)
+                .on('mouseenter.slick', _.autoPlayClear)
+                .on('mouseleave.slick', _.autoPlay);
+        }
+
     };
 
     Slick.prototype.initializeEvents = function() {
@@ -12521,7 +11768,11 @@ var SuperGif = function ( opts ) {
         }
 
         if(_.options.accessibility === true) {
-            _.$list.on('keydown.slick', _.keyHandler); 
+            _.$list.on('keydown.slick', _.keyHandler);
+        }
+
+        if(_.options.focusOnSelect === true) {
+            $(_.options.slide, _.$slideTrack).on('click.slick', _.selectHandler);
         }
 
         $(window).on('orientationchange.slick.slick-' + _.instanceUid, function() {
@@ -12530,7 +11781,7 @@ var SuperGif = function ( opts ) {
         });
 
         $(window).on('resize.slick.slick-' + _.instanceUid, function() {
-            if ($(window).width !== _.windowWidth) {
+            if ($(window).width() !== _.windowWidth) {
                 clearTimeout(_.windowDelay);
                 _.windowDelay = window.setTimeout(function() {
                     _.windowWidth = $(window).width();
@@ -12541,6 +11792,7 @@ var SuperGif = function ( opts ) {
         });
 
         $(window).on('load.slick.slick-' + _.instanceUid, _.setPosition);
+        $(document).on('ready.slick.slick-' + _.instanceUid, _.setPosition);
 
     };
 
@@ -12594,36 +11846,50 @@ var SuperGif = function ( opts ) {
         var _ = this,
             loadRange, cloneRange, rangeStart, rangeEnd;
 
+        function loadImages(imagesScope) {
+            $('img[data-lazy]', imagesScope).each(function() {
+                var image = $(this),
+                    imageSource = $(this).attr('data-lazy');
+
+                image
+                  .load(function() { image.animate({ opacity: 1 }, 200); })
+                  .css({ opacity: 0 })
+                  .attr('src', imageSource)
+                  .removeAttr('data-lazy')
+                  .removeClass('slick-loading');
+            });
+        }
+
         if (_.options.centerMode === true) {
-            rangeStart = _.options.slidesToShow + _.currentSlide - 1;
-            rangeEnd = rangeStart + _.options.slidesToShow + 2;
+            if (_.options.infinite === true) {
+                rangeStart = _.currentSlide + (_.options.slidesToShow/2 + 1);
+                rangeEnd = rangeStart + _.options.slidesToShow + 2;
+            } else {
+                rangeStart = Math.max(0, _.currentSlide - (_.options.slidesToShow/2 + 1));
+                rangeEnd = 2 + (_.options.slidesToShow/2 + 1) + _.currentSlide;
+            }
         } else {
             rangeStart = _.options.infinite ? _.options.slidesToShow + _.currentSlide : _.currentSlide;
             rangeEnd = rangeStart + _.options.slidesToShow;
+            if (_.options.fade === true ) {
+                if(rangeStart > 0) rangeStart--;
+                if(rangeEnd <= _.slideCount) rangeEnd++;
+            }
         }
 
         loadRange = _.$slider.find('.slick-slide').slice(rangeStart, rangeEnd);
+        loadImages(loadRange);
 
-        $('img[data-lazy]', loadRange).not('[src]').each(function() {
-            $(this).css({opacity: 0}).attr('src', $(this).attr('data-lazy')).removeClass('slick-loading').load(function(){
-                $(this).animate({ opacity: 1 }, 200);
-            });
-        });
-
+          if (_.slideCount <= _.options.slidesToShow){
+              cloneRange = _.$slider.find('.slick-slide')
+              loadImages(cloneRange)
+          }else
         if (_.currentSlide >= _.slideCount - _.options.slidesToShow) {
             cloneRange = _.$slider.find('.slick-cloned').slice(0, _.options.slidesToShow);
-            $('img[data-lazy]', cloneRange).not('[src]').each(function() {
-                $(this).css({opacity: 0}).attr('src', $(this).attr('data-lazy')).removeClass('slick-loading').load(function(){
-                    $(this).animate({ opacity: 1 }, 200);
-                });
-            });
+            loadImages(cloneRange)
         } else if (_.currentSlide === 0) {
             cloneRange = _.$slider.find('.slick-cloned').slice(_.options.slidesToShow * -1);
-            $('img[data-lazy]', cloneRange).not('[src]').each(function() {
-                $(this).css({opacity: 0}).attr('src', $(this).attr('data-lazy')).removeClass('slick-loading').load(function(){
-                    $(this).animate({ opacity: 1 }, 200);
-                });
-            });
+            loadImages(cloneRange);
         }
 
     };
@@ -12673,25 +11939,32 @@ var SuperGif = function ( opts ) {
         var _ = this,
             imgCount, targetImage;
 
-        imgCount = $('img[data-lazy]').not('[src]').length;
+        imgCount = $('img[data-lazy]').length;
 
         if (imgCount > 0) {
-            targetImage = $($('img[data-lazy]', _.$slider).not('[src]').get(0));
+            targetImage = $('img[data-lazy]', _.$slider).first();
             targetImage.attr('src', targetImage.attr('data-lazy')).removeClass('slick-loading').load(function() {
+                targetImage.removeAttr('data-lazy');
                 _.progressiveLazyLoad();
-            });
+            })
+         .error(function () {
+          targetImage.removeAttr('data-lazy');
+          _.progressiveLazyLoad();
+         });
         }
 
     };
 
     Slick.prototype.refresh = function() {
 
-        var _ = this;
+        var _ = this,
+            currentSlide = _.currentSlide;
 
         _.destroy();
 
         $.extend(_, _.initials);
 
+        _.currentSlide = currentSlide;
         _.init();
 
     };
@@ -12709,6 +11982,10 @@ var SuperGif = function ( opts ) {
             _.currentSlide = _.currentSlide - _.options.slidesToScroll;
         }
 
+        if (_.slideCount <= _.options.slidesToShow) {
+            _.currentSlide = 0;
+        }
+
         _.setProps();
 
         _.setupInfinite();
@@ -12724,6 +12001,10 @@ var SuperGif = function ( opts ) {
         _.updateDots();
 
         _.initDotEvents();
+
+        if(_.options.focusOnSelect === true) {
+            $(_.options.slide, _.$slideTrack).on('click.slick', _.selectHandler);
+        }
 
         _.setSlideClasses(0);
 
@@ -12756,7 +12037,7 @@ var SuperGif = function ( opts ) {
 
         _.$slides = _.$slideTrack.children(this.options.slide);
 
-        _.$slideTrack.children(this.options.slide).remove();
+        _.$slideTrack.children(this.options.slide).detach();
 
         _.$slideTrack.append(_.$slides);
 
@@ -12771,6 +12052,9 @@ var SuperGif = function ( opts ) {
         var _ = this,
             positionProps = {}, x, y;
 
+        if (_.options.rtl === true) {
+            position = -position;
+        }
         x = _.positionProp == 'left' ? position + 'px' : '0px';
         y = _.positionProp == 'top' ? position + 'px' : '0px';
 
@@ -12795,33 +12079,45 @@ var SuperGif = function ( opts ) {
 
         var _ = this;
 
-        if (_.options.centerMode === true) {
-            _.$slideTrack.children('.slick-slide').width(_.slideWidth);
-        } else if (_.options.vertical === false) {
-            _.$slideTrack.children('.slick-slide').width(_.slideWidth);
-        } else {
-            _.$slideTrack.children('.slick-slide').width(_.slideWidth).height(_.slideHeight);
-        }
-
-
         if (_.options.vertical === false) {
-            _.$slideTrack.width(Math.ceil((_.slideWidth * _
-                .$slideTrack.children('.slick-slide').length)));
             if (_.options.centerMode === true) {
                 _.$list.css({
                     padding: ('0px ' + _.options.centerPadding)
                 });
             }
         } else {
-            _.$list.height(_.$slides.first().outerHeight() * _.options.slidesToShow);
-            _.$slideTrack.height(Math.ceil((_.$slides.first().outerHeight() * _
-                .$slideTrack.children('.slick-slide').length)));
+            _.slideHeight = Math.max.apply( null, _.$slider.find('.slick-slide').map(function() { return $(this).height() }) )
+            _.$slideTrack.children('.slick-slide').height(_.slideHeight);
+
+            _.$list.height(_.slideHeight * _.options.slidesToShow);
             if (_.options.centerMode === true) {
                 _.$list.css({
                     padding: (_.options.centerPadding + ' 0px')
                 });
             }
         }
+
+        _.listWidth = _.$list.width();
+        _.listHeight = _.$list.height();
+
+
+        if(_.options.vertical === false && _.options.variableWidth === false) {
+            _.slideWidth = Math.ceil(_.listWidth / _.options.slidesToShow);
+            _.$slideTrack.width(Math.ceil((_.slideWidth * _.$slideTrack.children('.slick-slide').length)));
+
+        } else if (_.options.variableWidth === true) {
+            _.slideWidth = 0;
+            _.$slideTrack.children('.slick-slide').each(function(){
+                _.slideWidth += Math.ceil($(this).outerWidth(true));
+            });
+            _.$slideTrack.width(Math.ceil(_.slideWidth) + 1);
+        } else {
+            _.slideWidth = Math.ceil(_.listWidth);
+            _.$slideTrack.height(Math.ceil((_.$slides.first().outerHeight(true) * _.$slideTrack.children('.slick-slide').length)));
+        }
+
+        var offset = _.$slides.first().outerWidth(true) - _.$slides.first().width();
+        if (_.options.variableWidth === false) _.$slideTrack.children('.slick-slide').width(_.slideWidth - offset);
 
     };
 
@@ -12848,12 +12144,24 @@ var SuperGif = function ( opts ) {
 
     };
 
+    Slick.prototype.setHeight = function() {
+
+        var _ = this;
+
+        if(_.options.slidesToShow === 1 && _.options.adaptiveHeight === true && _.options.vertical === false) {
+            var targetHeight = _.$slides.eq(_.currentSlide).outerHeight(true);
+            _.$list.css('height', targetHeight);
+        }
+
+    };
+
     Slick.prototype.setPosition = function() {
 
         var _ = this;
 
-        _.setValues();
         _.setDimensions();
+
+        _.setHeight();
 
         if (_.options.fade === false) {
             _.setCSS(_.getLeft(_.currentSlide));
@@ -12865,7 +12173,8 @@ var SuperGif = function ( opts ) {
 
     Slick.prototype.setProps = function() {
 
-        var _ = this;
+        var _ = this,
+            bodyStyle = document.body.style;
 
         _.positionProp = _.options.vertical === true ? 'top' : 'left';
 
@@ -12875,59 +12184,52 @@ var SuperGif = function ( opts ) {
             _.$slider.removeClass('slick-vertical');
         }
 
-        if (document.body.style.WebkitTransition !== undefined ||
-            document.body.style.MozTransition !== undefined ||
-            document.body.style.msTransition !== undefined) {
+        if (bodyStyle.WebkitTransition !== undefined ||
+            bodyStyle.MozTransition !== undefined ||
+            bodyStyle.msTransition !== undefined) {
             if(_.options.useCSS === true) {
                 _.cssTransitions = true;
             }
         }
 
-        if (document.body.style.MozTransform !== undefined) {
+        if (bodyStyle.OTransform !== undefined) {
+            _.animType = 'OTransform';
+            _.transformType = "-o-transform";
+            _.transitionType = 'OTransition';
+            if (bodyStyle.perspectiveProperty === undefined && bodyStyle.webkitPerspective === undefined) _.animType = false;
+        }
+        if (bodyStyle.MozTransform !== undefined) {
             _.animType = 'MozTransform';
             _.transformType = "-moz-transform";
             _.transitionType = 'MozTransition';
+            if (bodyStyle.perspectiveProperty === undefined && bodyStyle.MozPerspective === undefined) _.animType = false;
         }
-        if (document.body.style.webkitTransform !== undefined) {
+        if (bodyStyle.webkitTransform !== undefined) {
             _.animType = 'webkitTransform';
             _.transformType = "-webkit-transform";
             _.transitionType = 'webkitTransition';
+            if (bodyStyle.perspectiveProperty === undefined && bodyStyle.webkitPerspective === undefined) _.animType = false;
         }
-        if (document.body.style.msTransform !== undefined) {
+        if (bodyStyle.msTransform !== undefined) {
+            _.animType = 'msTransform';
+            _.transformType = "-ms-transform";
+            _.transitionType = 'msTransition';
+            if (bodyStyle.msTransform === undefined) _.animType = false;
+        }
+        if (bodyStyle.transform !== undefined && _.animType !== false) {
             _.animType = 'transform';
             _.transformType = "transform";
             _.transitionType = 'transition';
         }
-
-        _.transformsEnabled = (_.animType !== null);
-
-    };
-
-    Slick.prototype.setValues = function() {
-
-        var _ = this;
-
-        _.listWidth = _.$list.width();
-        _.listHeight = _.$list.height();
-        if(_.options.vertical === false) {
-        _.slideWidth = Math.ceil(_.listWidth / _.options
-            .slidesToShow);
-        } else {
-        _.slideWidth = Math.ceil(_.listWidth);
-        _.$slider.find('.slick-slide').each(function(idx, el) {
-            if ( idx === 0 ) {
-                _.slideHeight = 0
-            }
-            _.slideHeight = $(this).height() > _.slideHeight ? $(this).height() : _.slideHeight
-        })
-        }
+        _.transformsEnabled = (_.animType !== null && _.animType !== false);
 
     };
+
 
     Slick.prototype.setSlideClasses = function(index) {
 
         var _ = this,
-            centerOffset, allSlides, indexOffset;
+            centerOffset, allSlides, indexOffset, remainder;
 
         _.$slider.find('.slick-slide').removeClass('slick-active').removeClass('slick-center');
         allSlides = _.$slider.find('.slick-slide');
@@ -12936,28 +12238,39 @@ var SuperGif = function ( opts ) {
 
             centerOffset = Math.floor(_.options.slidesToShow / 2);
 
-            if (index >= centerOffset && index <= (_.slideCount - 1) - centerOffset) {
-                _.$slides.slice(index - centerOffset, index + centerOffset + 1).addClass('slick-active');
-            } else {
-                indexOffset = _.options.slidesToShow + index;
-                allSlides.slice(indexOffset - centerOffset + 1, indexOffset + centerOffset + 2).addClass('slick-active');
-            }
+            if(_.options.infinite === true) {
 
-            if (index === 0) {
-                allSlides.eq(allSlides.length - 1 - _.options.slidesToShow).addClass('slick-center');
-            } else if (index === _.slideCount - 1) {
-                allSlides.eq(_.options.slidesToShow).addClass('slick-center');
+                if (index >= centerOffset && index <= (_.slideCount - 1) - centerOffset) {
+                    _.$slides.slice(index - centerOffset, index + centerOffset + 1).addClass('slick-active');
+                } else {
+                    indexOffset = _.options.slidesToShow + index;
+                    allSlides.slice(indexOffset - centerOffset + 1, indexOffset + centerOffset + 2).addClass('slick-active');
+                }
+
+                if (index === 0) {
+                    allSlides.eq(allSlides.length - 1 - _.options.slidesToShow).addClass('slick-center');
+                } else if (index === _.slideCount - 1) {
+                    allSlides.eq(_.options.slidesToShow).addClass('slick-center');
+                }
+
             }
 
             _.$slides.eq(index).addClass('slick-center');
 
         } else {
 
-            if (index > 0 && index < (_.slideCount - _.options.slidesToShow)) {
+            if (index >= 0 && index <= (_.slideCount - _.options.slidesToShow)) {
                 _.$slides.slice(index, index + _.options.slidesToShow).addClass('slick-active');
+            } else if ( allSlides.length <= _.options.slidesToShow ) {
+                allSlides.addClass('slick-active');
             } else {
+                remainder = _.slideCount%_.options.slidesToShow;
                 indexOffset = _.options.infinite === true ? _.options.slidesToShow + index : index;
-                allSlides.slice(indexOffset, indexOffset + _.options.slidesToShow).addClass('slick-active');
+                if(_.options.slidesToShow == _.options.slidesToScroll && (_.slideCount - index) < _.options.slidesToShow) {
+                    allSlides.slice(indexOffset-(_.options.slidesToShow-remainder), indexOffset + remainder).addClass('slick-active');
+                } else {
+                    allSlides.slice(indexOffset, indexOffset + _.options.slidesToShow).addClass('slick-active');
+                }
             }
 
         }
@@ -12992,13 +12305,15 @@ var SuperGif = function ( opts ) {
                 for (i = _.slideCount; i > (_.slideCount -
                     infiniteCount); i -= 1) {
                     slideIndex = i - 1;
-                    $(_.$slides[slideIndex]).clone().attr('id', '').prependTo(
-                        _.$slideTrack).addClass('slick-cloned');
+                    $(_.$slides[slideIndex]).clone(true).attr('id', '')
+                        .attr('index', slideIndex-_.slideCount)
+                        .prependTo(_.$slideTrack).addClass('slick-cloned');
                 }
                 for (i = 0; i < infiniteCount; i += 1) {
                     slideIndex = i;
-                    $(_.$slides[slideIndex]).clone().attr('id', '').appendTo(
-                        _.$slideTrack).addClass('slick-cloned');
+                    $(_.$slides[slideIndex]).clone(true).attr('id', '')
+                        .attr('index', slideIndex+_.slideCount)
+                        .appendTo(_.$slideTrack).addClass('slick-cloned');
                 }
                 _.$slideTrack.find('.slick-cloned').find('[id]').each(function() {
                     $(this).attr('id', '');
@@ -13010,13 +12325,32 @@ var SuperGif = function ( opts ) {
 
     };
 
-    Slick.prototype.slideHandler = function(index) {
+    Slick.prototype.selectHandler = function(event) {
 
-        var targetSlide, animSlide, slideLeft, unevenOffset, targetLeft = null,
+        var _ = this;
+        var index = parseInt($(event.target).parents('.slick-slide').attr("index"));
+        if(!index) index = 0;
+
+        if(_.slideCount <= _.options.slidesToShow){
+            return;
+        }
+        _.slideHandler(index);
+
+    };
+
+    Slick.prototype.slideHandler = function(index,sync) {
+
+        var targetSlide, animSlide, oldSlide, slideLeft, unevenOffset, targetLeft = null,
             _ = this;
 
-        if (_.animating === true) {
+        sync = sync || false;
+
+        if (_.animating === true && _.options.waitForAnimate === true) {
             return false;
+        }
+
+        if (sync === false) {
+            _.asNavFor(index);
         }
 
         targetSlide = index;
@@ -13027,7 +12361,15 @@ var SuperGif = function ( opts ) {
 
         _.currentLeft = _.swipeLeft === null ? slideLeft : _.swipeLeft;
 
-        if (_.options.infinite === false && (index < 0 || index > (_.slideCount - _.options.slidesToShow + unevenOffset))) {
+        if (_.options.infinite === false && _.options.centerMode === false && (index < 0 || index > (_.slideCount - _.options.slidesToShow + unevenOffset))) {
+            if(_.options.fade === false) {
+                targetSlide = _.currentSlide;
+                _.animateSlide(slideLeft, function() {
+                    _.postSlide(targetSlide);
+                });
+            }
+            return false;
+        } else if (_.options.infinite === false && _.options.centerMode === true && (index < 0 || index > (_.slideCount - _.options.slidesToScroll))) {
             if(_.options.fade === false) {
                 targetSlide = _.currentSlide;
                 _.animateSlide(slideLeft, function() {
@@ -13045,10 +12387,14 @@ var SuperGif = function ( opts ) {
             if (_.slideCount % _.options.slidesToScroll !== 0) {
                 animSlide = _.slideCount - (_.slideCount % _.options.slidesToScroll);
             } else {
-                animSlide = _.slideCount - _.options.slidesToScroll;
+                animSlide = _.slideCount + targetSlide;
             }
-        } else if (targetSlide > (_.slideCount - 1)) {
-            animSlide = 0;
+        } else if (targetSlide >= _.slideCount) {
+            if (_.slideCount % _.options.slidesToScroll !== 0) {
+                animSlide = 0;
+            } else {
+                animSlide = targetSlide - _.slideCount;
+            }
         } else {
             animSlide = targetSlide;
         }
@@ -13059,6 +12405,7 @@ var SuperGif = function ( opts ) {
             _.options.onBeforeChange.call(this, _, _.currentSlide, animSlide);
         }
 
+        oldSlide = _.currentSlide;
         _.currentSlide = animSlide;
 
         _.setSlideClasses(_.currentSlide);
@@ -13067,7 +12414,7 @@ var SuperGif = function ( opts ) {
         _.updateArrows();
 
         if (_.options.fade === true) {
-            _.fadeSlide(animSlide, function() {
+            _.fadeSlide(oldSlide,animSlide, function() {
                 _.postSlide(animSlide);
             });
             return false;
@@ -13129,9 +12476,9 @@ var SuperGif = function ( opts ) {
 
     Slick.prototype.swipeEnd = function(event) {
 
-        var _ = this;
+        var _ = this, slideCount, slidesTraversed, swipeDiff;
 
-        _.$list.removeClass('dragging');
+        _.dragging = false;
 
         if (_.touchObject.curX === undefined) {
             return false;
@@ -13145,14 +12492,21 @@ var SuperGif = function ( opts ) {
                 $(event.target).off('click.slick');
             });
 
+            if(_.options.swipeToSlide === true) {
+                slidesTraversed = Math.round(_.touchObject.swipeLength / _.slideWidth);
+                slideCount = slidesTraversed
+            } else {
+                slideCount = _.options.slidesToScroll;
+            }
+
             switch (_.swipeDirection()) {
                 case 'left':
-                    _.slideHandler(_.currentSlide + _.options.slidesToScroll);
+                    _.slideHandler(_.currentSlide + slideCount);
                     _.touchObject = {};
                     break;
 
                 case 'right':
-                    _.slideHandler(_.currentSlide - _.options.slidesToScroll);
+                    _.slideHandler(_.currentSlide - slideCount);
                     _.touchObject = {};
                     break;
             }
@@ -13169,10 +12523,10 @@ var SuperGif = function ( opts ) {
 
         var _ = this;
 
-        if ('ontouchend' in document && _.options.swipe === false) {
-            return false;
-        } else if (_.options.draggable === false && !event.originalEvent.touches) {
-            return true;
+        if ((_.options.swipe === false) || ('ontouchend' in document && _.options.swipe === false)) {
+           return;
+        } else if (_.options.draggable === false && event.type.indexOf('mouse') !== -1) {
+           return;
         }
 
         _.touchObject.fingerCount = event.originalEvent && event.originalEvent.touches !== undefined ?
@@ -13208,7 +12562,7 @@ var SuperGif = function ( opts ) {
 
         curLeft = _.getLeft(_.currentSlide);
 
-        if (!_.$list.hasClass('dragging') || touches && touches.length !== 1) {
+        if (!_.dragging || touches && touches.length !== 1) {
             return false;
         }
 
@@ -13267,7 +12621,7 @@ var SuperGif = function ( opts ) {
         _.touchObject.startX = _.touchObject.curX = touches !== undefined ? touches.pageX : event.clientX;
         _.touchObject.startY = _.touchObject.curY = touches !== undefined ? touches.pageY : event.clientY;
 
-        _.$list.addClass('dragging');
+        _.dragging = true;
 
     };
 
@@ -13279,7 +12633,7 @@ var SuperGif = function ( opts ) {
 
             _.unload();
 
-            _.$slideTrack.children(this.options.slide).remove();
+            _.$slideTrack.children(this.options.slide).detach();
 
             _.$slidesCache.appendTo(_.$slideTrack);
 
@@ -13302,7 +12656,7 @@ var SuperGif = function ( opts ) {
             _.$nextArrow.remove();
         }
         _.$slides.removeClass(
-            'slick-slide slick-active slick-visible').removeAttr('style');
+            'slick-slide slick-active slick-visible').css('width', '');
 
     };
 
@@ -13332,8 +12686,7 @@ var SuperGif = function ( opts ) {
         if (_.$dots !== null) {
 
             _.$dots.find('li').removeClass('slick-active');
-            _.$dots.find('li').eq(_.currentSlide / _.options.slidesToScroll).addClass(
-                'slick-active');
+            _.$dots.find('li').eq(Math.floor(_.currentSlide / _.options.slidesToScroll)).addClass('slick-active');
 
         }
 
@@ -13375,7 +12728,12 @@ var SuperGif = function ( opts ) {
         var _ = this;
         return _.each(function(index, element) {
 
-            element.slick.slideHandler(slide);
+            element.slick.changeSlide({
+                data: {
+                    message: 'index',
+                    index: parseInt(slide)
+                }
+            });
 
         });
     };
@@ -13435,6 +12793,11 @@ var SuperGif = function ( opts ) {
         });
     };
 
+    $.fn.slickGetOption = function(option) {
+        var _ = this;
+        return _.get(0).slick.options[option];
+    };
+
     $.fn.slickSetOption = function(option, value, refresh) {
         var _ = this;
         return _.each(function(index, element) {
@@ -13462,15 +12825,27 @@ var SuperGif = function ( opts ) {
         var _ = this;
         return _.each(function(index, element) {
 
+          if (element.slick) {
             element.slick.destroy();
+          }
 
         });
+    };
+
+    $.fn.getSlick = function() {
+        var s = null;
+        var _ = this;
+        _.each(function(index, element) {
+            s = element.slick;
+        });
+
+        return s;
     };
 
 }));
 
 /*!
- * imagesLoaded PACKAGED v3.1.5
+ * imagesLoaded PACKAGED v3.1.8
  * JavaScript is all like "You images are done yet or what?"
  * MIT License
  */
@@ -14028,7 +13403,7 @@ if ( typeof define === 'function' && define.amd ) {
 })( this );
 
 /*!
- * imagesLoaded v3.1.5
+ * imagesLoaded v3.1.8
  * JavaScript is all like "You images are done yet or what?"
  * MIT License
  */
@@ -14050,7 +13425,7 @@ if ( typeof define === 'function' && define.amd ) {
     // CommonJS
     module.exports = factory(
       window,
-      require('eventEmitter'),
+      require('wolfy87-eventemitter'),
       require('eventie')
     );
   } else {
@@ -14062,7 +13437,7 @@ if ( typeof define === 'function' && define.amd ) {
     );
   }
 
-})( this,
+})( window,
 
 // --------------------------  factory -------------------------- //
 
@@ -14167,7 +13542,8 @@ function makeArray( obj ) {
       }
       // find children
       // no non-element nodes, #143
-      if ( !elem.nodeType || !( elem.nodeType === 1 || elem.nodeType === 9 ) ) {
+      var nodeType = elem.nodeType;
+      if ( !nodeType || !( nodeType === 1 || nodeType === 9 || nodeType === 11 ) ) {
         continue;
       }
       var childElems = elem.querySelectorAll('img');
@@ -14363,7 +13739,7 @@ function makeArray( obj ) {
 });
 
 /*!
- * Isotope PACKAGED v2.0.0
+ * Isotope PACKAGED v2.0.1
  * Filter & sort magical layouts
  * http://isotope.metafizzy.co
  */
@@ -17083,6 +16459,16 @@ Item.prototype.updateSortData = function() {
   }
 };
 
+var _destroy = Item.prototype.destroy;
+Item.prototype.destroy = function() {
+  // call super
+  _destroy.apply( this, arguments );
+  // reset display, #741
+  this.css({
+    display: ''
+  });
+};
+
 return Item;
 
 }
@@ -17649,7 +17035,7 @@ if ( typeof define === 'function' && define.amd ) {
 })( window );
 
 /*!
- * Isotope v2.0.0
+ * Isotope v2.0.1
  * Filter & sort magical layouts
  * http://isotope.metafizzy.co
  */
@@ -18199,6 +17585,17 @@ function isotopeDefinition( Outlayer, getSize, matchesSelector, Item, LayoutMode
     }
   };
 
+  Isotope.prototype.shuffle = function() {
+    // update random sortData
+    for ( var i=0, len = this.items.length; i < len; i++ ) {
+      var item = this.items[i];
+      item.sortData.random = Math.random();
+    }
+    this.options.sortBy = 'random';
+    this._sort();
+    this._layout();
+  };
+
   /**
    * trigger fn without transition
    * kind of hacky to have this in the first place
@@ -18216,6 +17613,20 @@ function isotopeDefinition( Outlayer, getSize, matchesSelector, Item, LayoutMode
     // re-enable transition for reveal
     this.options.transitionDuration = transitionDuration;
     return returnValue;
+  };
+
+  // ----- helper methods ----- //
+
+  /**
+   * getter method for getting filtered item elements
+   * @returns {Array} elems - collection of item elements
+   */
+  Isotope.prototype.getFilteredItemElements = function() {
+    var elems = [];
+    for ( var i=0, len = this.filteredItems.length; i < len; i++ ) {
+      elems.push( this.filteredItems[i].element );
+    }
+    return elems;
   };
 
   // -----  ----- //
@@ -18256,7 +17667,7 @@ if ( typeof define === 'function' && define.amd ) {
 /**
  * @preserve FastClick: polyfill to remove click delays on browsers with touch UIs.
  *
- * @version 1.0.2
+ * @version 1.0.3
  * @codingstandard ftlabs-jsv2
  * @copyright The Financial Times Limited [All Rights Reserved]
  * @license MIT License (see LICENSE.txt)
@@ -18452,6 +17863,12 @@ var deviceIsIOS4 = deviceIsIOS && (/OS 4_\d(_\d)?/).test(navigator.userAgent);
  */
 var deviceIsIOSWithBadTarget = deviceIsIOS && (/OS ([6-9]|\d{2})_\d/).test(navigator.userAgent);
 
+/**
+ * BlackBerry requires exceptions.
+ *
+ * @type boolean
+ */
+var deviceIsBlackBerry10 = navigator.userAgent.indexOf('BB10') > 0;
 
 /**
  * Determine whether a given element requires a native click.
@@ -18656,7 +18073,10 @@ FastClick.prototype.onTouchStart = function(event) {
 			// with the same identifier as the touch event that previously triggered the click that triggered the alert.
 			// Sadly, there is an issue on iOS 4 that causes some normal touch events to have the same identifier as an
 			// immediately preceeding touch event (issue #52), so this fix is unavailable on that platform.
-			if (touch.identifier === this.lastTouchIdentifier) {
+			// Issue 120: touch.identifier is 0 when Chrome dev tools 'Emulate touch events' is set with an iOS device UA string,
+			// which causes all touch events to be ignored. As this block only applies to iOS, and iOS identifiers are always long,
+			// random integers, it's safe to to continue if the identifier is 0 here.
+			if (touch.identifier && touch.identifier === this.lastTouchIdentifier) {
 				event.preventDefault();
 				return false;
 			}
@@ -18978,6 +18398,7 @@ FastClick.notNeeded = function(layer) {
 	'use strict';
 	var metaViewport;
 	var chromeVersion;
+	var blackberryVersion;
 
 	// Devices that don't support touch don't need FastClick
 	if (typeof window.ontouchstart === 'undefined') {
@@ -19006,6 +18427,27 @@ FastClick.notNeeded = function(layer) {
 		// Chrome desktop doesn't need FastClick (issue #15)
 		} else {
 			return true;
+		}
+	}
+
+	if (deviceIsBlackBerry10) {
+		blackberryVersion = navigator.userAgent.match(/Version\/([0-9]*)\.([0-9]*)/);
+
+		// BlackBerry 10.3+ does not require Fastclick library.
+		// https://github.com/ftlabs/fastclick/issues/251
+		if (blackberryVersion[1] >= 10 && blackberryVersion[2] >= 3) {
+			metaViewport = document.querySelector('meta[name=viewport]');
+
+			if (metaViewport) {
+				// user-scalable=no eliminates click delay.
+				if (metaViewport.content.indexOf('user-scalable=no') !== -1) {
+					return true;
+				}
+				// width=device-width (or less than device-width) eliminates click delay.
+				if (document.documentElement.scrollWidth <= window.outerWidth) {
+					return true;
+				}
+			}
 		}
 	}
 
@@ -19073,9 +18515,9 @@ function colorInit( el, idx ) {
     if ( el !== ' ' ) {
         el.style.color = 'rgb(' + _.sample(colors) + ')'
 
-        el.dataset.start = 'color: ' + el.style.color
-        el.dataset._center = 'color: rgb(' + _.sample(colors) + ');'
-        el.dataset.end = 'color: rgb(' + _.sample(colors) + ');'
+        $(el).data('start', 'color: ' + el.style.color )
+        $(el).data('_center', 'color: rgb(' + _.sample(colors) + ');')
+        $(el).data('end', 'color: rgb(' + _.sample(colors) + ');')
     }
 }
 
@@ -19130,24 +18572,18 @@ function staggerLoad(logo) {
         }
     }, false)
 
-    Modernizr.load({
-        test: Modernizr.touch,
-        nope : "/assets/bower_components/skrollr/dist/skrollr.min.js",
-        callback : function( url, result, key ) {
-            if ( !result &&
-                ( !document.getElementById('home') &&
-                  !document.getElementById('apply') && 
-                  !document.getElementById('approach') )) {
-                imagesLoaded('img', function() {
-                    window.s = skrollr.init({
-                        constants : {
-                            _center : (document.documentElement.scrollHeight - window.innerHeight) / 2
-                        }
-                    })
+    if ( !Modernizr.touch &&
+          !document.getElementById('home') &&
+          !document.getElementById('apply') &&
+          !document.getElementById('approach') ) {
+            imagesLoaded('img', function() {
+                window.s = skrollr.init({
+                    constants : {
+                        _center : (document.documentElement.scrollHeight - window.innerHeight) / 2
+                    }
                 })
-            }
-        }
-    })
+            })
+    }
 })()
 
 
@@ -19164,7 +18600,7 @@ if ( path === '/' ) {
                 // filters stored in sessionStorage and state
                 // as dot delimited strings that start with a dot as well
                 // e.g. .for-parents.research
-                sessionStorage.setItem('filter', '.' + e.target.dataset.filter)
+                sessionStorage.setItem('filter', '.' + $(e.target).data('filter'))
             }
         }, false)
     }
@@ -19504,15 +18940,17 @@ if ( path.match(/^\/start-a-school/) ) {
 //    }
 //})
 
+/*global Modernizr*/
 'use strict';
 
 $(function() {
-    $('#slideshow').slick({
+    var slickOps = {
+        slide : '.slide',
         dots : true,
         draggable : false,
         infinite : false,
         onInit : function() {
-            $('body').append( $('<div/>').addClass('slide-dots') )
+            //$('body').append( $('<div/>').addClass('slide-dots') )
             $('.slick-dots').appendTo('.slide-dots')
             $('.slick-prev').prependTo('#slideshow')
             $('.grid').on('click', '.grid-item', function(e) {
@@ -19531,5 +18969,21 @@ $(function() {
             }
             return '<button class="slide-button" type="button"></button><span>' + name + '</span>'
         }
-    })
+    },
+    mql
+
+    if ( matchMedia ) {
+        mql = window.matchMedia('(min-width: 40em)')
+        if ( !Modernizr.touch && mql.matches ) {
+            $('#slideshow').slick(slickOps)
+        }
+
+        mql.addListener(function(mql) {
+            if ( mql.matches ) {
+                $('#slideshow').slick(slickOps)
+            } else {
+                $('#slideshow').unslick()
+            }
+        })
+    }
 })

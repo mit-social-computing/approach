@@ -8,6 +8,7 @@ module.exports = function(grunt) {
         , 'source/bower_components/slick-carousel/slick/slick.js'
         , 'source/bower_components/imagesloaded/imagesloaded.pkgd.js'
         , 'source/bower_components/isotope/dist/isotope.pkgd.js'
+        , 'source/bower_components/skrollr/dist/skrollr.js'
         , 'source/bower_components/fastclick/lib/fastclick.js'
         , 'source/js/main.js'
         , 'source/js/resources.js'
@@ -103,8 +104,8 @@ module.exports = function(grunt) {
                 outputFile :  'source/bower_components/modernizr/modernizr.build.js',
                 uglify : false,
                 extra : {
-                    shiv : false
-                    //load : false
+                    shiv : false,
+                    load : false
                 },
                 files : {
                     src : [

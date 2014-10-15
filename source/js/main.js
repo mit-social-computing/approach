@@ -27,9 +27,9 @@ function colorInit( el, idx ) {
     if ( el !== ' ' ) {
         el.style.color = 'rgb(' + _.sample(colors) + ')'
 
-        el.dataset.start = 'color: ' + el.style.color
-        el.dataset._center = 'color: rgb(' + _.sample(colors) + ');'
-        el.dataset.end = 'color: rgb(' + _.sample(colors) + ');'
+        $(el).data('start', 'color: ' + el.style.color )
+        $(el).data('_center', 'color: rgb(' + _.sample(colors) + ');')
+        $(el).data('end', 'color: rgb(' + _.sample(colors) + ');')
     }
 }
 
@@ -84,24 +84,18 @@ function staggerLoad(logo) {
         }
     }, false)
 
-    Modernizr.load({
-        test: Modernizr.touch,
-        nope : "/assets/bower_components/skrollr/dist/skrollr.min.js",
-        callback : function( url, result, key ) {
-            if ( !result &&
-                ( !document.getElementById('home') &&
-                  !document.getElementById('apply') && 
-                  !document.getElementById('approach') )) {
-                imagesLoaded('img', function() {
-                    window.s = skrollr.init({
-                        constants : {
-                            _center : (document.documentElement.scrollHeight - window.innerHeight) / 2
-                        }
-                    })
+    if ( !Modernizr.touch &&
+          !document.getElementById('home') &&
+          !document.getElementById('apply') &&
+          !document.getElementById('approach') ) {
+            imagesLoaded('img', function() {
+                window.s = skrollr.init({
+                    constants : {
+                        _center : (document.documentElement.scrollHeight - window.innerHeight) / 2
+                    }
                 })
-            }
-        }
-    })
+            })
+    }
 })()
 
 
@@ -118,7 +112,7 @@ if ( path === '/' ) {
                 // filters stored in sessionStorage and state
                 // as dot delimited strings that start with a dot as well
                 // e.g. .for-parents.research
-                sessionStorage.setItem('filter', '.' + e.target.dataset.filter)
+                sessionStorage.setItem('filter', '.' + $(e.target).data('filter'))
             }
         }, false)
     }

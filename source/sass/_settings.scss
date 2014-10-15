@@ -10,7 +10,11 @@
 // $rem-base: 16px;
 
 // Allows the use of rem-calc() or lower-bound() in your settings
-@import "foundation/functions";
+// @import "foundation/functions";
+
+@function rem-calc($size) {
+    @return $size / 16 * 1rem;
+}
 
 // The default font-size is set to 100% of the browser style sheet (usually 16px)
 // for compatibility with browser-based text zoom or user-set defaults.
@@ -71,6 +75,21 @@ $body-font-weight: 200;
 // $shiny-edge-active-color: rgba(#000, .2);
 
 // $column-gutter: rem-calc(30);
+// RANGES
+// We use these functions to define ranges for various things, like media queries. 
+@function lower-bound($range){
+  @if length($range) <= 0 {
+    @return 0;
+  }
+  @return nth($range,1);
+}
+
+@function upper-bound($range) {
+  @if length($range) < 2 {
+    @return 999999999999;
+  }
+  @return nth($range, 2);
+}
 
 // Media Query Ranges
 $small-range: (0em, 40em);
