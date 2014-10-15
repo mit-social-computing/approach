@@ -17,7 +17,8 @@
     color: $teal;
     font-family: kim;
     font-size: rem-calc(22);
-    margin-bottom: 0;
+    // use p bottom margin
+    // margin-bottom: 0;
     letter-spacing: 2.1px;
     line-height: 1;
 
@@ -41,4 +42,52 @@
 
 .text-body--purple {
     color: $purple;
+}
+
+.text-block {
+
+    > .title {
+        font-size: 1em;
+    }
+
+    > p:not(.title) {
+        font-size: 0.7em;
+
+        &:first-of-type {
+            margin-top: 0;
+        }
+    }
+
+    &.body {
+        color: $body-text;
+    }
+
+    &.purple {
+        color: $purple;
+    }
+
+    &.pink {
+        color: $pink;
+    }
+
+    &.hand {
+        font-family: kim;
+        letter-spacing: 2.1px;
+        line-height: 1;
+        @extend .antialiased;
+    }
+
+    &.small {
+        font-size: 20px;
+        font-size: rem-calc(20);
+    }
+
+    &.medium {
+        font-size: 26px;
+        font-size: rem-calc(26);
+    }
+
+    &.centered {
+        text-align: center;
+    }
 }

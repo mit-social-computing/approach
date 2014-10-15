@@ -1,4 +1,28 @@
-.antialiased { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+    margin: 0;
+}
+
+.antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
 .container {
     @include flexbox;
@@ -37,7 +61,7 @@
 
 @media #{$medium-up} {
     .container.sticky {
-        padding-top: 140px;
+        padding-top: 120px;
     }
 
     .resources .container.sticky {
@@ -45,7 +69,13 @@
     }
 }
 
+blockquote {
+    margin: 0 0 1rem;;
+}
+
 a {
+    text-decoration: none;
+    color: $pink;
     display: inline-block;
     border-bottom: 1px solid rgba($link-hover, 0);
     @include transition(border-bottom-color 150ms ease, color 150ms ease);

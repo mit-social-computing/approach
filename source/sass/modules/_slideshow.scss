@@ -136,3 +136,126 @@
 .is-lightbox {
     cursor: pointer;
 }
+
+.slideshow {
+
+    .slide {
+        @include flexbox;
+
+        > * {
+            margin: auto;
+        }
+
+        img {
+            margin: 0 auto;
+        }
+    }
+
+    .slick-prev,
+    .slick-next {
+        position: static;
+        margin: 0 auto;
+        height: 38px;
+        width: 38px;
+
+        &.slick-disabled {
+            opacity: 0;
+        }
+
+        &:before {
+            opacity: 1;
+            font-size: 0;
+            @include transition(border-color 150ms ease);
+        }
+
+    }
+
+    .slick-next {
+        &:before {
+            content: '';
+            width: 0;
+            height: 0;
+            border: 19px solid transparent;
+            border-top-color: rgba($purple, 0.1);
+        }
+
+        &:hover:before {
+            border-top-color: rgba($purple, 1);
+        }
+    }
+
+    .slick-prev {
+        &:before {
+            content: '';
+            width: 0;
+            height: 0;
+            border: 19px solid transparent;
+            border-bottom-color: rgba($purple, 0.1);
+        }
+
+        &:hover:before {
+            border-bottom-color: rgba($purple, 1);
+        }
+    }
+
+}
+
+.slide-dots {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    @include flexbox;
+
+    .slick-dots {
+        position: static;
+        margin: auto;
+        padding: 15px;
+
+        &:hover span {
+            opacity: 1;
+        }
+
+        > li {
+            display: block;
+            width: auto;
+            text-align: left;
+
+            &:hover,
+            &.slick-active {
+                .slide-button {
+                    background-color: rgba($purple, 1);
+                }
+
+                span {
+                    color: $purple;
+                }
+            }
+
+            span {
+                display: inline-block;
+                padding-left: 10px;
+                vertical-align: middle;
+                font-family: kim;
+                font-size: rem-calc(17);
+                color: #cabcda;
+                opacity: 0;
+                @include transition(opacity 150ms ease);
+                @extend .antialiased;
+            }
+        }
+    }
+
+    .slide-button {
+        background-color: rgba($purple, 0.1);
+        border-radius: 50%;
+        display: inline-block;
+        height: 15px;
+        width: 15px;
+        @include transition(background-color 150ms ease);
+
+        &:before {
+            content: '';
+        }
+    }
+}
+

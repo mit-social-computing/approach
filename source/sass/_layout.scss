@@ -1,15 +1,16 @@
 .l-content {
     width: 100%;
     margin: 0 auto;
-    max-width: 766px;
+    max-width: 750px;
     padding: 0 25px 25px;
 }
 
 .l-content--centered {
     margin: auto;
+    max-width: 830px;
 
     @media #{$medium-up} {
-        padding: 65px 25px;
+        padding: 0 25px;
     }
 }
 

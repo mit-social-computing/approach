@@ -1,5 +1,6 @@
 .grid {
     margin: 0 auto;
+    padding: 0;
     max-width: 851px;
     width: 100%;
     height: 100%;
@@ -8,6 +9,63 @@
     @include flex-wrap(wrap);
     @include justify-content(center);
     @include align-content(space-around);
+
+    &.grid--inline {
+        @include justify-content(space-between);
+        text-align: justify;
+        font-size: 0;
+    }
+}
+
+.grid--dividers {
+    position: relative;
+
+    > .grid-item {
+        margin: 25px 0;
+        @include flexbox;
+    }
+
+    .panel {
+        @include flexbox;
+        @include flex-direction(column);
+
+        .flexbox & {
+            padding: 0;
+        }
+    }
+
+    .text-block {
+        margin: 0 auto;
+        @include flex-basis(120px);
+
+        @include flexbox;
+        @include flex-direction(column);
+        @include align-items(center);
+        @include justify-content(space-around);
+    }
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+
+    &:before {
+        background-image: url(/assets/img/v-line.png), url(/assets/img/v-line.png);
+        background-position: 33% center, 66% center;
+        background-repeat: no-repeat;
+    }
+
+    &:after {
+        background-image: url(/assets/img/h-line.png), url(/assets/img/h-line.png);
+        background-position: center 33%, center 66%;
+        background-repeat: no-repeat;
+    }
 }
 
 .grid--fade-in {
@@ -25,6 +83,25 @@
     overflow: hidden;
 
     @include flex(1 0 260px);
+
+    .grid--three & {
+        width: 32%;
+        @include flex(0 0 32%);
+    }
+
+    .grid--inline & {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    &.center-vh {
+        @include flexbox;
+        text-align: center;
+
+        > * {
+            margin: auto;
+        }
+    }
 }
 
 .grid-item--polaroid {

@@ -9,7 +9,7 @@
 }
 
 @media #{$medium-up} {
-    .overview .main-header {
+    .home .main-header {
         margin-bottom: 0;
     }
 }
@@ -22,13 +22,14 @@
 }
 
 .main-footer {
-    color: $teal;
+    color: $purple;
     letter-spacing: 2.1px;
     padding-bottom: rem-calc(16);
 
     a {
         height: 18px;
-        color: $purple;
+        color: $pink;
+        text-decoration: none;
     }
 
     p {
@@ -154,12 +155,18 @@
 }
 
 .main-menu {
-    padding: 0;
     max-width: 460px;
     margin: 0 10px 15px;
-    list-style-type: none;
     display: none;
     @extend .antialiased;
+    
+    > ul {
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
 
     @media #{$screen} and (min-width: 730px) {
         margin: 0 auto 15px;
@@ -200,8 +207,12 @@
 .main-menu,
 .main-menu.show {
     @media #{$medium-up} {
-        @include flexbox;
-        @include justify-content(space-between);
+        display: block;
+
+        > ul {
+            @include flexbox;
+            @include justify-content(space-between);
+        }
     }
 }
 

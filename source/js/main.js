@@ -89,7 +89,9 @@ function staggerLoad(logo) {
         nope : "/assets/bower_components/skrollr/dist/skrollr.min.js",
         callback : function( url, result, key ) {
             if ( !result &&
-                ( !document.getElementById('overview') && !document.getElementById('start-a-school') && !document.getElementById('contact') && !document.getElementById('classroom') )) {
+                ( !document.getElementById('home') &&
+                  !document.getElementById('apply') && 
+                  !document.getElementById('approach') )) {
                 imagesLoaded('img', function() {
                     window.s = skrollr.init({
                         constants : {

@@ -2,7 +2,7 @@
 module.exports = function(grunt) {
 
     var mainJs = [
-         'source/js/lib/modernizr/custom.modernizr.js'
+         'source/bower_components/modernizr/modernizr.build.js'
         , 'source/js/lib/lodash/lodash.js'
         , 'source/bower_components/jquery/dist/jquery.js'
         , 'source/js/lib/libgif/libgif.js'
@@ -11,12 +11,13 @@ module.exports = function(grunt) {
         , 'source/bower_components/isotope/dist/isotope.pkgd.js' // TODO split out into a separate file for photo pages
         , 'source/bower_components/fastclick/lib/fastclick.js'
         //, 'source/bower_components/foundation/js/foundation.js'
-        , 'source/bower_components/skrollr/src/skrollr.js'
+        //, 'source/bower_components/skrollr/src/skrollr.js'
         , 'source/js/main.js'
         , 'source/js/resources.js'
         , 'source/js/lightbox.js'
         , 'source/js/forms.js'
         , 'source/js/classroom.js'
+        , 'source/js/approach.js'
     ]
 
     // Project configuration.
@@ -104,8 +105,8 @@ module.exports = function(grunt) {
                 outputFile :  'source/bower_components/modernizr/modernizr.build.js',
                 uglify : false,
                 extra : {
-                    shiv : false,
-                    load : false
+                    shiv : false
+                    //load : false
                 },
                 files : {
                     src : [
