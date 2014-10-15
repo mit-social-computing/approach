@@ -1,6 +1,7 @@
 # Caches
 sized/
 thumbs/
+!webroot/assets/img/approach/thumbs/
 _thumbs/
 */expressionengine/cache/*
 */static/cache/*
