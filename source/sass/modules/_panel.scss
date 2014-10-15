@@ -1,0 +1,29 @@
+.panel {
+    padding: 18px 13px;
+    text-decoration: none;
+    border: none;
+    width: 100%;
+
+    &:hover {
+        border: none;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.panel--purple {
+    background-color: rgba($purple, 0.1);
+    color: $purple;
+}
+
+.panel--green {
+    background-color: rgba($green, 0.1);
+    color: $green;
+}
+
+.panel--pink {
+    background-color: rgba($pink, 0.1);
+    color: $pink;
+}
