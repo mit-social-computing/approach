@@ -5,18 +5,14 @@ module.exports = function(grunt) {
          'source/bower_components/modernizr/modernizr.build.js'
         , 'source/js/lib/lodash/lodash.js'
         , 'source/bower_components/jquery/dist/jquery.js'
-        , 'source/js/lib/libgif/libgif.js'
         , 'source/bower_components/slick-carousel/slick/slick.js'
         , 'source/bower_components/imagesloaded/imagesloaded.pkgd.js'
-        , 'source/bower_components/isotope/dist/isotope.pkgd.js' // TODO split out into a separate file for photo pages
+        , 'source/bower_components/isotope/dist/isotope.pkgd.js'
         , 'source/bower_components/fastclick/lib/fastclick.js'
-        //, 'source/bower_components/foundation/js/foundation.js'
-        //, 'source/bower_components/skrollr/src/skrollr.js'
         , 'source/js/main.js'
         , 'source/js/resources.js'
         , 'source/js/lightbox.js'
         , 'source/js/forms.js'
-        //, 'source/js/classroom.js'
         , 'source/js/approach.js'
     ]
 
@@ -73,6 +69,8 @@ module.exports = function(grunt) {
             },
             build : {
                 options : {
+                    sourceMap : true,
+                    sourceMapIncludeSources : true,
                     compess : {
                         drop_console : true,
                         global_defs : {

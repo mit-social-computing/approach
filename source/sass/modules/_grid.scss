@@ -23,6 +23,12 @@
     > .grid-item {
         margin: 25px 0;
         @include flexbox;
+
+        .title { @include transition(color 150ms ease); }
+
+        &:hover .title {
+            color: $pink;
+        }
     }
 
     .panel {
@@ -85,13 +91,19 @@
     @include flex(1 0 260px);
 
     .grid--three & {
-        width: 32%;
-        @include flex(0 0 32%);
+        width: 100%;
+        @include flex(0 0 100%);
+
+        @media #{$medium-up} {
+            width: 32%;
+            @include flex-basis(32%);
+        }
     }
 
     .grid--inline & {
         display: inline-block;
         vertical-align: top;
+        margin-bottom: 1rem;
     }
 
     &.center-vh {
@@ -124,6 +136,7 @@
         margin-right: 0;
     }
 }
+
 .grid-content {
     text-align: center;
     font-family: kim;
@@ -131,7 +144,9 @@
     color: $purple;
     @extend .antialiased;
 }
+
 .grid-img {}
+
 .grid-header {
     font-family: kim;
     color: $purple;
@@ -139,11 +154,13 @@
     line-height: 1;
     margin: 0;
 }
+
 .grid-text {
     font-size: rem-calc(23);
     margin: rem-calc(10) 0;
     line-height: 1;
 }
+
 .grid-link {
     color: $purple;
     font-size: rem-calc(18);
