@@ -23,6 +23,11 @@
     background-color: rgba($purple, 0.1);
     color: $purple;
 
+    &:hover {
+        background-color: rgba($purple, 1);
+        color: $light-purple;
+    }
+
     &.selected,
     &.panel--hover:hover {
         background-color: rgba($teal, 0.1);
@@ -33,9 +38,19 @@
 .panel--green {
     background-color: rgba($green, 0.1);
     color: $green;
+
+    &:hover {
+        background-color: rgba($green, 1);
+        color: $light-green;
+    }
 }
 
 .panel--pink {
     background-color: rgba($pink, 0.1);
     color: $pink;
+
+    &:hover {
+        background-color: rgba($pink, 1);
+        color: $light-pink;
+    }
 }
