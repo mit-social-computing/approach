@@ -2767,17 +2767,11 @@ i {
 /* line 9, ../../../source/sass/_home.scss */
 #homeImg {
   opacity: 0;
-  -ms-transform: scale(0.8, 0.8);
-  -webkit-transform: scale(0.8, 0.8);
-  transform: scale(0.8, 0.8);
   -webkit-transition: -webkit-transform 750ms ease-in-out, opacity 750ms ease-in-out;
   transition: transform 750ms ease-in-out, opacity 750ms ease-in-out;
 }
 /* line 14, ../../../source/sass/_home.scss */
 #homeImg.loaded {
-  -ms-transform: scale(1, 1);
-  -webkit-transform: scale(1, 1);
-  transform: scale(1, 1);
   opacity: 1;
 }
 

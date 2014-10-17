@@ -8,11 +8,11 @@
 
 #homeImg {
     opacity: 0;
-    @include scale(0.8);
+    //@include scale(0.8);
     @include transition(transform 750ms ease-in-out, opacity 750ms ease-in-out);
 
     &.loaded {
-        @include scale(1);
+        //@include scale(1);
         opacity: 1;
     }
 }
