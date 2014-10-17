@@ -225,11 +225,11 @@
             width: 0;
             height: 0;
             border: 19px solid transparent;
-            border-top-color: rgba($purple, 0.1);
+            border-top-color: rgba($purple, 1);
         }
 
         &:hover:before {
-            border-top-color: rgba($purple, 1);
+            border-top-color: rgba($purple, 0.1);
         }
     }
 
@@ -239,11 +239,11 @@
             width: 0;
             height: 0;
             border: 19px solid transparent;
-            border-bottom-color: rgba($purple, 0.1);
+            border-bottom-color: rgba($purple, 1);
         }
 
         &:hover:before {
-            border-bottom-color: rgba($purple, 1);
+            border-bottom-color: rgba($purple, 0.1);
         }
     }
 
@@ -290,7 +290,9 @@
                 height: 100%;
                 padding-left: 25px;
                 font-family: kim;
-                font-size: rem-calc(17);
+                font-size: 18px;
+                font-size: rem-calc(18);
+                letter-spacing: 1.75px;
                 line-height: 0.9;
                 color: #cabcda;
                 opacity: 0;
