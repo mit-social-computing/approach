@@ -7,15 +7,57 @@ $(function() {
         dots : true,
         draggable : false,
         infinite : false,
-        onInit : function() {
-            //$('body').append( $('<div/>').addClass('slide-dots') )
+        onInit : function(Slick) {
             $('.slick-dots').appendTo('.slide-dots')
             $('.slick-prev').prependTo('#slideshow')
             $('.grid').on('click', '.grid-item', function(e) {
                 e.preventDefault()
+                if ( $(this).find('a').hasClass('disabled') ) {
+                    return false
+                }
                 var idx = $('.grid').children().index(this)
                 $('#slideshow').slickGoTo(idx+1)
             })
+
+            var count = 0
+
+            Slick.gifs = {}
+
+            $('.gif').each(function(img) {
+                var id = $(this).parents('.slide').attr('id'),
+                    gif = new SuperGif({
+                        gif : this,
+                        auto_play : false
+                    })
+
+                gif.load(function(g){
+                    var href = '#' + g.src.match(/\/([^/]+)\.gif$/)[1],
+                        anchor = document.querySelector('a[href="' + href +'"]')
+                    anchor.classList.remove('disabled')
+
+                    if ( count === 8 ) {
+                        $('#dots').removeClass('disabled')
+                    } else {
+                        count++
+                    }
+                })
+                Slick.gifs[id] = gif
+            })
+        },
+        onAfterChange : function(Slick, idx) {
+            if ( idx !== 0 ) {
+                var id = Slick.$slides[idx].id
+
+                $('.jsgif').addClass('hide')
+
+                Object.keys(Slick.gifs).forEach(function(gif) {
+                    Slick.gifs[gif].pause()
+                })
+
+                Slick.gifs[id].move_to(1)
+                $('#' + id).find('.jsgif').removeClass('hide')
+                Slick.gifs[id].play()
+            }
         },
         vertical : true,
         customPaging : function(slick, idx) {
@@ -29,6 +71,10 @@ $(function() {
         }
     },
     mql
+
+    $('.disabled').click(function(e) {
+        e.preventDefault()
+    })
 
     if ( matchMedia ) {
         mql = window.matchMedia('(min-width: 40em)')

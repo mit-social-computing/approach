@@ -6,77 +6,47 @@
     font-weight: 400;
 }
 
-.home .content {
-    margin: auto;
-    width: 100%;
-    padding: 20px 10px;
+#homeImg {
+    opacity: 0;
+    @include scale(0.8);
+    @include transition(transform 750ms ease-in-out, opacity 750ms ease-in-out);
+
+    &.loaded {
+        @include scale(1);
+        opacity: 1;
+    }
 }
 
 .home {
-    #initGif,
-    #principles,
-    #nav,
-    #homeFooter {
-        pointer-events: none;
+    .grid-item {
         opacity: 0;
-        @include transition(opacity 250ms ease-out);
+        @include scale(0.8);
 
-        &.loaded {
-            pointer-events: all;
-            opacity: 1;
-        }
-    }
-}
-
-@media #{$medium-up} {
-    .home .content {
-        padding: 65px 25px;
-    }
-}
-
-.gif-stage {
-    position: relative;
-    margin-bottom: 15px;
-    text-align: center;
-    width: 100%;
-
-    img {
-        display: none;
-    }
-
-    .init-gif {
-        display: block;
-        margin: 0 auto;
-        max-width: 100%;
-        max-height: 100%;
-    }
-}
-
-.jsgif {
-    display: none;
-}
-
-@media #{$medium-up} {
-    .gif-stage {
-        height: 185px;
-
-        canvas {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto;
-            opacity: 0;
-            @include transition(opacity 0ms);
-
-            &.show {
-                opacity: 1;
-                @include transition(opacity 250ms);
+        @for $i from 1 through 3 {
+            &:nth-child(#{$i}) {
+                @include transition(opacity 200ms cubic-bezier(.12,.4,.31,1.47) #{(550 + ($i*200)) + 'ms'},
+                transform 200ms cubic-bezier(.12,.4,.31,1.47) #{(550 + ($i*200)) + 'ms'} );
             }
         }
     }
 
-    .jsgif {
-        display: block;
+    .grid.loaded .grid-item {
+        opacity: 1;
+        @include scale(1);
     }
+}
+// .home {
+//     #nav,
+//     #homeFooter {
+//         opacity: 0;
+//         @include transition(opacity 250ms ease-out);
+// 
+//         &.loaded {
+//             pointer-events: all;
+//             opacity: 1;
+//         }
+//     }
+// }
+
+@media #{$medium-up} {
 }

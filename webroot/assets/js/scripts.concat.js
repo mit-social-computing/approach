@@ -1711,6 +1711,889 @@ window.Modernizr = (function( window, document, undefined ) {
   }
 }.call(this));
 
+/*
+	SuperGif
+
+	Example usage:
+
+		<img src="./example1_preview.gif" rel:animated_src="./example1.gif" width="360" height="360" rel:auto_play="1" />
+
+		<script type="text/javascript">
+			$$('img').each(function (img_tag) {
+				if (/.*\.gif/.test(img_tag.src)) {
+					var rub = new SuperGif({ gif: img_tag } );
+					rub.load();
+				}
+			});
+		</script>
+
+	Image tag attributes:
+
+		rel:animated_src -	If this url is specified, it's loaded into the player instead of src.
+							This allows a preview frame to be shown until animated gif data is streamed into the canvas
+
+		rel:auto_play -		Defaults to 1 if not specified. If set to zero, a call to the play() method is needed
+
+	Constructor options args
+
+		gif 				Required. The DOM element of an img tag.
+		auto_play 			Optional. Same as the rel:auto_play attribute above, this arg overrides the img tag info.
+		max_width			Optional. Scale images over max_width down to max_width. Helpful with mobile.
+
+	Instance methods
+
+		// loading
+		load( callback )		Loads the gif specified by the src or rel:animated_src sttributie of the img tag into a canvas element and then calls callback if one is passed
+		load_url( src, callback )	Loads the gif file specified in the src argument into a canvas element and then calls callback if one is passed
+
+		// play controls
+		play -				Start playing the gif
+		pause -				Stop playing the gif
+		move_to(i) -		Move to frame i of the gif
+		move_relative(i) -	Move i frames ahead (or behind if i < 0)
+
+		// getters
+		get_canvas			The canvas element that the gif is playing in. Handy for assigning event handlers to.
+		get_playing			Whether or not the gif is currently playing
+		get_loading			Whether or not the gif has finished loading/parsing
+		get_auto_play		Whether or not the gif is set to play automatically
+		get_length			The number of frames in the gif
+		get_current_frame	The index of the currently displayed frame of the gif
+
+		For additional customization (viewport inside iframe) these params may be passed:
+		c_w, c_h - width and height of canvas
+		vp_t, vp_l, vp_ w, vp_h - top, left, width and height of the viewport
+
+		A bonus: few articles to understand what is going on
+			http://enthusiasms.org/post/16976438906
+			http://www.matthewflickinger.com/lab/whatsinagif/bits_and_bytes.asp
+			http://humpy77.deviantart.com/journal/Frame-Delay-Times-for-Animated-GIFs-214150546
+
+*/
+
+// Generic functions
+var bitsToNum = function (ba) {
+	return ba.reduce(function (s, n) {
+		return s * 2 + n;
+	}, 0);
+};
+
+var byteToBitArr = function (bite) {
+	var a = [];
+	for (var i = 7; i >= 0; i--) {
+		a.push( !! (bite & (1 << i)));
+	}
+	return a;
+};
+
+// Stream
+/**
+ * @constructor
+ */
+// Make compiler happy.
+var Stream = function (data) {
+	this.data = data;
+	this.len = this.data.length;
+	this.pos = 0;
+
+	this.readByte = function () {
+		if (this.pos >= this.data.length) {
+			throw new Error('Attempted to read past end of stream.');
+		}
+		if (data instanceof Uint8Array)
+			return data[this.pos++];
+		else
+			return data.charCodeAt(this.pos++) & 0xFF;
+	};
+
+	this.readBytes = function (n) {
+		var bytes = [];
+		for (var i = 0; i < n; i++) {
+			bytes.push(this.readByte());
+		}
+		return bytes;
+	};
+
+	this.read = function (n) {
+		var s = '';
+		for (var i = 0; i < n; i++) {
+			s += String.fromCharCode(this.readByte());
+		}
+		return s;
+	};
+
+	this.readUnsigned = function () { // Little-endian.
+		var a = this.readBytes(2);
+		return (a[1] << 8) + a[0];
+	};
+};
+
+var lzwDecode = function (minCodeSize, data) {
+	// TODO: Now that the GIF parser is a bit different, maybe this should get an array of bytes instead of a String?
+	var pos = 0; // Maybe this streaming thing should be merged with the Stream?
+	var readCode = function (size) {
+		var code = 0;
+		for (var i = 0; i < size; i++) {
+			if (data.charCodeAt(pos >> 3) & (1 << (pos & 7))) {
+				code |= 1 << i;
+			}
+			pos++;
+		}
+		return code;
+	};
+
+	var output = [];
+
+	var clearCode = 1 << minCodeSize;
+	var eoiCode = clearCode + 1;
+
+	var codeSize = minCodeSize + 1;
+
+	var dict = [];
+
+	var clear = function () {
+		dict = [];
+		codeSize = minCodeSize + 1;
+		for (var i = 0; i < clearCode; i++) {
+			dict[i] = [i];
+		}
+		dict[clearCode] = [];
+		dict[eoiCode] = null;
+
+	};
+
+	var code;
+	var last;
+
+	while (true) {
+		last = code;
+		code = readCode(codeSize);
+
+		if (code === clearCode) {
+			clear();
+			continue;
+		}
+		if (code === eoiCode) break;
+
+		if (code < dict.length) {
+			if (last !== clearCode) {
+				dict.push(dict[last].concat(dict[code][0]));
+			}
+		}
+		else {
+			if (code !== dict.length) throw new Error('Invalid LZW code.');
+			dict.push(dict[last].concat(dict[last][0]));
+		}
+		output.push.apply(output, dict[code]);
+
+		if (dict.length === (1 << codeSize) && codeSize < 12) {
+			// If we're at the last code and codeSize is 12, the next code will be a clearCode, and it'll be 12 bits long.
+			codeSize++;
+		}
+	}
+
+	// I don't know if this is technically an error, but some GIFs do it.
+	//if (Math.ceil(pos / 8) !== data.length) throw new Error('Extraneous LZW bytes.');
+	return output;
+};
+
+
+// The actual parsing; returns an object with properties.
+var parseGIF = function (st, handler) {
+	handler || (handler = {});
+
+	// LZW (GIF-specific)
+	var parseCT = function (entries) { // Each entry is 3 bytes, for RGB.
+		var ct = [];
+		for (var i = 0; i < entries; i++) {
+			ct.push(st.readBytes(3));
+		}
+		return ct;
+	};
+
+	var readSubBlocks = function () {
+		var size, data;
+		data = '';
+		do {
+			size = st.readByte();
+			data += st.read(size);
+		} while (size !== 0);
+		return data;
+	};
+
+	var parseHeader = function () {
+		var hdr = {};
+		hdr.sig = st.read(3);
+		hdr.ver = st.read(3);
+		if (hdr.sig !== 'GIF') throw new Error('Not a GIF file.'); // XXX: This should probably be handled more nicely.
+		hdr.width = st.readUnsigned();
+		hdr.height = st.readUnsigned();
+
+		var bits = byteToBitArr(st.readByte());
+		hdr.gctFlag = bits.shift();
+		hdr.colorRes = bitsToNum(bits.splice(0, 3));
+		hdr.sorted = bits.shift();
+		hdr.gctSize = bitsToNum(bits.splice(0, 3));
+
+		hdr.bgColor = st.readByte();
+		hdr.pixelAspectRatio = st.readByte(); // if not 0, aspectRatio = (pixelAspectRatio + 15) / 64
+		if (hdr.gctFlag) {
+			hdr.gct = parseCT(1 << (hdr.gctSize + 1));
+		}
+		handler.hdr && handler.hdr(hdr);
+	};
+
+	var parseExt = function (block) {
+		var parseGCExt = function (block) {
+			var blockSize = st.readByte(); // Always 4
+			var bits = byteToBitArr(st.readByte());
+			block.reserved = bits.splice(0, 3); // Reserved; should be 000.
+			block.disposalMethod = bitsToNum(bits.splice(0, 3));
+			block.userInput = bits.shift();
+			block.transparencyGiven = bits.shift();
+
+			block.delayTime = st.readUnsigned();
+
+			block.transparencyIndex = st.readByte();
+
+			block.terminator = st.readByte();
+
+			handler.gce && handler.gce(block);
+		};
+
+		var parseComExt = function (block) {
+			block.comment = readSubBlocks();
+			handler.com && handler.com(block);
+		};
+
+		var parsePTExt = function (block) {
+			// No one *ever* uses this. If you use it, deal with parsing it yourself.
+			var blockSize = st.readByte(); // Always 12
+			block.ptHeader = st.readBytes(12);
+			block.ptData = readSubBlocks();
+			handler.pte && handler.pte(block);
+		};
+
+		var parseAppExt = function (block) {
+			var parseNetscapeExt = function (block) {
+				var blockSize = st.readByte(); // Always 3
+				block.unknown = st.readByte(); // ??? Always 1? What is this?
+				block.iterations = st.readUnsigned();
+				block.terminator = st.readByte();
+				handler.app && handler.app.NETSCAPE && handler.app.NETSCAPE(block);
+			};
+
+			var parseUnknownAppExt = function (block) {
+				block.appData = readSubBlocks();
+				// FIXME: This won't work if a handler wants to match on any identifier.
+				handler.app && handler.app[block.identifier] && handler.app[block.identifier](block);
+			};
+
+			var blockSize = st.readByte(); // Always 11
+			block.identifier = st.read(8);
+			block.authCode = st.read(3);
+			switch (block.identifier) {
+			case 'NETSCAPE':
+				parseNetscapeExt(block);
+				break;
+			default:
+				parseUnknownAppExt(block);
+				break;
+			}
+		};
+
+		var parseUnknownExt = function (block) {
+			block.data = readSubBlocks();
+			handler.unknown && handler.unknown(block);
+		};
+
+		block.label = st.readByte();
+		switch (block.label) {
+		case 0xF9:
+			block.extType = 'gce';
+			parseGCExt(block);
+			break;
+		case 0xFE:
+			block.extType = 'com';
+			parseComExt(block);
+			break;
+		case 0x01:
+			block.extType = 'pte';
+			parsePTExt(block);
+			break;
+		case 0xFF:
+			block.extType = 'app';
+			parseAppExt(block);
+			break;
+		default:
+			block.extType = 'unknown';
+			parseUnknownExt(block);
+			break;
+		}
+	};
+
+	var parseImg = function (img) {
+		var deinterlace = function (pixels, width) {
+			// Of course this defeats the purpose of interlacing. And it's *probably*
+			// the least efficient way it's ever been implemented. But nevertheless...
+			var newPixels = new Array(pixels.length);
+			var rows = pixels.length / width;
+			var cpRow = function (toRow, fromRow) {
+				var fromPixels = pixels.slice(fromRow * width, (fromRow + 1) * width);
+				newPixels.splice.apply(newPixels, [toRow * width, width].concat(fromPixels));
+			};
+
+			// See appendix E.
+			var offsets = [0, 4, 2, 1];
+			var steps = [8, 8, 4, 2];
+
+			var fromRow = 0;
+			for (var pass = 0; pass < 4; pass++) {
+				for (var toRow = offsets[pass]; toRow < rows; toRow += steps[pass]) {
+					cpRow(toRow, fromRow)
+					fromRow++;
+				}
+			}
+
+			return newPixels;
+		};
+
+		img.leftPos = st.readUnsigned();
+		img.topPos = st.readUnsigned();
+		img.width = st.readUnsigned();
+		img.height = st.readUnsigned();
+
+		var bits = byteToBitArr(st.readByte());
+		img.lctFlag = bits.shift();
+		img.interlaced = bits.shift();
+		img.sorted = bits.shift();
+		img.reserved = bits.splice(0, 2);
+		img.lctSize = bitsToNum(bits.splice(0, 3));
+
+		if (img.lctFlag) {
+			img.lct = parseCT(1 << (img.lctSize + 1));
+		}
+
+		img.lzwMinCodeSize = st.readByte();
+
+		var lzwData = readSubBlocks();
+
+		img.pixels = lzwDecode(img.lzwMinCodeSize, lzwData);
+
+		if (img.interlaced) { // Move
+			img.pixels = deinterlace(img.pixels, img.width);
+		}
+
+		handler.img && handler.img(img);
+	};
+
+	var parseBlock = function () {
+		var block = {};
+		block.sentinel = st.readByte();
+
+		switch (String.fromCharCode(block.sentinel)) { // For ease of matching
+		case '!':
+			block.type = 'ext';
+			parseExt(block);
+			break;
+		case ',':
+			block.type = 'img';
+			parseImg(block);
+			break;
+		case ';':
+			block.type = 'eof';
+			handler.eof && handler.eof(block);
+			break;
+		default:
+			throw new Error('Unknown block: 0x' + block.sentinel.toString(16)); // TODO: Pad this with a 0.
+		}
+
+		if (block.type !== 'eof') setTimeout(parseBlock, 0);
+	};
+
+	var parse = function () {
+		parseHeader();
+		setTimeout(parseBlock, 0);
+	};
+
+	parse();
+};
+
+var SuperGif = function ( opts ) {
+	var options = {
+		//viewport position
+		vp_l: 0,
+		vp_t: 0,
+		vp_w: null,
+		vp_h: null,
+		//canvas sizes
+		c_w: null,
+		c_h: null
+	};
+	for (var i in opts ) { options[i] = opts[i] }
+	if (options.vp_w && options.vp_h) options.is_vp = true;
+
+	var stream;
+	var hdr;
+
+	var loadError = null;
+	var loading = false;
+
+	var transparency = null;
+	var delay = null;
+	var disposalMethod = null;
+	var disposalRestoreFromIdx = 0;
+	var lastDisposalMethod = null;
+	var frame = null;
+	var lastImg = null;
+
+	var playing = true;
+	var forward = true;
+
+	var ctx_scaled = false;
+
+	var frames = [];
+
+	var gif = options.gif;
+	if (typeof options.auto_play == 'undefined')
+		options.auto_play = (!gif.getAttribute('rel:auto_play') || gif.getAttribute('rel:auto_play') == '1');
+
+	var clear = function () {
+		transparency = null;
+		delay = null;
+		lastDisposalMethod = disposalMethod;
+		disposalMethod = null;
+		frame = null;
+	};
+
+	// XXX: There's probably a better way to handle catching exceptions when
+	// callbacks are involved.
+	var doParse = function () {
+		try {
+			parseGIF(stream, handler);
+		}
+		catch (err) {
+			doLoadError('parse');
+		}
+	};
+
+	var doText = function (text) {
+		toolbar.innerHTML = text; // innerText? Escaping? Whatever.
+		toolbar.style.visibility = 'visible';
+	};
+
+	var setSizes = function(w, h) {
+		canvas.width = w * get_canvas_scale();
+		canvas.height = h * get_canvas_scale();
+		toolbar.style.minWidth = ( w * get_canvas_scale() ) + 'px';
+
+		tmpCanvas.width = w;
+		tmpCanvas.height = h;
+		tmpCanvas.style.width = w + 'px';
+		tmpCanvas.style.height = h + 'px';
+		tmpCanvas.getContext('2d').setTransform(1, 0, 0, 1, 0, 0);
+	}
+
+	var doShowProgress = function (pos, length, draw) {
+		if (draw) {
+			var height = 25;
+			var left, mid, top, width;
+			if (options.is_vp) {
+				if (!ctx_scaled) {
+					top = (options.vp_t + options.vp_h - height);
+					height = height;
+					left = options.vp_l;
+					mid = left + (pos / length) * options.vp_w;
+					width = canvas.width;
+				} else {
+					top = (options.vp_t + options.vp_h - height) / get_canvas_scale();
+					height = height / get_canvas_scale();
+					left = (options.vp_l / get_canvas_scale() );
+					mid = left + (pos / length) * (options.vp_w / get_canvas_scale());
+					width = canvas.width / get_canvas_scale();
+				}
+				//some debugging, draw rect around viewport
+				if (false) {
+					if (!ctx_scaled) {
+						var l = options.vp_l, t = options.vp_t;
+						var w = options.vp_w, h = options.vp_h;
+					} else {
+						var l = options.vp_l/get_canvas_scale(), t = options.vp_t/get_canvas_scale();
+						var w = options.vp_w/get_canvas_scale(), h = options.vp_h/get_canvas_scale();
+					}
+					ctx.rect(l,t,w,h);
+					ctx.stroke();
+				}
+			}
+			else {
+				top = (canvas.height - height) / (ctx_scaled ? get_canvas_scale() : 1);
+				mid = ((pos / length) * canvas.width) / (ctx_scaled ? get_canvas_scale() : 1);
+				width = canvas.width / (ctx_scaled ? get_canvas_scale() : 1 );
+				height /= ctx_scaled ? get_canvas_scale() : 1;
+			}
+			// XXX Figure out alpha fillRect.
+			//ctx.fillStyle = 'salmon';
+			ctx.fillStyle = 'rgba(255,255,255,0.4)';
+			ctx.fillRect(mid, top, width - mid, height);
+
+			//ctx.fillStyle = 'teal';
+			ctx.fillStyle = 'rgba(255,0,22,.8)';
+			ctx.fillRect(0, top, mid, height);
+		}
+	};
+
+	var doLoadError = function (originOfError) {
+		var drawError = function () {
+			ctx.fillStyle = 'black';
+			ctx.fillRect(0, 0, options.c_w ? options.c_w : hdr.width, options.c_h ? options.c_h : hdr.height);
+			ctx.strokeStyle = 'red';
+			ctx.lineWidth = 3;
+			ctx.moveTo(0, 0);
+			ctx.lineTo(options.c_w ? options.c_w : hdr.width, options.c_h ? options.c_h : hdr.height);
+			ctx.moveTo(0, options.c_h ? options.c_h : hdr.height);
+			ctx.lineTo(options.c_w ? options.c_w : hdr.width, 0);
+			ctx.stroke();
+		};
+
+		loadError = originOfError;
+		hdr = {
+			width: gif.width,
+			height: gif.height
+		}; // Fake header.
+		frames = [];
+		drawError();
+	};
+
+	var doHdr = function (_hdr) {
+		hdr = _hdr;
+		setSizes(hdr.width, hdr.height)
+	};
+
+	var doGCE = function (gce) {
+		pushFrame();
+		clear();
+		transparency = gce.transparencyGiven ? gce.transparencyIndex : null;
+		delay = gce.delayTime;
+		disposalMethod = gce.disposalMethod;
+		// We don't have much to do with the rest of GCE.
+	};
+
+	var pushFrame = function () {
+		if (!frame) return;
+		frames.push({
+			data: frame.getImageData(0, 0, hdr.width, hdr.height),
+			delay: delay
+		});
+	};
+
+	var doImg = function (img) {
+		if (!frame) frame = tmpCanvas.getContext('2d');
+
+		var currIdx = frames.length;
+
+		//ct = color table, gct = global color table
+		var ct = img.lctFlag ? img.lct : hdr.gct; // TODO: What if neither exists?
+
+		/*
+		Disposal method indicates the way in which the graphic is to
+		be treated after being displayed.
+
+		Values :    0 - No disposal specified. The decoder is
+						not required to take any action.
+					1 - Do not dispose. The graphic is to be left
+						in place.
+					2 - Restore to background color. The area used by the
+						graphic must be restored to the background color.
+					3 - Restore to previous. The decoder is required to
+						restore the area overwritten by the graphic with
+						what was there prior to rendering the graphic.
+
+						Importantly, "previous" means the frame state
+						after the last disposal of method 0, 1, or 2.
+		*/
+		if (currIdx > 0) {
+			if (lastDisposalMethod === 3) {
+				// Restore to previous
+				frame.putImageData(frames[disposalRestoreFromIdx].data, 0, 0);
+			} else {
+				disposalRestoreFromIdx = currIdx - 1;
+			}
+
+			if (lastDisposalMethod === 2) {
+				// Restore to background color
+				// Browser implementations historically restore to transparent; we do the same.
+				// http://www.wizards-toolkit.org/discourse-server/viewtopic.php?f=1&t=21172#p86079
+				frame.clearRect(lastImg.leftPos, lastImg.topPos, lastImg.width, lastImg.height);
+			}
+		}
+		// else, Undefined/Do not dispose.
+		// frame contains final pixel data from the last frame; do nothing
+
+		//Get existing pixels for img region after applying disposal method
+		var imgData = frame.getImageData(img.leftPos, img.topPos, img.width, img.height);
+
+		//apply color table colors
+		var cdd = imgData.data;
+		img.pixels.forEach(function (pixel, i) {
+			// imgData.data === [R,G,B,A,R,G,B,A,...]
+			if (pixel !== transparency) {
+				cdd[i * 4 + 0] = ct[pixel][0];
+				cdd[i * 4 + 1] = ct[pixel][1];
+				cdd[i * 4 + 2] = ct[pixel][2];
+				cdd[i * 4 + 3] = 255; // Opaque.
+			}
+		});
+		imgData.data = cdd;
+
+		frame.putImageData(imgData, img.leftPos, img.topPos);
+
+		if (!ctx_scaled) {
+			ctx.scale(get_canvas_scale(),get_canvas_scale());
+			ctx_scaled = true;
+		}
+
+		// We could use the on-page canvas directly, except that we draw a progress
+		// bar for each image chunk (not just the final image).
+		ctx.drawImage(tmpCanvas, 0, 0);
+
+		lastImg = img;
+	};
+
+	var player = (function () {
+		var i = -1;
+		var curFrame;
+		var delayInfo;
+		var timer;
+
+		var showingInfo = false;
+		var pinned = false;
+
+		var stepFrame = function (delta) { // XXX: Name is confusing.
+			i = (i + delta + frames.length) % frames.length;
+			curFrame = i + 1;
+			delayInfo = frames[i].delay;
+			putFrame();
+		};
+
+		var step = (function () {
+			var stepping = false;
+
+			var doStep = function () {
+				stepping = playing;
+				if (!stepping) return;
+
+				stepFrame(forward ? 1 : -1);
+				var delay = frames[i].delay * 10;
+				if (!delay) delay = 100; // FIXME: Should this even default at all? What should it be?
+				timer = setTimeout(doStep, delay);
+				stepping = false;
+			};
+
+			return function () {
+				if (!stepping) setTimeout(doStep, 0);
+			};
+		}());
+
+		var putFrame = function () {
+			curFrame = i;
+
+			tmpCanvas.getContext("2d").putImageData(frames[i].data, 0, 0);
+			ctx.globalCompositeOperation = "copy";
+			ctx.drawImage(tmpCanvas, 0, 0);
+
+		};
+
+		var play = function () {
+			playing = true;
+			step();
+		};
+
+		var pause = function () {
+			playing = false;
+			clearTimeout(timer)
+		};
+
+
+		return {
+			init: function () {
+				if (loadError) return;
+
+				if ( ! (options.c_w && options.c_h) ) {
+					ctx.scale(get_canvas_scale(),get_canvas_scale());
+				}
+
+				if (options.auto_play) {
+					step();
+				}
+				else {
+					i = 0;
+					putFrame();
+				}
+			},
+			step: step,
+			play: play,
+			pause: pause,
+			playing: playing,
+			move_relative: stepFrame,
+			current_frame: function() { return i; },
+			length: function() { return frames.length },
+			move_to: function ( frame_idx ) {
+				i = frame_idx;
+				putFrame();
+			}
+		}
+	}());
+
+	var doDecodeProgress = function (draw) {
+		doShowProgress(stream.pos, stream.data.length, draw);
+	};
+
+	var doNothing = function () {};
+	/**
+	 * @param{boolean=} draw Whether to draw progress bar or not; this is not idempotent because of translucency.
+	 *                       Note that this means that the text will be unsynchronized with the progress bar on non-frames;
+	 *                       but those are typically so small (GCE etc.) that it doesn't really matter. TODO: Do this properly.
+	 */
+	var withProgress = function (fn, draw) {
+		return function (block) {
+			fn(block);
+			doDecodeProgress(draw);
+		};
+	};
+
+
+	var handler = {
+		hdr: withProgress(doHdr),
+		gce: withProgress(doGCE),
+		com: withProgress(doNothing),
+		// I guess that's all for now.
+		app: {
+			// TODO: Is there much point in actually supporting iterations?
+			NETSCAPE: withProgress(doNothing)
+		},
+		img: withProgress(doImg, true),
+		eof: function (block) {
+			//toolbar.style.display = '';
+			pushFrame();
+			doDecodeProgress(false);
+			if ( ! (options.c_w && options.c_h) ) {
+				canvas.width = hdr.width * get_canvas_scale();
+				canvas.height = hdr.height * get_canvas_scale();
+			}
+			player.init();
+			loading = false;
+			if (load_callback) {
+				load_callback(gif);
+			}
+
+		}
+	};
+
+	var init = function () {
+		var parent = gif.parentNode;
+
+		var div = document.createElement('div');
+		canvas = document.createElement('canvas');
+		ctx = canvas.getContext('2d');
+		toolbar = document.createElement('div');
+
+		tmpCanvas = document.createElement('canvas');
+
+		div.width = canvas.width = gif.width;
+		div.height = canvas.height = gif.height;
+		toolbar.style.minWidth = gif.width + 'px';
+
+		div.className = 'jsgif';
+		toolbar.className = 'jsgif_toolbar';
+		div.appendChild(canvas);
+		div.appendChild(toolbar);
+
+		parent.insertBefore(div, gif);
+		parent.removeChild(gif);
+
+		if (options.c_w && options.c_h) setSizes(options.c_w, options.c_h);
+		initialized=true;
+	};
+
+	var get_canvas_scale = function() {
+		var scale;
+		if (options.max_width && hdr && hdr.width > options.max_width) {
+			scale = options.max_width / hdr.width;
+		}
+		else {
+			scale = 1;
+		}
+		return scale;
+	}
+
+	var canvas, ctx, toolbar, tmpCanvas;
+	var initialized = false;
+	var load_callback = false;
+
+	var load_setup = function(callback) {
+		if (loading) return false;
+		if (callback) load_callback = callback;
+		else load_callback = false;
+
+		loading = true;
+		frames = [];
+		clear();
+		disposalRestoreFromIdx = 0;
+		lastDisposalMethod = null;
+		frame = null;
+		lastImg = null;
+
+		return true;
+	}
+
+	return {
+		// play controls
+		play: player.play,
+		pause: player.pause,
+		move_relative: player.move_relative,
+		move_to: player.move_to,
+
+		// getters for instance vars
+		get_playing      : function() { return player.playing },
+		get_canvas       : function() { return canvas },
+		get_canvas_scale : function() { return get_canvas_scale() },
+		get_loading      : function() { return loading },
+		get_auto_play    : function() { return options.auto_play },
+		get_length       : function() { return player.length() },
+		get_current_frame: function() { return player.current_frame() },
+		load_url: function(src,callback){
+			if (!load_setup(callback)) return;
+
+			var h = new XMLHttpRequest();
+			h.overrideMimeType('text/plain; charset=x-user-defined');
+			h.onloadstart = function() {
+				// Wait until connection is opened to replace the gif element with a canvas to avoid a blank img
+				if (!initialized) init();
+			};
+			h.onload = function(e) {
+				stream = new Stream(h.responseText);
+				setTimeout(doParse, 0);
+			};
+			h.onprogress = function (e) {
+				if (e.lengthComputable) doShowProgress(e.loaded, e.total, true);
+			};
+			h.onerror = function() { doLoadError('xhr'); };
+			h.open('GET', src, true);
+			h.send();
+		},
+		load: function (callback) {
+			this.load_url(gif.getAttribute('rel:animated_src') || gif.src,callback);
+		},
+		load_raw: function(arr, callback) {
+			if (!load_setup(callback)) return;
+			if (!initialized) init();
+			stream = new Stream(arr);
+			setTimeout(doParse, 0);
+		}
+	};
+
+};
+
 /*!
  * jQuery JavaScript Library v2.1.1
  * http://jquery.com/
@@ -17664,6 +18547,1778 @@ if ( typeof define === 'function' && define.amd ) {
 })( window );
 
 
+/*!
+ * skrollr core
+ *
+ * Alexander Prinzhorn - https://github.com/Prinzhorn/skrollr
+ *
+ * Free to use under terms of MIT license
+ */
+(function(window, document, undefined) {
+	'use strict';
+
+	/*
+	 * Global api.
+	 */
+	var skrollr = {
+		get: function() {
+			return _instance;
+		},
+		//Main entry point.
+		init: function(options) {
+			return _instance || new Skrollr(options);
+		},
+		VERSION: '0.6.26'
+	};
+
+	//Minify optimization.
+	var hasProp = Object.prototype.hasOwnProperty;
+	var Math = window.Math;
+	var getStyle = window.getComputedStyle;
+
+	//They will be filled when skrollr gets initialized.
+	var documentElement;
+	var body;
+
+	var EVENT_TOUCHSTART = 'touchstart';
+	var EVENT_TOUCHMOVE = 'touchmove';
+	var EVENT_TOUCHCANCEL = 'touchcancel';
+	var EVENT_TOUCHEND = 'touchend';
+
+	var SKROLLABLE_CLASS = 'skrollable';
+	var SKROLLABLE_BEFORE_CLASS = SKROLLABLE_CLASS + '-before';
+	var SKROLLABLE_BETWEEN_CLASS = SKROLLABLE_CLASS + '-between';
+	var SKROLLABLE_AFTER_CLASS = SKROLLABLE_CLASS + '-after';
+
+	var SKROLLR_CLASS = 'skrollr';
+	var NO_SKROLLR_CLASS = 'no-' + SKROLLR_CLASS;
+	var SKROLLR_DESKTOP_CLASS = SKROLLR_CLASS + '-desktop';
+	var SKROLLR_MOBILE_CLASS = SKROLLR_CLASS + '-mobile';
+
+	var DEFAULT_EASING = 'linear';
+	var DEFAULT_DURATION = 1000;//ms
+	var DEFAULT_MOBILE_DECELERATION = 0.004;//pixel/ms²
+
+	var DEFAULT_SMOOTH_SCROLLING_DURATION = 200;//ms
+
+	var ANCHOR_START = 'start';
+	var ANCHOR_END = 'end';
+	var ANCHOR_CENTER = 'center';
+	var ANCHOR_BOTTOM = 'bottom';
+
+	//The property which will be added to the DOM element to hold the ID of the skrollable.
+	var SKROLLABLE_ID_DOM_PROPERTY = '___skrollable_id';
+
+	var rxTouchIgnoreTags = /^(?:input|textarea|button|select)$/i;
+
+	var rxTrim = /^\s+|\s+$/g;
+
+	//Find all data-attributes. data-[_constant]-[offset]-[anchor]-[anchor].
+	var rxKeyframeAttribute = /^data(?:-(_\w+))?(?:-?(-?\d*\.?\d+p?))?(?:-?(start|end|top|center|bottom))?(?:-?(top|center|bottom))?$/;
+
+	var rxPropValue = /\s*(@?[\w\-\[\]]+)\s*:\s*(.+?)\s*(?:;|$)/gi;
+
+	//Easing function names follow the property in square brackets.
+	var rxPropEasing = /^(@?[a-z\-]+)\[(\w+)\]$/;
+
+	var rxCamelCase = /-([a-z0-9_])/g;
+	var rxCamelCaseFn = function(str, letter) {
+		return letter.toUpperCase();
+	};
+
+	//Numeric values with optional sign.
+	var rxNumericValue = /[\-+]?[\d]*\.?[\d]+/g;
+
+	//Used to replace occurences of {?} with a number.
+	var rxInterpolateString = /\{\?\}/g;
+
+	//Finds rgb(a) colors, which don't use the percentage notation.
+	var rxRGBAIntegerColor = /rgba?\(\s*-?\d+\s*,\s*-?\d+\s*,\s*-?\d+/g;
+
+	//Finds all gradients.
+	var rxGradient = /[a-z\-]+-gradient/g;
+
+	//Vendor prefix. Will be set once skrollr gets initialized.
+	var theCSSPrefix = '';
+	var theDashedCSSPrefix = '';
+
+	//Will be called once (when skrollr gets initialized).
+	var detectCSSPrefix = function() {
+		//Only relevant prefixes. May be extended.
+		//Could be dangerous if there will ever be a CSS property which actually starts with "ms". Don't hope so.
+		var rxPrefixes = /^(?:O|Moz|webkit|ms)|(?:-(?:o|moz|webkit|ms)-)/;
+
+		//Detect prefix for current browser by finding the first property using a prefix.
+		if(!getStyle) {
+			return;
+		}
+
+		var style = getStyle(body, null);
+
+		for(var k in style) {
+			//We check the key and if the key is a number, we check the value as well, because safari's getComputedStyle returns some weird array-like thingy.
+			theCSSPrefix = (k.match(rxPrefixes) || (+k == k && style[k].match(rxPrefixes)));
+
+			if(theCSSPrefix) {
+				break;
+			}
+		}
+
+		//Did we even detect a prefix?
+		if(!theCSSPrefix) {
+			theCSSPrefix = theDashedCSSPrefix = '';
+
+			return;
+		}
+
+		theCSSPrefix = theCSSPrefix[0];
+
+		//We could have detected either a dashed prefix or this camelCaseish-inconsistent stuff.
+		if(theCSSPrefix.slice(0,1) === '-') {
+			theDashedCSSPrefix = theCSSPrefix;
+
+			//There's no logic behind these. Need a look up.
+			theCSSPrefix = ({
+				'-webkit-': 'webkit',
+				'-moz-': 'Moz',
+				'-ms-': 'ms',
+				'-o-': 'O'
+			})[theCSSPrefix];
+		} else {
+			theDashedCSSPrefix = '-' + theCSSPrefix.toLowerCase() + '-';
+		}
+	};
+
+	var polyfillRAF = function() {
+		var requestAnimFrame = window.requestAnimationFrame || window[theCSSPrefix.toLowerCase() + 'RequestAnimationFrame'];
+
+		var lastTime = _now();
+
+		if(_isMobile || !requestAnimFrame) {
+			requestAnimFrame = function(callback) {
+				//How long did it take to render?
+				var deltaTime = _now() - lastTime;
+				var delay = Math.max(0, 1000 / 60 - deltaTime);
+
+				return window.setTimeout(function() {
+					lastTime = _now();
+					callback();
+				}, delay);
+			};
+		}
+
+		return requestAnimFrame;
+	};
+
+	var polyfillCAF = function() {
+		var cancelAnimFrame = window.cancelAnimationFrame || window[theCSSPrefix.toLowerCase() + 'CancelAnimationFrame'];
+
+		if(_isMobile || !cancelAnimFrame) {
+			cancelAnimFrame = function(timeout) {
+				return window.clearTimeout(timeout);
+			};
+		}
+
+		return cancelAnimFrame;
+	};
+
+	//Built-in easing functions.
+	var easings = {
+		begin: function() {
+			return 0;
+		},
+		end: function() {
+			return 1;
+		},
+		linear: function(p) {
+			return p;
+		},
+		quadratic: function(p) {
+			return p * p;
+		},
+		cubic: function(p) {
+			return p * p * p;
+		},
+		swing: function(p) {
+			return (-Math.cos(p * Math.PI) / 2) + 0.5;
+		},
+		sqrt: function(p) {
+			return Math.sqrt(p);
+		},
+		outCubic: function(p) {
+			return (Math.pow((p - 1), 3) + 1);
+		},
+		//see https://www.desmos.com/calculator/tbr20s8vd2 for how I did this
+		bounce: function(p) {
+			var a;
+
+			if(p <= 0.5083) {
+				a = 3;
+			} else if(p <= 0.8489) {
+				a = 9;
+			} else if(p <= 0.96208) {
+				a = 27;
+			} else if(p <= 0.99981) {
+				a = 91;
+			} else {
+				return 1;
+			}
+
+			return 1 - Math.abs(3 * Math.cos(p * a * 1.028) / a);
+		}
+	};
+
+	/**
+	 * Constructor.
+	 */
+	function Skrollr(options) {
+		documentElement = document.documentElement;
+		body = document.body;
+
+		detectCSSPrefix();
+
+		_instance = this;
+
+		options = options || {};
+
+		_constants = options.constants || {};
+
+		//We allow defining custom easings or overwrite existing.
+		if(options.easing) {
+			for(var e in options.easing) {
+				easings[e] = options.easing[e];
+			}
+		}
+
+		_edgeStrategy = options.edgeStrategy || 'set';
+
+		_listeners = {
+			//Function to be called right before rendering.
+			beforerender: options.beforerender,
+
+			//Function to be called right after finishing rendering.
+			render: options.render,
+
+			//Function to be called whenever an element with the `data-emit-events` attribute passes a keyframe.
+			keyframe: options.keyframe
+		};
+
+		//forceHeight is true by default
+		_forceHeight = options.forceHeight !== false;
+
+		if(_forceHeight) {
+			_scale = options.scale || 1;
+		}
+
+		_mobileDeceleration = options.mobileDeceleration || DEFAULT_MOBILE_DECELERATION;
+
+		_smoothScrollingEnabled = options.smoothScrolling !== false;
+		_smoothScrollingDuration = options.smoothScrollingDuration || DEFAULT_SMOOTH_SCROLLING_DURATION;
+
+		//Dummy object. Will be overwritten in the _render method when smooth scrolling is calculated.
+		_smoothScrolling = {
+			targetTop: _instance.getScrollTop()
+		};
+
+		//A custom check function may be passed.
+		_isMobile = ((options.mobileCheck || function() {
+			return (/Android|iPhone|iPad|iPod|BlackBerry/i).test(navigator.userAgent || navigator.vendor || window.opera);
+		})());
+
+		if(_isMobile) {
+			_skrollrBody = document.getElementById('skrollr-body');
+
+			//Detect 3d transform if there's a skrollr-body (only needed for #skrollr-body).
+			if(_skrollrBody) {
+				_detect3DTransforms();
+			}
+
+			_initMobile();
+			_updateClass(documentElement, [SKROLLR_CLASS, SKROLLR_MOBILE_CLASS], [NO_SKROLLR_CLASS]);
+		} else {
+			_updateClass(documentElement, [SKROLLR_CLASS, SKROLLR_DESKTOP_CLASS], [NO_SKROLLR_CLASS]);
+		}
+
+		//Triggers parsing of elements and a first reflow.
+		_instance.refresh();
+
+		_addEvent(window, 'resize orientationchange', function() {
+			var width = documentElement.clientWidth;
+			var height = documentElement.clientHeight;
+
+			//Only reflow if the size actually changed (#271).
+			if(height !== _lastViewportHeight || width !== _lastViewportWidth) {
+				_lastViewportHeight = height;
+				_lastViewportWidth = width;
+
+				_requestReflow = true;
+			}
+		});
+
+		var requestAnimFrame = polyfillRAF();
+
+		//Let's go.
+		(function animloop(){
+			_render();
+			_animFrame = requestAnimFrame(animloop);
+		}());
+
+		return _instance;
+	}
+
+	/**
+	 * (Re)parses some or all elements.
+	 */
+	Skrollr.prototype.refresh = function(elements) {
+		var elementIndex;
+		var elementsLength;
+		var ignoreID = false;
+
+		//Completely reparse anything without argument.
+		if(elements === undefined) {
+			//Ignore that some elements may already have a skrollable ID.
+			ignoreID = true;
+
+			_skrollables = [];
+			_skrollableIdCounter = 0;
+
+			elements = document.getElementsByTagName('*');
+		} else if(elements.length === undefined) {
+			//We also accept a single element as parameter.
+			elements = [elements];
+		}
+
+		elementIndex = 0;
+		elementsLength = elements.length;
+
+		for(; elementIndex < elementsLength; elementIndex++) {
+			var el = elements[elementIndex];
+			var anchorTarget = el;
+			var keyFrames = [];
+
+			//If this particular element should be smooth scrolled.
+			var smoothScrollThis = _smoothScrollingEnabled;
+
+			//The edge strategy for this particular element.
+			var edgeStrategy = _edgeStrategy;
+
+			//If this particular element should emit keyframe events.
+			var emitEvents = false;
+
+			//If we're reseting the counter, remove any old element ids that may be hanging around.
+			if(ignoreID && SKROLLABLE_ID_DOM_PROPERTY in el) {
+				delete el[SKROLLABLE_ID_DOM_PROPERTY];
+			}
+
+			if(!el.attributes) {
+				continue;
+			}
+
+			//Iterate over all attributes and search for key frame attributes.
+			var attributeIndex = 0;
+			var attributesLength = el.attributes.length;
+
+			for (; attributeIndex < attributesLength; attributeIndex++) {
+				var attr = el.attributes[attributeIndex];
+
+				if(attr.name === 'data-anchor-target') {
+					anchorTarget = document.querySelector(attr.value);
+
+					if(anchorTarget === null) {
+						throw 'Unable to find anchor target "' + attr.value + '"';
+					}
+
+					continue;
+				}
+
+				//Global smooth scrolling can be overridden by the element attribute.
+				if(attr.name === 'data-smooth-scrolling') {
+					smoothScrollThis = attr.value !== 'off';
+
+					continue;
+				}
+
+				//Global edge strategy can be overridden by the element attribute.
+				if(attr.name === 'data-edge-strategy') {
+					edgeStrategy = attr.value;
+
+					continue;
+				}
+
+				//Is this element tagged with the `data-emit-events` attribute?
+				if(attr.name === 'data-emit-events') {
+					emitEvents = true;
+
+					continue;
+				}
+
+				var match = attr.name.match(rxKeyframeAttribute);
+
+				if(match === null) {
+					continue;
+				}
+
+				var kf = {
+					props: attr.value,
+					//Point back to the element as well.
+					element: el,
+					//The name of the event which this keyframe will fire, if emitEvents is
+					eventType: attr.name.replace(rxCamelCase, rxCamelCaseFn)
+				};
+
+				keyFrames.push(kf);
+
+				var constant = match[1];
+
+				if(constant) {
+					//Strip the underscore prefix.
+					kf.constant = constant.substr(1);
+				}
+
+				//Get the key frame offset.
+				var offset = match[2];
+
+				//Is it a percentage offset?
+				if(/p$/.test(offset)) {
+					kf.isPercentage = true;
+					kf.offset = (offset.slice(0, -1) | 0) / 100;
+				} else {
+					kf.offset = (offset | 0);
+				}
+
+				var anchor1 = match[3];
+
+				//If second anchor is not set, the first will be taken for both.
+				var anchor2 = match[4] || anchor1;
+
+				//"absolute" (or "classic") mode, where numbers mean absolute scroll offset.
+				if(!anchor1 || anchor1 === ANCHOR_START || anchor1 === ANCHOR_END) {
+					kf.mode = 'absolute';
+
+					//data-end needs to be calculated after all key frames are known.
+					if(anchor1 === ANCHOR_END) {
+						kf.isEnd = true;
+					} else if(!kf.isPercentage) {
+						//For data-start we can already set the key frame w/o calculations.
+						//#59: "scale" options should only affect absolute mode.
+						kf.offset = kf.offset * _scale;
+					}
+				}
+				//"relative" mode, where numbers are relative to anchors.
+				else {
+					kf.mode = 'relative';
+					kf.anchors = [anchor1, anchor2];
+				}
+			}
+
+			//Does this element have key frames?
+			if(!keyFrames.length) {
+				continue;
+			}
+
+			//Will hold the original style and class attributes before we controlled the element (see #80).
+			var styleAttr, classAttr;
+
+			var id;
+
+			if(!ignoreID && SKROLLABLE_ID_DOM_PROPERTY in el) {
+				//We already have this element under control. Grab the corresponding skrollable id.
+				id = el[SKROLLABLE_ID_DOM_PROPERTY];
+				styleAttr = _skrollables[id].styleAttr;
+				classAttr = _skrollables[id].classAttr;
+			} else {
+				//It's an unknown element. Asign it a new skrollable id.
+				id = (el[SKROLLABLE_ID_DOM_PROPERTY] = _skrollableIdCounter++);
+				styleAttr = el.style.cssText;
+				classAttr = _getClass(el);
+			}
+
+			_skrollables[id] = {
+				element: el,
+				styleAttr: styleAttr,
+				classAttr: classAttr,
+				anchorTarget: anchorTarget,
+				keyFrames: keyFrames,
+				smoothScrolling: smoothScrollThis,
+				edgeStrategy: edgeStrategy,
+				emitEvents: emitEvents,
+				lastFrameIndex: -1
+			};
+
+			_updateClass(el, [SKROLLABLE_CLASS], []);
+		}
+
+		//Reflow for the first time.
+		_reflow();
+
+		//Now that we got all key frame numbers right, actually parse the properties.
+		elementIndex = 0;
+		elementsLength = elements.length;
+
+		for(; elementIndex < elementsLength; elementIndex++) {
+			var sk = _skrollables[elements[elementIndex][SKROLLABLE_ID_DOM_PROPERTY]];
+
+			if(sk === undefined) {
+				continue;
+			}
+
+			//Parse the property string to objects
+			_parseProps(sk);
+
+			//Fill key frames with missing properties from left and right
+			_fillProps(sk);
+		}
+
+		return _instance;
+	};
+
+	/**
+	 * Transform "relative" mode to "absolute" mode.
+	 * That is, calculate anchor position and offset of element.
+	 */
+	Skrollr.prototype.relativeToAbsolute = function(element, viewportAnchor, elementAnchor) {
+		var viewportHeight = documentElement.clientHeight;
+		var box = element.getBoundingClientRect();
+		var absolute = box.top;
+
+		//#100: IE doesn't supply "height" with getBoundingClientRect.
+		var boxHeight = box.bottom - box.top;
+
+		if(viewportAnchor === ANCHOR_BOTTOM) {
+			absolute -= viewportHeight;
+		} else if(viewportAnchor === ANCHOR_CENTER) {
+			absolute -= viewportHeight / 2;
+		}
+
+		if(elementAnchor === ANCHOR_BOTTOM) {
+			absolute += boxHeight;
+		} else if(elementAnchor === ANCHOR_CENTER) {
+			absolute += boxHeight / 2;
+		}
+
+		//Compensate scrolling since getBoundingClientRect is relative to viewport.
+		absolute += _instance.getScrollTop();
+
+		return (absolute + 0.5) | 0;
+	};
+
+	/**
+	 * Animates scroll top to new position.
+	 */
+	Skrollr.prototype.animateTo = function(top, options) {
+		options = options || {};
+
+		var now = _now();
+		var scrollTop = _instance.getScrollTop();
+
+		//Setting this to a new value will automatically cause the current animation to stop, if any.
+		_scrollAnimation = {
+			startTop: scrollTop,
+			topDiff: top - scrollTop,
+			targetTop: top,
+			duration: options.duration || DEFAULT_DURATION,
+			startTime: now,
+			endTime: now + (options.duration || DEFAULT_DURATION),
+			easing: easings[options.easing || DEFAULT_EASING],
+			done: options.done
+		};
+
+		//Don't queue the animation if there's nothing to animate.
+		if(!_scrollAnimation.topDiff) {
+			if(_scrollAnimation.done) {
+				_scrollAnimation.done.call(_instance, false);
+			}
+
+			_scrollAnimation = undefined;
+		}
+
+		return _instance;
+	};
+
+	/**
+	 * Stops animateTo animation.
+	 */
+	Skrollr.prototype.stopAnimateTo = function() {
+		if(_scrollAnimation && _scrollAnimation.done) {
+			_scrollAnimation.done.call(_instance, true);
+		}
+
+		_scrollAnimation = undefined;
+	};
+
+	/**
+	 * Returns if an animation caused by animateTo is currently running.
+	 */
+	Skrollr.prototype.isAnimatingTo = function() {
+		return !!_scrollAnimation;
+	};
+
+	Skrollr.prototype.isMobile = function() {
+		return _isMobile;
+	};
+
+	Skrollr.prototype.setScrollTop = function(top, force) {
+		_forceRender = (force === true);
+
+		if(_isMobile) {
+			_mobileOffset = Math.min(Math.max(top, 0), _maxKeyFrame);
+		} else {
+			window.scrollTo(0, top);
+		}
+
+		return _instance;
+	};
+
+	Skrollr.prototype.getScrollTop = function() {
+		if(_isMobile) {
+			return _mobileOffset;
+		} else {
+			return window.pageYOffset || documentElement.scrollTop || body.scrollTop || 0;
+		}
+	};
+
+	Skrollr.prototype.getMaxScrollTop = function() {
+		return _maxKeyFrame;
+	};
+
+	Skrollr.prototype.on = function(name, fn) {
+		_listeners[name] = fn;
+
+		return _instance;
+	};
+
+	Skrollr.prototype.off = function(name) {
+		delete _listeners[name];
+
+		return _instance;
+	};
+
+	Skrollr.prototype.destroy = function() {
+		var cancelAnimFrame = polyfillCAF();
+		cancelAnimFrame(_animFrame);
+		_removeAllEvents();
+
+		_updateClass(documentElement, [NO_SKROLLR_CLASS], [SKROLLR_CLASS, SKROLLR_DESKTOP_CLASS, SKROLLR_MOBILE_CLASS]);
+
+		var skrollableIndex = 0;
+		var skrollablesLength = _skrollables.length;
+
+		for(; skrollableIndex < skrollablesLength; skrollableIndex++) {
+			_reset(_skrollables[skrollableIndex].element);
+		}
+
+		documentElement.style.overflow = body.style.overflow = '';
+		documentElement.style.height = body.style.height = '';
+
+		if(_skrollrBody) {
+			skrollr.setStyle(_skrollrBody, 'transform', 'none');
+		}
+
+		_instance = undefined;
+		_skrollrBody = undefined;
+		_listeners = undefined;
+		_forceHeight = undefined;
+		_maxKeyFrame = 0;
+		_scale = 1;
+		_constants = undefined;
+		_mobileDeceleration = undefined;
+		_direction = 'down';
+		_lastTop = -1;
+		_lastViewportWidth = 0;
+		_lastViewportHeight = 0;
+		_requestReflow = false;
+		_scrollAnimation = undefined;
+		_smoothScrollingEnabled = undefined;
+		_smoothScrollingDuration = undefined;
+		_smoothScrolling = undefined;
+		_forceRender = undefined;
+		_skrollableIdCounter = 0;
+		_edgeStrategy = undefined;
+		_isMobile = false;
+		_mobileOffset = 0;
+		_translateZ = undefined;
+	};
+
+	/*
+		Private methods.
+	*/
+
+	var _initMobile = function() {
+		var initialElement;
+		var initialTouchY;
+		var initialTouchX;
+		var currentElement;
+		var currentTouchY;
+		var currentTouchX;
+		var lastTouchY;
+		var deltaY;
+
+		var initialTouchTime;
+		var currentTouchTime;
+		var lastTouchTime;
+		var deltaTime;
+
+		_addEvent(documentElement, [EVENT_TOUCHSTART, EVENT_TOUCHMOVE, EVENT_TOUCHCANCEL, EVENT_TOUCHEND].join(' '), function(e) {
+			var touch = e.changedTouches[0];
+
+			currentElement = e.target;
+
+			//We don't want text nodes.
+			while(currentElement.nodeType === 3) {
+				currentElement = currentElement.parentNode;
+			}
+
+			currentTouchY = touch.clientY;
+			currentTouchX = touch.clientX;
+			currentTouchTime = e.timeStamp;
+
+			if(!rxTouchIgnoreTags.test(currentElement.tagName)) {
+				e.preventDefault();
+			}
+
+			switch(e.type) {
+				case EVENT_TOUCHSTART:
+					//The last element we tapped on.
+					if(initialElement) {
+						initialElement.blur();
+					}
+
+					_instance.stopAnimateTo();
+
+					initialElement = currentElement;
+
+					initialTouchY = lastTouchY = currentTouchY;
+					initialTouchX = currentTouchX;
+					initialTouchTime = currentTouchTime;
+
+					break;
+				case EVENT_TOUCHMOVE:
+					//Prevent default event on touchIgnore elements in case they don't have focus yet.
+					if(rxTouchIgnoreTags.test(currentElement.tagName) && document.activeElement !== currentElement) {
+						e.preventDefault();
+					}
+
+					deltaY = currentTouchY - lastTouchY;
+					deltaTime = currentTouchTime - lastTouchTime;
+
+					_instance.setScrollTop(_mobileOffset - deltaY, true);
+
+					lastTouchY = currentTouchY;
+					lastTouchTime = currentTouchTime;
+					break;
+				default:
+				case EVENT_TOUCHCANCEL:
+				case EVENT_TOUCHEND:
+					var distanceY = initialTouchY - currentTouchY;
+					var distanceX = initialTouchX - currentTouchX;
+					var distance2 = distanceX * distanceX + distanceY * distanceY;
+
+					//Check if it was more like a tap (moved less than 7px).
+					if(distance2 < 49) {
+						if(!rxTouchIgnoreTags.test(initialElement.tagName)) {
+							initialElement.focus();
+
+							//It was a tap, click the element.
+							var clickEvent = document.createEvent('MouseEvents');
+							clickEvent.initMouseEvent('click', true, true, e.view, 1, touch.screenX, touch.screenY, touch.clientX, touch.clientY, e.ctrlKey, e.altKey, e.shiftKey, e.metaKey, 0, null);
+							initialElement.dispatchEvent(clickEvent);
+						}
+
+						return;
+					}
+
+					initialElement = undefined;
+
+					var speed = deltaY / deltaTime;
+
+					//Cap speed at 3 pixel/ms.
+					speed = Math.max(Math.min(speed, 3), -3);
+
+					var duration = Math.abs(speed / _mobileDeceleration);
+					var targetOffset = speed * duration + 0.5 * _mobileDeceleration * duration * duration;
+					var targetTop = _instance.getScrollTop() - targetOffset;
+
+					//Relative duration change for when scrolling above bounds.
+					var targetRatio = 0;
+
+					//Change duration proportionally when scrolling would leave bounds.
+					if(targetTop > _maxKeyFrame) {
+						targetRatio = (_maxKeyFrame - targetTop) / targetOffset;
+
+						targetTop = _maxKeyFrame;
+					} else if(targetTop < 0) {
+						targetRatio = -targetTop / targetOffset;
+
+						targetTop = 0;
+					}
+
+					duration = duration * (1 - targetRatio);
+
+					_instance.animateTo((targetTop + 0.5) | 0, {easing: 'outCubic', duration: duration});
+					break;
+			}
+		});
+
+		//Just in case there has already been some native scrolling, reset it.
+		window.scrollTo(0, 0);
+		documentElement.style.overflow = body.style.overflow = 'hidden';
+	};
+
+	/**
+	 * Updates key frames which depend on others / need to be updated on resize.
+	 * That is "end" in "absolute" mode and all key frames in "relative" mode.
+	 * Also handles constants, because they may change on resize.
+	 */
+	var _updateDependentKeyFrames = function() {
+		var viewportHeight = documentElement.clientHeight;
+		var processedConstants = _processConstants();
+		var skrollable;
+		var element;
+		var anchorTarget;
+		var keyFrames;
+		var keyFrameIndex;
+		var keyFramesLength;
+		var kf;
+		var skrollableIndex;
+		var skrollablesLength;
+		var offset;
+		var constantValue;
+
+		//First process all relative-mode elements and find the max key frame.
+		skrollableIndex = 0;
+		skrollablesLength = _skrollables.length;
+
+		for(; skrollableIndex < skrollablesLength; skrollableIndex++) {
+			skrollable = _skrollables[skrollableIndex];
+			element = skrollable.element;
+			anchorTarget = skrollable.anchorTarget;
+			keyFrames = skrollable.keyFrames;
+
+			keyFrameIndex = 0;
+			keyFramesLength = keyFrames.length;
+
+			for(; keyFrameIndex < keyFramesLength; keyFrameIndex++) {
+				kf = keyFrames[keyFrameIndex];
+
+				offset = kf.offset;
+				constantValue = processedConstants[kf.constant] || 0;
+
+				kf.frame = offset;
+
+				if(kf.isPercentage) {
+					//Convert the offset to percentage of the viewport height.
+					offset = offset * viewportHeight;
+
+					//Absolute + percentage mode.
+					kf.frame = offset;
+				}
+
+				if(kf.mode === 'relative') {
+					_reset(element);
+
+					kf.frame = _instance.relativeToAbsolute(anchorTarget, kf.anchors[0], kf.anchors[1]) - offset;
+
+					_reset(element, true);
+				}
+
+				kf.frame += constantValue;
+
+				//Only search for max key frame when forceHeight is enabled.
+				if(_forceHeight) {
+					//Find the max key frame, but don't use one of the data-end ones for comparison.
+					if(!kf.isEnd && kf.frame > _maxKeyFrame) {
+						_maxKeyFrame = kf.frame;
+					}
+				}
+			}
+		}
+
+		//#133: The document can be larger than the maxKeyFrame we found.
+		_maxKeyFrame = Math.max(_maxKeyFrame, _getDocumentHeight());
+
+		//Now process all data-end keyframes.
+		skrollableIndex = 0;
+		skrollablesLength = _skrollables.length;
+
+		for(; skrollableIndex < skrollablesLength; skrollableIndex++) {
+			skrollable = _skrollables[skrollableIndex];
+			keyFrames = skrollable.keyFrames;
+
+			keyFrameIndex = 0;
+			keyFramesLength = keyFrames.length;
+
+			for(; keyFrameIndex < keyFramesLength; keyFrameIndex++) {
+				kf = keyFrames[keyFrameIndex];
+
+				constantValue = processedConstants[kf.constant] || 0;
+
+				if(kf.isEnd) {
+					kf.frame = _maxKeyFrame - kf.offset + constantValue;
+				}
+			}
+
+			skrollable.keyFrames.sort(_keyFrameComparator);
+		}
+	};
+
+	/**
+	 * Calculates and sets the style properties for the element at the given frame.
+	 * @param fakeFrame The frame to render at when smooth scrolling is enabled.
+	 * @param actualFrame The actual frame we are at.
+	 */
+	var _calcSteps = function(fakeFrame, actualFrame) {
+		//Iterate over all skrollables.
+		var skrollableIndex = 0;
+		var skrollablesLength = _skrollables.length;
+
+		for(; skrollableIndex < skrollablesLength; skrollableIndex++) {
+			var skrollable = _skrollables[skrollableIndex];
+			var element = skrollable.element;
+			var frame = skrollable.smoothScrolling ? fakeFrame : actualFrame;
+			var frames = skrollable.keyFrames;
+			var framesLength = frames.length;
+			var firstFrame = frames[0];
+			var lastFrame = frames[frames.length - 1];
+			var beforeFirst = frame < firstFrame.frame;
+			var afterLast = frame > lastFrame.frame;
+			var firstOrLastFrame = beforeFirst ? firstFrame : lastFrame;
+			var emitEvents = skrollable.emitEvents;
+			var lastFrameIndex = skrollable.lastFrameIndex;
+			var key;
+			var value;
+
+			//If we are before/after the first/last frame, set the styles according to the given edge strategy.
+			if(beforeFirst || afterLast) {
+				//Check if we already handled this edge case last time.
+				//Note: using setScrollTop it's possible that we jumped from one edge to the other.
+				if(beforeFirst && skrollable.edge === -1 || afterLast && skrollable.edge === 1) {
+					continue;
+				}
+
+				//Add the skrollr-before or -after class.
+				if(beforeFirst) {
+					_updateClass(element, [SKROLLABLE_BEFORE_CLASS], [SKROLLABLE_AFTER_CLASS, SKROLLABLE_BETWEEN_CLASS]);
+
+					//This handles the special case where we exit the first keyframe.
+					if(emitEvents && lastFrameIndex > -1) {
+						_emitEvent(element, firstFrame.eventType, _direction);
+						skrollable.lastFrameIndex = -1;
+					}
+				} else {
+					_updateClass(element, [SKROLLABLE_AFTER_CLASS], [SKROLLABLE_BEFORE_CLASS, SKROLLABLE_BETWEEN_CLASS]);
+
+					//This handles the special case where we exit the last keyframe.
+					if(emitEvents && lastFrameIndex < framesLength) {
+						_emitEvent(element, lastFrame.eventType, _direction);
+						skrollable.lastFrameIndex = framesLength;
+					}
+				}
+
+				//Remember that we handled the edge case (before/after the first/last keyframe).
+				skrollable.edge = beforeFirst ? -1 : 1;
+
+				switch(skrollable.edgeStrategy) {
+					case 'reset':
+						_reset(element);
+						continue;
+					case 'ease':
+						//Handle this case like it would be exactly at first/last keyframe and just pass it on.
+						frame = firstOrLastFrame.frame;
+						break;
+					default:
+					case 'set':
+						var props = firstOrLastFrame.props;
+
+						for(key in props) {
+							if(hasProp.call(props, key)) {
+								value = _interpolateString(props[key].value);
+
+								//Set style or attribute.
+								if(key.indexOf('@') === 0) {
+									element.setAttribute(key.substr(1), value);
+								} else {
+									skrollr.setStyle(element, key, value);
+								}
+							}
+						}
+
+						continue;
+				}
+			} else {
+				//Did we handle an edge last time?
+				if(skrollable.edge !== 0) {
+					_updateClass(element, [SKROLLABLE_CLASS, SKROLLABLE_BETWEEN_CLASS], [SKROLLABLE_BEFORE_CLASS, SKROLLABLE_AFTER_CLASS]);
+					skrollable.edge = 0;
+				}
+			}
+
+			//Find out between which two key frames we are right now.
+			var keyFrameIndex = 0;
+
+			for(; keyFrameIndex < framesLength - 1; keyFrameIndex++) {
+				if(frame >= frames[keyFrameIndex].frame && frame <= frames[keyFrameIndex + 1].frame) {
+					var left = frames[keyFrameIndex];
+					var right = frames[keyFrameIndex + 1];
+
+					for(key in left.props) {
+						if(hasProp.call(left.props, key)) {
+							var progress = (frame - left.frame) / (right.frame - left.frame);
+
+							//Transform the current progress using the given easing function.
+							progress = left.props[key].easing(progress);
+
+							//Interpolate between the two values
+							value = _calcInterpolation(left.props[key].value, right.props[key].value, progress);
+
+							value = _interpolateString(value);
+
+							//Set style or attribute.
+							if(key.indexOf('@') === 0) {
+								element.setAttribute(key.substr(1), value);
+							} else {
+								skrollr.setStyle(element, key, value);
+							}
+						}
+					}
+
+					//Are events enabled on this element?
+					//This code handles the usual cases of scrolling through different keyframes.
+					//The special cases of before first and after last keyframe are handled above.
+					if(emitEvents) {
+						//Did we pass a new keyframe?
+						if(lastFrameIndex !== keyFrameIndex) {
+							if(_direction === 'down') {
+								_emitEvent(element, left.eventType, _direction);
+							} else {
+								_emitEvent(element, right.eventType, _direction);
+							}
+
+							skrollable.lastFrameIndex = keyFrameIndex;
+						}
+					}
+
+					break;
+				}
+			}
+		}
+	};
+
+	/**
+	 * Renders all elements.
+	 */
+	var _render = function() {
+		if(_requestReflow) {
+			_requestReflow = false;
+			_reflow();
+		}
+
+		//We may render something else than the actual scrollbar position.
+		var renderTop = _instance.getScrollTop();
+
+		//If there's an animation, which ends in current render call, call the callback after rendering.
+		var afterAnimationCallback;
+		var now = _now();
+		var progress;
+
+		//Before actually rendering handle the scroll animation, if any.
+		if(_scrollAnimation) {
+			//It's over
+			if(now >= _scrollAnimation.endTime) {
+				renderTop = _scrollAnimation.targetTop;
+				afterAnimationCallback = _scrollAnimation.done;
+				_scrollAnimation = undefined;
+			} else {
+				//Map the current progress to the new progress using given easing function.
+				progress = _scrollAnimation.easing((now - _scrollAnimation.startTime) / _scrollAnimation.duration);
+
+				renderTop = (_scrollAnimation.startTop + progress * _scrollAnimation.topDiff) | 0;
+			}
+
+			_instance.setScrollTop(renderTop, true);
+		}
+		//Smooth scrolling only if there's no animation running and if we're not forcing the rendering.
+		else if(!_forceRender) {
+			var smoothScrollingDiff = _smoothScrolling.targetTop - renderTop;
+
+			//The user scrolled, start new smooth scrolling.
+			if(smoothScrollingDiff) {
+				_smoothScrolling = {
+					startTop: _lastTop,
+					topDiff: renderTop - _lastTop,
+					targetTop: renderTop,
+					startTime: _lastRenderCall,
+					endTime: _lastRenderCall + _smoothScrollingDuration
+				};
+			}
+
+			//Interpolate the internal scroll position (not the actual scrollbar).
+			if(now <= _smoothScrolling.endTime) {
+				//Map the current progress to the new progress using easing function.
+				progress = easings.sqrt((now - _smoothScrolling.startTime) / _smoothScrollingDuration);
+
+				renderTop = (_smoothScrolling.startTop + progress * _smoothScrolling.topDiff) | 0;
+			}
+		}
+
+		//That's were we actually "scroll" on mobile.
+		if(_isMobile && _skrollrBody) {
+			//Set the transform ("scroll it").
+			skrollr.setStyle(_skrollrBody, 'transform', 'translate(0, ' + -(_mobileOffset) + 'px) ' + _translateZ);
+		}
+
+		//Did the scroll position even change?
+		if(_forceRender || _lastTop !== renderTop) {
+			//Remember in which direction are we scrolling?
+			_direction = (renderTop > _lastTop) ? 'down' : (renderTop < _lastTop ? 'up' : _direction);
+
+			_forceRender = false;
+
+			var listenerParams = {
+				curTop: renderTop,
+				lastTop: _lastTop,
+				maxTop: _maxKeyFrame,
+				direction: _direction
+			};
+
+			//Tell the listener we are about to render.
+			var continueRendering = _listeners.beforerender && _listeners.beforerender.call(_instance, listenerParams);
+
+			//The beforerender listener function is able the cancel rendering.
+			if(continueRendering !== false) {
+				//Now actually interpolate all the styles.
+				_calcSteps(renderTop, _instance.getScrollTop());
+
+				//Remember when we last rendered.
+				_lastTop = renderTop;
+
+				if(_listeners.render) {
+					_listeners.render.call(_instance, listenerParams);
+				}
+			}
+
+			if(afterAnimationCallback) {
+				afterAnimationCallback.call(_instance, false);
+			}
+		}
+
+		_lastRenderCall = now;
+	};
+
+	/**
+	 * Parses the properties for each key frame of the given skrollable.
+	 */
+	var _parseProps = function(skrollable) {
+		//Iterate over all key frames
+		var keyFrameIndex = 0;
+		var keyFramesLength = skrollable.keyFrames.length;
+
+		for(; keyFrameIndex < keyFramesLength; keyFrameIndex++) {
+			var frame = skrollable.keyFrames[keyFrameIndex];
+			var easing;
+			var value;
+			var prop;
+			var props = {};
+
+			var match;
+
+			while((match = rxPropValue.exec(frame.props)) !== null) {
+				prop = match[1];
+				value = match[2];
+
+				easing = prop.match(rxPropEasing);
+
+				//Is there an easing specified for this prop?
+				if(easing !== null) {
+					prop = easing[1];
+					easing = easing[2];
+				} else {
+					easing = DEFAULT_EASING;
+				}
+
+				//Exclamation point at first position forces the value to be taken literal.
+				value = value.indexOf('!') ? _parseProp(value) : [value.slice(1)];
+
+				//Save the prop for this key frame with his value and easing function
+				props[prop] = {
+					value: value,
+					easing: easings[easing]
+				};
+			}
+
+			frame.props = props;
+		}
+	};
+
+	/**
+	 * Parses a value extracting numeric values and generating a format string
+	 * for later interpolation of the new values in old string.
+	 *
+	 * @param val The CSS value to be parsed.
+	 * @return Something like ["rgba(?%,?%, ?%,?)", 100, 50, 0, .7]
+	 * where the first element is the format string later used
+	 * and all following elements are the numeric value.
+	 */
+	var _parseProp = function(val) {
+		var numbers = [];
+
+		//One special case, where floats don't work.
+		//We replace all occurences of rgba colors
+		//which don't use percentage notation with the percentage notation.
+		rxRGBAIntegerColor.lastIndex = 0;
+		val = val.replace(rxRGBAIntegerColor, function(rgba) {
+			return rgba.replace(rxNumericValue, function(n) {
+				return n / 255 * 100 + '%';
+			});
+		});
+
+		//Handle prefixing of "gradient" values.
+		//For now only the prefixed value will be set. Unprefixed isn't supported anyway.
+		if(theDashedCSSPrefix) {
+			rxGradient.lastIndex = 0;
+			val = val.replace(rxGradient, function(s) {
+				return theDashedCSSPrefix + s;
+			});
+		}
+
+		//Now parse ANY number inside this string and create a format string.
+		val = val.replace(rxNumericValue, function(n) {
+			numbers.push(+n);
+			return '{?}';
+		});
+
+		//Add the formatstring as first value.
+		numbers.unshift(val);
+
+		return numbers;
+	};
+
+	/**
+	 * Fills the key frames with missing left and right hand properties.
+	 * If key frame 1 has property X and key frame 2 is missing X,
+	 * but key frame 3 has X again, then we need to assign X to key frame 2 too.
+	 *
+	 * @param sk A skrollable.
+	 */
+	var _fillProps = function(sk) {
+		//Will collect the properties key frame by key frame
+		var propList = {};
+		var keyFrameIndex;
+		var keyFramesLength;
+
+		//Iterate over all key frames from left to right
+		keyFrameIndex = 0;
+		keyFramesLength = sk.keyFrames.length;
+
+		for(; keyFrameIndex < keyFramesLength; keyFrameIndex++) {
+			_fillPropForFrame(sk.keyFrames[keyFrameIndex], propList);
+		}
+
+		//Now do the same from right to fill the last gaps
+
+		propList = {};
+
+		//Iterate over all key frames from right to left
+		keyFrameIndex = sk.keyFrames.length - 1;
+
+		for(; keyFrameIndex >= 0; keyFrameIndex--) {
+			_fillPropForFrame(sk.keyFrames[keyFrameIndex], propList);
+		}
+	};
+
+	var _fillPropForFrame = function(frame, propList) {
+		var key;
+
+		//For each key frame iterate over all right hand properties and assign them,
+		//but only if the current key frame doesn't have the property by itself
+		for(key in propList) {
+			//The current frame misses this property, so assign it.
+			if(!hasProp.call(frame.props, key)) {
+				frame.props[key] = propList[key];
+			}
+		}
+
+		//Iterate over all props of the current frame and collect them
+		for(key in frame.props) {
+			propList[key] = frame.props[key];
+		}
+	};
+
+	/**
+	 * Calculates the new values for two given values array.
+	 */
+	var _calcInterpolation = function(val1, val2, progress) {
+		var valueIndex;
+		var val1Length = val1.length;
+
+		//They both need to have the same length
+		if(val1Length !== val2.length) {
+			throw 'Can\'t interpolate between "' + val1[0] + '" and "' + val2[0] + '"';
+		}
+
+		//Add the format string as first element.
+		var interpolated = [val1[0]];
+
+		valueIndex = 1;
+
+		for(; valueIndex < val1Length; valueIndex++) {
+			//That's the line where the two numbers are actually interpolated.
+			interpolated[valueIndex] = val1[valueIndex] + ((val2[valueIndex] - val1[valueIndex]) * progress);
+		}
+
+		return interpolated;
+	};
+
+	/**
+	 * Interpolates the numeric values into the format string.
+	 */
+	var _interpolateString = function(val) {
+		var valueIndex = 1;
+
+		rxInterpolateString.lastIndex = 0;
+
+		return val[0].replace(rxInterpolateString, function() {
+			return val[valueIndex++];
+		});
+	};
+
+	/**
+	 * Resets the class and style attribute to what it was before skrollr manipulated the element.
+	 * Also remembers the values it had before reseting, in order to undo the reset.
+	 */
+	var _reset = function(elements, undo) {
+		//We accept a single element or an array of elements.
+		elements = [].concat(elements);
+
+		var skrollable;
+		var element;
+		var elementsIndex = 0;
+		var elementsLength = elements.length;
+
+		for(; elementsIndex < elementsLength; elementsIndex++) {
+			element = elements[elementsIndex];
+			skrollable = _skrollables[element[SKROLLABLE_ID_DOM_PROPERTY]];
+
+			//Couldn't find the skrollable for this DOM element.
+			if(!skrollable) {
+				continue;
+			}
+
+			if(undo) {
+				//Reset class and style to the "dirty" (set by skrollr) values.
+				element.style.cssText = skrollable.dirtyStyleAttr;
+				_updateClass(element, skrollable.dirtyClassAttr);
+			} else {
+				//Remember the "dirty" (set by skrollr) class and style.
+				skrollable.dirtyStyleAttr = element.style.cssText;
+				skrollable.dirtyClassAttr = _getClass(element);
+
+				//Reset class and style to what it originally was.
+				element.style.cssText = skrollable.styleAttr;
+				_updateClass(element, skrollable.classAttr);
+			}
+		}
+	};
+
+	/**
+	 * Detects support for 3d transforms by applying it to the skrollr-body.
+	 */
+	var _detect3DTransforms = function() {
+		_translateZ = 'translateZ(0)';
+		skrollr.setStyle(_skrollrBody, 'transform', _translateZ);
+
+		var computedStyle = getStyle(_skrollrBody);
+		var computedTransform = computedStyle.getPropertyValue('transform');
+		var computedTransformWithPrefix = computedStyle.getPropertyValue(theDashedCSSPrefix + 'transform');
+		var has3D = (computedTransform && computedTransform !== 'none') || (computedTransformWithPrefix && computedTransformWithPrefix !== 'none');
+
+		if(!has3D) {
+			_translateZ = '';
+		}
+	};
+
+	/**
+	 * Set the CSS property on the given element. Sets prefixed properties as well.
+	 */
+	skrollr.setStyle = function(el, prop, val) {
+		var style = el.style;
+
+		//Camel case.
+		prop = prop.replace(rxCamelCase, rxCamelCaseFn).replace('-', '');
+
+		//Make sure z-index gets a <integer>.
+		//This is the only <integer> case we need to handle.
+		if(prop === 'zIndex') {
+			if(isNaN(val)) {
+				//If it's not a number, don't touch it.
+				//It could for example be "auto" (#351).
+				style[prop] = val;
+			} else {
+				//Floor the number.
+				style[prop] = '' + (val | 0);
+			}
+		}
+		//#64: "float" can't be set across browsers. Needs to use "cssFloat" for all except IE.
+		else if(prop === 'float') {
+			style.styleFloat = style.cssFloat = val;
+		}
+		else {
+			//Need try-catch for old IE.
+			try {
+				//Set prefixed property if there's a prefix.
+				if(theCSSPrefix) {
+					style[theCSSPrefix + prop.slice(0,1).toUpperCase() + prop.slice(1)] = val;
+				}
+
+				//Set unprefixed.
+				style[prop] = val;
+			} catch(ignore) {}
+		}
+	};
+
+	/**
+	 * Cross browser event handling.
+	 */
+	var _addEvent = skrollr.addEvent = function(element, names, callback) {
+		var intermediate = function(e) {
+			//Normalize IE event stuff.
+			e = e || window.event;
+
+			if(!e.target) {
+				e.target = e.srcElement;
+			}
+
+			if(!e.preventDefault) {
+				e.preventDefault = function() {
+					e.returnValue = false;
+					e.defaultPrevented = true;
+				};
+			}
+
+			return callback.call(this, e);
+		};
+
+		names = names.split(' ');
+
+		var name;
+		var nameCounter = 0;
+		var namesLength = names.length;
+
+		for(; nameCounter < namesLength; nameCounter++) {
+			name = names[nameCounter];
+
+			if(element.addEventListener) {
+				element.addEventListener(name, callback, false);
+			} else {
+				element.attachEvent('on' + name, intermediate);
+			}
+
+			//Remember the events to be able to flush them later.
+			_registeredEvents.push({
+				element: element,
+				name: name,
+				listener: callback
+			});
+		}
+	};
+
+	var _removeEvent = skrollr.removeEvent = function(element, names, callback) {
+		names = names.split(' ');
+
+		var nameCounter = 0;
+		var namesLength = names.length;
+
+		for(; nameCounter < namesLength; nameCounter++) {
+			if(element.removeEventListener) {
+				element.removeEventListener(names[nameCounter], callback, false);
+			} else {
+				element.detachEvent('on' + names[nameCounter], callback);
+			}
+		}
+	};
+
+	var _removeAllEvents = function() {
+		var eventData;
+		var eventCounter = 0;
+		var eventsLength = _registeredEvents.length;
+
+		for(; eventCounter < eventsLength; eventCounter++) {
+			eventData = _registeredEvents[eventCounter];
+
+			_removeEvent(eventData.element, eventData.name, eventData.listener);
+		}
+
+		_registeredEvents = [];
+	};
+
+	var _emitEvent = function(element, name, direction) {
+		if(_listeners.keyframe) {
+			_listeners.keyframe.call(_instance, element, name, direction);
+		}
+	};
+
+	var _reflow = function() {
+		var pos = _instance.getScrollTop();
+
+		//Will be recalculated by _updateDependentKeyFrames.
+		_maxKeyFrame = 0;
+
+		if(_forceHeight && !_isMobile) {
+			//un-"force" the height to not mess with the calculations in _updateDependentKeyFrames (#216).
+			body.style.height = '';
+		}
+
+		_updateDependentKeyFrames();
+
+		if(_forceHeight && !_isMobile) {
+			//"force" the height.
+			body.style.height = (_maxKeyFrame + documentElement.clientHeight) + 'px';
+		}
+
+		//The scroll offset may now be larger than needed (on desktop the browser/os prevents scrolling farther than the bottom).
+		if(_isMobile) {
+			_instance.setScrollTop(Math.min(_instance.getScrollTop(), _maxKeyFrame));
+		} else {
+			//Remember and reset the scroll pos (#217).
+			_instance.setScrollTop(pos, true);
+		}
+
+		_forceRender = true;
+	};
+
+	/*
+	 * Returns a copy of the constants object where all functions and strings have been evaluated.
+	 */
+	var _processConstants = function() {
+		var viewportHeight = documentElement.clientHeight;
+		var copy = {};
+		var prop;
+		var value;
+
+		for(prop in _constants) {
+			value = _constants[prop];
+
+			if(typeof value === 'function') {
+				value = value.call(_instance);
+			}
+			//Percentage offset.
+			else if((/p$/).test(value)) {
+				value = (value.slice(0, -1) / 100) * viewportHeight;
+			}
+
+			copy[prop] = value;
+		}
+
+		return copy;
+	};
+
+	/*
+	 * Returns the height of the document.
+	 */
+	var _getDocumentHeight = function() {
+		var skrollrBodyHeight = (_skrollrBody && _skrollrBody.offsetHeight || 0);
+		var bodyHeight = Math.max(skrollrBodyHeight, body.scrollHeight, body.offsetHeight, documentElement.scrollHeight, documentElement.offsetHeight, documentElement.clientHeight);
+
+		return bodyHeight - documentElement.clientHeight;
+	};
+
+	/**
+	 * Returns a string of space separated classnames for the current element.
+	 * Works with SVG as well.
+	 */
+	var _getClass = function(element) {
+		var prop = 'className';
+
+		//SVG support by using className.baseVal instead of just className.
+		if(window.SVGElement && element instanceof window.SVGElement) {
+			element = element[prop];
+			prop = 'baseVal';
+		}
+
+		return element[prop];
+	};
+
+	/**
+	 * Adds and removes a CSS classes.
+	 * Works with SVG as well.
+	 * add and remove are arrays of strings,
+	 * or if remove is ommited add is a string and overwrites all classes.
+	 */
+	var _updateClass = function(element, add, remove) {
+		var prop = 'className';
+
+		//SVG support by using className.baseVal instead of just className.
+		if(window.SVGElement && element instanceof window.SVGElement) {
+			element = element[prop];
+			prop = 'baseVal';
+		}
+
+		//When remove is ommited, we want to overwrite/set the classes.
+		if(remove === undefined) {
+			element[prop] = add;
+			return;
+		}
+
+		//Cache current classes. We will work on a string before passing back to DOM.
+		var val = element[prop];
+
+		//All classes to be removed.
+		var classRemoveIndex = 0;
+		var removeLength = remove.length;
+
+		for(; classRemoveIndex < removeLength; classRemoveIndex++) {
+			val = _untrim(val).replace(_untrim(remove[classRemoveIndex]), ' ');
+		}
+
+		val = _trim(val);
+
+		//All classes to be added.
+		var classAddIndex = 0;
+		var addLength = add.length;
+
+		for(; classAddIndex < addLength; classAddIndex++) {
+			//Only add if el not already has class.
+			if(_untrim(val).indexOf(_untrim(add[classAddIndex])) === -1) {
+				val += ' ' + add[classAddIndex];
+			}
+		}
+
+		element[prop] = _trim(val);
+	};
+
+	var _trim = function(a) {
+		return a.replace(rxTrim, '');
+	};
+
+	/**
+	 * Adds a space before and after the string.
+	 */
+	var _untrim = function(a) {
+		return ' ' + a + ' ';
+	};
+
+	var _now = Date.now || function() {
+		return +new Date();
+	};
+
+	var _keyFrameComparator = function(a, b) {
+		return a.frame - b.frame;
+	};
+
+	/*
+	 * Private variables.
+	 */
+
+	//Singleton
+	var _instance;
+
+	/*
+		A list of all elements which should be animated associated with their the metadata.
+		Exmaple skrollable with two key frames animating from 100px width to 20px:
+
+		skrollable = {
+			element: <the DOM element>,
+			styleAttr: <style attribute of the element before skrollr>,
+			classAttr: <class attribute of the element before skrollr>,
+			keyFrames: [
+				{
+					frame: 100,
+					props: {
+						width: {
+							value: ['{?}px', 100],
+							easing: <reference to easing function>
+						}
+					},
+					mode: "absolute"
+				},
+				{
+					frame: 200,
+					props: {
+						width: {
+							value: ['{?}px', 20],
+							easing: <reference to easing function>
+						}
+					},
+					mode: "absolute"
+				}
+			]
+		};
+	*/
+	var _skrollables;
+
+	var _skrollrBody;
+
+	var _listeners;
+	var _forceHeight;
+	var _maxKeyFrame = 0;
+
+	var _scale = 1;
+	var _constants;
+
+	var _mobileDeceleration;
+
+	//Current direction (up/down).
+	var _direction = 'down';
+
+	//The last top offset value. Needed to determine direction.
+	var _lastTop = -1;
+
+	//The last time we called the render method (doesn't mean we rendered!).
+	var _lastRenderCall = _now();
+
+	//For detecting if it actually resized (#271).
+	var _lastViewportWidth = 0;
+	var _lastViewportHeight = 0;
+
+	var _requestReflow = false;
+
+	//Will contain data about a running scrollbar animation, if any.
+	var _scrollAnimation;
+
+	var _smoothScrollingEnabled;
+
+	var _smoothScrollingDuration;
+
+	//Will contain settins for smooth scrolling if enabled.
+	var _smoothScrolling;
+
+	//Can be set by any operation/event to force rendering even if the scrollbar didn't move.
+	var _forceRender;
+
+	//Each skrollable gets an unique ID incremented for each skrollable.
+	//The ID is the index in the _skrollables array.
+	var _skrollableIdCounter = 0;
+
+	var _edgeStrategy;
+
+
+	//Mobile specific vars. Will be stripped by UglifyJS when not in use.
+	var _isMobile = false;
+
+	//The virtual scroll offset when using mobile scrolling.
+	var _mobileOffset = 0;
+
+	//If the browser supports 3d transforms, this will be filled with 'translateZ(0)' (empty string otherwise).
+	var _translateZ;
+
+	//Will contain data about registered events by skrollr.
+	var _registeredEvents = [];
+
+	//Animation frame id returned by RequestAnimationFrame (or timeout when RAF is not supported).
+	var _animFrame;
+
+	//Expose skrollr as either a global variable or a require.js module.
+	if(typeof define === 'function' && define.amd) {
+		define([], function () {
+			return skrollr;
+		});
+	} else if (typeof module !== 'undefined' && module.exports) {
+		module.exports = skrollr;
+	} else {
+		window.skrollr = skrollr;
+	}
+
+}(window, document));
+
 /**
  * @preserve FastClick: polyfill to remove click delays on browsers with touch UIs.
  *
@@ -18492,7 +21147,7 @@ if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) 
 var menuButton = document.getElementById('menuButton'),
     menu = document.getElementById('nav'),
     arrow = document.getElementById('arrow'),
-    resourcesLink = document.getElementById('resourcesNav'),
+    resourcesLink = $('[data-link=resources]'),
     colors = {
         'teal' : [112, 190, 205]
         , 'dark-yellow' : [231, 181, 44]
@@ -18565,12 +21220,12 @@ function staggerLoad(logo) {
         menu.classList.toggle('show')
     }, false)
 
-    resourcesLink.addEventListener('click', function(e) {
+    resourcesLink.click(function(e) {
         if ( window.sessionStorage && window.history ) {
             history.replaceState({ filter : '*' }, '')
             sessionStorage.clear()
         }
-    }, false)
+    })
 
     if ( !Modernizr.touch &&
           !document.getElementById('home') &&
@@ -18588,10 +21243,9 @@ function staggerLoad(logo) {
 
 
 if ( path === '/' ) {
-    $('#nav').addClass('loaded')
-    setTimeout(function() {
-        $('#principles, #homeFooter').addClass('loaded')
-    }, 1500)
+    imagesLoaded('#homeImg', function() {
+        $('#homeImg, .grid').addClass('loaded')
+    })
 } else if ( path.match(/^\/resources/) ) {
     if ( path.split('/').length === 3 ) {
         tags = document.getElementById('resourceTags')
@@ -18626,9 +21280,16 @@ if ( path === '/' ) {
     imagesLoaded('#blog', function(){
         $(this.elements).addClass('layout-image-is-visible')
     })
-} else if ( path.match(/^\/contact/) ) {
-    imagesLoaded('#contact', function() {
-        $(this.elements).addClass('grid-is-visible')
+// } else if ( path.match(/^\/contact/) ) {
+//     imagesLoaded('#contact', function() {
+//         $(this.elements).addClass('grid-is-visible')
+//     })
+} else if ( path.match(/^\/about/) ) {
+    $('#subnav').on('click', 'a', function(e) {
+        e.preventDefault()
+        $('#content').load('/fragments/' + this.hash.slice(1) + ' #content > *')
+        $(this).parent().siblings().find('a').removeClass('selected')
+        $(this).addClass('selected')
     })
 }
 
@@ -18964,15 +21625,57 @@ $(function() {
         dots : true,
         draggable : false,
         infinite : false,
-        onInit : function() {
-            //$('body').append( $('<div/>').addClass('slide-dots') )
+        onInit : function(Slick) {
             $('.slick-dots').appendTo('.slide-dots')
             $('.slick-prev').prependTo('#slideshow')
             $('.grid').on('click', '.grid-item', function(e) {
                 e.preventDefault()
+                if ( $(this).find('a').hasClass('disabled') ) {
+                    return false
+                }
                 var idx = $('.grid').children().index(this)
                 $('#slideshow').slickGoTo(idx+1)
             })
+
+            var count = 0
+
+            Slick.gifs = {}
+
+            $('.gif').each(function(img) {
+                var id = $(this).parents('.slide').attr('id'),
+                    gif = new SuperGif({
+                        gif : this,
+                        auto_play : false
+                    })
+
+                gif.load(function(g){
+                    var href = '#' + g.src.match(/\/([^/]+)\.gif$/)[1],
+                        anchor = document.querySelector('a[href="' + href +'"]')
+                    anchor.classList.remove('disabled')
+
+                    if ( count === 8 ) {
+                        $('#dots').removeClass('disabled')
+                    } else {
+                        count++
+                    }
+                })
+                Slick.gifs[id] = gif
+            })
+        },
+        onAfterChange : function(Slick, idx) {
+            if ( idx !== 0 ) {
+                var id = Slick.$slides[idx].id
+
+                $('.jsgif').addClass('hide')
+
+                Object.keys(Slick.gifs).forEach(function(gif) {
+                    Slick.gifs[gif].pause()
+                })
+
+                Slick.gifs[id].move_to(1)
+                $('#' + id).find('.jsgif').removeClass('hide')
+                Slick.gifs[id].play()
+            }
         },
         vertical : true,
         customPaging : function(slick, idx) {
@@ -18986,6 +21689,10 @@ $(function() {
         }
     },
     mql
+
+    $('.disabled').click(function(e) {
+        e.preventDefault()
+    })
 
     if ( matchMedia ) {
         mql = window.matchMedia('(min-width: 40em)')

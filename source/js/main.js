@@ -4,7 +4,7 @@
 var menuButton = document.getElementById('menuButton'),
     menu = document.getElementById('nav'),
     arrow = document.getElementById('arrow'),
-    resourcesLink = document.getElementById('resourcesNav'),
+    resourcesLink = $('[data-link=resources]'),
     colors = {
         'teal' : [112, 190, 205]
         , 'dark-yellow' : [231, 181, 44]
@@ -77,12 +77,12 @@ function staggerLoad(logo) {
         menu.classList.toggle('show')
     }, false)
 
-    resourcesLink.addEventListener('click', function(e) {
+    resourcesLink.click(function(e) {
         if ( window.sessionStorage && window.history ) {
             history.replaceState({ filter : '*' }, '')
             sessionStorage.clear()
         }
-    }, false)
+    })
 
     if ( !Modernizr.touch &&
           !document.getElementById('home') &&
@@ -100,10 +100,9 @@ function staggerLoad(logo) {
 
 
 if ( path === '/' ) {
-    $('#nav').addClass('loaded')
-    setTimeout(function() {
-        $('#principles, #homeFooter').addClass('loaded')
-    }, 1500)
+    imagesLoaded('#homeImg', function() {
+        $('#homeImg, .grid').addClass('loaded')
+    })
 } else if ( path.match(/^\/resources/) ) {
     if ( path.split('/').length === 3 ) {
         tags = document.getElementById('resourceTags')
@@ -138,8 +137,15 @@ if ( path === '/' ) {
     imagesLoaded('#blog', function(){
         $(this.elements).addClass('layout-image-is-visible')
     })
-} else if ( path.match(/^\/contact/) ) {
-    imagesLoaded('#contact', function() {
-        $(this.elements).addClass('grid-is-visible')
+// } else if ( path.match(/^\/contact/) ) {
+//     imagesLoaded('#contact', function() {
+//         $(this.elements).addClass('grid-is-visible')
+//     })
+} else if ( path.match(/^\/about/) ) {
+    $('#subnav').on('click', 'a', function(e) {
+        e.preventDefault()
+        $('#content').load('/fragments/' + this.hash.slice(1) + ' #content > *')
+        $(this).parent().siblings().find('a').removeClass('selected')
+        $(this).addClass('selected')
     })
 }

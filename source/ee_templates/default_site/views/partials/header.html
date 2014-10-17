@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Wildflower Montessori Approach</title>
 
-        <!--<link href="/assets/css/style.concat.css" rel="stylesheet">-->
-        <link href="/assets/css/style.min.css" rel="stylesheet">
+        <link href="/assets/css/style.concat.css" rel="stylesheet">
+        <!--<link href="/assets/css/style.min.css" rel="stylesheet">-->
         {if '{stash:nav}' == 'blog' || '{stash:nav}' == 'resources-detail'}
         {/if}
     </head>
@@ -31,7 +31,7 @@
                         <!--<li><a href="/classroom"{if "{stash:nav}" == "classroom"} class="selected"{/if} id="classroomNav">classroom</a></li>-->
                         <li><a href="/approach"{if "{stash:nav}" == "approach" OR "{stash:nav}" == "approach-detail"} class="selected"{/if} id="approachNav">approach</a></li>
                         <li><a href="/apply"{if "{stash:nav}" == "apply"} class="selected"{/if} id="applyNav">apply</a></li>
-                        <li><a href="/resources"{if "{stash:nav}" == "resources" OR "{stash:nav}" == "resources-detail"} class="selected"{/if} id="resourcesNav">resources</a></li>
+                        <li><a href="/resources"{if "{stash:nav}" == "resources" OR "{stash:nav}" == "resources-detail"} class="selected"{/if} data-link="resources" id="resourcesNav">resources</a></li>
                         <li><a href="/blog"{if "{stash:nav}" == "blog"} class="selected"{/if} id="blogNav">blog</a></li>
                     </ul>
                 </nav>
@@ -44,5 +44,14 @@
                     <li><button class="filter" data-filter="food">food</button></li>
                     <li><button class="filter" data-filter="pdf">pdf</button></li>
                 </ul>
+
+                {if "{stash:nav}" == "about"}
+                <nav class="subnav" id="subnav">
+                    <ul>
+                        <li class="subnav-item"><a href="#ethos" class="selected">ethos</a></li>
+                        <li class="subnav-item"><a href="#letter-to-parents">letter to parents</a></li>
+                    </ul>
+                </nav>
+                {/if}
             </header>
             <!-- .main-header -->

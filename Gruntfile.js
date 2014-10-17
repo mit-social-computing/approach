@@ -4,11 +4,12 @@ module.exports = function(grunt) {
     var mainJs = [
          'source/bower_components/modernizr/modernizr.build.js'
         , 'source/js/lib/lodash/lodash.js'
+        , 'source/js/lib/libgif/libgif.js'
         , 'source/bower_components/jquery/dist/jquery.js'
         , 'source/bower_components/slick-carousel/slick/slick.js'
         , 'source/bower_components/imagesloaded/imagesloaded.pkgd.js'
         , 'source/bower_components/isotope/dist/isotope.pkgd.js'
-        , 'source/bower_components/skrollr/dist/skrollr.js'
+        , 'source/bower_components/skrollr/src/skrollr.js'
         , 'source/bower_components/fastclick/lib/fastclick.js'
         , 'source/js/main.js'
         , 'source/js/resources.js'
@@ -130,8 +131,8 @@ module.exports = function(grunt) {
             css : {
                 files :  {
                     'webroot/assets/css/style.concat.css' : [
-                        'source/bower_components/slick-carousel/slick/slick.css'
-                        , 'webroot/assets/css/style.fixed.css'
+                        //'source/bower_components/slick-carousel/slick/slick.css'
+                        'webroot/assets/css/style.fixed.css'
                     ]
                 }
             },

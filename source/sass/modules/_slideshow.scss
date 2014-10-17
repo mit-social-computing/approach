@@ -139,12 +139,41 @@
 
 .slideshow {
 
+    .jsgif {
+        @include transition(opacity 150ms ease);
+
+        &.hide {
+            opacity: 0;
+        }
+    }
+
+    .disabled {
+        pointer-events: none;
+        opacity: 0;
+
+        &:hover {
+            color: $purple;
+        }
+    }
+
     .slide {
         @include flexbox;
         margin-bottom: 1rem;
 
         &:first-child {
             display: none;
+        }
+
+        .panel {
+            @include animation(fade-in-fast 150ms forwards);
+
+            &.disabled {
+                @include animation(fade-in-slow 10s forwards);
+            }
+
+            &:hover .title {
+                color: $pink;
+            }
         }
 
         @media #{$medium-up} {
@@ -213,6 +242,10 @@
 
 }
 
+.slick-loading .slick-list {
+    background-image: url(/assets/img/ajax-loader.gif);
+}
+
 .slide-dots {
     position: fixed;
     top: 0;
@@ -274,3 +307,17 @@
     }
 }
 
+@include keyframes(fade-in-slow) {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@include keyframes(fade-in-fast) {
+    100% {
+        opacity: 1;
+    }
+}
