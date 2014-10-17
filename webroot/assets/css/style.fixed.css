@@ -1953,17 +1953,31 @@ i {
   background-image: url(/assets/img/lightbox-arrow-right.png);
 }
 /* line 97, ../../../source/sass/modules/_slideshow.scss */
+.lightbox-body .slick-slide {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+/* line 102, ../../../source/sass/modules/_slideshow.scss */
 .lightbox-body .slick-slide img {
   max-height: 100%;
   margin: 0 auto;
 }
 
-/* line 104, ../../../source/sass/modules/_slideshow.scss */
+/* line 109, ../../../source/sass/modules/_slideshow.scss */
 .ss-content {
-  padding: 95px 25px 0;
+  margin: auto;
 }
 
-/* line 112, ../../../source/sass/modules/_slideshow.scss */
+/* line 118, ../../../source/sass/modules/_slideshow.scss */
 .ss-title {
   color: #70becd;
   font-family: kim, sans-serif;
@@ -1972,7 +1986,7 @@ i {
   margin-bottom: 0.9375rem;
 }
 
-/* line 121, ../../../source/sass/modules/_slideshow.scss */
+/* line 127, ../../../source/sass/modules/_slideshow.scss */
 .ss-caption {
   color: #70becd;
   font-family: "kim", sans-serif;
@@ -1982,36 +1996,36 @@ i {
   margin: 1rem auto 0;
 }
 
-/* line 131, ../../../source/sass/modules/_slideshow.scss */
+/* line 137, ../../../source/sass/modules/_slideshow.scss */
 .touch .slick-prev,
 .touch .slick-next {
   display: none !important;
 }
 
-/* line 137, ../../../source/sass/modules/_slideshow.scss */
+/* line 143, ../../../source/sass/modules/_slideshow.scss */
 .is-lightbox {
   cursor: pointer;
 }
 
-/* line 143, ../../../source/sass/modules/_slideshow.scss */
+/* line 149, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .jsgif {
   -webkit-transition: opacity 150ms ease;
   transition: opacity 150ms ease;
 }
-/* line 146, ../../../source/sass/modules/_slideshow.scss */
+/* line 152, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .jsgif.hide {
   opacity: 0;
 }
-/* line 151, ../../../source/sass/modules/_slideshow.scss */
+/* line 157, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .disabled {
   pointer-events: none;
   opacity: 0;
 }
-/* line 155, ../../../source/sass/modules/_slideshow.scss */
+/* line 161, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .disabled:hover {
   color: #b6a2cd;
 }
-/* line 160, ../../../source/sass/modules/_slideshow.scss */
+/* line 166, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .slide {
   display: -webkit-box;
   display: -webkit-flex;
@@ -2020,43 +2034,43 @@ i {
   display: flex;
   margin-bottom: 1rem;
 }
-/* line 164, ../../../source/sass/modules/_slideshow.scss */
+/* line 170, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .slide:first-child {
   display: none;
 }
-/* line 168, ../../../source/sass/modules/_slideshow.scss */
+/* line 174, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .slide .panel {
   -webkit-animation: fade-in-fast 150ms forwards;
   animation: fade-in-fast 150ms forwards;
 }
-/* line 171, ../../../source/sass/modules/_slideshow.scss */
+/* line 177, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .slide .panel.disabled {
   -webkit-animation: fade-in-slow 10s forwards;
   animation: fade-in-slow 10s forwards;
 }
-/* line 175, ../../../source/sass/modules/_slideshow.scss */
+/* line 181, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .slide .panel:hover .title {
   color: #f77e85;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 160, ../../../source/sass/modules/_slideshow.scss */
+  /* line 166, ../../../source/sass/modules/_slideshow.scss */
   .slideshow .slide {
     margin-bottom: 0;
   }
-  /* line 183, ../../../source/sass/modules/_slideshow.scss */
+  /* line 189, ../../../source/sass/modules/_slideshow.scss */
   .slideshow .slide:first-child {
     display: block;
   }
 }
-/* line 188, ../../../source/sass/modules/_slideshow.scss */
+/* line 194, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .slide > * {
   margin: auto;
 }
-/* line 192, ../../../source/sass/modules/_slideshow.scss */
+/* line 198, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .slide img {
   margin: 0 auto;
 }
-/* line 197, ../../../source/sass/modules/_slideshow.scss */
+/* line 203, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .slick-prev,
 .slideshow .slick-next {
   position: static;
@@ -2064,12 +2078,12 @@ i {
   height: 38px;
   width: 38px;
 }
-/* line 204, ../../../source/sass/modules/_slideshow.scss */
+/* line 210, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .slick-prev.slick-disabled,
 .slideshow .slick-next.slick-disabled {
   opacity: 0;
 }
-/* line 208, ../../../source/sass/modules/_slideshow.scss */
+/* line 214, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .slick-prev:before,
 .slideshow .slick-next:before {
   opacity: 1;
@@ -2077,7 +2091,7 @@ i {
   -webkit-transition: border-color 150ms ease;
   transition: border-color 150ms ease;
 }
-/* line 217, ../../../source/sass/modules/_slideshow.scss */
+/* line 223, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .slick-next:before {
   content: '';
   width: 0;
@@ -2085,11 +2099,11 @@ i {
   border: 19px solid transparent;
   border-top-color: rgba(182, 162, 205, 0.1);
 }
-/* line 225, ../../../source/sass/modules/_slideshow.scss */
+/* line 231, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .slick-next:hover:before {
   border-top-color: #b6a2cd;
 }
-/* line 231, ../../../source/sass/modules/_slideshow.scss */
+/* line 237, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .slick-prev:before {
   content: '';
   width: 0;
@@ -2097,17 +2111,17 @@ i {
   border: 19px solid transparent;
   border-bottom-color: rgba(182, 162, 205, 0.1);
 }
-/* line 239, ../../../source/sass/modules/_slideshow.scss */
+/* line 245, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .slick-prev:hover:before {
   border-bottom-color: #b6a2cd;
 }
 
-/* line 246, ../../../source/sass/modules/_slideshow.scss */
+/* line 252, ../../../source/sass/modules/_slideshow.scss */
 .slick-loading .slick-list {
   background-image: url(/assets/img/ajax-loader.gif);
 }
 
-/* line 250, ../../../source/sass/modules/_slideshow.scss */
+/* line 256, ../../../source/sass/modules/_slideshow.scss */
 .slide-dots {
   position: fixed;
   top: 0;
@@ -2119,31 +2133,31 @@ i {
   display: -ms-flexbox;
   display: flex;
 }
-/* line 257, ../../../source/sass/modules/_slideshow.scss */
+/* line 263, ../../../source/sass/modules/_slideshow.scss */
 .slide-dots .slick-dots {
   position: static;
   margin: auto;
   padding: 15px;
 }
-/* line 262, ../../../source/sass/modules/_slideshow.scss */
+/* line 268, ../../../source/sass/modules/_slideshow.scss */
 .slide-dots .slick-dots:hover span {
   opacity: 1;
 }
-/* line 266, ../../../source/sass/modules/_slideshow.scss */
+/* line 272, ../../../source/sass/modules/_slideshow.scss */
 .slide-dots .slick-dots > li {
   display: block;
   width: auto;
   text-align: left;
 }
-/* line 273, ../../../source/sass/modules/_slideshow.scss */
+/* line 279, ../../../source/sass/modules/_slideshow.scss */
 .slide-dots .slick-dots > li:hover .slide-button, .slide-dots .slick-dots > li.slick-active .slide-button {
   background-color: #b6a2cd;
 }
-/* line 277, ../../../source/sass/modules/_slideshow.scss */
+/* line 283, ../../../source/sass/modules/_slideshow.scss */
 .slide-dots .slick-dots > li:hover span, .slide-dots .slick-dots > li.slick-active span {
   color: #b6a2cd;
 }
-/* line 282, ../../../source/sass/modules/_slideshow.scss */
+/* line 288, ../../../source/sass/modules/_slideshow.scss */
 .slide-dots .slick-dots > li span {
   display: block;
   height: 100%;
@@ -2156,7 +2170,7 @@ i {
   -webkit-transition: opacity 150ms ease;
   transition: opacity 150ms ease;
 }
-/* line 297, ../../../source/sass/modules/_slideshow.scss */
+/* line 303, ../../../source/sass/modules/_slideshow.scss */
 .slide-dots .slide-button {
   float: left;
   background-color: rgba(182, 162, 205, 0.1);
@@ -2166,7 +2180,7 @@ i {
   -webkit-transition: background-color 150ms ease;
   transition: background-color 150ms ease;
 }
-/* line 305, ../../../source/sass/modules/_slideshow.scss */
+/* line 311, ../../../source/sass/modules/_slideshow.scss */
 .slide-dots .slide-button:before {
   content: '';
 }

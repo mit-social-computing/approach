@@ -94,6 +94,11 @@
         }
     }
 
+    .slick-slide {
+        @include flexbox;
+        @include flex-direction(column);
+    }
+
     .slick-slide img {
         max-height: 100%;
         margin: 0 auto;
@@ -102,7 +107,8 @@
 }
 
 .ss-content {
-    padding: 95px 25px 0;
+    //padding: 95px 25px 0;
+    margin: auto;
     // @include flexbox;
     // @include justify-content(center);
     // @include align-items(center);
