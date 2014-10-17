@@ -10,6 +10,8 @@ $(function() {
         onInit : function(Slick) {
             $('.slick-dots').appendTo('.slide-dots')
             $('.slick-prev').prependTo('#slideshow')
+            $('.slick-next').addClass('slick-disabled')
+
             $('.grid').on('click', '.grid-item', function(e) {
                 e.preventDefault()
                 if ( $(this).find('a').hasClass('disabled') ) {
@@ -37,6 +39,7 @@ $(function() {
 
                     if ( count === 8 ) {
                         $('#dots').removeClass('disabled')
+                        $('.slick-next').removeClass('slick-disabled')
                     } else {
                         count++
                     }
