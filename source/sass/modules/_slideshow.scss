@@ -15,22 +15,33 @@
 }
 
 .lightbox-close {
+    background-color: transparent;
     position: absolute;
     top: 30px;
     left: 30px;
     height: 39px;
     width: 39px;
-    background-color: transparent;
-    background-image: url('/assets/img/lightbox-close.png');
-    background-repeat: no-repeat;
     padding: 0;
 
-    @media
-    (-webkit-min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi) {
-        height: 20px;
-        width: 20px;
+    &:before {
+        content: '';
+        background-image: url('/assets/img/lightbox-close.png');
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
         background-size: 100%;
+
+        @media
+        (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            top: 10px;
+            right: 10px;
+            bottom: 10px;
+            left: 10px;
+        }
     }
 }
 
