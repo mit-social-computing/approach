@@ -904,7 +904,7 @@ img {
 .antialiased, p, .quote,
 .quote cite, .logo, .main-menu, .subnav .subnav-item, .mask p, .icon-plus, .form-purple, .input-purple, .btn, .ss-title, .slide-dots .slick-dots > li span, .text-body, .text-block.hand, .grid-content, .download, .tag, .filter:active,
 .filter:focus, .filter, .resources-aside .resource-tag, .resources-aside, .resources-aside .back, .article-header,
-.article-header > h2 {
+.article-header > h2 > a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -2926,7 +2926,7 @@ i {
 
 /* line 1, ../../../source/sass/_blog.scss */
 .article-header,
-.article-header > h2 {
+.article-header > h2 > a {
   font-family: kim;
   letter-spacing: 2px;
   color: #a59dae;
@@ -2942,12 +2942,17 @@ i {
   margin: 0;
   margin-bottom: 5px;
 }
+/* line 18, ../../../source/sass/_blog.scss */
+.article-header a:hover {
+  border-bottom-color: transparent;
+  color: #f77e85;
+}
 @media only screen and (min-width: 40.063em) {
   /* line 9, ../../../source/sass/_blog.scss */
   .article-header {
     text-align: left;
   }
-  /* line 21, ../../../source/sass/_blog.scss */
+  /* line 26, ../../../source/sass/_blog.scss */
   .article-header > h2 {
     font-size: 1.875rem;
     margin-bottom: 0;

@@ -1,5 +1,5 @@
 .article-header,
-.article-header > h2 {
+.article-header > h2 > a {
     font-family: kim;
     letter-spacing: 2px;
     color: $body-text;
@@ -13,6 +13,11 @@
     > h2 {
         margin: 0;
         margin-bottom: 5px;
+    }
+
+    a:hover {
+        border-bottom-color: transparent;
+        color: $pink;
     }
 
     @media #{$medium-up} {
