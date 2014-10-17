@@ -2113,7 +2113,7 @@ i {
 }
 /* line 242, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .slick-next:hover:before {
-  border-top-color: rgba(182, 162, 205, 0.1);
+  border-top-color: #f77e85;
 }
 /* line 248, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .slick-prev:before {
@@ -2125,7 +2125,7 @@ i {
 }
 /* line 256, ../../../source/sass/modules/_slideshow.scss */
 .slideshow .slick-prev:hover:before {
-  border-bottom-color: rgba(182, 162, 205, 0.1);
+  border-bottom-color: #f77e85;
 }
 
 /* line 263, ../../../source/sass/modules/_slideshow.scss */
