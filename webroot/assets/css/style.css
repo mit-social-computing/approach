@@ -983,7 +983,7 @@ img {
 
   /* line 74, ../../../source/sass/_base_styles.scss */
   .about .container.sticky {
-    padding-top: 160px;
+    padding-top: 180px;
   }
 
   /* line 78, ../../../source/sass/_base_styles.scss */
@@ -1294,7 +1294,7 @@ i {
   }
   /* line 177, ../../../source/sass/_global_elements.scss */
   .about .main-menu {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
   }
 }
 /* line 182, ../../../source/sass/_global_elements.scss */
