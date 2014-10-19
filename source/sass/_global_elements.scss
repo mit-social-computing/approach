@@ -7,6 +7,7 @@
 .main-header {
     padding-top: rem-calc(16);
     margin-bottom: rem-calc(16);
+    position: relative;
 }
 
 @media #{$medium-up} {
@@ -162,6 +163,10 @@
     position: relative;
     @extend .antialiased;
 
+    .about & {
+        margin-bottom: 100px;
+    }
+
     > ul {
         display: block;
         width: 100%;
@@ -170,7 +175,8 @@
         list-style-type: none;
     }
 
-    @media #{$screen} and (min-width: 730px) {
+    //@media #{$screen} and (min-width: 730px) {
+    @media #{$medium-up} {
         margin: 0 auto 15px;
         height: 22px;
 
@@ -210,24 +216,23 @@
     }
 }
 
-.main-menu,
-.main-menu.show {
-    @media #{$medium-up} {
-        display: block;
-
-        > ul {
-            @include flexbox;
-            @include justify-content(space-between);
-        }
-    }
-}
-
 .subnav {
     position: absolute;
     left: 0;
     right: 0;
-    top: 80%;
+    top: 110%;
     z-index: 1;
+
+    display: none;
+
+    .show ~ & {
+        display: block;
+    }
+
+    @media #{$medium-up} {
+        display: block;
+        top: 80%;
+    }
 
     > ul {
         display: inline-block;
@@ -269,6 +274,18 @@
             &:hover {
                 color: $teal;
             }
+        }
+    }
+}
+
+.main-menu,
+.main-menu.show {
+    @media #{$medium-up} {
+        display: block;
+
+        > ul {
+            @include flexbox;
+            @include justify-content(space-between);
         }
     }
 }
