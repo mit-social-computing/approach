@@ -21318,6 +21318,30 @@ if ( path.match(/^\/resources/) ) {
             filterStore = {}, f,
             forEach = Array.prototype.forEach
 
+
+        function filterInit() {
+            var tpl = '<li><button class="filter"></button></li>',
+                $container = $('<div/>').html(tpl),
+                filters = []
+
+            $('.grid-item').each(function() {
+                var classes = $(this).attr('class').split(' ')
+                classes.forEach(function(c, i) {
+                    if ( !c.match(/grid-item|loaded/) && filters.indexOf(c) === -1 ) {
+                        filters.push(c)
+                    }
+                })
+            })
+
+            filters.forEach(function(filter, i) {
+                var $filter = $($container.html())
+                $filter.find('.filter').attr('data-filter', filter).html(filter.replace('-', ' '))
+                filters[i] = $filter
+            })
+
+            $('#filters').append(filters)
+        }
+
         function updateHistory( filters ) {
             if ( window.history && window.sessionStorage ) {
                 // filters stored in sessionStorage and state
@@ -21496,6 +21520,8 @@ if ( path.match(/^\/resources/) ) {
             }
         }
     }
+
+    filterInit()
 }
 
 //    return iso
