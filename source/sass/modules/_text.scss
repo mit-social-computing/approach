@@ -56,6 +56,10 @@
         text-align: center;
         @extend .antialiased;
         letter-spacing: 1px;
+
+        .about & {
+            text-transform: lowercase;
+        }
     }
 
     > .title {
