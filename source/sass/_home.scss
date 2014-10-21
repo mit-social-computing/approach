@@ -19,6 +19,7 @@
 
 .home {
     .grid-item {
+        @include flexbox;
         opacity: 0;
         @include scale(0.8);
 
@@ -27,6 +28,11 @@
                 @include transition(opacity 200ms cubic-bezier(.12,.4,.31,1.47) #{(550 + ($i*200)) + 'ms'},
                 transform 200ms cubic-bezier(.12,.4,.31,1.47) #{(550 + ($i*200)) + 'ms'} );
             }
+        }
+
+        > a {
+            @include flexbox;
+            @include align-items(center);
         }
     }
 
