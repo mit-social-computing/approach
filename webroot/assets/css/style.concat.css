@@ -973,24 +973,25 @@ img {
   /* line 70, ../../../source/sass/_base_styles.scss */
   .container.sticky {
     padding-top: 120px;
+    margin-bottom: 1rem;
   }
 
-  /* line 74, ../../../source/sass/_base_styles.scss */
+  /* line 75, ../../../source/sass/_base_styles.scss */
   .about .container.sticky {
     padding-top: 180px;
   }
 
-  /* line 78, ../../../source/sass/_base_styles.scss */
+  /* line 79, ../../../source/sass/_base_styles.scss */
   .resources .container.sticky {
     padding-top: 185px;
   }
 }
-/* line 83, ../../../source/sass/_base_styles.scss */
+/* line 84, ../../../source/sass/_base_styles.scss */
 blockquote {
   margin: 0 0 1rem;
 }
 
-/* line 87, ../../../source/sass/_base_styles.scss */
+/* line 88, ../../../source/sass/_base_styles.scss */
 a {
   text-decoration: none;
   color: #f77e85;
@@ -999,12 +1000,12 @@ a {
   -webkit-transition: border-bottom-color 150ms ease, color 150ms ease;
   transition: border-bottom-color 150ms ease, color 150ms ease;
 }
-/* line 94, ../../../source/sass/_base_styles.scss */
+/* line 95, ../../../source/sass/_base_styles.scss */
 a:hover {
   border-bottom-color: #fdc52f;
 }
 
-/* line 99, ../../../source/sass/_base_styles.scss */
+/* line 100, ../../../source/sass/_base_styles.scss */
 a.tall-link {
   height: 18px;
   pointer-events: none;
@@ -1012,34 +1013,34 @@ a.tall-link {
   border: none;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 99, ../../../source/sass/_base_styles.scss */
+  /* line 100, ../../../source/sass/_base_styles.scss */
   a.tall-link {
     height: 22px;
     pointer-events: all;
     color: #d9959e;
     border-bottom: 1px solid rgba(253, 197, 47, 0);
   }
-  /* line 111, ../../../source/sass/_base_styles.scss */
+  /* line 112, ../../../source/sass/_base_styles.scss */
   a.tall-link:hover {
     border-bottom-color: #fdc52f;
   }
-  /* line 115, ../../../source/sass/_base_styles.scss */
+  /* line 116, ../../../source/sass/_base_styles.scss */
   a.tall-link.disabled {
     color: #b6a2cd;
     pointer-events: none;
   }
 }
 
-/* line 122, ../../../source/sass/_base_styles.scss */
+/* line 123, ../../../source/sass/_base_styles.scss */
 p {
   letter-spacing: 1px;
 }
 
-/* line 127, ../../../source/sass/_base_styles.scss */
+/* line 128, ../../../source/sass/_base_styles.scss */
 .quote {
   border: none;
 }
-/* line 130, ../../../source/sass/_base_styles.scss */
+/* line 131, ../../../source/sass/_base_styles.scss */
 .quote,
 .quote cite {
   font-family: kim;
@@ -1051,25 +1052,25 @@ p {
   padding: 0 5px;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 130, ../../../source/sass/_base_styles.scss */
+  /* line 131, ../../../source/sass/_base_styles.scss */
   .quote,
   .quote cite {
     padding: 0 65px;
   }
 }
-/* line 147, ../../../source/sass/_base_styles.scss */
+/* line 148, ../../../source/sass/_base_styles.scss */
 .quote cite {
   font-style: normal;
 }
 
-/* line 152, ../../../source/sass/_base_styles.scss */
+/* line 153, ../../../source/sass/_base_styles.scss */
 button {
   -moz-appearance: none;
   -webkit-appearance: none;
   border: none;
 }
 
-/* line 157, ../../../source/sass/_base_styles.scss */
+/* line 158, ../../../source/sass/_base_styles.scss */
 i {
   font-style: normal;
 }

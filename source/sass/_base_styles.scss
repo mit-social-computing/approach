@@ -69,6 +69,7 @@ img {
 @media #{$medium-up} {
     .container.sticky {
         padding-top: 120px;
+        margin-bottom: 1rem;
     }
 
     .about .container.sticky {
