@@ -54,6 +54,8 @@
     > h6 {
         font-family: kim;
         text-align: center;
+        @extend .antialiased;
+        letter-spacing: 1px;
     }
 
     > .title {
