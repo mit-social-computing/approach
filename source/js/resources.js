@@ -3,7 +3,7 @@
 
 // define(['isotope', 'imagesloaded'],
 // function(Isotope, imagesLoaded) {
-if ( path.match(/^\/resources/) ) {
+if ( path.match(/^\/adapt/) ) {
     if ( path.split('/').length === 2 ) {
 
         var resources = document.getElementById('resourcesGrid'),

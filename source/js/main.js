@@ -103,7 +103,7 @@ if ( path === '/' ) {
     imagesLoaded('#homeImg', function() {
         $('#homeImg, .grid').addClass('loaded')
     })
-} else if ( path.match(/^\/resources/) ) {
+} else if ( path.match(/^\/adapt/) ) {
     if ( path.split('/').length === 3 ) {
         tags = document.getElementById('resourceTags')
         tags.addEventListener('click', function(e) {
