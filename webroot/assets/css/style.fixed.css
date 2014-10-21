@@ -2316,62 +2316,63 @@ i {
 .text-block > h5, .about
 .text-block > h6 {
   text-transform: lowercase;
+  margin-bottom: 1rem;
 }
-/* line 65, ../../../source/sass/modules/_text.scss */
+/* line 66, ../../../source/sass/modules/_text.scss */
 .text-block > .title {
   font-size: 1em;
   margin-bottom: 1rem;
 }
-/* line 70, ../../../source/sass/modules/_text.scss */
+/* line 71, ../../../source/sass/modules/_text.scss */
 .text-block > p:not(.title) {
   font-size: 0.7em;
 }
-/* line 73, ../../../source/sass/modules/_text.scss */
+/* line 74, ../../../source/sass/modules/_text.scss */
 .text-block > p:not(.title):first-of-type {
   margin-top: 0;
 }
-/* line 78, ../../../source/sass/modules/_text.scss */
+/* line 79, ../../../source/sass/modules/_text.scss */
 .text-block > ul {
   font-size: 0.7em;
   letter-spacing: 1px;
 }
-/* line 83, ../../../source/sass/modules/_text.scss */
+/* line 84, ../../../source/sass/modules/_text.scss */
 .text-block > ul > li {
   margin-bottom: 1rem;
 }
-/* line 86, ../../../source/sass/modules/_text.scss */
+/* line 87, ../../../source/sass/modules/_text.scss */
 .text-block > ul > li:last-child {
   margin-bottom: 0;
 }
-/* line 92, ../../../source/sass/modules/_text.scss */
+/* line 93, ../../../source/sass/modules/_text.scss */
 .text-block.body {
   color: #a59dae;
 }
-/* line 96, ../../../source/sass/modules/_text.scss */
+/* line 97, ../../../source/sass/modules/_text.scss */
 .text-block.purple {
   color: #b6a2cd;
 }
-/* line 100, ../../../source/sass/modules/_text.scss */
+/* line 101, ../../../source/sass/modules/_text.scss */
 .text-block.pink {
   color: #f77e85;
 }
-/* line 104, ../../../source/sass/modules/_text.scss */
+/* line 105, ../../../source/sass/modules/_text.scss */
 .text-block.hand {
   font-family: kim;
   letter-spacing: 2.1px;
   line-height: 1;
 }
-/* line 111, ../../../source/sass/modules/_text.scss */
+/* line 112, ../../../source/sass/modules/_text.scss */
 .text-block.small {
   font-size: 20px;
   font-size: 1.25rem;
 }
-/* line 116, ../../../source/sass/modules/_text.scss */
+/* line 117, ../../../source/sass/modules/_text.scss */
 .text-block.medium {
   font-size: 26px;
   font-size: 1.625rem;
 }
-/* line 121, ../../../source/sass/modules/_text.scss */
+/* line 122, ../../../source/sass/modules/_text.scss */
 .text-block.centered {
   text-align: center;
 }
