@@ -20,7 +20,7 @@ bower_components/
 
 #Images
 
-webroot/images/
+webroot/images/uploads
 *.psd
 tests/reports/*
 
