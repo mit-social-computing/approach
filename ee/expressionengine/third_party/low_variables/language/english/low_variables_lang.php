@@ -445,6 +445,9 @@ $lang = array(
 "no_uploads" =>
 "No uploads",
 
+"overwrite_existing_files_label" =>
+"Overwrite existing files",
+
 "upload_new_file" =>
 "Upload new file",
 
@@ -611,6 +614,12 @@ $lang = array(
 
 "file_path_help" =>
 "If you want to save variables as files, enter the file path here.",
+
+"one_way_sync" =>
+"One way sync?",
+
+"one_way_sync_help" =>
+"If set to Yes, variables will always be synchronised <i>from file to database</i> and not the other way around.",
 
 "variable_types" =>
 "Variable types",

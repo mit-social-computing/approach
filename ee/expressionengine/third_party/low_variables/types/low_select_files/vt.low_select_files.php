@@ -11,7 +11,8 @@ class Low_select_files extends Low_variables_type {
 		'multiple'	=> 'n',
 		'folders'	=> array(1),
 		'separator'	=> 'newline',
-		'upload'	=> ''
+		'upload'	=> '',
+		'overwrite' => 'n'
 	);
 
 	public $language_files = array(
@@ -61,18 +62,22 @@ class Low_select_files extends Low_variables_type {
 		// -------------------------------------
 
 		$upload_folders = array('0' => lang('no_uploads')) + $all_folders;
-		$upload = $this->get_setting('upload', $var_settings);
+		$upload    = $this->get_setting('upload', $var_settings);
+		$overwrite = ($this->get_setting('overwrite', $var_settings) == 'y');
 
 		$r[] = array(
 			$this->setting_label(lang('upload_folder'), lang('upload_folder_help')),
-			form_dropdown($this->input_name('upload'), $upload_folders, $upload)
+			form_dropdown($this->input_name('upload'), $upload_folders, $upload, 'id="low-select-upload-folder"').
+			'<label class="low-checkbox low-inline" id="low-overwrite-files">'.
+			form_checkbox($this->input_name('overwrite'), 'y', $overwrite).
+			lang('overwrite_existing_files_label').'</label>'
 		);
 
 		// -------------------------------------
 		//  Build setting: multiple?
 		// -------------------------------------
 
-		$multiple = $this->get_setting('multiple', $var_settings);
+		$multiple = ($this->get_setting('multiple', $var_settings) == 'y');
 
 		$r[] = array(
 			$this->setting_label(lang('allow_multiple_files')),
@@ -287,8 +292,10 @@ class Low_select_files extends Low_variables_type {
 	 */
 	function save_input($var_id, $var_data, $var_settings)
 	{
-		// Include upload library
+		// Include libraries etc
 		ee()->load->library('upload');
+		ee()->load->library('filemanager');
+		ee()->load->model('file_model');
 
 		// Get upload setting
 		$upload = $this->get_setting('upload', $var_settings);
@@ -314,6 +321,10 @@ class Low_select_files extends Low_variables_type {
 				// Fetch record from DB
 				if ($folder = $this->_get_upload_preferences(NULL, $upload))
 				{
+					// Load up dimensions for this dir
+					$dimensions = ee()->file_model->get_dimensions_by_dir_id($folder['id']);
+					$folder['dimensions'] = $dimensions->result_array();
+
 					// get folder and register to session cache
 					$upload_cache[$upload] = $folder;
 					low_set_cache(LOW_VAR_PACKAGE, 'uploads', $upload_cache);
@@ -350,12 +361,15 @@ class Low_select_files extends Low_variables_type {
 			//  Set parameters according to folder prefs
 			// -------------------------------------
 
+			$overwrite = ($this->get_setting('overwrite', $var_settings) == 'y');
+
 			$config = array(
 				'upload_path'	=> $folder['server_path'],
 				'allowed_types'	=> (($folder['allowed_types'] == 'img') ? 'gif|jpg|jpeg|png|jpe' : '*'),
 				'max_size'		=> $folder['max_size'],
 				'max_width'		=> $folder['max_width'],
-				'max_height'	=> $folder['max_height']
+				'max_height'	=> $folder['max_height'],
+				'overwrite'     => $overwrite
 			);
 
 			ee()->upload->initialize($config);
@@ -386,14 +400,26 @@ class Low_select_files extends Low_variables_type {
 			}
 
 			// Create thumbnail for this
-			ee()->load->library('filemanager');
-			ee()->load->model('file_model');
 			$folder['file_name']  = ee()->upload->file_name;
-			$folder['dimensions'] = NULL;
 			ee()->filemanager->create_thumb($folder['server_path'].ee()->upload->file_name, $folder);
+
+			// Set file id
+			$file_id = NULL;
+
+			// Overwriting?
+			if ($overwrite)
+			{
+				$files = ee()->file_model->get_files_by_name($folder['file_name'], $upload);
+
+				if ($old = $files->row())
+				{
+					$file_id = $old->file_id;
+				}
+			}
 
 			// Add to native DB table
 			ee()->file_model->save_file(array(
+				'file_id' => $file_id,
 				'site_id' => $this->site_id,
 				'title' => ee()->upload->file_name,
 				'upload_location_id' => $upload,

@@ -388,6 +388,7 @@ class Wygwam_helper
 			'autoGrow_onStartup',
 			'autoParagraph',
 			'colorButton_enableMore',
+			'dialog_noConfirmCancel',
 			'disableNativeSpellChecker',
 			'disableObjectResizing',
 			'disableReadonlyStyling',
@@ -410,6 +411,7 @@ class Wygwam_helper
 			'pasteFromWordRemoveStyles',
 			'readOnly',
 			'resize_enabled',
+			'scayt_autoStartup',
 			'startupFocus',
 			'startupOutlineBlocks',
 			'templates_replaceContent',
@@ -526,6 +528,7 @@ class Wygwam_helper
 		if (! self::$_included_field_resources)
 		{
 			self::include_theme_js('lib/ckeditor/ckeditor.js');
+			self::include_theme_js('lib/ckeditor/config.js');
 			self::include_theme_js('scripts/wygwam.js');
 			self::include_theme_css('styles/wygwam.css');
 			self::insert_css('.content_elements_icon_wygwam { background: url('.self::theme_url().'images/ce_icon.png); background-size: 16px; }');

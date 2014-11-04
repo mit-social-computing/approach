@@ -1,7 +1,7 @@
 <form action="<?=$base_url?>&amp;method=delete" method="post">
 	<div>
 		<input type="hidden" name="variable_id" value="<?=$variable_ids?>" />
-		<input type="hidden" name="XID" value="<?=XID_SECURE_HASH?>" />
+		<input type="hidden" name="<?=$csrf_token_name?>" value="<?=$csrf_token_value?>" />
 	</div>
 	<div id="low-variables-delete">
 		<p><?=$confirm_message?></p>

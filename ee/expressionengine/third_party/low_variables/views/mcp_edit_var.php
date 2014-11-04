@@ -8,7 +8,7 @@
 
 <form method="post" action="<?=$base_url?>&amp;method=save_var" id="low-variable-form">
 	<div>
-		<input type="hidden" name="XID" value="<?=XID_SECURE_HASH?>" />
+		<input type="hidden" name="<?=$csrf_token_name?>" value="<?=$csrf_token_value?>" />
 		<input type="hidden" name="variable_id" value="<?=$variable_id?>" />
 		<input type="hidden" name="variable_order" value="<?=$variable_order?>" />
 		<input type="hidden" name="from" value="<?=$from?>" />

@@ -329,6 +329,11 @@ label.low-checkbox input {
 	margin-right:5px;
 }
 
+label.low-inline {
+	display:inline;
+	margin:0 1em;
+}
+
 /* Drag 'n Drop lists
 -------------------------------------------------*/
 .low-drag-lists {

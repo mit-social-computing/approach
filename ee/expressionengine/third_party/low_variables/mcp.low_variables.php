@@ -995,9 +995,12 @@ class Low_variables_mcp extends Low_variables_base
 		//  Check variable data
 		// -------------------------------------
 
-		if ($variable_id == 'new' && ($var_data = ee()->input->post('variable_data')))
+		if ($variable_id == 'new')
 		{
-			$ee_vars['variable_data'] = $var_data;
+			$ee_vars['variable_data']
+				= (FALSE !== ($var_data = ee()->input->post('variable_data')))
+				? $var_data
+				: '';
 		}
 
 		// -------------------------------------
@@ -1015,7 +1018,7 @@ class Low_variables_mcp extends Low_variables_base
 
 		foreach (array('group_id', 'variable_label', 'variable_notes', 'variable_type', 'variable_order') AS $var)
 		{
-			$low_vars[$var] = ($value = ee()->input->post($var)) ? $value : '';
+			$low_vars[$var] = (($value = ee()->input->post($var)) !== FALSE) ? $value : '';
 		}
 
 		// -------------------------------------

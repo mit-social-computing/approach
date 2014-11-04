@@ -8,7 +8,7 @@
 
 <form method="post" action="<?=$base_url?>&amp;method=save_group" id="low-variable-form">
 	<div>
-		<input type="hidden" name="XID" value="<?=XID_SECURE_HASH?>" />
+		<input type="hidden" name="<?=$csrf_token_name?>" value="<?=$csrf_token_value?>" />
 		<input type="hidden" name="group_id" value="<?=$group_id?>" />
 		<input type="hidden" name="from" value="<?=$from?>" />
 	</div>

@@ -3,8 +3,8 @@
 if (! defined('WYGWAM_NAME'))
 {
 	define('WYGWAM_NAME', 'Wygwam');
-	define('WYGWAM_VER',  '3.2.2');
-	define('WYGWAM_DESC', 'Wysiwyg editor powered by CKEditor and CKFinder');
+	define('WYGWAM_VER',  '3.3.2');
+	define('WYGWAM_DESC', 'Wysiwyg editor powered by CKEditor');
 	define('WYGWAM_DOCS', 'http://pixelandtonic.com/wygwam/docs');
 }
 

@@ -503,6 +503,7 @@ class Assets_ee_source extends Assets_base_source
 		}
 		else if ($is_image)
 		{
+			$this->EE->assets_lib->call_extension('assets_ee_subfolder_upload', array($file_path));
 			$this->_create_thumbnails($file_path, $filedir->id);
 		}
 

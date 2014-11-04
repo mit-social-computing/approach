@@ -63,7 +63,10 @@ class Structure_mcp
 		$settings = $this->sql->get_settings();
 		$channel_data = $this->structure->get_structure_channels('page');
 
-		$nav = array('Pages' => $this->base_url);
+		$nav = array();
+		
+		if ($this->sql->user_access('perm_admin_channels', $settings) || $this->sql->user_access('perm_admin_structure', $settings))
+		$nav['Pages'] = $this->base_url;
 
 		if ($this->sql->user_access('perm_admin_channels', $settings))
 			$nav['Channel Settings'] = $this->base_url.AMP.'method=channel_settings';
@@ -147,7 +150,7 @@ class Structure_mcp
 			$page_choices = array_intersect_key($data['valid_channels'], $data['assigned_channels']);
 
 		$data['page_choices'] = $page_choices;
-
+		
 		if ($page_choices && count($page_choices == 1))
 			$data['add_page_url'] = BASE.AMP.'C=content_publish'.AMP.'M=entry_form'.AMP.'channel_id='.key($page_choices);
 		elseif ($data['page_count'] == 0)
@@ -519,7 +522,7 @@ class Structure_mcp
 
 		$settings_json = json_encode($settings_array);
 
-		$this->EE->cp->add_to_head('
+		$this->EE->cp->add_to_foot('
 		<script type="text/javascript">
 			var structure_settings = ' . $settings_json . ';
 		</script>');
@@ -836,7 +839,7 @@ class Structure_mcp
 		$appver = str_replace('.','',APP_VER);
 		
 		
-		if ( substr($appver, 0, 2) != "27" )
+		if ( substr($appver, 0, 2) < "27" )
 			{ 
 				// We're not actually running a version of 2.7, therefore we should just return an error and silently fail.
 				$this->EE->session->set_flashdata('message_failure',lang('not_ee27'));

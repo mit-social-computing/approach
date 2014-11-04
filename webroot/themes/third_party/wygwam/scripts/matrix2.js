@@ -58,6 +58,7 @@ Matrix.bind('wygwam', 'afterSort', function(cell) {
 	{
 		cell.dom.$ckeClone.remove();
 	}
+	$('iframe:first', cell.dom.$td).remove();
 	onDisplay(cell);
 });
 

@@ -9,7 +9,7 @@
 
 <form method="post" action="<?=$base_url.AMP?>method=save" enctype="multipart/form-data" id="low-variables-form">
 	<div>
-		<input type="hidden" name="XID" value="<?=XID_SECURE_HASH?>" />
+		<input type="hidden" name="<?=$csrf_token_name?>" value="<?=$csrf_token_value?>" />
 		<input type="hidden" name="all_ids" value="<?=$all_ids?>" />
 		<input type="hidden" name="group_id" value="<?=$group_id?>" />
 	</div>

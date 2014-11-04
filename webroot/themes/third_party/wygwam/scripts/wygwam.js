@@ -92,6 +92,12 @@ Wygwam.prototype = {
 			this.$iframe.remove();
 		}
 
+		// Load in any custom config values
+		if (CKEDITOR.editorConfig)
+		{
+			CKEDITOR.editorConfig(this.config);
+		}
+
 		CKEDITOR.replace(this.$element[0], this.config);
 	}
 }
@@ -109,7 +115,8 @@ Wygwam.loadAssetsSheet = function(params, filedir, kind) {
 		kinds: (kind == 'any' ? kind : [kind]),
 
 		onSelect: function(files) {
-			CKEDITOR.tools.callFunction(params.CKEditorFuncNum, files[0].url);
+			var cacheBustUrl = files[0].url + '?cachebuster:' + parseInt(Math.random() * 100, 10);
+			CKEDITOR.tools.callFunction(params.CKEditorFuncNum, cacheBustUrl);
 
 			if (files[0].id) {
 				if ($.inArray(files[0].id, Wygwam.assetIds) == -1) {

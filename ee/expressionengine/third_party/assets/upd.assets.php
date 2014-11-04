@@ -24,6 +24,8 @@ class Assets_upd
 		//  Make a local reference to the EE super object
 		// -------------------------------------------
 		$this->EE =& get_instance();
+
+		require_once PATH_THIRD . 'assets/helper.php';
 	}
 
 	/**
@@ -62,6 +64,7 @@ class Assets_upd
 		$this->EE->db->insert('actions', array('class' => 'Assets_mcp', 'method' => 'finish_index'));
 		$this->EE->db->insert('actions', array('class' => 'Assets_mcp', 'method' => 'get_s3_buckets'));
 		$this->EE->db->insert('actions', array('class' => 'Assets_mcp', 'method' => 'get_gc_buckets'));
+		$this->EE->db->insert('actions', array('class' => 'Assets_mcp', 'method' => 'get_rs_regions'));
 		$this->EE->db->insert('actions', array('class' => 'Assets_mcp', 'method' => 'get_rs_containers'));
 
 		// folder/file CRUD actions
@@ -378,13 +381,16 @@ class Assets_upd
 					{
 						$first_asset_id = array_shift($asset_ids);
 
-						// point any entries that were using the duplicate IDs over to the first one
-						$this->EE->db->where_in('asset_id', $asset_ids)
-							->update('assets_entries', array('asset_id' => $first_asset_id));
+						if (count($asset_ids))
+						{
+							// point any entries that were using the duplicate IDs over to the first one
+							$this->EE->db->where_in('asset_id', $asset_ids)
+								->update('assets_entries', array('asset_id' => $first_asset_id));
 
-						// delete the duplicates in exp_assets
-						$this->EE->db->where_in('asset_id', $asset_ids)
-							->delete('assets');
+							// delete the duplicates in exp_assets
+							$this->EE->db->where_in('asset_id', $asset_ids)
+								->delete('assets');
+						}
 					}
 				}
 
@@ -559,7 +565,10 @@ class Assets_upd
 
 			// Changes to file date
 			$this->EE->db->query("UPDATE exp_assets_files SET `date` = `date_modified` WHERE `date` IS NULL OR `date` = ''");
-			$this->EE->db->query("ALTER TABLE exp_assets_files MODIFY COLUMN `date` INT(10) UNSIGNED NOT NULL");
+
+			// Removing the NOT NULL condition, because 2.1.4 undoes this anway, and setting this to NOT NULL can cause problems
+			// If a file is missing from the server and doesn't have date set.
+			$this->EE->db->query("ALTER TABLE exp_assets_files MODIFY COLUMN `date` INT(10) UNSIGNED NULL");
 
 			// Adding Rackspace cloud and Google cloud actions
 			$this->EE->db->insert('actions', array('class' => 'Assets_mcp', 'method' => 'get_rs_containers'));
@@ -646,7 +655,56 @@ class Assets_upd
 			$this->EE->db->query("UPDATE exp_assets_selections SET content_type = 'matrix' WHERE row_id > 0 AND (content_type = '' OR content_type IS NULL)");
 		}
 
-		// -------------------------------------------
+		if (version_compare($current, '2.2.5', '<'))
+		{
+			$this->EE->db->insert('actions', array('class' => 'Assets_mcp', 'method' => 'get_rs_regions'));
+
+			$query = "CREATE TABLE IF NOT EXISTS `exp_assets_rackspace_access` (
+						  `connection_key` varchar(255) NOT NULL,
+						  `token` varchar(255) NOT NULL,
+						  `storage_url` varchar(255) NOT NULL,
+						  `cdn_url` varchar(255) NOT NULL,
+						  PRIMARY KEY (`connection_key`)
+						) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+			$this->EE->db->query($query);
+
+			$this->EE->db->query("DELETE FROM exp_assets_rackspace_access");
+			$query = $this->EE->db->query("SELECT source_id, settings FROM exp_assets_sources WHERE source_type = 'rs'");
+
+			if ($query->num_rows())
+			{
+				foreach ($query->result() as $row)
+				{
+					$settings = json_decode($row->settings);
+					$settings->region = "";
+					$settings = Assets_helper::get_json($settings);
+					$this->EE->db->query("UPDATE exp_assets_sources SET settings = '" . $settings . "' WHERE source_id = " . $row->source_id);
+				}
+			}
+		}
+
+		if (version_compare($current, '2.3', '<'))
+		{
+			$files = glob(PATH_THIRD.'assets/libraries/*');
+			foreach ($files as &$file)
+			{
+				$file = explode("/", $file);
+				$file = array_pop($file);
+			}
+			$files = array_flip($files);
+			// For case sensitive filesystems - delete the lowercased file.
+			if (isset($files['Assets_lib.php']) && isset($files['assets_lib.php']))
+			{
+				unlink(PATH_THIRD.'assets/libraries/assets_lib.php');
+			}
+		}
+
+		if (version_compare($current, '2.3.2', '<'))
+		{
+
+		}
+
+			// -------------------------------------------
 		//  Update version number in exp_fieldtypes and exp_extensions
 		// -------------------------------------------
 
@@ -819,31 +877,35 @@ class Assets_upd
 							if (isset($subfolders[$folder_key]))
 							{
 								$folder_id = $subfolders[$folder_key];
-
-								$kind = Assets_helper::get_kind($full_path);
-								$data = array(
-									'source_type' => 'ee',
-									'filedir_id' => $filedir->id,
-									'folder_id' => $folder_id,
-									'file_name' => $file,
-									'kind' => $kind,
-								);
-
-								if (file_exists($full_path))
-								{
-									$data['size'] = filesize($full_path);
-									$data['date_modified'] = filemtime($full_path);
-									if ($kind == 'image')
-									{
-										list ($width, $height) = getimagesize($full_path);
-										$data['width'] = $width;
-										$data['height'] = $height;
-									}
-								}
-
-								$this->EE->db->update('assets_files', $data, array('file_id' => $asset->file_id));
-								$this->EE->assets_lib->update_file_search_keywords($asset->file_id);
 							}
+							else
+							{
+								$folder_id = 0;
+							}
+
+							$kind = Assets_helper::get_kind($full_path);
+							$data = array(
+								'source_type' => 'ee',
+								'filedir_id' => $filedir->id,
+								'folder_id' => $folder_id,
+								'file_name' => $file,
+								'kind' => $kind,
+							);
+
+							if (file_exists($full_path))
+							{
+								$data['size'] = filesize($full_path);
+								$data['date_modified'] = filemtime($full_path);
+								if ($kind == 'image')
+								{
+									list ($width, $height) = getimagesize($full_path);
+									$data['width'] = $width;
+									$data['height'] = $height;
+								}
+							}
+
+							$this->EE->db->update('assets_files', $data, array('file_id' => $asset->file_id));
+							$this->EE->assets_lib->update_file_search_keywords($asset->file_id);
 						}
 					}
 				}

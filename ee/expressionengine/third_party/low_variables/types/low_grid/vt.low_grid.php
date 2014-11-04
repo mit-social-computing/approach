@@ -5,7 +5,10 @@ class Low_grid extends Low_variables_type {
 	public $info = array(
 		'name'         => 'Grid',
 		'version'      => LOW_VAR_VERSION,
-		'var_requires' => array('ee' => '2.7.0')
+		'var_requires' => array(
+			'ee'   => '2.7.0',
+			'grid' => '1.0'
+		)
 	);
 
 	/**
@@ -53,6 +56,13 @@ class Low_grid extends Low_variables_type {
 	public function save_settings($var_id, $var_settings)
 	{
 		$this->_init_ft($var_id);
+
+		// Get the keys
+		foreach (array('grid_min_rows', 'grid_max_rows') AS $key)
+		{
+			$var_settings[$key] = ee()->input->post($key);
+		}
+
 		$var_settings = $this->ft->save_settings($var_settings);
 
 		return $var_settings;
@@ -126,20 +136,24 @@ class Low_grid extends Low_variables_type {
 		// Validate it
 		ee()->load->library('form_validation');
 		$result = $this->ft->validate($var_data);
-		$error = $result;
-		$value = $var_data;
+		$return = '';
 
-		if (is_array($result))
+		// Get the validated results
+		if (isset($result['value']))
 		{
-			extract($result, EXTR_OVERWRITE);
+			$var_data = $result['value'];
 		}
 
-		if (empty($error) || ! is_string($error))
+		// Is there an error?
+		if ( ! empty($result['error']))
 		{
-			$var_data = $value;
+			$this->error_msg = $result['error'];
+			$return = FALSE;
 		}
 
-		return (string) $this->ft->save($var_data);
+		$this->ft->save($var_data);
+
+		return $return;
 	}
 
 	/**
@@ -189,6 +203,19 @@ class Low_grid extends Low_variables_type {
 		{
 			ee()->TMPL->log_item("Low Variables: modifier {$modifier} does not exist in Grid");
 		}
+	}
+
+
+	/**
+	 * Clean up after yourself
+	 */
+	public function delete($var_id)
+	{
+		$this->_init_ft($var_id);
+		$this->ft->settings_modify_column(array(
+			'field_id'  => $var_id,
+			'ee_action' => 'delete'
+		));
 	}
 
 	/**

@@ -324,10 +324,20 @@ $(function(){
 			$.ajax({
 				url: location.href + '&method=save_group_order',
 				data: 'groups=' + new_order.join('|'),
-				type: 'GET' // POST fucks it right up somehow...
+				type: 'GET'
 			});
 		}
 	});
+
+	// Upload folders / overwrite stuff
+	var $selectUploadFolder = $('#low-select-upload-folder');
+	var toggleOverwriteFiles = function() {
+		var method = ($selectUploadFolder.val() == '0') ? 'hide' : 'show';
+		$('#low-overwrite-files')[method]();
+	};
+	toggleOverwriteFiles();
+	$selectUploadFolder.change(toggleOverwriteFiles);
+
 
 	// Toggle all types
 	$('#low-select-all-types').click(function(){

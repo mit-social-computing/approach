@@ -23,18 +23,6 @@ class Low_fieldtype_bridge {
 	// --------------------------------------------------------------------
 
 	/**
-	 * PHP4 Constructor
-	 *
-	 * @see	__construct()
-	 */
-	public function Low_fieldtype_bridge($info = array())
-	{
-		$this->__construct($info);
-	}
-
-	// --------------------------------------------------------------------
-
-	/**
 	 * PHP5 Constructor
 	 *
 	 * @param	array	$info

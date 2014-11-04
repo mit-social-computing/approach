@@ -105,6 +105,7 @@ class Low_variables_base
 		'register_member_data' => 'n',
 		'save_as_files'        => 'n',
 		'file_path'            => '',
+		'one_way_sync'         => 'n',
 		'enabled_types'        => array(LOW_VAR_DEFAULT_TYPE)
 	);
 
@@ -124,7 +125,7 @@ class Low_variables_base
 	 * @var        array
 	 * @access     private
 	 */
-	private $cfg_keys = array('license_key', 'save_as_files', 'file_path');
+	private $cfg_keys = array('license_key', 'save_as_files', 'file_path', 'one_way_sync');
 
 	/**
 	 * Variable file name extension
@@ -334,7 +335,8 @@ class Low_variables_base
 				$info = get_file_info($file, 'date');
 
 				// If file is younger than DB, read file and update DB
-				if ($info['date'] > $row['edit_date'])
+				// Do the same for one way sync
+				if ($this->settings['one_way_sync'] == 'y' OR $info['date'] > $row['edit_date'])
 				{
 					// Read the file
 					$file_data = read_file($file);
@@ -434,8 +436,13 @@ class Low_variables_base
 	 */
 	protected function set_base_url()
 	{
-		$this->data['base_url'] = $this->base_url = BASE.AMP.'C=addons_modules&amp;M=show_module_cp&amp;module='.$this->package;
-		$this->data['ext_url'] = $this->ext_url = BASE.AMP.'C=addons_extensions&amp;M=extension_settings&amp;file='.$this->package;
+		$this->base_url = $this->data['base_url'] = function_exists('cp_url')
+			? cp_url('addons_modules/show_module_cp', array('module' => $this->package))
+			: BASE.AMP.'C=addons_modules&amp;M=show_module_cp&amp;module='.$this->package;
+
+		$this->ext_url = $this->data['ext_url'] = function_exists('cp_url')
+			? cp_url('addons_extensions/extension_settings', array('file' => $this->package))
+			: BASE.AMP.'C=addons_extensions&amp;M=extension_settings&amp;file='.$this->package;
 	}
 
 	/**
@@ -452,6 +459,13 @@ class Low_variables_base
 		// -------------------------------------
 
 		$this->_load_assets();
+
+		// -------------------------------------
+		// Adds the XID / CSRF_TOKEN data to the view
+		// -------------------------------------
+
+		$this->data['csrf_token_name'] = defined('CSRF_TOKEN') ? 'csrf_token' : 'XID';
+		$this->data['csrf_token_value'] = defined('CSRF_TOKEN') ? CSRF_TOKEN : XID_SECURE_HASH;
 
 		// -------------------------------------
 		//  Add feedback msg to output

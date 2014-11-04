@@ -2,7 +2,7 @@
 
 if ( ! defined('CE_STRING_VERSION'))
 {
-	define('CE_STRING_VERSION', '1.5');
+	define('CE_STRING_VERSION', '1.6.1');
 }
 
 $config['name'] = 'CE String';

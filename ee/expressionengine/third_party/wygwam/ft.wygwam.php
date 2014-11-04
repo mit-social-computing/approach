@@ -169,6 +169,40 @@ class Wygwam_ft extends EE_Fieldtype {
 	}
 
 	/**
+	 * Display Grid cell settings
+	 */
+	function grid_display_settings($settings)
+	{
+		$settings = array_merge(Wygwam_helper::default_settings(), $settings);
+
+		$rows = $this->_field_settings($settings, TRUE);
+
+		// -------------------------------------------
+		//  Column Conversion
+		// -------------------------------------------
+
+		// is this a new Wygwam cell?
+		if (! isset($settings['config']))
+		{
+			array_unshift($rows, array(
+				lang('wygwam_convert_rows', 'wygwam_convert_rows'),
+				form_dropdown('wygwam[convert]',
+					self::$convert_previous_data_types,
+					'',
+					'id="wygwam_convert_rows"'
+				)
+			));
+		}
+
+		// Just throw the HTML together.
+		foreach ($rows as &$row)
+		{
+			$row = EE_Fieldtype::grid_settings_row($row[0], $row[1]);
+		}
+		return $rows;
+	}
+
+	/**
 	 * Display Cell Settings
 	 */
 	function display_cell_settings($settings)
@@ -311,6 +345,74 @@ class Wygwam_ft extends EE_Fieldtype {
 								'entry_id = '.$row['entry_id']
 							));
 						}
+					}
+				}
+			}
+
+			unset($settings['convert']);
+		}
+
+		return $settings;
+	}
+
+	/**
+	 * Save Grid cell settings
+	 */
+	function grid_save_settings($settings)
+	{
+		$settings = $settings['wygwam'];
+
+		// -------------------------------------------
+		//  Field Conversion
+		// -------------------------------------------
+
+		if (!empty($settings['convert']))
+		{
+			if (!empty($this->settings['col_id']))
+			{
+				$col_name = 'col_id_'.$this->settings['col_id'];
+				$table_name = 'channel_grid_field_'.$this->settings['grid_field_id'];
+				$this->EE->db->select('row_id, '.$col_name.' data');
+				$query = $this->EE->db->get_where($table_name, $col_name.' != ""');
+
+				if ($query->num_rows())
+				{
+					// prepare Typography
+					$this->EE->load->library('typography');
+					$this->EE->typography->initialize();
+
+					// prepare Textile
+					if ($settings['convert'] == 'textile')
+					{
+						if (! class_exists('Textile'))
+						{
+							require_once PATH_THIRD.'wygwam/lib/textile/textile.php';
+						}
+
+						$textile = new Textile();
+					}
+
+					foreach ($query->result_array() as $row)
+					{
+						$data = $row['data'];
+						Wygwam_helper::replace_file_tags($data);
+
+						// Auto <br /> and XHTML
+						switch ($settings['convert'])
+						{
+							case 'auto': $data = $this->EE->typography->auto_typography($data); break;
+							case 'textile': $data = $textile->TextileThis($data);
+						}
+
+						// Save the new field data
+						Wygwam_helper::replace_file_urls($data);
+
+						$this->EE->db->query($this->EE->db->update_string($table_name,
+							array(
+								$col_name => $data
+							),
+							'row_id = '.$row['row_id']
+						));
 					}
 				}
 			}
@@ -496,6 +598,53 @@ class Wygwam_ft extends EE_Fieldtype {
 	}
 
 	/**
+	 * Display Grid Cell
+	 */
+	function grid_display_field($data)
+	{
+		Wygwam_helper::include_field_resources();
+		Wygwam_helper::insert_config_js($this->settings);
+
+		// get the cache
+		if (! isset($this->EE->session->cache['wygwam']))
+		{
+			$this->EE->session->cache['wygwam'] = array();
+		}
+		$cache =& $this->EE->session->cache['wygwam'];
+
+		if (! isset($cache['displayed_grid_cols']))
+		{
+			Wygwam_helper::include_theme_js('scripts/grid.js');
+			$cache['displayed_grid_cols'] = array();
+		}
+
+		if (! isset($cache['displayed_grid_cols'][$this->settings['col_id']]))
+		{
+			$defer = (isset($this->settings['defer']) && $this->settings['defer'] == 'y') ? 'true' : 'false';
+
+			Wygwam_helper::insert_js('Wygwam.gridColConfigs.col_id_'.$this->settings['col_id'].' = ["'.$this->settings['config'].'", '.$defer.'];');
+
+			$cache['displayed_grid_cols'][$this->settings['col_id']] = TRUE;
+		}
+
+		// convert file tags to URLs
+		Wygwam_helper::replace_file_tags($data);
+
+		// convert asset tags to URLs
+		$asset_info = Wygwam_helper::replace_asset_tags($data);
+
+		// convert site page tags to URLs
+		Wygwam_helper::replace_page_tags($data);
+
+		if ($this->EE->extensions->active_hook('wygwam_before_display'))
+		{
+			$data = $this->EE->extensions->call('wygwam_before_display', $this, $data);
+		}
+
+		return '<textarea name="'.$this->field_name.'" rows="10">'.$data.'</textarea>'.$this->_generate_asset_inputs_string($asset_info);;
+	}
+
+	/**
 	 * Display Variable Field
 	 */
 	function display_var_field($data)
@@ -579,6 +728,9 @@ class Wygwam_ft extends EE_Fieldtype {
 		$data = preg_replace('/^(\s|<(\w+)>(&nbsp;|\s)*<\/\2>|<br \/>)*/', '', $data);
 		$data = preg_replace('/(\s|<(\w+)>(&nbsp;|\s)*<\/\2>|<br \/>)*$/', '', $data);
 
+		// Remove any ?cachebuster:X query strings
+		$data = preg_replace('/\?cachebuster:\d+/', '', $data);
+
 		// Entitize curly braces within codeblocks
 		$data = preg_replace_callback('/<code>(.*?)<\/code>/s',
 			create_function('$matches',
@@ -595,7 +747,12 @@ class Wygwam_ft extends EE_Fieldtype {
 		//    http://dev.ckeditor.com/ticket/6645
 		$data = str_replace('&quot;', '"', $data);
 
-		$data = $this->_convert_urls_to_tags($data);
+		// Convert URLs to tags if we have to.
+		$prevent_conversion = $this->EE->config->item('wygwam_prevent_url_conversion');
+		if (!$prevent_conversion || $prevent_conversion == "n" || $prevent_conversion == "no")
+		{
+			$data = $this->_convert_urls_to_tags($data);
+		}
 
 		// Preserve Read More comments
 		//  - For whatever reason, SafeCracker is converting HTML comment brackets into entities
@@ -938,6 +1095,17 @@ class Wygwam_ft extends EE_Fieldtype {
 		}
 
 		return $r;
+	}
+
+	/**
+	 * Grid compatibility.
+	 *
+	 * @param $name
+	 * @return bool
+	 */
+	public function accepts_content_type($name)
+	{
+		return ($name == 'channel' || $name == 'grid');
 	}
 }
 

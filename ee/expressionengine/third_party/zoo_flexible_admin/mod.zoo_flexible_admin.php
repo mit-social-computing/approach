@@ -19,7 +19,7 @@ class Zoo_flexible_admin
 		$this->EE =& get_instance();
 		$this->EE->output->enable_profiler(FALSE);
 
-		$this->EE->load->library('Services_json');
+		$this->EE->load->library('Services_JSON');
 
 	}
 
@@ -158,6 +158,7 @@ class Zoo_flexible_admin
 
 	function ajax_save_tree()
 	{
+
 		$this->EE->output->enable_profiler(FALSE);
 
 		$new = TRUE;
@@ -238,6 +239,11 @@ class Zoo_flexible_admin
 
 	function ajax_copy_tree()
 	{
+		//XID needs to be restored, otherwise security check fails
+		if (version_compare(APP_VER, 2.7, '>=')) {
+			$this->EE->security->restore_xid();
+		}
+
 		$this->EE->output->enable_profiler(FALSE);
 
 		$site_id         = ($this->EE->input->post("site_id") != "") ? $this->EE->input->post("site_id") : $this->EE->config->item('site_id');
@@ -270,6 +276,7 @@ class Zoo_flexible_admin
 		}
 
 		if ($overwrite) {
+
 			$this->EE->db->select('nav');
 			$this->EE->db->where('group_id', $source_group_id);
 			$this->EE->db->where('site_id', $site_id);

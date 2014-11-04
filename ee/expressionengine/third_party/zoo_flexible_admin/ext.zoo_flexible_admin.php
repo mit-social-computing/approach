@@ -5,7 +5,7 @@ class Zoo_flexible_admin_ext
 {
 
 	var $name = 'Zoo Flexible Admin';
-	var $version = '1.79';
+	var $version = '1.83';
 	var $description = '';
 	var $settings_exist = 'n';
 	var $docs_url = '';
@@ -209,53 +209,86 @@ class Zoo_flexible_admin_ext
 					}
 					$("#navigationTabs > li").show();
 
-					//CHANGE BREADCRUMBS
 
-					var link = location.href;
+					function setBreadcrumbs(){
+						//CHANGE BREADCRUMBS
 
-					pos = link.indexOf("D=cp");
-					link = link.substr(pos+5);
+						var link = location.href;
 
-					var foundin = $("#navigationTabs").find("a[href$=\'"+link+"\']").slice(0,1);
+						//pos = link.indexOf("D=cp");
+						//link = link.substr(pos+5);
 
-					var current = foundin;
 
-					if(foundin.length > 0){
+					    pos = link.indexOf(\''.$_SERVER["SCRIPT_NAME"].'\');
+						len = (\''.$_SERVER["SCRIPT_NAME"].'\').length;
+						link = link.substr(pos + len);
 
-						var bc = "";
+						var foundin = $("#navigationTabs").find("a[href$=\'"+link+"\']").slice(0,1);
 
-						var p = foundin.parent().closest(".parent").find("a").slice(0,1);
+						var current = foundin;
 
-						var fa_parent = foundin.closest(".parent")
+						if(foundin.length > 0){
 
-						bc ="<li><a href=\"' . $_SERVER["SCRIPT_NAME"] . '?S=' . $s . '&D=cp&C=homepage\">' . $this->EE->config->item('site_name') . '</a></li>";
+							var bc = "";
 
-						if(parent.length > 0){
-							var pp = fa_parent.parent().closest(".parent").find("a").slice(0,1);
-							if(pp.length > 0){
-								bc += "<li>"+pp.html()+"</li>"
+							var p = foundin.parent().closest(".parent").find("a").slice(0,1);
+
+							var fa_parent = foundin.closest(".parent")
+
+							bc ="<li><a href=\"' . $_SERVER["SCRIPT_NAME"] . '?S=' . $s . '&D=cp&C=homepage\">' . $this->EE->config->item('site_name') . '</a></li>";
+
+							if(parent.length > 0){
+								var pp = fa_parent.parent().closest(".parent").find("a").slice(0,1);
+								if(pp.length > 0){
+									bc += "<li>"+pp.html()+"</li>"
+								}
 							}
+
+
+							if(p.length > 0){ bc += "<li>"+p.html()+"</li>" }
+							bc += "<li class=\"last\">"+current.html()+"</li>";
+
+
+							$("#breadCrumb ol").html(bc);
+
+							ajaxindicator = $(".contents H2:first span");
+
+							h2children = "";
+							if($(".contents H2:first").children().length > 0){
+								h2children = $(".contents H2:first").children();
+							}
+							$(".contents H2:first").text(current.html()).append(ajaxindicator).append(h2children);
+
 						}
-
-
-						if(p.length > 0){ bc += "<li>"+p.html()+"</li>" }
-						bc += "<li class=\"last\">"+current.html()+"</li>";
-
-
-						$("#breadCrumb ol").html(bc);
-
-						ajaxindicator = $(".contents H2:first span");
-
-						h2children = "";
-						if($(".contents H2:first").children().length > 0){
-							h2children = $(".contents H2:first").children();
-						}
-						$(".contents H2:first").text(current.html()).append(ajaxindicator).append(h2children);
-
+						//$("#breadCrumb ol").show();
+						$("#breadCrumb li").show();
+						$("#breadCrumb").show();
 					}
-					//$("#breadCrumb ol").show();
-					$("#breadCrumb li").show();
-					$("#breadCrumb").show();
+
+					function setNavigation() {
+    var link =  location.href;
+    pos = link.indexOf(\''.$_SERVER["SCRIPT_NAME"].'\');
+	len = (\''.$_SERVER["SCRIPT_NAME"].'\').length;
+	link = link.substr(pos + len);
+    console.log($("#navigationTabs").find("a[href$=\'"+link+"\']"));
+    //path = path.replace(/\/$/, "");
+    //path = decodeURIComponent(path);
+console.log(path);
+    $("#navigationTabs a").each(function () {
+        var href = $(this).attr(\'href\');
+
+        if (path.substring(0, href.length) === href) {
+            $(this).closest(\'li\').addClass(\'active\');
+            console.log($(this).closest(\'li\'));
+        }
+    });
+}
+
+setTimeout(
+  function()
+  {
+    setBreadcrumbs();
+  }, 100);
 
 
 					function reloadMenu(){
@@ -292,18 +325,47 @@ EE.navigation.mouse_listen()
 
 		$query = $this->EE->db->get();
 
+		$is_home = FALSE;
+		if (version_compare(APP_VER, 2.8, '<')) {
+			if (isset($_GET['M'])) {
+				$method = $_GET['M'];
+			}
+			if (isset($_GET['C'])) {
+				$class = $_GET['C'];
+			}
+
+			if( (!isset($class) && !isset($method))){
+				$is_home = TRUE;
+			}
+
+		} else {
+			$class = ee()->router->class;
+			//print_r(ee()->router->directory);
+			$method = ee()->router->method;
+
+			if( (isset($class) && isset($method) && $method == 'index' && $class == 'homepage')){
+				$is_home = TRUE;
+			}
+		}
+//var_dump($is_home);
+
+
 		if ($query->num_rows() > 0) {
-			if (in_array("homepage", $_GET) && $query->row()->startpage != "" && strlen($query->row()->startpage) > 3) {
+			if ($is_home && $query->row()->startpage != "" && strlen($query->row()->startpage) > 3) {
 				$this->EE->load->library('user_agent');
 				$prev = $this->EE->agent->referrer();
 
-				if (strpos($prev, "C=homepage") === false) {
+				//if (strpos($prev, "C=homepage") === false) {
 
 					$startpage = str_replace("'", '"', $query->row()->startpage);
 
 					if (version_compare(APP_VER, 2.6, '>=')) {
+
+						//config name of the control panel session type has changed since 2.8.x
+						$session_type = (version_compare(APP_VER, 2.8, '>=')) ? $this->EE->config->item('cp_session_type') : $this->EE->config->item('admin_session_type');
+
 						$replace = 0;
-						switch ($this->EE->config->item('admin_session_type')) {
+						switch ($session_type) {
 							case 's'    :
 								$replace = $data->userdata['session_id'];
 								break;
@@ -311,13 +373,25 @@ EE.navigation.mouse_listen()
 								$replace = $data->userdata['fingerprint'];
 								break;
 						}
+
 						//replace all session id's with the current one
+						//$startpage = preg_replace('/S=.+?&D/', "S=" . $replace . "&D", $startpage);
+
 						$startpage = preg_replace('/S=.+?&D/', "S=" . $replace . "&D", $startpage);
+						$startpage = preg_replace('/&S=.+?"/', "&S=" . $replace . '"', $startpage);
+						//Only for older navigations loaded into a newer EE version
+						if (version_compare(APP_VER, 2.8, '>=') && !strpos($startpage, 'D=cp')) {
+							$startpage = preg_replace('/S=.+?$/', "S=" . $replace . '', $startpage);
+						}
+
 					}
+
+
 					//redirect, prevents loop
+
 					header("Refresh: 0;url=" . $startpage);
 					exit;
-				}
+				//}
 			}
 
 			if ($query->row()->hide_sidebar == "1") {
@@ -398,6 +472,11 @@ EE.navigation.mouse_listen()
 				$replace = $s;
 
 				$nav = preg_replace('/S=.+?&D/', "S=" . $replace . "&D", $nav);
+				$nav = preg_replace('/&S=.+?"/', "&S=" . $replace . '"', $nav);
+				//Only for older navigations loaded into a newer EE version
+				if (version_compare(APP_VER, 2.8, '>=') && !strpos($nav, 'D=cp')) {
+					$nav = preg_replace('/S=.+?"/', "S=" . $replace . '"', $nav);
+				}
 
 				$nav = str_replace('[IMG]', '<img src="', $nav);
 				$nav = str_replace('[/IMG]', '"/>', $nav);
@@ -413,7 +492,10 @@ EE.navigation.mouse_listen()
 	{
 		$s = 0;
 
-		switch ($this->EE->config->item('admin_session_type')) {
+		//config name of the control panel session type has changed since 2.8.x
+		$session_type = (version_compare(APP_VER, 2.8, '>=')) ? $this->EE->config->item('cp_session_type') : $this->EE->config->item('admin_session_type');
+
+		switch ($session_type) {
 			case 's'    :
 				$s = $this->EE->session->userdata('session_id', 0);
 				break;

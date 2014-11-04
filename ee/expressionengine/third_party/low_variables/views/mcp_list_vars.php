@@ -6,7 +6,7 @@
 
 <form action="<?=$base_url?>&amp;method=save_list" method="post">
 	<div>
-		<input type="hidden" name="XID" value="<?=XID_SECURE_HASH?>" />
+		<input type="hidden" name="<?=$csrf_token_name?>" value="<?=$csrf_token_value?>" />
 	</div>
 	<table cellpadding="0" cellspacing="0" class="mainTable" id="low-list-vars">
 		<colgroup>

@@ -1,7 +1,7 @@
 <form action="<?=$base_url?>&amp;method=delete_group" method="post">
 	<div>
 		<input type="hidden" name="group_id" value="<?=$group_id?>" />
-		<input type="hidden" name="XID" value="<?=XID_SECURE_HASH?>" />
+		<input type="hidden" name="<?=$csrf_token_name?>" value="<?=$csrf_token_value?>" />
 	</div>
 	<div id="low-variables-delete">
 		<p><?=$confirm_message?></p>

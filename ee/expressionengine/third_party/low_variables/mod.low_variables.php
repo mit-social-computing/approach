@@ -309,7 +309,7 @@ class Low_variables extends Low_variables_base
 		//  No options? Bail out
 		// -------------------------------------
 
-		if ( ! $options)
+		if (empty($options) || ! is_array($options))
 		{
 			ee()->TMPL->log_item('Low Variables: No options found, returning no_results');
 			$this->return_data = ee()->TMPL->no_results();

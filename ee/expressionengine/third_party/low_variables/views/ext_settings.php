@@ -1,8 +1,4 @@
-<form method="post" action="<?=BASE?>&amp;D=cp&amp;C=addons_extensions&amp;M=save_extension_settings">
-	<div>
-		<input type="hidden" name="file" value="<?=(LOW_VAR_PACKAGE)?>" />
-		<input type="hidden" name="XID" value="<?=XID_SECURE_HASH?>" />
-	</div>
+<?=form_open($save, '', array('file' => $name))?>
 	<table cellpadding="0" cellspacing="0" style="width:100%" class="mainTable">
 		<colgroup>
 			<col style="width:50%" />
@@ -104,6 +100,26 @@
 						<input type="radio" name="save_as_files" value="n"
 						<?php if ($save_as_files == 'n'): ?> checked="checked"<?php endif; ?>
 						<?php if ($cfg['save_as_files'] !== FALSE): ?> disabled="disabled"<?php endif; ?>
+						/> <?=lang('no')?>
+					</label>
+				</td>
+			</tr>
+			<tr class="<?=low_zebra()?>">
+				<td>
+					<strong class="low-label"><?=lang('one_way_sync')?></strong>
+					<div class="low-var-notes"><?=lang('one_way_sync_help')?></div>
+				</td>
+				<td>
+					<label style="cursor:pointer">
+						<input type="radio" name="one_way_sync" value="y"
+						<?php if ($one_way_sync == 'y'): ?> checked="checked"<?php endif; ?>
+						<?php if ($cfg['one_way_sync'] !== FALSE): ?> disabled="disabled"<?php endif; ?>
+						/> <?=lang('yes')?>
+					</label>
+					<label style="cursor:pointer;margin-left:10px">
+						<input type="radio" name="one_way_sync" value="n"
+						<?php if ($one_way_sync == 'n'): ?> checked="checked"<?php endif; ?>
+						<?php if ($cfg['one_way_sync'] !== FALSE): ?> disabled="disabled"<?php endif; ?>
 						/> <?=lang('no')?>
 					</label>
 				</td>

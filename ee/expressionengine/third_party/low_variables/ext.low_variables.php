@@ -111,6 +111,13 @@ class Low_variables_ext extends Low_variables_base {
 			'a' => lang('register_globals_after')
 		);
 
+		// --------------------------------------
+		// Add this extension's name and save path to display data
+		// --------------------------------------
+
+		$this->data['name'] = $this->package;
+		$this->data['save'] = 'C=addons_extensions&M=save_extension_settings';
+
 		// -------------------------------------
 		//  Build output
 		// -------------------------------------

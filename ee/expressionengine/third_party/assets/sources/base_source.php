@@ -58,7 +58,7 @@ abstract class Assets_base_source
 		{
 			$this->EE->load->add_package_path(PATH_THIRD.'assets/');
 		}
-		
+
 		$this->EE->load->library('assets_lib');
 
 		if (! isset($this->EE->session->cache['assets']))
@@ -142,7 +142,7 @@ abstract class Assets_base_source
 	/**
 	 * Move a source file
 	 * @abstract
- 	 * @param Assets_base_file $file
+	 * @param Assets_base_file $file
 	 * @param $previous_folder_row
 	 * @param $folder_row
 	 * @param $new_file_name
@@ -207,7 +207,10 @@ abstract class Assets_base_source
 	 * Return setting fields for this source
 	 * @return array
 	 */
-	abstract public static function get_settings_field_list();
+	public static function get_settings_field_list()
+	{
+		return array();
+	}
 
 	/**
 	 * Get folder name for a path
@@ -338,7 +341,7 @@ abstract class Assets_base_source
 	 */
 	public function rename_folder($folder_id, $new_title)
 	{
-		if (substr_count($new_title, '/') > 0)
+		if (substr_count($new_title, '/') > 0 OR !Assets_helper::is_allowed_folder_name($new_title))
 		{
 			throw new Exception(lang('invalid_folder_path'));
 		}
@@ -691,6 +694,7 @@ abstract class Assets_base_source
 	 * Updates file info in DB (width/height/size/date_modified) and performs additional actions for image files
 	 * @param Assets_base_file $file
 	 * @param string $file_path file location
+	 * @return int
 	 */
 	public function update_file_info(Assets_base_file $file, $file_path = '')
 	{
@@ -883,6 +887,8 @@ abstract class Assets_base_source
 		$this->EE->db->where('file_id', $file_id)
 			->delete('assets_files');
 
+		$this->EE->assets_lib->call_extension('assets_delete_file_selections', array($file_id));
+
 		$this->EE->db->where('file_id', $file_id)
 			->delete('assets_selections');
 
@@ -1062,8 +1068,8 @@ abstract class Assets_base_source
 		}
 
 		$data = array(
-			'width' => $replace_with->width(),
-			'height' => $replace_with->height(),
+			'width' => (int) $replace_with->width(),
+			'height' => (int) $replace_with->height(),
 			'size' => $replace_with->size(),
 			'date_modified' => $replace_with->date_modified()
 		);
@@ -1201,13 +1207,13 @@ abstract class Assets_base_source
 	protected function _store_index_entry($session_id, $source_type, $source_id, $offset, $uri, $size = 0)
 	{
 		$this->_index_batch_entries[] = array(
-				'session_id' => $session_id,
-				'source_type' => $source_type,
-				'source_id' => $source_id,
-				'offset' => $offset,
-				'uri' => $uri,
-				'filesize' => $size
-			);
+			'session_id' => $session_id,
+			'source_type' => $source_type,
+			'source_id' => $source_id,
+			'offset' => $offset,
+			'uri' => $uri,
+			'filesize' => $size
+		);
 
 		if (count($this->_index_batch_entries) == 100)
 		{

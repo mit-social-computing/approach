@@ -40,7 +40,7 @@ class Ce_str
 {
 	var $var_prefix = '';
 
-	private $allowed_functions = array( 'html_entity_decode', 'htmlentities', 'htmlspecialchars_decode', 'htmlspecialchars', 'json_encode', 'levenshtein', 'ltrim', 'mb_strimwidth', 'md5', 'nl2br', 'number_format', 'ord', 'rawurlencode', 'rawurldecode', 'rtrim', 'sha1', 'similar_text', 'str_pad', 'str_word_count', 'strlen', 'stristr', 'strrchr', 'strrev', 'strstr','strtolower', 'strtoupper', 'substr', 'substr_count', 'substr_replace', 'substr', 'trim', 'ucfirst', 'ucwords', 'urlencode', 'urldecode', 'utf8_decode', 'utf8_encode', 'wordwrap' );
+	private $allowed_functions = array( 'html_entity_decode', 'htmlentities', 'htmlspecialchars_decode', 'htmlspecialchars', 'json_encode', 'levenshtein', 'ltrim', 'mb_strimwidth', 'md5', 'nl2br', 'number_format', 'ord', 'rawurlencode', 'rawurldecode', 'rtrim', 'sha1', 'similar_text', 'str_pad', 'str_word_count', 'strlen', 'stristr', 'strrchr', 'strrev', 'strstr', 'substr', 'substr_count', 'substr_replace', 'substr', 'trim', 'ucfirst', 'ucwords', 'urlencode', 'urldecode', 'utf8_decode', 'utf8_encode', 'wordwrap' );
 
 	public function __construct()
 	{
@@ -343,7 +343,7 @@ class Ce_str
 			return '';
 		}
 
-		$alpha = strtoupper( $alpha );
+		$alpha = $this->strtoupper( $alpha );
 
 		//is the number zero based? In other words, is 0 = A, or is 1 = A?
 		$zero_base = $this->ee_string_to_bool( $zero_based );
@@ -402,14 +402,17 @@ class Ce_str
 	 * @param string $string
 	 * @param string $target Optionally set the target attribute to open in a new window by setting to '_blank'.
 	 * @param string $type Can be 'all' (links both URLs and email addresses), 'url' (only links URLs), or 'email' (only links email addresses).
+	 * @param string $show_protocol Whether or not to show the links protocol in the link text. Defaults to "yes". If set to "no", then the anchor text will not include the 'http://' or 'https://' part of the URL.
 	 * @return string
 	 */
-	private function auto_link( $string, $target = '', $type = 'all' )
+	private function auto_link( $string, $target = '', $type = 'all', $show_protocol = 'yes' )
 	{
 		if ( ! in_array( $type, array( 'all', 'url', 'email' ) ) )
 		{
 			$type = 'all';
 		}
+
+		$show_protocol = $this->ee_string_to_bool( $show_protocol );
 
 		$pop = ( $target == '_blank') ? ' target="_blank" ' : '';
 
@@ -419,7 +422,7 @@ class Ce_str
 		if ( $type == 'all' || 'url')
 		{
 			//auto link URL
-			$string = preg_replace("#(^|\s|\(|>)((http(s?)://)|(www\.))(\w+[^\s\)\<]+)#i", "\\1<a href=\"http\\4://\\5\\6\"$pop>http\\4://\\5\\6</a>", $string);
+			$string = preg_replace("#(^|\s|\(|>)((http(s?)://)|(www\.))(\w+[^\s\)\<]+)#i", "\\1<a href=\"http\\4://\\5\\6\"$pop>" . ( $show_protocol ? 'http\\4://' : '' ) . "\\5\\6</a>", $string);
 		}
 
 		//clean up periods
@@ -844,6 +847,13 @@ class Ce_str
 	 */
 	private function markdown( $string, $html = 'yes' )
 	{
+		if ( version_compare( APP_VER, '2.9.0', '>=' ) )
+		{
+			$this->EE->load->library('typography');
+			$this->EE->typography->initialize();
+			return $this->EE->typography->markdown( $string, array( 'smartypants' => false) );
+		}
+
 		if ( ! function_exists( 'Markdown' ) )
 		{
 			if ( version_compare( APP_VER, '2.7.0', '>=' ) )
@@ -872,6 +882,7 @@ class Ce_str
 	 * A simple matheval function. Can only handle simple numeric calculations.
 	 *
 	 * @param $equation
+	 * @param string|bool $zero_for_empty
 	 * @return int|string
 	 */
 	private function math_lite( $equation, $zero_for_empty = 'no' )
@@ -1095,7 +1106,7 @@ class Ce_str
 	 */
 	private function roman_to_int( $roman )
 	{
-		$roman = strtoupper( $roman );
+		$roman = $this->strtoupper( $roman );
 
 		//make sure the roman numeral is valid
 		if ( ! preg_match( '@[MDCLXVI]@u', $roman ) )
@@ -1144,7 +1155,7 @@ class Ce_str
 		foreach ( $sentences as $key => $sentence )
 		{
 			$new_string .= ($key & 1) == 0?
-			ucfirst(strtolower(trim($sentence))) :
+			ucfirst($this->strtolower(trim($sentence))) :
 			$sentence . ' ';
 		}
 		return trim($new_string);
@@ -1180,6 +1191,24 @@ class Ce_str
 	}
 
 	/**
+	 * A wrapper for the native stripos function that returns -1 instead of FALSE. EE needs this distinction as there is not way to do strict comparisons ( === as opposed to == ) in the EE conditionals.
+	 *
+	 * @return string
+	 */
+	private function stripos()
+	{
+		$args = func_get_args();
+		$pos = call_user_func_array( 'stripos', $args );
+
+		if ( $pos === FALSE )
+		{
+			$pos = -1;
+		}
+
+		return $pos;
+	}
+
+	/**
 	 * A wrapper for the native strpos function that returns -1 instead of FALSE. EE needs this distinction as there is not way to do strict comparisons ( === as opposed to == ) in the EE conditionals.
 	 *
 	 * @return string
@@ -1196,6 +1225,7 @@ class Ce_str
 
 		return $pos;
 	}
+
 	/**
 	 * A wrapper for the native strripos function that returns -1 instead of FALSE. EE needs this distinction as there is not way to do strict comparisons ( === as opposed to == ) in the EE conditionals.
 	 *
@@ -1233,6 +1263,93 @@ class Ce_str
 	}
 
 	/**
+	 * Makes a string lowercase.
+	 *
+	 * @param string $string
+	 * @return string
+	 */
+	private function strtolower( $string )
+	{
+		if ( function_exists( 'mb_strtolower' ) )
+		{
+			return mb_strtolower( $string );
+		}
+		else
+		{
+			return strtolower( $string );
+		}
+	}
+
+	/**
+	 * Alias for strtolower.
+	 *
+	 * @param string $sting
+	 * @return string
+	 */
+	private function lowercase( $sting )
+	{
+		return $this->strtolower( $sting );
+	}
+
+	/**
+	 * Makes a string uppercase.
+	 *
+	 * @param string $string
+	 * @return string
+	 */
+	private function strtoupper( $string )
+	{
+		if ( function_exists( 'mb_strtoupper' ) )
+		{
+			return mb_strtoupper( $string );
+		}
+		else
+		{
+			return strtoupper( $string );
+		}
+	}
+
+	/**
+	 * Alias for strtoupper.
+	 *
+	 * @param string $sting
+	 * @return string
+	 */
+	private function uppercase( $sting )
+	{
+		return $this->strtoupper( $sting );
+	}
+
+	/**
+	 * Removes duplicate line breaks.
+	 *
+	 * @param string $string
+	 * @param int $threshold The minimum number of line breaks before replacing.
+	 * @param int $replace The number of line breaks to reduce to.
+	 * @return string
+	 */
+	private function swap_breaks( $string, $threshold = 2, $replace = 1 )
+	{
+		//determine the threshold
+		if ( ! is_numeric( $threshold ) || $threshold < 1 )
+		{
+			return $string;
+		}
+
+		//make sure the replace multiplier is valid
+		if ( ! is_numeric( $replace ) || $replace < 0 )
+		{
+			$replace = 1;
+		}
+
+		//repeat the replace string
+		$replace = str_repeat( "\n", $replace );
+
+		//replace and return
+		return preg_replace( '@(\r?\n){' . $threshold . ',}@s', $replace, $string );
+	}
+
+	/**
 	 * Gets XHTML from a Textile-markup string.
 	 *
 	 * @param string $string
@@ -1264,7 +1381,7 @@ class Ce_str
 			$separator = $this->EE->config->item( 'word_separator' ) != 'dash' ? '_' : '-';
 		}
 
-		$string = ucwords( strtolower( str_replace( $separator, ' ', $string ) ) );
+		$string = ucwords( $this->strtolower( str_replace( $separator, ' ', $string ) ) );
 
 		foreach (array('-', '\'') as $delimiter)
 		{
@@ -1274,35 +1391,6 @@ class Ce_str
 			}
 		}
 		return $string;
-	}
-
-	/**
-	 * Removes duplicate line breaks.
-	 *
-	 * @param string $string
-	 * @param int $threshold The minimum number of line breaks before replacing.
-	 * @param int $replace The number of line breaks to reduce to.
-	 * @return string
-	 */
-	private function swap_breaks( $string, $threshold = 2, $replace = 1 )
-	{
-		//determine the threshold
-		if ( ! is_numeric( $threshold ) || $threshold < 1 )
-		{
-			return $string;
-		}
-
-		//make sure the replace multiplier is valid
-		if ( ! is_numeric( $replace ) || $replace < 0 )
-		{
-			$replace = 1;
-		}
-
-		//repeat the replace string
-		$replace = str_repeat( "\n", $replace );
-
-		//replace and return
-		return preg_replace( '@(\r?\n){' . $threshold . ',}@s', $replace, $string );
 	}
 
 	/**

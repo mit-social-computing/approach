@@ -21,8 +21,8 @@ class Assets_helper
 	const ACTIONS_CANCEL = 'cancel';
 	const ACTIONS_KEEP_BOTH = 'keep_both';
 
-	private static $_skip_file_patterns = array('/^Thumbs\.db$/', '/^\.DS_STORE$/');
-	private static $_skip_folder_patterns = array('/^__MACOSX$/', '/^_/');
+	private static $_skip_file_patterns = array('^Thumbs\.db$', '^\.DS_STORE$');
+	private static $_skip_folder_patterns = array('^_');
 
 	/**
 	 * Constructor
@@ -427,7 +427,7 @@ class Assets_helper
 	{
 		if ($timestamp)
 		{
-			return date('M j, Y g:i A', $timestamp);
+			return version_compare(APP_VER, '2.6', '<') ? self::_get_EE()->localize->set_human_time($timestamp) : self::_get_EE()->localize->format_date("%M %j, %Y %g:%i %A", $timestamp);
 		}
 	}
 
@@ -749,6 +749,7 @@ class Assets_helper
 	{
 		if (version_compare(APP_VER, '2.6', '<') OR !function_exists('json_encode'))
 		{
+			self::_get_EE()->load->library('javascript');
 			return self::_get_EE()->javascript->generate_json((array)$data, TRUE);
 		}
 		else
@@ -810,7 +811,7 @@ class Assets_helper
 
 		foreach ($_combined_patterns as $pattern)
 		{
-			if (preg_match($pattern, $name))
+			if (preg_match('/'.trim($pattern, '/').'/', $name))
 			{
 				return FALSE;
 			}
@@ -840,7 +841,7 @@ class Assets_helper
 
 		foreach ($_combined_patterns as $pattern)
 		{
-			if (preg_match($pattern, $name))
+			if (preg_match('/'.trim($pattern, '/').'/', $name))
 			{
 				return FALSE;
 			}
