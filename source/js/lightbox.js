@@ -1,8 +1,9 @@
+//lightbox.js
 'use strict';
 
 // define(['jquery', 'slick'],
 // function($) {
-if ( path.split('/').length === 3 || path.match(/^\/blog/)) {
+if ( path.match(/^\/adapt/) || path.match(/^\/blog/) ) {
     var $bg, $close
 
     function keyHandler(e) {
@@ -58,11 +59,10 @@ if ( path.split('/').length === 3 || path.match(/^\/blog/)) {
 
     var adjustImageHeight = _.debounce(function(e) {
         $('.ss-content img').css('max-height', window.innerHeight - 190 + 'px')
-        console.log('hit')
     }, 100)
     $(window).on('resize', adjustImageHeight)
 
-    imagesLoaded('#resources-detail', function(){
+    imagesLoaded('#adapt-detail', function(){
         $(this.elements).addClass('layout-image-is-visible')
     })
 }

@@ -1,1 +1,21 @@
 {stash:embed:home}
+
+{exp:stash:set}
+    {stash:image}{exp:low_variables:parse var="home_image"}{/stash:image}
+    {stash:text}{home_text}{/stash:text}
+{/exp:stash:set}
+
+{exp:stash:set_list
+    parse_depth="2"
+    name="links"
+    parse="yes"}
+    
+    {exp:low_variables:pair var="home_blocks"}
+        {page var_prefix="b"}
+            {stash:title}{b:title}{/stash:title}
+            {stash:url}{structure:page_url_for:{b:entry_id}}{/stash:url}
+        {/page}
+        {stash:description}{description}{/stash:description}
+    {/exp:low_variables:pair}
+
+{/exp:stash:set_list}

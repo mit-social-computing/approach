@@ -1,0 +1,56 @@
+{stash:embed:detail}
+
+{exp:structure:entries
+    limit="1"
+    disable="category_fields|member_data|pagination"}
+
+    {exp:stash:set}
+        {if segment_1 == 'blog'}
+            {stash:datetime}{entry_date format="{DATE_W3C}"}{/stash:datetime}
+            {stash:date}{exp:ce_str:ing lowercase}{entry_date format="%F %j, %Y"}{/exp:ce_str:ing}{/stash:date}
+        {/if}
+        {stash:title}{title}{/stash:title}
+        {stash:content}
+            {{segment_1}_content}
+                {wygwam}{value}{/wygwam}
+                {assets}
+                    <div class="layout-image">
+                        {files limit="1"}
+                            <img class="mask-image" src="{exp:ce_img:single src="{url}" url_only="yes" max_width="500" quality="80"}">
+                        {/files}
+
+                        {files}
+                        {if count == 1}
+                        <a href="#" class="icon icon-zoom">
+                            <i class="icon-plus icon-plus--blue-expanded">{total_files}</i>
+                        </a>
+
+                        <div class="hidden lightbox-imgs">
+                        {/if}
+
+                            <div>
+                                <div class="ss-content">
+                                    <img src="{exp:ce_img:single src="{url}" url_only="yes" max_width="1200" max_height="800" quality="80"}">
+                                    <p class="ss-caption">{caption}</p>
+                                </div>
+                            </div>
+                        {/files}
+                        </div>
+                        <!-- .lightbox-imgs -->
+                        <div class="mask mask-white is-lightbox"></div>
+                    </div>
+                    <!-- .layout-image -->
+                {/assets}
+            {/{segment_1}_content}
+        {/stash:content}
+    {/exp:stash:set}
+
+    {exp:stash:set_list
+        name="filters"
+        parse="yes"}
+        {categories}
+            {stash:category}{exp:ce_str:ing lowercase}{category_name}{/exp:ce_str:ing}{/stash:category}
+            {stash:filter}{category_url_title}{/stash:filter}
+        {/categories}
+    {/exp:stash:set_list}
+{/exp:structure:entries}

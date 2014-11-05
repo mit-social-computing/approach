@@ -115,8 +115,20 @@
 }
 .l-inline {
     margin-bottom: 1rem;
+
+    > ul {
+        margin: 0;
+        font-size: 0;
+
+        li {
+            display: inline;
+
+            &:first-child { margin-right: 15px; }
+        }
+    }
     &:only-child {
-        margin: 0 auto;
+        margin-left: auto;
+        margin-right: auto;
         float: none;
     }
 
@@ -139,14 +151,19 @@
 }
 
 .l-inline-auto {
+    float: none;
     display: inline-block;
     margin-bottom: 0;
+    padding: 0;
+    &:first-child {
+        padding-right: 7px;
+    }
 }
 
 @media #{$medium-up} {
-    @for $i from 1 through 8 {
+    @for $i from 1 through 4 {
         .l-inline-#{$i} {
-            width: $i/8 * 100%;
+            width: 1/$i * 100%;
         }
     }
     .l-inline-height50 {

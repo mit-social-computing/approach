@@ -23,6 +23,10 @@ img {
     max-width: 100%;
 }
 
+time {
+    display: block;
+}
+
 .antialiased {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -34,7 +38,7 @@ img {
     margin: 0 auto;
     position: relative;
 
-    .resources & {
+    .adapt & {
         display: block;
     }
 
@@ -76,13 +80,39 @@ img {
         padding-top: 180px;
     }
 
-    .resources .container.sticky {
+    .adapt .container.sticky {
         padding-top: 185px;
+    }
+
+    .apply .container.sticky {
+        margin-bottom: 0;
     }
 }
 
 blockquote {
     margin: 0 0 1rem;;
+    border: none;
+
+    &,
+    cite {
+        font-family: kim;
+        text-align: center;
+        color: $body-text;
+        font-size: rem-calc(22);
+        line-height: 1.25;
+        letter-spacing: 1.9px;
+        padding: 0 5px;
+
+        @media #{$medium-up} {
+            padding: 0 95px;
+        }
+
+        @extend .antialiased;
+    }
+
+    cite {
+        font-style: normal;
+    }
 }
 
 a {
@@ -123,31 +153,6 @@ a.tall-link {
 p {
     letter-spacing: 1px;
     @extend .antialiased;
-}
-
-.quote {
-    border: none;
-
-    &,
-    cite {
-        font-family: kim;
-        text-align: center;
-        color: $body-text;
-        font-size: rem-calc(22);
-        line-height: 1.25;
-        letter-spacing: 1.9px;
-        padding: 0 5px;
-
-        @media #{$medium-up} {
-            padding: 0 95px;
-        }
-
-        @extend .antialiased;
-    }
-
-    cite {
-        font-style: normal;
-    }
 }
 
 button {

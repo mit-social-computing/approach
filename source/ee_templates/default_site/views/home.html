@@ -2,38 +2,30 @@
 
 <div class="l-content l-content--centered">
     <div class="text-centered text-centered--wide">
-        <img id="homeImg" src="/assets/img/gifs/shopfront.gif">
-        <p class="text-body text-body--purple">
-            wildflower is an approach to montessori learning developed by the social computing group at the MIT media lab
-        </p>
+        <img id="homeImg" src="{exp:stash:image}">
+        <div class="text-body text-body--purple">
+            {exp:stash:text}
+        </div>
         <!-- .text-body -->
     </div>
     <!-- .text-centered -->
     <ul class="grid grid--inline grid--three">
+        {exp:stash:get_list name="links"}
         <li class="grid-item">
-            <a href="/about" class="panel panel--purple">
+            {if count == 1}
+            <a href="{url}" class="panel panel--purple">
+            {if:elseif count == 2}
+            <a href="{url}" class="panel panel--green">
+            {if:else}
+            <a href="{url}" class="panel panel--pink">
+            {/if}
                 <div class="text-block hand medium centered">
-                    <h3 class="title">about</h3>
-                    <p>learn about the wildflower model&hellip;<br>&gt;&gt;</p>
+                    <h3 class="title">{title}</h3>
+                    <p>{description}&hellip;<br>&gt;&gt;</p>
                 </div>
             </a>
         </li>
-        <li class="grid-item">
-            <a href="/approach" class="panel panel--green">
-                <div class="text-block hand medium centered">
-                    <h3 class="title">approach</h3>
-                    <p>read more about the 9 principles&hellip;<br>&gt;&gt;</p>
-                </div>
-            </a>
-        </li>
-        <li class="grid-item">
-            <a href="/adapt" class="panel panel--pink" data-link="resources">
-                <div class="text-block hand medium centered">
-                    <h3 class="title">adapt</h3>
-                    <p>use the open-source resources from the project to develop your own program&hellip;<br>&gt;&gt;</p>
-                </div>
-            </a>
-        </li>
+        {/exp:stash:get_list}
     </ul>
 </div>
 <!-- .l-content -->

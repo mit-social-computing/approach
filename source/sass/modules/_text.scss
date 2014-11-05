@@ -17,10 +17,13 @@
     color: $teal;
     font-family: kim;
     font-size: rem-calc(22);
+    line-height: 1;
     // use p bottom margin
     // margin-bottom: 0;
-    letter-spacing: 2.1px;
-    line-height: 1;
+    
+    > p {
+        letter-spacing: 2.1px;
+    }
 
     @extend .antialiased;
 
@@ -76,7 +79,8 @@
         }
     }
 
-    > ul {
+    > ul,
+    > ol {
         font-size: 0.7em;
         @extend .antialiased;
         letter-spacing: 1px;
@@ -107,6 +111,8 @@
         letter-spacing: 2.1px;
         line-height: 1;
         @extend .antialiased;
+
+        > .title { text-transform: lowercase; }
     }
 
     &.small {

@@ -1,0 +1,35 @@
+{stash:embed:partials:header}
+
+<article class="l-content l-content--flex">
+    <div class="l-content--flex-aside">
+        <div class="adapt-aside">
+            <header class="article-header">
+                <h2>{exp:stash:title}</h2>
+                {if segment_1 == 'adapt'}
+                <ul class="resource-tags" id="resourceTags">
+                {exp:stash:get_list name="filters"}
+                    <li><a href="/{segment_1}" class="resource-tag" data-filter="{filter}">{category}</a></li>
+                {/exp:stash:get_list}
+                </ul>
+                <!-- .tags -->
+                {if:else}
+                <time datetime="{datetime}">{exp:stash:date}</time>
+                {/if}
+                <!--<button class="download blue" id="download">download pdf</button>-->
+                <a href="/{segment_1}" class="back" id="backToResorces">&lt; back to {segment_1}</a>
+            </header>
+        </div>
+        <!-- .resources-aside -->
+    </div>
+    <!-- .l-content-flex-resources-aside -->
+    <div class="l-content--flex-main">
+        <div class="text-block small purple">
+            {exp:stash:content}
+        </div>
+        <!-- .text-block -->
+    </div>
+    <!-- .l-content-flex-resources -->
+</article>
+<!-- .content -->
+
+{stash:embed:partials:footer}

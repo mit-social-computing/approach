@@ -1,34 +1,14 @@
-{exp:stash:embed:partials:header stash:nav="resources"}
+{exp:stash:embed:partials:header}
 
 <div class="grid" id="resourcesGrid">
-    <div class="grid-item grid-item--polaroid for-parents">
-        <a class="mask mask1" href="{site_url}resources/resources-example"><p>parent handbook</p></a>
-        <img class="mask-image mask-image--color" src="{exp:ce_img:single url_only="yes" max_width="275" max_height="267" quality="80" crop="yes" src="/assets/img/placeholders/sponsorweek/DSC_0039.jpg"}" alt="" />
+
+    {exp:stash:get_list name="list-items"}
+    <div class="grid-item grid-item--polaroid{exp:stash:get_list:nested name="categories" context="{id}"} {cat}{/exp:stash:get_list:nested}">
+        <a class="mask mask1" href="{url}"><p>{title}</p></a>
+        <img class="mask-image mask-image--color" src="{image}" alt="" />
     </div>
-    <div class="grid-item grid-item--polaroid for-teachers">
-        <a class="mask mask2" href="{site_url}resources/resources-example"><p>plant care</p></a>
-        <img class="mask-image mask-image--color" src="/assets/img/placeholders/2-sm.jpg" alt="" />
-    </div>
-    <div class="grid-item grid-item--polaroid for-teachers for-parents">
-        <a class="mask mask3" href="{site_url}resources/resources-example"><p>school models</p></a>
-        <img class="mask-image mask-image--color" src="/assets/img/placeholders/8-sm.jpg" alt="" />
-    </div>
-    <div class="grid-item grid-item--polaroid for-parents lessons for-teachers">
-        <a class="mask mask1" href="{site_url}resources/resources-example"><p>learning materials</p></a>
-        <img class="mask-image mask-image--color" src="{exp:ce_img:single url_only="yes" max_width="275" max_height="267" quality="80" crop="yes" src="/assets/img/placeholders/sponsorweek/IMG_3192.jpg"}" alt="" />
-    </div>
-    <div class="grid-item grid-item--polaroid for-teachers lessons">
-        <a class="mask mask1" href="{site_url}resources/resources-example"><p>lesson plans</p></a>
-        <img class="mask-image mask-image--color" src="{exp:ce_img:single url_only="yes" max_width="275" max_height="267" quality="80" crop="yes" src="/assets/img/placeholders/sponsorweek/IMG_0259.jpg"}" alt="" />
-    </div>
-    <div class="grid-item grid-item--polaroid for-parents">
-        <a class="mask mask1" href="{site_url}resources/resources-example"><p>classroom layouts</p></a>
-        <img class="mask-image mask-image--color" src="{exp:ce_img:single url_only="yes" max_width="275" max_height="267" quality="80" crop="yes" src="/assets/img/placeholders/sponsorweek/img2.jpg"}" alt="" />
-    </div>
-    <div class="grid-item grid-item--polaroid for-parents">
-        <a class="mask mask1" href="{site_url}resources/resources-example"><p>adult cooperation</p></a>
-        <img class="mask-image mask-image--color" src="{exp:ce_img:single url_only="yes" max_width="275" max_height="267" quality="80" crop="yes" src="/assets/img/placeholders/sponsorweek/IMG_3181.jpg"}" alt="" />
-    </div>
+    {/exp:stash:get_list}
+
 </div>
 <!-- .grid -->
 

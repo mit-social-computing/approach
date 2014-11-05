@@ -19,7 +19,6 @@
 
 .home {
     .grid-item {
-        @include flexbox;
         opacity: 0;
         @include scale(0.8);
 
@@ -30,9 +29,12 @@
             }
         }
 
-        > a {
+        @media #{$medium-up} {
             @include flexbox;
-            @include align-items(center);
+            > a {
+                @include flexbox;
+                @include align-items(center);
+            }
         }
     }
 
@@ -40,19 +42,4 @@
         opacity: 1;
         @include scale(1);
     }
-}
-// .home {
-//     #nav,
-//     #homeFooter {
-//         opacity: 0;
-//         @include transition(opacity 250ms ease-out);
-// 
-//         &.loaded {
-//             pointer-events: all;
-//             opacity: 1;
-//         }
-//     }
-// }
-
-@media #{$medium-up} {
 }

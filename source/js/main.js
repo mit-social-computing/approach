@@ -1,10 +1,11 @@
+//main.js
 /*global sessionStorage*/
 'use strict';
 
 var menuButton = document.getElementById('menuButton'),
     menu = document.getElementById('nav'),
     arrow = document.getElementById('arrow'),
-    resourcesLink = $('[data-link=resources]'),
+    resourcesLink = $('#nav-sub-2'),
     colors = {
         'teal' : [112, 190, 205]
         , 'dark-yellow' : [231, 181, 44]
@@ -54,6 +55,13 @@ function staggerLoad(logo) {
             span.style.transitionDelay = '0ms, ' + ( d === 0 ? '50' : d ) + 'ms'
         }
     })
+}
+
+function subNavLoader(section) {
+    $('#content').fadeOut().queue(function() {
+      $(this).html( WF.sections[section] ).dequeue()
+    }).fadeIn()
+    $('#subnav li').removeClass('selected')
 }
 
 (function init() {
@@ -118,7 +126,7 @@ if ( path === '/' ) {
 } else if ( path.match(/^\/apply/) ) {
     //var f = document.getElementById('startForm')
     //f.addEventListener('submit', sendForm, false)
-    $("form").submit(sendForm)
+    //$("form").submit(sendForm)
     $('a.panel').click(function(e) {
         e.preventDefault()
         var $this = $(this),
@@ -134,18 +142,41 @@ if ( path === '/' ) {
         $('a.panel').first().click()
     })
 } else if ( path.match(/^\/blog/) ) {
-    imagesLoaded('#blog', function(){
-        $(this.elements).addClass('layout-image-is-visible')
-    })
-// } else if ( path.match(/^\/contact/) ) {
-//     imagesLoaded('#contact', function() {
-//         $(this.elements).addClass('grid-is-visible')
-//     })
+    if ( path.split('/').length > 2 ) {
+        imagesLoaded('#blog-detail', function(){
+            $(this.elements).addClass('layout-image-is-visible')
+        })
+    } else {
+        imagesLoaded('#blog', function(){
+            $(this.elements).addClass('layout-image-is-visible')
+        })
+    }
 } else if ( path.match(/^\/about/) ) {
+    $('#subnav').find('li').first().addClass('selected')
+
     $('#subnav').on('click', 'a', function(e) {
         e.preventDefault()
-        $('#content').load('/fragments/' + this.hash.slice(1) + ' #content > *')
-        $(this).parent().siblings().find('a').removeClass('selected')
-        $(this).addClass('selected')
+        var section = this.pathname.split('/').splice(-1).toString()
+        window.history.pushState({ section : section },'', section === 'about' ? '/about' : this.pathname)
+
+        subNavLoader(section)
+
+        $(this).parent().addClass('selected')
+    })
+
+    $(window).on('popstate', function(e) {
+        var section
+        if ( e.originalEvent.state && e.originalEvent.state.section ) {
+            section = e.originalEvent.state.section
+        } else {
+            section = 'about'
+        }
+
+        subNavLoader(section)
+
+        $('#subnav a').map(function() { 
+            if ( this.innerHTML.toLowerCase() === section ) {
+                return this
+        } }).parent().addClass('selected')
     })
 }

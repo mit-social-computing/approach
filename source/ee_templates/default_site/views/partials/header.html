@@ -6,16 +6,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Wildflower Montessori Approach</title>
 
-        <!--<link href="/assets/css/style.concat.css" rel="stylesheet">-->
         <link href="/assets/css/style.min.css" rel="stylesheet">
-        {if '{stash:nav}' == 'blog' || '{stash:nav}' == 'resources-detail'}
-        {/if}
     </head>
-    <body class="{stash:nav}" id="{stash:nav}">
-        {if "{stash:nav}" == "classroom"}
+
+    {if segment_1 == ''}
+    <body class="home" id="home">
+    {if:elseif segment_1 == 'about'}
+    <body class="about" id="about">
+    {if:elseif segment_2 != ''}
+    <body class="{segment_1}-detail" id="{segment_1}-detail">
+    {if:else}
+    <body class="{segment_1}" id="{segment_1}">
+    {/if}
+        {if segment_1 == 'classroom'}
         <div class="container container-flush sticky">
         {if:else}
-        <div class="container{if "{stash:nav}" != "home"} sticky{/if}">
+        <div class="container{if segment_1 != ''} sticky{/if}">
         {/if}
             <header class="main-header" id="mainHeader">
                 <div class="wrapper">
@@ -27,25 +33,31 @@
                 </div>
                 <nav class="main-menu" id="nav">
                     <ul>
-                        <li><a href="/"{if "{stash:nav}" == "home"} class="selected"{/if} id="homeNav">home</a></li>
-                        <li><a href="/about"{if "{stash:nav}" == "about"} class="selected"{/if} id="aboutNav">about</a></li>
-                        <!--<li><a href="/classroom"{if "{stash:nav}" == "classroom"} class="selected"{/if} id="classroomNav">classroom</a></li>-->
-                        <li><a href="/approach"{if "{stash:nav}" == "approach" OR "{stash:nav}" == "approach-detail"} class="selected"{/if} id="approachNav">approach</a></li>
-                        <li><a href="/apply"{if "{stash:nav}" == "apply"} class="selected"{/if} id="applyNav">apply</a></li>
-                        <li><a href="/adapt"{if "{stash:nav}" == "resources" OR "{stash:nav}" == "resources-detail"} class="selected"{/if} data-link="resources" id="resourcesNav">adapt</a></li>
-                        <li><a href="/blog"{if "{stash:nav}" == "blog"} class="selected"{/if} id="blogNav">blog</a></li>
+                        <li{if segment_1 == ''} class="selected"{/if}><a href="/">home</a></li>
+                        {exp:structure:nav 
+                            status="not closed"
+                            start_from="/"
+                            max_depth="1"
+                            add_unique_ids="entry_id"
+                            include_ul="no"
+                            current_class="selected"}
                     </ul>
                 </nav>
-                <ul class="filters resource-filters" id="filters">
+                {if segment_1 == 'adapt' && segment_2 == ''}
+                <ul class="filters" id="filters">
                     <li><button class="filter selected" data-filter="*">view all</button></li>
                 </ul>
+                {/if}
 
-                {if "{stash:nav}" == "about"}
+                {if segment_1 == "about"}
                 <nav class="subnav" id="subnav">
                     <ul>
-                        <li class="subnav-item"><a href="#about" class="selected">about</a></li>
-                        <li class="subnav-item"><a href="#ethos">ethos</a></li>
-                        <li class="subnav-item"><a href="#origin">origin</a></li>
+                        {exp:structure:nav 
+                            status="not closed"
+                            start_from="/about"
+                            max_depth="1"
+                            include_ul="no"
+                            current_class="selected"}
                     </ul>
                 </nav>
                 {/if}

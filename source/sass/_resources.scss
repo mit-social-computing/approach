@@ -1,17 +1,6 @@
-.resources {
+.adapt {
     overflow: hidden;
     overflow-y: scroll;
-}
-
-.resources-grid {
-}
-
-.thumb {
-}
-
-@media #{$medium-up} {
-    .resources-grid {
-    }
 }
 
 .filters {
@@ -19,18 +8,17 @@
     padding: 0;
     margin-bottom: 20px;
     list-style-type: none;
+    @include flexbox;
     @include flex-wrap(wrap);
     @include justify-content(center);
-}
 
-.resource-filters {
-    display: none;
+    opacity: 0;
+    @include transition(opacity 150ms ease);
 
-    .resources & {
-        @include flexbox;
+    &.loaded {
+        opacity: 1;
     }
 }
-
 
 .filter:active,
 .filter:focus {
@@ -56,14 +44,15 @@
 }
 
 // detail page container
-.resources-aside {
-    font-family: kim;
-    @extend .antialiased;
+// consolidating blog and adapt details into one class
+.adapt-aside {
+//    font-family: kim;
+//    @extend .antialiased;
 
     h2 {
-        text-align: center;
-        font-family: kim;
-        color: $body-text;
+        //text-align: center;
+        //font-family: kim;
+        //color: $body-text;
     }
 
     .resource-tags {
@@ -95,12 +84,12 @@
         max-width: 255px;
 
         h2 {
-            font-size: rem-calc(35);
-            letter-spacing: 2px;
-            line-height: 0.75;
-            margin-bottom: 15px;
-            text-align: left;
-            padding-right: 25px;
+            //font-size: rem-calc(35);
+            //letter-spacing: 2px;
+            //line-height: 0.75;
+            //margin-bottom: 15px;
+            //text-align: left;
+            //padding-right: 25px;
         }
 
         .resource-tags {
@@ -112,23 +101,5 @@
             margin: 0;
             margin-bottom: 15px;
         }
-    }
-
-}
-
-@media #{$medium-up} {
-    //.resources-detail {
-    //    .content {
-    //        padding: 0;
-    //        @include flexbox;
-    //    }
-    //    main {
-    //        @include flex(2);
-    //    }
-    //}
-
-    .resources-aside {
-        //@include flex(1);
-
     }
 }

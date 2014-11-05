@@ -1,0 +1,58 @@
+{preload_replace:chn="{structure:child_listing:short_name}"}
+{stash:embed:{chn}}
+
+{exp:stash:set_list
+    parse="yes"
+    parse_depth="2"
+    name="list-items"}
+    {exp:structure:entries
+        dynamic="no"
+        disable="member_data|pagination"
+        channel="{chn}"}
+
+        {stash:id}{entry_id}{/stash:id}
+        {stash:title}{title}{/stash:title}
+        {stash:url}{structure:page_url_for:{entry_id}}{/stash:url}
+        {stash:image}{exp:ce_img:single src="{{chn}_thumb}" url_only="yes" max_width="275" max_height="267" quality="80" crop="yes"}{/stash:image} 
+
+        {if segment_1 == 'blog'}
+            {stash:datetime}{entry_date format="{DATE_W3C}"}{/stash:datetime}
+            {stash:date}{exp:ce_str:ing lowercase}{entry_date format="%F %j, %Y"}{/exp:ce_str:ing}{/stash:date}
+            {stash:summary}
+            {if entry_summary}
+                {entry_summary}
+            {if:else}
+                {exp:ce_str:ing remove_tags="img" truncate="200"}
+                    {blog_content}
+                        {wygwam}{value}{/wygwam}
+                    {/blog_content}
+                {/exp:ce_str:ing}
+            {/if}
+            {/stash:summary}
+        {/if}
+
+        {exp:stash:set_list:nested
+            parse="yes"
+            name="categories"
+            context="{entry_id}"}
+            {categories}
+                {stash:cat}{category_url_title}{/stash:cat}
+            {/categories}
+        {/exp:stash:set_list:nested}
+
+    {/exp:structure:entries}
+{/exp:stash:set_list}
+
+{if chn == 'adapt'}
+    {exp:stash:set_list
+        parse="yes"
+        name="filters"}
+        {exp:channel:categories
+            channel="adapt" 
+            disable="category_fields"
+            show_empty="no" style="linear"}
+            {stash:name}{category_name}{/stash:name}
+            {stash:filter}.{category_url_title}{/stash:filter}
+        {/exp:channel:categories}
+    {/exp:stash:set_list}
+{/if}

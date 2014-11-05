@@ -1,0 +1,36 @@
+{exp:stash:embed:partials:header}
+
+<div class="l-content l-content--centered">
+
+    <div class="slideshow" id="slideshow">
+        <div class="slide">
+            <ul class="grid grid--three grid--dividers">
+                {exp:stash:get_list name="grid-items"}
+                <li class="grid-item"><a href="#{filename}" class="panel disabled">
+                    <div class="text-block hand purple small centered">
+                        <img src="{thumb}" alt="" />
+                        <h3 class="title">{title}</h3>
+                    </div>
+                </a></li>
+                {/exp:stash:get_list}
+            </ul>
+        </div>
+        {exp:stash:get_list name="grid-items"}
+        <div class="slide" id="{filename}">
+            <div class="text-block hand purple medium centered">
+                <img class="gif" src="{gif}" alt="" />
+                <h3 class="title">{title}</h3>
+                {description}
+            </div>
+            <!-- .text-block -->
+        </div>
+        {/exp:stash:get_list}
+
+        <div class="slide-dots disabled" id="dots"></div>
+    </div>
+    <!-- .slideshow -->
+    
+</div>
+<!-- .l-content -->
+
+{exp:stash:embed:partials:footer}

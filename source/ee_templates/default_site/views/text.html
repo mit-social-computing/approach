@@ -1,0 +1,27 @@
+{stash:embed:partials:header}
+
+<div class="l-content">
+    <div class="text-block small body" id="content">
+        {exp:stash:get_list
+            name="pages"
+            {if segment_2}
+            match="#{segment_2}#"
+            against="title"
+            {/if}
+            limit="1"
+            }
+            {content}
+        {/exp:stash:get_list}
+    </div>
+</div>
+<!-- .content -->
+
+<script>
+var WF = {}
+WF.sections = {
+{exp:stash:get_list name="pages" backspace="1"}
+    {exp:json_encode}{title}{/exp:json_encode} : {exp:json_encode}{content}{/exp:json_encode},
+{/exp:stash:get_list}
+}
+</script>
+{stash:embed:partials:footer}
