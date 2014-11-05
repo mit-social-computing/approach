@@ -21141,13 +21141,14 @@ if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) 
 	window.FastClick = FastClick;
 }
 
+//main.js
 /*global sessionStorage*/
 'use strict';
 
 var menuButton = document.getElementById('menuButton'),
     menu = document.getElementById('nav'),
     arrow = document.getElementById('arrow'),
-    resourcesLink = $('[data-link=resources]'),
+    resourcesLink = $('#nav-sub-2'),
     colors = {
         'teal' : [112, 190, 205]
         , 'dark-yellow' : [231, 181, 44]
@@ -21199,6 +21200,13 @@ function staggerLoad(logo) {
     })
 }
 
+function subNavLoader(section) {
+    $('#content').fadeOut().queue(function() {
+      $(this).html( WF.sections[section] ).dequeue()
+    }).fadeIn()
+    $('#subnav li').removeClass('selected')
+}
+
 (function init() {
     forEach.call(logo.children, colorInit)
 
@@ -21246,7 +21254,7 @@ if ( path === '/' ) {
     imagesLoaded('#homeImg', function() {
         $('#homeImg, .grid').addClass('loaded')
     })
-} else if ( path.match(/^\/resources/) ) {
+} else if ( path.match(/^\/adapt/) ) {
     if ( path.split('/').length === 3 ) {
         tags = document.getElementById('resourceTags')
         tags.addEventListener('click', function(e) {
@@ -21261,7 +21269,7 @@ if ( path === '/' ) {
 } else if ( path.match(/^\/apply/) ) {
     //var f = document.getElementById('startForm')
     //f.addEventListener('submit', sendForm, false)
-    $("form").submit(sendForm)
+    //$("form").submit(sendForm)
     $('a.panel').click(function(e) {
         e.preventDefault()
         var $this = $(this),
@@ -21277,28 +21285,52 @@ if ( path === '/' ) {
         $('a.panel').first().click()
     })
 } else if ( path.match(/^\/blog/) ) {
-    imagesLoaded('#blog', function(){
-        $(this.elements).addClass('layout-image-is-visible')
-    })
-// } else if ( path.match(/^\/contact/) ) {
-//     imagesLoaded('#contact', function() {
-//         $(this.elements).addClass('grid-is-visible')
-//     })
+    if ( path.split('/').length > 2 ) {
+        imagesLoaded('#blog-detail', function(){
+            $(this.elements).addClass('layout-image-is-visible')
+        })
+    } else {
+        imagesLoaded('#blog', function(){
+            $(this.elements).addClass('layout-image-is-visible')
+        })
+    }
 } else if ( path.match(/^\/about/) ) {
+    $('#subnav').find('li').first().addClass('selected')
+
     $('#subnav').on('click', 'a', function(e) {
         e.preventDefault()
-        $('#content').load('/fragments/' + this.hash.slice(1) + ' #content > *')
-        $(this).parent().siblings().find('a').removeClass('selected')
-        $(this).addClass('selected')
+        var section = this.pathname.split('/').splice(-1).toString()
+        window.history.pushState({ section : section },'', section === 'about' ? '/about' : this.pathname)
+
+        subNavLoader(section)
+
+        $(this).parent().addClass('selected')
+    })
+
+    $(window).on('popstate', function(e) {
+        var section
+        if ( e.originalEvent.state && e.originalEvent.state.section ) {
+            section = e.originalEvent.state.section
+        } else {
+            section = 'about'
+        }
+
+        subNavLoader(section)
+
+        $('#subnav a').map(function() { 
+            if ( this.innerHTML.toLowerCase() === section ) {
+                return this
+        } }).parent().addClass('selected')
     })
 }
 
+// filters.js
 /*global Isotope,imagesLoaded,s,sessionStorage*/
 'use strict';
 
 // define(['isotope', 'imagesloaded'],
 // function(Isotope, imagesLoaded) {
-if ( path.match(/^\/resources/) ) {
+if ( path.match(/^\/adapt/) ) {
     if ( path.split('/').length === 2 ) {
 
         var resources = document.getElementById('resourcesGrid'),
@@ -21339,7 +21371,7 @@ if ( path.match(/^\/resources/) ) {
                 filters[i] = $filter
             })
 
-            $('#filters').append(filters)
+            $('#filters').append(filters).addClass('loaded')
         }
 
         function updateHistory( filters ) {
@@ -21485,6 +21517,8 @@ if ( path.match(/^\/resources/) ) {
             i.img.parentElement.classList.add('loaded')
         })
 
+        filterInit()
+
         if ( window.history && window.sessionStorage ) {
             var filterButtons = document.querySelectorAll('.filter'),
                 state = window.history.state
@@ -21521,17 +21555,17 @@ if ( path.match(/^\/resources/) ) {
         }
     }
 
-    filterInit()
 }
 
 //    return iso
 //})
 
+//lightbox.js
 'use strict';
 
 // define(['jquery', 'slick'],
 // function($) {
-if ( path.split('/').length === 3 || path.match(/^\/blog/)) {
+if ( path.match(/^\/adapt/) || path.match(/^\/blog/) ) {
     var $bg, $close
 
     function keyHandler(e) {
@@ -21587,16 +21621,16 @@ if ( path.split('/').length === 3 || path.match(/^\/blog/)) {
 
     var adjustImageHeight = _.debounce(function(e) {
         $('.ss-content img').css('max-height', window.innerHeight - 190 + 'px')
-        console.log('hit')
     }, 100)
     $(window).on('resize', adjustImageHeight)
 
-    imagesLoaded('#resources-detail', function(){
+    imagesLoaded('#adapt-detail', function(){
         $(this.elements).addClass('layout-image-is-visible')
     })
 }
 //})
 
+// forms.js
 'use strict';
 
 // define(['jquery'],
@@ -21642,6 +21676,7 @@ if ( path.match(/^\/apply/) ) {
 //    }
 //})
 
+// approach.js
 /*global Modernizr*/
 'use strict';
 

@@ -12,7 +12,7 @@ module.exports = function(grunt) {
         , 'source/bower_components/skrollr/src/skrollr.js'
         , 'source/bower_components/fastclick/lib/fastclick.js'
         , 'source/js/main.js'
-        , 'source/js/resources.js'
+        , 'source/js/filters.js'
         , 'source/js/lightbox.js'
         , 'source/js/forms.js'
         , 'source/js/approach.js'
