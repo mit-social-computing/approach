@@ -152,7 +152,9 @@ if ( path === '/' ) {
         })
     }
 } else if ( path.match(/^\/about/) ) {
-    $('#subnav').find('li').first().addClass('selected')
+    if ( path.split('/').length < 3 ) {
+        $('#subnav').find('li').first().addClass('selected')
+    }
 
     $('#subnav').on('click', 'a', function(e) {
         e.preventDefault()

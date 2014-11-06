@@ -1,166 +1,168 @@
-{exp:stash:parse}
-{exp:channel:entries status="not closed" limit="1" disable="categories|member_data|pagination"}
-{exp:stash:set_value name="type" value="{type}" type="snippet"}
-{/exp:channel:entries}
-{/exp:stash:parse}
+{exp:ce_cache:it seconds="0"}
+    {exp:stash:parse}
+    {exp:channel:entries status="not closed" limit="1" disable="categories|member_data|pagination"}
+    {exp:stash:set_value name="type" value="{type}" type="snippet"}
+    {/exp:channel:entries}
+    {/exp:stash:parse}
 
-{if type == 'text' || type == ''}
-    {stash:embed:text}
+    {if type == 'text' || type == ''}
+        {stash:embed:text}
 
-    {exp:stash:set_list
-        parse="yes"
-        name="pages"}
+        {exp:stash:set_list
+            parse="yes"
+            name="pages"}
+            {exp:structure:entries
+                status="not closed"
+                disable="member_data|categories|pagination"
+                parent_id="{structure:top:entry_id}"}
+
+                {stash:title}{exp:ce_str:ing lowercase}{title}{/exp:ce_str:ing}{/stash:title}
+                {stash:content}{page_content}{/stash:content}
+
+            {/exp:structure:entries}
+        {/exp:stash:set_list}
+    {if:elseif type ==  'grid'}
+        {stash:embed:grid}
+
         {exp:structure:entries
             status="not closed"
             disable="member_data|categories|pagination"
-            parent_id="{structure:top:entry_id}"}
+            limit="1"}
 
-            {stash:title}{exp:ce_str:ing lowercase}{title}{/exp:ce_str:ing}{/stash:title}
-            {stash:content}{page_content}{/stash:content}
+            {exp:stash:set_list
+                name="grid-items"
+                parse_depth="2"
+                parse="yes"}
 
+                {principles}
+                    {stash:title}{title}{/stash:title}
+                    {stash:description}{description}{/stash:description}
+                    {stash:gif}{gif:url}{/stash:gif}
+                    {stash:filename}{gif:filename}{/stash:filename}
+                    {stash:thumb}{exp:ce_img:single src="{thumb:url}" max_width="99" url_only="yes"}{/stash:thumb}
+                {/principles}
+            {/exp:stash:set_list}
         {/exp:structure:entries}
-    {/exp:stash:set_list}
-{if:elseif type ==  'grid'}
-    {stash:embed:grid}
+    {if:elseif type == 'forms'}
+        {stash:embed:form}
 
-    {exp:structure:entries
-        status="not closed"
-        disable="member_data|categories|pagination"
-        limit="1"}
-
-        {exp:stash:set_list
-            name="grid-items"
+        {exp:stash:set_list 
             parse_depth="2"
-            parse="yes"}
+            parse="yes"
+            name="forms"}
 
-            {principles}
-                {stash:title}{title}{/stash:title}
-                {stash:description}{description}{/stash:description}
-                {stash:gif}{gif:url}{/stash:gif}
-                {stash:filename}{gif:filename}{/stash:filename}
-                {stash:thumb}{exp:ce_img:single src="{thumb:url}" max_width="99" url_only="yes"}{/stash:thumb}
-            {/principles}
-        {/exp:stash:set_list}
-    {/exp:structure:entries}
-{if:elseif type == 'forms'}
-    {stash:embed:form}
+            {exp:freeform:form_info}
+                {stash:name}{freeform:form_label}{/stash:name}
+                {stash:description}{freeform:form_description}{/stash:description}
 
-    {exp:stash:set_list 
-        parse_depth="2"
-        parse="yes"
-        name="forms"}
-
-        {exp:freeform:form_info}
-            {stash:name}{freeform:form_label}{/stash:name}
-            {stash:description}{freeform:form_description}{/stash:description}
-
-            {stash:form}
-                {exp:freeform:composer form_id="{freeform:form_id}"}
-                    {composer:page}
-                    <div class="form-purple">
-                        <h2>{freeform:form_label}</h2>
-                        <div id="errorsBox" class="toggle-box">
-                            <ul id="errors" class="toggle-box-list"></ul>
-                        </div>
-                        <!-- .toggle-box -->
-                        {composer:rows}
-                            <div class="l-inline-row">
-                            {composer:columns}
-                                {composer:fields}
-                                {if !(composer:field_type ^= 'nonfield')}
-                                    {if composer:field_type == 'checkbox_group'}
-                                    <div class="l-inline l-inline-{composer:column_total} l-inline-height50">
-                                        <div class="l-inline-row l-inline--low-row">
-                                            <div class="l-inline l-inline-auto">
-                                                <span class="label-purple label-purple--dark label-purple--inline">{composer:field_label}</span>
-                                            </div>
-                                            <div class="l-inline l-inline-auto">
-                                                {composer:field_output}
+                {stash:form}
+                    {exp:freeform:composer form_id="{freeform:form_id}"}
+                        {composer:page}
+                        <div class="form-purple">
+                            <h2>{freeform:form_label}</h2>
+                            <div id="errorsBox" class="toggle-box">
+                                <ul id="errors" class="toggle-box-list"></ul>
+                            </div>
+                            <!-- .toggle-box -->
+                            {composer:rows}
+                                <div class="l-inline-row">
+                                {composer:columns}
+                                    {composer:fields}
+                                    {if !(composer:field_type ^= 'nonfield')}
+                                        {if composer:field_type == 'checkbox_group'}
+                                        <div class="l-inline l-inline-{composer:column_total} l-inline-height50">
+                                            <div class="l-inline-row l-inline--low-row">
+                                                <div class="l-inline l-inline-auto">
+                                                    <span class="label-purple label-purple--dark label-purple--inline">{composer:field_label}</span>
+                                                </div>
+                                                <div class="l-inline l-inline-auto">
+                                                    {composer:field_output}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    {if:else}
-                                    <div class="l-inline l-inline-{composer:column_total}">
-                                        <label class="label-purple" for="freeform_{composer:field_name}">{composer:field_label}</label>
-                                        {composer:field_output}
-                                    </div>
-                                    <!-- .l-inline -->
+                                        {if:else}
+                                        <div class="l-inline l-inline-{composer:column_total}">
+                                            <label class="label-purple" for="freeform_{composer:field_name}">{composer:field_label}</label>
+                                            {composer:field_output}
+                                        </div>
+                                        <!-- .l-inline -->
+                                        {/if}
                                     {/if}
-                                {/if}
-                                {/composer:fields}
-                            {/composer:columns}
+                                    {/composer:fields}
+                                {/composer:columns}
+                                </div>
+                                <!-- .l-inline-row -->
+                            {/composer:rows}
+                            <div class="l-inline-row">
+                                <button class="btn btn--purple">send &gt;</button>
                             </div>
                             <!-- .l-inline-row -->
-                        {/composer:rows}
-                        <div class="l-inline-row">
-                            <button class="btn btn--purple">send &gt;</button>
                         </div>
-                        <!-- .l-inline-row -->
-                    </div>
-                    <!-- .form-purple -->
-                    {/composer:page}
-                {/exp:freeform:composer}
-            {/stash:form}
+                        <!-- .form-purple -->
+                        {/composer:page}
+                    {/exp:freeform:composer}
+                {/stash:form}
 
-        {/exp:freeform:form_info}
+            {/exp:freeform:form_info}
 
-    {/exp:stash:set_list}
+        {/exp:stash:set_list}
 
-    {exp:structure:entries
-        disable="categories|member_data|pagination"
-        limit="1"}
+        {exp:structure:entries
+            disable="categories|member_data|pagination"
+            limit="1"}
 
-        {exp:stash:set_list
-            name="other-content"
-            parse="yes"
-            parse_depth="2"}
-            {other_sections}
-                {stash:title}{title}{/stash:title}
-                {stash:summary}
-                    {if summary}
-                        {summary}
-                    {if:else}
-                        {exp:ce_str:ing remove_tags="img" trunate="200"}
+            {exp:stash:set_list
+                name="other-content"
+                parse="yes"
+                parse_depth="2"}
+                {other_sections}
+                    {stash:title}{title}{/stash:title}
+                    {stash:summary}
+                        {if summary}
+                            {summary}
+                        {if:else}
+                            {exp:ce_str:ing remove_tags="img" trunate="200"}
+                            {content}
+                                {wygwam}{value}{/wygwam}
+                            {/content}
+                            {/exp:ce_str:ing}
+                        {/if}
+                    {/stash:summary}
+                    {stash:content}
                         {content}
                             {wygwam}{value}{/wygwam}
-                        {/content}
-                        {/exp:ce_str:ing}
-                    {/if}
-                {/stash:summary}
-                {stash:content}
-                    {content}
-                        {wygwam}{value}{/wygwam}
-                        {assets}
-                            <div class="layout-image">
-                                {files limit="1"}
-                                    <img class="mask-image" src="{exp:ce_img:single src="{url}" url_only="yes" max_width="500" quality="80"}">
-                                {/files}
+                            {assets}
+                                <div class="layout-image">
+                                    {files limit="1"}
+                                        <img class="mask-image" src="{exp:ce_img:single src="{url}" url_only="yes" max_width="500" quality="80"}">
+                                    {/files}
 
-                                {files}
-                                {if count == 1}
-                                <a href="#" class="icon icon-zoom">
-                                    <i class="icon-plus icon-plus--blue-expanded">{total_files}</i>
-                                </a>
+                                    {files}
+                                    {if count == 1}
+                                    <a href="#" class="icon icon-zoom">
+                                        <i class="icon-plus icon-plus--blue-expanded">{total_files}</i>
+                                    </a>
 
-                                <div class="hidden lightbox-imgs">
-                                {/if}
+                                    <div class="hidden lightbox-imgs">
+                                    {/if}
 
-                                    <div>
-                                        <div class="ss-content">
-                                            <img src="{exp:ce_img:single src="{url}" url_only="yes" max_width="1200" max_height="800" quality="80"}">
-                                            <p class="ss-caption">{caption}</p>
+                                        <div>
+                                            <div class="ss-content">
+                                                <img src="{exp:ce_img:single src="{url}" url_only="yes" max_width="1200" max_height="800" quality="80"}">
+                                                <p class="ss-caption">{caption}</p>
+                                            </div>
                                         </div>
+                                    {/files}
                                     </div>
-                                {/files}
+                                    <!-- .lightbox-imgs -->
+                                    <div class="mask mask-white is-lightbox"></div>
                                 </div>
-                                <!-- .lightbox-imgs -->
-                                <div class="mask mask-white is-lightbox"></div>
-                            </div>
-                            <!-- .layout-image -->
-                        {/assets}
-                    {/content}
-                {/stash:content}
-            {/other_sections}
-        {/exp:stash:set_list}
-    {/exp:structure:entries}
-{/if}
+                                <!-- .layout-image -->
+                            {/assets}
+                        {/content}
+                    {/stash:content}
+                {/other_sections}
+            {/exp:stash:set_list}
+        {/exp:structure:entries}
+    {/if}
+{/exp:ce_cache:it}
