@@ -21638,7 +21638,8 @@ if ( path.match(/^\/resources/) || path.match(/^\/blog/) ) {
 // define(['jquery'],
 // function($) {
 if ( path.match(/^\/schools/) ) {
-    //var forEach = Array.prototype.forEach
+    var viewerHeight = 0
+
     function splitName(fullName) {
         var firstLast = []
         firstLast[0] = fullName.split(' ')[0]
@@ -21669,6 +21670,13 @@ if ( path.match(/^\/schools/) ) {
         vals.lastName = firstLast[1]
         console.log(JSON.stringify(vals))
     }
+
+    $('#viewer').children().each(function() {
+        var h = $(this).outerHeight(true)
+        if ( h > viewerHeight ) {
+            viewerHeight = h
+        }
+    }).end().height(viewerHeight)
 }
 
 //    return {
