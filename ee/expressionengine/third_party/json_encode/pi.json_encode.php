@@ -19,7 +19,7 @@
 			$this->return_data = json_encode($this->EE->TMPL->tagdata, $options);
 		}
 
-		function usage() {
+		static function usage() {
 			ob_start(); 
 			include "usage.php";
 			$buffer = ob_get_contents();
