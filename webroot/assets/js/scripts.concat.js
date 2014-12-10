@@ -21237,8 +21237,8 @@ function subNavLoader(section) {
 
     if ( !Modernizr.touch &&
           !document.getElementById('home') &&
-          !document.getElementById('apply') &&
-          !document.getElementById('approach') ) {
+          !document.getElementById('schools') &&
+          !document.getElementById('principles') ) {
             imagesLoaded('img', function() {
                 window.s = skrollr.init({
                     constants : {
@@ -21254,7 +21254,7 @@ if ( path === '/' ) {
     imagesLoaded('#homeImg', function() {
         $('#homeImg, .grid').addClass('loaded')
     })
-} else if ( path.match(/^\/adapt/) ) {
+} else if ( path.match(/^\/resources/) ) {
     if ( path.split('/').length === 3 ) {
         tags = document.getElementById('resourceTags')
         tags.addEventListener('click', function(e) {
@@ -21266,7 +21266,7 @@ if ( path === '/' ) {
             }
         }, false)
     }
-} else if ( path.match(/^\/apply/) ) {
+} else if ( path.match(/^\/schools/) ) {
     //var f = document.getElementById('startForm')
     //f.addEventListener('submit', sendForm, false)
     //$("form").submit(sendForm)
@@ -21294,13 +21294,15 @@ if ( path === '/' ) {
             $(this.elements).addClass('layout-image-is-visible')
         })
     }
-} else if ( path.match(/^\/about/) ) {
-    $('#subnav').find('li').first().addClass('selected')
+} else if ( path.match(/^\/summary/) ) {
+    if ( path.split('/').length < 3 ) {
+        $('#subnav').find('li').first().addClass('selected')
+    }
 
     $('#subnav').on('click', 'a', function(e) {
         e.preventDefault()
         var section = this.pathname.split('/').splice(-1).toString()
-        window.history.pushState({ section : section },'', section === 'about' ? '/about' : this.pathname)
+        window.history.pushState({ section : section },'', this.pathname)
 
         subNavLoader(section)
 
@@ -21330,7 +21332,7 @@ if ( path === '/' ) {
 
 // define(['isotope', 'imagesloaded'],
 // function(Isotope, imagesLoaded) {
-if ( path.match(/^\/adapt/) ) {
+if ( path.match(/^\/resources/) ) {
     if ( path.split('/').length === 2 ) {
 
         var resources = document.getElementById('resourcesGrid'),
@@ -21565,7 +21567,7 @@ if ( path.match(/^\/adapt/) ) {
 
 // define(['jquery', 'slick'],
 // function($) {
-if ( path.match(/^\/adapt/) || path.match(/^\/blog/) ) {
+if ( path.match(/^\/resources/) || path.match(/^\/blog/) ) {
     var $bg, $close
 
     function keyHandler(e) {
@@ -21624,7 +21626,7 @@ if ( path.match(/^\/adapt/) || path.match(/^\/blog/) ) {
     }, 100)
     $(window).on('resize', adjustImageHeight)
 
-    imagesLoaded('#adapt-detail', function(){
+    imagesLoaded('#resources-detail', function(){
         $(this.elements).addClass('layout-image-is-visible')
     })
 }
@@ -21635,7 +21637,7 @@ if ( path.match(/^\/adapt/) || path.match(/^\/blog/) ) {
 
 // define(['jquery'],
 // function($) {
-if ( path.match(/^\/apply/) ) {
+if ( path.match(/^\/schools/) ) {
     //var forEach = Array.prototype.forEach
     function splitName(fullName) {
         var firstLast = []

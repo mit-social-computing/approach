@@ -12,7 +12,7 @@
 
     {if segment_1 == ''}
     <body class="home" id="home">
-    {if:elseif segment_1 == 'about'}
+    {if:elseif segment_1 == 'summary'}
     <body class="about" id="about">
     {if:elseif segment_2 != ''}
     <body class="{segment_1}-detail" id="{segment_1}-detail">
@@ -44,18 +44,18 @@
                             current_class="selected"}
                     </ul>
                 </nav>
-                {if segment_1 == 'adapt' && segment_2 == ''}
+                {if segment_1 == 'resources' && segment_2 == ''}
                 <ul class="filters" id="filters">
                     <li><button class="filter selected" data-filter="*">view all</button></li>
                 </ul>
                 {/if}
 
-                {if segment_1 == "about"}
+                {if segment_1 == 'summary'}
                 <nav class="subnav" id="subnav">
                     <ul>
                         {exp:structure:nav 
                             status="not closed"
-                            start_from="/about"
+                            start_from="/{segment_1}"
                             max_depth="1"
                             include_ul="no"
                             current_class="selected"}

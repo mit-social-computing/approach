@@ -1,7 +1,7 @@
 {exp:ce_cache:it seconds="0"}
     {exp:stash:parse}
     {exp:channel:entries status="not closed" limit="1" disable="categories|member_data|pagination"}
-    {exp:stash:set_value name="type" value="{type}" type="snippet"}
+        {exp:stash:set_value name="type" value="{type}" type="snippet"}
     {/exp:channel:entries}
     {/exp:stash:parse}
 

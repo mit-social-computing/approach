@@ -44,12 +44,12 @@
     {/exp:structure:entries}
 {/exp:stash:set_list}
 
-{if chn == 'adapt'}
+{if chn == 'resources'}
     {exp:stash:set_list
         parse="yes"
         name="filters"}
         {exp:channel:categories
-            channel="adapt" 
+            channel="resources" 
             disable="category_fields"
             show_empty="no" style="linear"}
             {stash:name}{category_name}{/stash:name}

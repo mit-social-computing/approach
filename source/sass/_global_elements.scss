@@ -177,7 +177,7 @@
 
     //@media #{$screen} and (min-width: 730px) {
     @media #{$medium-up} {
-        max-width: 460px;
+        max-width: 560px;
         margin: 0 auto 15px;
         height: 22px;
 
@@ -310,25 +310,25 @@
         border: none;
     }
 
-    .adapt & {
+    .resources & {
         background-image: url(/assets/img/arrows/red-arrow.png);
     }
 
     .blog &,
-    .adapt-detail &,
+    .resources-detail &,
     .about & {
         background-image: url(/assets/img/arrows/blue-arrow.png);
     }
 
     .blog &,
-    .adapt-detail & {
+    .resources-detail & {
         left: 50px;
         right: auto;
     }
 
     @media #{$screen} and (min-width: 930px) {
         .blog &,
-        .adapt-detail & {
+        .resources-detail & {
             right: 45px;
             left: auto;
         }

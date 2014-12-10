@@ -3,7 +3,7 @@
 
 // define(['jquery', 'slick'],
 // function($) {
-if ( path.match(/^\/adapt/) || path.match(/^\/blog/) ) {
+if ( path.match(/^\/resources/) || path.match(/^\/blog/) ) {
     var $bg, $close
 
     function keyHandler(e) {
@@ -62,7 +62,7 @@ if ( path.match(/^\/adapt/) || path.match(/^\/blog/) ) {
     }, 100)
     $(window).on('resize', adjustImageHeight)
 
-    imagesLoaded('#adapt-detail', function(){
+    imagesLoaded('#resources-detail', function(){
         $(this.elements).addClass('layout-image-is-visible')
     })
 }
