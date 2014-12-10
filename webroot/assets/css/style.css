@@ -989,7 +989,7 @@ blockquote cite, p, .logo, .main-menu, .subnav > ul > li, .mask p, .icon-plus, .
 @media only screen and (min-width: 40.063em) {
   /* line 74, ../../../source/sass/_base_styles.scss */
   .container.sticky {
-    padding-top: 120px;
+    padding-top: 135px;
     margin-bottom: 1rem;
   }
 
@@ -2401,68 +2401,77 @@ i {
   text-transform: lowercase;
   margin-bottom: 1rem;
 }
-/* line 69, ../../../source/sass/modules/_text.scss */
+/* line 68, ../../../source/sass/modules/_text.scss */
+.resources-detail .text-block > h1, .resources-detail
+.text-block > h2, .resources-detail
+.text-block > h3, .resources-detail
+.text-block > h4, .resources-detail
+.text-block > h5, .resources-detail
+.text-block > h6 {
+  margin-bottom: 1rem;
+}
+/* line 73, ../../../source/sass/modules/_text.scss */
 .text-block > .title {
   font-size: 1em;
   margin-bottom: 1rem;
 }
-/* line 74, ../../../source/sass/modules/_text.scss */
+/* line 78, ../../../source/sass/modules/_text.scss */
 .text-block > p:not(.title) {
   font-size: 0.7em;
 }
-/* line 77, ../../../source/sass/modules/_text.scss */
+/* line 81, ../../../source/sass/modules/_text.scss */
 .text-block > p:not(.title):first-of-type {
   margin-top: 0;
 }
-/* line 82, ../../../source/sass/modules/_text.scss */
+/* line 86, ../../../source/sass/modules/_text.scss */
 .text-block > ul,
 .text-block > ol {
   font-size: 0.7em;
   letter-spacing: 1px;
 }
-/* line 88, ../../../source/sass/modules/_text.scss */
+/* line 92, ../../../source/sass/modules/_text.scss */
 .text-block > ul > li,
 .text-block > ol > li {
   margin-bottom: 1rem;
 }
-/* line 91, ../../../source/sass/modules/_text.scss */
+/* line 95, ../../../source/sass/modules/_text.scss */
 .text-block > ul > li:last-child,
 .text-block > ol > li:last-child {
   margin-bottom: 0;
 }
-/* line 97, ../../../source/sass/modules/_text.scss */
+/* line 101, ../../../source/sass/modules/_text.scss */
 .text-block.body {
   color: #a59dae;
 }
-/* line 101, ../../../source/sass/modules/_text.scss */
+/* line 105, ../../../source/sass/modules/_text.scss */
 .text-block.purple {
   color: #b6a2cd;
 }
-/* line 105, ../../../source/sass/modules/_text.scss */
+/* line 109, ../../../source/sass/modules/_text.scss */
 .text-block.pink {
   color: #f77e85;
 }
-/* line 109, ../../../source/sass/modules/_text.scss */
+/* line 113, ../../../source/sass/modules/_text.scss */
 .text-block.hand {
   font-family: kim;
   letter-spacing: 2.1px;
   line-height: 1;
 }
-/* line 115, ../../../source/sass/modules/_text.scss */
+/* line 119, ../../../source/sass/modules/_text.scss */
 .text-block.hand > .title {
   text-transform: lowercase;
 }
-/* line 118, ../../../source/sass/modules/_text.scss */
+/* line 122, ../../../source/sass/modules/_text.scss */
 .text-block.small {
   font-size: 20px;
   font-size: 1.25rem;
 }
-/* line 123, ../../../source/sass/modules/_text.scss */
+/* line 127, ../../../source/sass/modules/_text.scss */
 .text-block.medium {
   font-size: 26px;
   font-size: 1.625rem;
 }
-/* line 128, ../../../source/sass/modules/_text.scss */
+/* line 132, ../../../source/sass/modules/_text.scss */
 .text-block.centered {
   text-align: center;
 }

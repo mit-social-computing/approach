@@ -64,6 +64,10 @@
             text-transform: lowercase;
             margin-bottom: 1rem;
         }
+
+        .resources-detail & {
+            margin-bottom: 1rem;
+        }
     }
 
     > .title {
