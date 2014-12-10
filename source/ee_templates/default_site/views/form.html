@@ -31,16 +31,16 @@
     <!-- .l-content-flex-aside -->
 
     <div class="l-content--flex-main l-content--viewbox" id="viewer">
-        {exp:stash:get_list name="forms"}
-            {form}
-        {/exp:stash:get_list}
-
         {exp:stash:get_list name="other-content"}
             <div class="text-block purple hand medium">
                 <h2 class="title">{title}</h2>
                 {content}
             </div>
             <!-- .text-block -->
+        {/exp:stash:get_list}
+
+        {exp:stash:get_list name="forms"}
+            {form}
         {/exp:stash:get_list}
 
     </div>
