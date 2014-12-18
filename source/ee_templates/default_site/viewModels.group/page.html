@@ -17,7 +17,9 @@
                 parent_id="{structure:top:entry_id}"}
 
                 {stash:title}{exp:ce_str:ing lowercase}{title}{/exp:ce_str:ing}{/stash:title}
-                {stash:content}{page_content}{/stash:content}
+                {stash:content}
+                    {exp:ce_img:bulk}{page_content}{/exp:ce_img:bulk}
+                {/stash:content}
 
             {/exp:structure:entries}
         {/exp:stash:set_list}
