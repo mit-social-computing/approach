@@ -11,6 +11,8 @@
             {stash:date}{exp:ce_str:ing lowercase}{entry_date format="%F %j, %Y"}{/exp:ce_str:ing}{/stash:date}
         {/if}
         {stash:title}{title}{/stash:title}
+        {stash:download_url}{resources_upload:url}{/stash:download_url}
+        {stash:ext}{resources_url:extension}{/stash:ext}
         {stash:content}
             {{segment_1}_content}
                 {wygwam}{value}{/wygwam}
