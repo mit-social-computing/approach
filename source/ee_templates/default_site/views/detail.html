@@ -6,7 +6,7 @@
             <header class="article-header">
                 <h2>{exp:stash:title}</h2>
                 {if segment_1 == 'resources'}
-                <ul class="resource-tags" id="resourceTags">
+                <ul class="resource-tags loaded" id="resourceTags">
                 {exp:stash:get_list name="filters"}
                     <li><a href="/{segment_1}" class="resource-tag" data-filter="{filter}">{category}</a></li>
                 {/exp:stash:get_list}
@@ -15,8 +15,8 @@
                 {if:else}
                 <time datetime="{datetime}">{exp:stash:date}</time>
                 {/if}
-                {if download_url}
-                <a href="{download_url}" class="download blue" id="download">download {stash:ext}</a>
+                {if exp:stash:download_url}
+                <a href="{exp:stash:download_url}" class="download blue" id="download">download {exp:stash:ext}</a>
                 {/if}
                 <a href="/{segment_1}" class="back" id="backToResorces">&lt; back to {segment_1}</a>
             </header>
