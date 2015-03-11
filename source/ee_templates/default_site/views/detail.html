@@ -15,7 +15,7 @@
                 {if:else}
                 <time datetime="{datetime}">{exp:stash:date}</time>
                 {/if}
-                {if exp:stash:download_url}
+                {if '{exp:stash:download_url}'}
                 <a href="{exp:stash:download_url}" class="download blue" id="download">download {exp:stash:ext}</a>
                 {/if}
                 <a href="/{segment_1}" class="back" id="backToResorces">&lt; back to {segment_1}</a>
