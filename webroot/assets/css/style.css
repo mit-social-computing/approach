@@ -2461,8 +2461,8 @@ i {
 }
 /* line 122, ../../../source/sass/modules/_text.scss */
 .text-block.small {
-  font-size: 20px;
-  font-size: 1.25rem;
+  font-size: 24px;
+  font-size: 1.5rem;
 }
 /* line 127, ../../../source/sass/modules/_text.scss */
 .text-block.medium {
