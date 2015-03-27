@@ -59,8 +59,11 @@ function staggerLoad(logo) {
 
 function subNavLoader(section) {
     $('#content').fadeOut().queue(function() {
-      $(this).html( WF.sections[section] ).dequeue()
-    }).fadeIn()
+        $(this).html( WF.sections[section] ).dequeue()
+    }).fadeIn(function() {
+        s.refresh()
+        $('html,body').animate({scrollTop: 0})
+    })
     $('#subnav li').removeClass('selected')
 }
 
@@ -124,9 +127,6 @@ if ( path === '/' ) {
         }, false)
     }
 } else if ( path.match(/^\/schools/) ) {
-    //var f = document.getElementById('startForm')
-    //f.addEventListener('submit', sendForm, false)
-    //$("form").submit(sendForm)
     $('a.panel').click(function(e) {
         e.preventDefault()
         var $this = $(this),
