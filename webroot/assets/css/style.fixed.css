@@ -908,7 +908,8 @@ time {
 
 /* line 31, ../../../source/sass/_base_styles.scss */
 .antialiased, blockquote,
-blockquote cite, .logo, .main-menu, .subnav > ul > li, .mask p, .icon-plus, .form-purple, .form-purple input, .btn, .ss-title, .slide-dots .slick-dots > li span, .text-body, .text-block > h1,
+blockquote cite, .logo, .main-menu, .subnav > ul > li, .mask p, .icon-plus, .form-purple, .form-purple input,
+.form-purple textarea, .btn, .ss-title, .slide-dots .slick-dots > li span, .text-body, .text-block > h1,
 .text-block > h2,
 .text-block > h3,
 .text-block > h4,
@@ -1683,12 +1684,13 @@ i {
 
 /* line 13, ../../../source/sass/modules/_forms.scss */
 .label-purple,
+.label-purple + textarea,
 .label-purple + input {
   display: block;
   width: 100%;
 }
 
-/* line 19, ../../../source/sass/modules/_forms.scss */
+/* line 20, ../../../source/sass/modules/_forms.scss */
 .label-purple--inline,
 .label-purple--inline + input {
   display: inline;
@@ -1697,49 +1699,60 @@ i {
   vertical-align: middle;
 }
 
-/* line 27, ../../../source/sass/modules/_forms.scss */
+/* line 28, ../../../source/sass/modules/_forms.scss */
 .label-purple {
   margin-bottom: 2px;
 }
 
-/* line 31, ../../../source/sass/modules/_forms.scss */
+/* line 32, ../../../source/sass/modules/_forms.scss */
 .label-purple--dark {
   color: #a59dae;
 }
 
-/* line 35, ../../../source/sass/modules/_forms.scss */
-.form-purple input {
-  height: 30px;
+/* line 37, ../../../source/sass/modules/_forms.scss */
+.form-purple input,
+.form-purple textarea {
   letter-spacing: 1.9px;
   padding-left: 5px;
   -webkit-transition: box-shadow 150ms linear, background 150ms linear;
   transition: box-shadow 150ms linear, background 150ms linear;
 }
-/* line 36, ../../../source/sass/modules/_forms.scss */
-.form-purple input:not([type="file"]) {
+/* line 44, ../../../source/sass/modules/_forms.scss */
+.form-purple input:focus,
+.form-purple textarea:focus {
+  outline: none;
+  box-shadow: inset 0px 0px 7px -1px rgba(102, 51, 102, 0);
+  background: white;
+}
+/* line 50, ../../../source/sass/modules/_forms.scss */
+.form-purple input[type=checkbox],
+.form-purple textarea[type=checkbox] {
+  position: absolute;
+  left: -9999px;
+}
+/* line 54, ../../../source/sass/modules/_forms.scss */
+.form-purple input:not([type="file"]),
+.form-purple textarea:not([type="file"]) {
   border: 1px solid #663366;
   box-shadow: inset 0px 0px 7px -2px rgba(102, 51, 102, 0.75);
   border-radius: 3px;
   background: #f0ecf5;
 }
-/* line 49, ../../../source/sass/modules/_forms.scss */
-.form-purple input:focus {
-  outline: none;
-  box-shadow: inset 0px 0px 7px -1px rgba(102, 51, 102, 0);
-  background: white;
+/* line 62, ../../../source/sass/modules/_forms.scss */
+.form-purple input {
+  height: 30px;
 }
-/* line 55, ../../../source/sass/modules/_forms.scss */
-.form-purple input[type=checkbox] {
-  position: absolute;
-  left: -9999px;
+/* line 66, ../../../source/sass/modules/_forms.scss */
+.form-purple textarea {
+  resize: vertical;
 }
 
-/* line 61, ../../../source/sass/modules/_forms.scss */
+/* line 71, ../../../source/sass/modules/_forms.scss */
 .form-purple input[type=checkbox]:focus + label:before {
   outline: 1px #663366 dotted;
 }
 
-/* line 65, ../../../source/sass/modules/_forms.scss */
+/* line 75, ../../../source/sass/modules/_forms.scss */
 .form-purple input[type=checkbox]:checked + label:after {
   opacity: 1;
   -ms-transform: scale(1, 1);
@@ -1747,14 +1760,14 @@ i {
   transform: scale(1, 1);
 }
 
-/* line 70, ../../../source/sass/modules/_forms.scss */
+/* line 80, ../../../source/sass/modules/_forms.scss */
 .form-purple input[type=checkbox] + label {
   font-size: 16px;
   font-size: 1rem;
   position: relative;
   padding-left: 15px;
 }
-/* line 76, ../../../source/sass/modules/_forms.scss */
+/* line 86, ../../../source/sass/modules/_forms.scss */
 .form-purple input[type=checkbox] + label:before {
   content: '';
   position: absolute;
@@ -1766,7 +1779,7 @@ i {
   border: 1px solid #663366;
   border-radius: 2px;
 }
-/* line 88, ../../../source/sass/modules/_forms.scss */
+/* line 98, ../../../source/sass/modules/_forms.scss */
 .form-purple input[type=checkbox] + label:after {
   content: '';
   position: absolute;
@@ -1783,14 +1796,14 @@ i {
   transition: opacity 150ms ease, transform 150ms ease;
 }
 
-/* line 102, ../../../source/sass/modules/_forms.scss */
+/* line 112, ../../../source/sass/modules/_forms.scss */
 .toggle-box {
   opacity: 0;
   height: 0px;
   -webkit-transition: opacity 150ms ease, height 150ms ease;
   transition: opacity 150ms ease, height 150ms ease;
 }
-/* line 107, ../../../source/sass/modules/_forms.scss */
+/* line 117, ../../../source/sass/modules/_forms.scss */
 .toggle-box.show {
   opacity: 1;
 }
