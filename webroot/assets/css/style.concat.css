@@ -914,8 +914,7 @@ blockquote cite, .logo, .main-menu, .subnav > ul > li, .mask p, .icon-plus, .for
 .text-block > h3,
 .text-block > h4,
 .text-block > h5,
-.text-block > h6, .text-block > ul,
-.text-block > ol, .text-block.hand, .grid-content, .download, .tag, .filter:active,
+.text-block > h6, .text-block.hand, .grid-content, .download, .tag, .filter:active,
 .filter:focus, .filter, .resources-aside .resource-tag, .resources-aside .back, .article-header,
 .article-header > h2 > a {
   -webkit-font-smoothing: antialiased;

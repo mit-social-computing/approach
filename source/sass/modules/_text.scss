@@ -86,7 +86,7 @@
     > ul,
     > ol {
         font-size: 0.7em;
-        @extend .antialiased;
+        //@extend .antialiased;
         letter-spacing: 1px;
 
         > li {
