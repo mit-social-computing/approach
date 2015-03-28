@@ -27,6 +27,8 @@ $(function() {
             Slick.gifs = {}
 
             $('.gif').each(function(img) {
+                this.src = '/' + this.src.split('/').slice(3).join('/')
+
                 var id = $(this).parents('.slide').attr('id'),
                     gif = new SuperGif({
                         gif : this,
