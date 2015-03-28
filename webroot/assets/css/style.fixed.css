@@ -1013,7 +1013,7 @@ blockquote,
 blockquote cite {
   font-family: kim;
   text-align: center;
-  color: #a59dae;
+  color: #663366;
   font-size: 1.375rem;
   line-height: 1.25;
   letter-spacing: 1.9px;
@@ -2390,7 +2390,7 @@ i {
 }
 /* line 101, ../../../source/sass/modules/_text.scss */
 .text-block.body {
-  color: #a59dae;
+  color: #663366;
 }
 /* line 105, ../../../source/sass/modules/_text.scss */
 .text-block.purple {
@@ -3011,7 +3011,7 @@ i {
 }
 /* line 74, ../../../source/sass/_resources.scss */
 .resources-aside .back {
-  color: #a59dae;
+  color: #663366;
   letter-spacing: 1px;
   font-size: 1rem;
   margin-bottom: 15px;
@@ -3043,7 +3043,7 @@ i {
 .article-header > h2 > a {
   font-family: kim;
   letter-spacing: 2px;
-  color: #a59dae;
+  color: #663366;
 }
 
 /* line 9, ../../../source/sass/_blog.scss */
