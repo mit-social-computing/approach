@@ -57,6 +57,7 @@
                 {stash:name}{freeform:form_label}{/stash:name}
                 {stash:description}{freeform:form_description}{/stash:description}
 
+                {exp:ce_cache:escape}
                 {stash:form}
                     {exp:freeform:composer form_id="{freeform:form_id}" required="first_name|last_name|email|comment"}
                         {composer:page}
@@ -105,6 +106,7 @@
                         {/composer:page}
                     {/exp:freeform:composer}
                 {/stash:form}
+                {/exp:ce_cache:escape}
 
             {/exp:freeform:form_info}
 
