@@ -16,7 +16,9 @@
         {stash:download_title}{resources_upload:filename}{/stash:download_title}
         {stash:content}
             {{segment_1}_content}
-                {wygwam}{value}{/wygwam}
+                {exp:ce_img:bulk}
+                    {wygwam}{value}{/wygwam}
+                {/exp:ce_img:bulk}
                 {assets}
                     <div class="layout-image">
                         {files limit="1"}
