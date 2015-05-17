@@ -34,7 +34,9 @@
         {exp:stash:get_list name="other-content"}
             <div class="text-block purple medium">
                 <h2 class="title">{title}</h2>
-                {content}
+                {exp:ce_img:bulk}
+                    {content}
+                {/exp:ce_img:bulk}
             </div>
             <!-- .text-block -->
         {/exp:stash:get_list}
