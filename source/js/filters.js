@@ -45,7 +45,7 @@ if ( path.match(/^\/resources/) ) {
                 filters[i] = $filter
             })
 
-            $('#filters').append(filters).addClass('loaded')
+            $('#filters').prepend(filters).addClass('loaded')
         }
 
         function updateHistory( filters ) {
@@ -94,7 +94,7 @@ if ( path.match(/^\/resources/) ) {
             var newFilters, filters,
                 selected,
                 //viewAll = document.getElementById('viewAll')
-                viewAll = document.querySelector('.filter:first-child')
+                viewAll = $('[data-filter="*"]').get(0)
 
             if ( filterString === '*' ) {
                 selected = document.querySelectorAll('.filter.selected')
