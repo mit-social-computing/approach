@@ -12,6 +12,7 @@
 </div>
 <!-- .grid -->
 
+{exp:ce_cache:escape}
 <script>
     var WF = {};
     WF.filters = [];
@@ -19,5 +20,6 @@
     WF.filters.push({ name: "{category_name}", selector: "{category_url_title}" })
     {/exp:channel:categories}
 </script>
+{/exp:ce_cache:escape}
 
 {exp:stash:embed:partials:footer}
