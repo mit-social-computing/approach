@@ -1,8 +1,8 @@
 {exp:stash:embed:partials:header}
 
-<section class="l-content l-content--centered l-content--flex">
+<section class="l-content l-content--flex">
     <h1 class="visuallyhidden">contact us</h1>
-    <div class="l-content--flex-aside right-divider">
+    <div class="l-content--flex-aside">
     {exp:stash:get_list name="other-content"}
         <a class="panel panel--hover panel--purple" href="">
             <div class="text-block hand medium">
@@ -30,7 +30,7 @@
     </div>
     <!-- .l-content-flex-aside -->
 
-    <div class="l-content--flex-main l-content--viewbox" id="viewer">
+    <div class="l-content--flex-main l-content--viewbox left-divider" id="viewer">
         {exp:stash:get_list name="other-content"}
             <div class="text-block purple medium">
                 <h2 class="title">{title}</h2>

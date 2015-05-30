@@ -85,9 +85,9 @@
     top: 10px;
 }
 
-.right-divider {
+.left-divider {
     position: relative;
-    padding-right: 1rem;
+    margin-left: 1rem;
 
     &:after {
         display: none;
@@ -100,11 +100,12 @@
         width: 7px;
         position: absolute;
         top: 0;
-        right: 0;
+        left: -6px;
         bottom: 0;
         z-index: -1;
         background-image: url(/assets/img/apply-line.png);
-        background-position: center;
-        background-repeat: no-repeat;
+        background-position: top;
+        background-repeat-x: no-repeat;
+        background-repeat-y: repeat;
     }
 }

@@ -1669,27 +1669,28 @@ i {
 }
 
 /* line 88, ../../../source/sass/modules/_misc.scss */
-.right-divider {
+.left-divider {
   position: relative;
-  padding-right: 1rem;
+  margin-left: 1rem;
 }
 /* line 92, ../../../source/sass/modules/_misc.scss */
-.right-divider:after {
+.left-divider:after {
   display: none;
   content: '';
   width: 7px;
   position: absolute;
   top: 0;
-  right: 0;
+  left: -6px;
   bottom: 0;
   z-index: -1;
   background-image: url(/assets/img/apply-line.png);
-  background-position: center;
-  background-repeat: no-repeat;
+  background-position: top;
+  background-repeat-x: no-repeat;
+  background-repeat-y: repeat;
 }
 @media only screen and (min-width: 40.063em) {
   /* line 92, ../../../source/sass/modules/_misc.scss */
-  .right-divider:after {
+  .left-divider:after {
     display: block;
   }
 }

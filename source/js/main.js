@@ -130,12 +130,17 @@ if ( path === '/' ) {
     $('a.panel').click(function(e) {
         e.preventDefault()
         var $this = $(this),
-            idx = $this.index()
+            idx = $this.index(),
+            newHeight = $('#viewer').children().eq(idx).outerHeight(true)
 
         $this.siblings().removeClass('selected')
         $this.addClass('selected')
-        $('#viewer').children().eq(idx).addClass('selected')
+
         $('#viewer').children().eq(idx).siblings().removeClass('selected')
+        setTimeout(function() {
+            $('#viewer').height(newHeight)
+            $('#viewer').children().eq(idx).addClass('selected')
+        }, 250)
 
     })
     setTimeout(function() {
