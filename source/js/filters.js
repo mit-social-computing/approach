@@ -30,18 +30,18 @@ if ( path.match(/^\/resources/) ) {
                 $container = $('<div/>').html(tpl),
                 filters = []
 
-            $('.grid-item').each(function() {
-                var classes = $(this).attr('class').split(' ')
-                classes.forEach(function(c, i) {
-                    if ( !c.match(/grid-item|loaded/) && filters.indexOf(c) === -1 ) {
-                        filters.push(c)
-                    }
-                })
-            })
+            // $('.grid-item').each(function() {
+            //     var classes = $(this).attr('class').split(' ')
+            //     classes.forEach(function(c, i) {
+            //         if ( !c.match(/grid-item|loaded/) && filters.indexOf(c) === -1 ) {
+            //             filters.push(c)
+            //         }
+            //     })
+            // })
 
-            filters.forEach(function(filter, i) {
+            WF.filters.forEach(function(f, i) {
                 var $filter = $($container.html())
-                $filter.find('.filter').attr('data-filter', filter).html(filter.replace('-', ' '))
+                $filter.find('.filter').attr('data-filter', f.selector).html(f.name.toLowerCase())
                 filters[i] = $filter
             })
 
