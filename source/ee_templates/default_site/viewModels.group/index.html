@@ -3,7 +3,11 @@
 
 {exp:stash:set}
     {stash:image}{exp:low_variables:parse var="home_image"}{/stash:image}
-    {stash:text}{home_text}{/stash:text}
+    {stash:text}
+    {exp:ce_cache:escape}
+    {home_text}
+    {/exp:ce_cache:escape}
+    {/stash:text}
 {/exp:stash:set}
 
 {exp:stash:set_list
