@@ -8,9 +8,9 @@ if [ -z $1 ]; then
     echo "Must specify source environment."
     echo "One of 'd' for development, 's' for staging, 'p' for production."
     exit 
-elif [ $1 == 's' -o $1 == 'p' ]; then
+elif [ $1 == 's' -o $1 == 'p' -o $1 == 'd' ]; then
     LOCALURL='principles.dev'
-    LOCALPATH='/Library/WebServer/Documents/principles/'
+    LOCALPATH='/Users/noSlouch/code/websites/social_computing/approach'
     LOCALDB=$(read_cfg dev database)
     echo "Getting local values"
     echo
@@ -59,6 +59,10 @@ elif [ $1 == 's' -o $1 == 'p' ]; then
         echo "Remote DB user: $REMOTEDBUSER"
         echo
     else
+        echo 'Connecting to Production DB'
+        HOST='wildflower'
+        REMOTEURL='wildflowermontessorischool.org'
+        REMOTEPATH='/var/www/approach/production/'
         echo
         echo "Host: $HOST"
         echo "Remote URL: $REMOTEURL"
@@ -66,10 +70,6 @@ elif [ $1 == 's' -o $1 == 'p' ]; then
         echo
         echo 'Reading Config File for values'
         echo
-        HOST='wildflower'
-        REMOTEURL='http://wildflowermontessorischool.org'
-        REMOTEPATH='/var/www/approach/production/'
-        echo 'Reading Config File for values'
         REMOTEDB=$(read_cfg production database)
         REMOTEDBPASS=$(read_cfg production password)
         REMOTEDBUSER=$(read_cfg production username)
@@ -78,6 +78,14 @@ elif [ $1 == 's' -o $1 == 'p' ]; then
         echo "Remote DB user: $REMOTEDBUSER"
         echo
     fi
-    echo 'Issuing Command'
-    ssh $HOST "mysqldump -u$REMOTEDBUSER -p$REMOTEDBPASS $REMOTEDB | gzip -9" | gzip -d | sed -e "s+$REMOTEPATH+$LOCALPATH+g" -e "s+$REMOTEURL+$LOCALURL+g" | mysql -uroot -proot $LOCALDB
+
+    read -ep "Looks good ? Y/n " confirm
+    confirm="${confirm:=y}"
+    if [ $confirm == y -o $confirm == Y ]; then
+        echo 'Issuing Command'
+        ssh $HOST "mysqldump -u$REMOTEDBUSER -p$REMOTEDBPASS $REMOTEDB | gzip -9" | gzip -d | sed -e "s+$REMOTEPATH+$LOCALPATH+g" -e "s+$REMOTEURL+$LOCALURL+g" | mysql -uroot -proot $LOCALDB
+    else
+        echo 'OK. Canceling.'
+        exit
+    fi
 fi
