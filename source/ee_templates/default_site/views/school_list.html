@@ -1,0 +1,19 @@
+{stash:embed:partials:header}
+
+<div class="l-content">
+    <div class="text-block small body">
+        {exp:stash:content}
+    </div>
+
+    {exp:stash:get_list name="schools"}
+    <div class="text-block small body centered">
+        {logo}    
+    </div>
+    <div class="text-block small body">
+        {text}    
+    </div>
+    {/exp:stash:get_list}
+
+</div>
+
+{stash:embed:partials:footer}

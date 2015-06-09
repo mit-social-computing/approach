@@ -23,6 +23,26 @@
 
             {/exp:structure:entries}
         {/exp:stash:set_list}
+    {if:elseif type == 'schools'}
+        {stash:embed:school_list}
+
+        {exp:structure:entries
+            limit="1"
+            disable="member_data|categories|pagination"}
+
+            {exp:stash:content}
+                {exp:stash:parse}{exp:ce_img:bulk}{page_content}{/exp:ce_img:bulk}{/exp:stash:parse}
+            {/exp:stash:content}
+            {exp:stash:set_list
+                parse="yes"
+                name="schools"}
+                    {schools}
+                        {stash:logo}{exp:ce_img:single src="{logo:url}" max_height="300" max_width="400"}{/stash:logo}
+                        {stash:text}{description}{/stash:text}
+                    {/schools}
+            {/exp:stash:set_list}
+        {/exp:structure:entries}
+
     {if:elseif type ==  'grid'}
         {stash:embed:grid}
 
