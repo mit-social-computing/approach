@@ -4,7 +4,10 @@
     <h1 class="visuallyhidden">contact us</h1>
     <div class="l-content" id="viewer">
 
-        {exp:stash:get_list name="forms"}
+        {exp:stash:get_list 
+            orderby="id"
+            sort="desc"
+            name="forms"}
             {form}
         {/exp:stash:get_list}
 

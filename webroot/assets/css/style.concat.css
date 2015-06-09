@@ -1292,7 +1292,7 @@ i {
 @media only screen and (min-width: 40.063em) {
   /* line 159, ../../../source/sass/_global_elements.scss */
   .main-menu {
-    max-width: 560px;
+    max-width: 660px;
     margin: 0 auto 15px;
     height: 22px;
   }
@@ -1711,7 +1711,7 @@ i {
 
 /* line 36, ../../../source/sass/modules/_forms.scss */
 .form-purple {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 /* line 39, ../../../source/sass/modules/_forms.scss */
 .form-purple input,
@@ -1904,6 +1904,11 @@ i {
 .btn--purple:hover {
   color: #f0ecf5;
   background-color: #663366;
+}
+
+/* line 36, ../../../source/sass/modules/_buttons.scss */
+.btn--inline {
+  display: inline-block;
 }
 
 /* line 3, ../../../source/sass/modules/_slideshow.scss */
