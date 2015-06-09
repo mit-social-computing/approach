@@ -1735,7 +1735,11 @@ i {
   color: #a59dae;
 }
 
-/* line 37, ../../../source/sass/modules/_forms.scss */
+/* line 36, ../../../source/sass/modules/_forms.scss */
+.form-purple {
+  margin-bottom: 1rem;
+}
+/* line 39, ../../../source/sass/modules/_forms.scss */
 .form-purple input,
 .form-purple textarea {
   letter-spacing: 1.9px;
@@ -1745,20 +1749,20 @@ i {
   -webkit-transition: box-shadow 150ms linear, background 150ms linear;
   transition: box-shadow 150ms linear, background 150ms linear;
 }
-/* line 44, ../../../source/sass/modules/_forms.scss */
+/* line 46, ../../../source/sass/modules/_forms.scss */
 .form-purple input:focus,
 .form-purple textarea:focus {
   outline: none;
   box-shadow: inset 0px 0px 7px -1px rgba(102, 51, 102, 0);
   background: white;
 }
-/* line 50, ../../../source/sass/modules/_forms.scss */
+/* line 52, ../../../source/sass/modules/_forms.scss */
 .form-purple input[type=checkbox],
 .form-purple textarea[type=checkbox] {
   position: absolute;
   left: -9999px;
 }
-/* line 54, ../../../source/sass/modules/_forms.scss */
+/* line 56, ../../../source/sass/modules/_forms.scss */
 .form-purple input:not([type="file"]),
 .form-purple textarea:not([type="file"]) {
   border: 1px solid #663366;
@@ -1766,21 +1770,21 @@ i {
   border-radius: 3px;
   background: #f0ecf5;
 }
-/* line 62, ../../../source/sass/modules/_forms.scss */
+/* line 64, ../../../source/sass/modules/_forms.scss */
 .form-purple input {
   height: 30px;
 }
-/* line 66, ../../../source/sass/modules/_forms.scss */
+/* line 68, ../../../source/sass/modules/_forms.scss */
 .form-purple textarea {
   resize: vertical;
 }
 
-/* line 71, ../../../source/sass/modules/_forms.scss */
+/* line 73, ../../../source/sass/modules/_forms.scss */
 .form-purple input[type=checkbox]:focus + label:before {
   outline: 1px #663366 dotted;
 }
 
-/* line 75, ../../../source/sass/modules/_forms.scss */
+/* line 77, ../../../source/sass/modules/_forms.scss */
 .form-purple input[type=checkbox]:checked + label:after {
   opacity: 1;
   -moz-transform: scale(1, 1);
@@ -1789,14 +1793,14 @@ i {
   transform: scale(1, 1);
 }
 
-/* line 80, ../../../source/sass/modules/_forms.scss */
+/* line 82, ../../../source/sass/modules/_forms.scss */
 .form-purple input[type=checkbox] + label {
   font-size: 16px;
   font-size: 1rem;
   position: relative;
   padding-left: 15px;
 }
-/* line 86, ../../../source/sass/modules/_forms.scss */
+/* line 88, ../../../source/sass/modules/_forms.scss */
 .form-purple input[type=checkbox] + label:before {
   content: '';
   position: absolute;
@@ -1808,7 +1812,7 @@ i {
   border: 1px solid #663366;
   border-radius: 2px;
 }
-/* line 98, ../../../source/sass/modules/_forms.scss */
+/* line 100, ../../../source/sass/modules/_forms.scss */
 .form-purple input[type=checkbox] + label:after {
   content: '';
   position: absolute;
@@ -1828,7 +1832,7 @@ i {
   transition: opacity 150ms ease, transform 150ms ease;
 }
 
-/* line 112, ../../../source/sass/modules/_forms.scss */
+/* line 114, ../../../source/sass/modules/_forms.scss */
 .toggle-box {
   opacity: 0;
   height: 0px;
@@ -1837,7 +1841,7 @@ i {
   -webkit-transition: opacity 150ms ease, height 150ms ease;
   transition: opacity 150ms ease, height 150ms ease;
 }
-/* line 117, ../../../source/sass/modules/_forms.scss */
+/* line 119, ../../../source/sass/modules/_forms.scss */
 .toggle-box.show {
   opacity: 1;
 }

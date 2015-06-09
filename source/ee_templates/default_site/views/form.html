@@ -1,45 +1,8 @@
 {exp:stash:embed:partials:header}
 
-<section class="l-content l-content--flex">
+<section class="l-content">
     <h1 class="visuallyhidden">contact us</h1>
-    <div class="l-content--flex-aside">
-    {exp:stash:get_list name="other-content"}
-        <a class="panel panel--hover panel--purple" href="">
-            <div class="text-block hand medium">
-                <h2 class="title">{title}</h2>
-                <p>
-                    {summary}
-                </p>
-            </div>
-            <!-- .text-block -->
-        </a>
-        <!-- .panel -->
-    {/exp:stash:get_list}
-    {exp:stash:get_list name="forms"}
-        <a class="panel panel--hover panel--purple" href="">
-            <div class="text-block hand medium">
-                <h2 class="title">{name}</h2>
-                <p>
-                    {description}
-                </p>
-            </div>
-            <!-- .text-block -->
-        </a>
-        <!-- .panel -->
-    {/exp:stash:get_list}
-    </div>
-    <!-- .l-content-flex-aside -->
-
-    <div class="l-content--flex-main l-content--viewbox left-divider" id="viewer">
-        {exp:stash:get_list name="other-content"}
-            <div class="text-block purple medium">
-                <h2 class="title">{title}</h2>
-                {exp:ce_img:bulk}
-                    {content}
-                {/exp:ce_img:bulk}
-            </div>
-            <!-- .text-block -->
-        {/exp:stash:get_list}
+    <div class="l-content" id="viewer">
 
         {exp:stash:get_list name="forms"}
             {form}

@@ -79,13 +79,14 @@
 
                 {stash:form}
                     {exp:ce_cache:escape}
-                    {exp:freeform:composer form_id="{freeform:form_id}" required="first_name|last_name|email|comment"}
+                    {exp:freeform:composer form_id="{freeform:form_id}" required="first_name|last_name|email|comment|age|city"}
                         {composer:page}
                         <div class="form-purple">
                             <h2>{freeform:form_label}</h2>
-                            <div id="successBox" class="toggle-box"></div>
-                            <div id="errorsBox" class="toggle-box">
-                                <ul id="errors" class="toggle-box-list"></ul>
+                            <p>{freeform:form_description}</p>
+                            <div class="success-box toggle-box"></div>
+                            <div class="errors-box toggle-box">
+                                <ul class="errors-list toggle-box-list"></ul>
                             </div>
                             <!-- .toggle-box -->
                             {composer:rows}
