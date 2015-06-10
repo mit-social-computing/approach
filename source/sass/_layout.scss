@@ -177,3 +177,21 @@
         padding-top: 25px;
     }
 }
+
+.l-divider {
+    position: relative;
+}
+
+.l-divider:after {
+    content: '';
+    display: block;
+    height: 11px;
+    position: absolute;
+    bottom: -25px;
+    left: -15px;
+    right: -15px;
+    margin: auto;
+    background-image: url(/assets/img/wavy-line.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}

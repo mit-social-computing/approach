@@ -2,7 +2,7 @@
 sized/
 thumbs/
 webroot/site_media
-!webroot/assets/img/approach/thumbs/
+webroot/images
 _thumbs/
 */expressionengine/cache/*
 */static/cache/*

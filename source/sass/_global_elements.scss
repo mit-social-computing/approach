@@ -10,6 +10,10 @@
     position: relative;
 }
 
+.main-header--wrapper {
+    margin-bottom: rem-calc(16);
+}
+
 @media #{$medium-up} {
     .home .main-header {
         margin-bottom: 0;

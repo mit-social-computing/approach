@@ -35,4 +35,16 @@
 
 .btn--inline {
     display: inline-block;
+    padding: 25px 45px;
+    margin: 0;
+    border-radius: 3px;
+}
+
+.btn--yellow {
+    color: white;
+    background-color: rgba($light-yellow, 1);
+
+    &:hover {
+        background-color: rgba($light-yellow, 0.5);
+    }
 }

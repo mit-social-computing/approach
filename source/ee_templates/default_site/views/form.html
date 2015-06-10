@@ -8,7 +8,13 @@
             orderby="id"
             sort="desc"
             name="forms"}
-            {form}
+            {if count == 1}
+            <div class="l-divider">
+            {if:else}
+            <div>
+            {/if}
+                {form}
+            </div>
         {/exp:stash:get_list}
 
     </div>

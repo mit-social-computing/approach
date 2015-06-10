@@ -18,10 +18,18 @@ if ( path.match(/^\/contact/) ) {
             action = this.action
 
         $.post(action, values, function(res, msg, promise) {
+            var text
             if (res.success) {
+                if ( $(this).parents('#contact_form') ) {
+                    text = 'Your note has been sent.'
+                } else {
+                    text = 'You have signed up to be notified of upcoming info sessions.'
+                }
+
                 $(this).find('.success-box')
                     .addClass('show')
-                    .text('success. thank you.')
+                    .height(25)
+                    .text(text)
                     .siblings().hide()
             } else {
                 var $errors = $(this).find('.errors-list')

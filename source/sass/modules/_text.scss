@@ -35,6 +35,14 @@
     }
 }
 
+.text-body--spacer {
+    margin-bottom: 2.5rem;
+}
+
+.text-body--bold {
+    font-weight: bold;
+}
+
 .text-body--display {
     font-size: rem-calc(56);
     color: white;
@@ -132,4 +140,12 @@
     &.centered {
         text-align: center;
     }
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.flattop {
+    margin-top: 0;
 }

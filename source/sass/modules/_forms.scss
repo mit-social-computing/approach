@@ -4,6 +4,8 @@
     letter-spacing: 1.9px;
     color: $purple;
     font-size: rem-calc(18);
+    margin-bottom: 3rem;
+
     @extend .antialiased;
     &.error {
         border: 1px solid $pink;
@@ -34,8 +36,6 @@
 }
 
 .form-purple {
-    margin-bottom: 2rem;
-
     input,
     textarea {
         letter-spacing: 1.9px;

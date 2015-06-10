@@ -870,6 +870,26 @@ th {
     padding-top: 25px;
   }
 }
+/* line 181, ../../../source/sass/_layout.scss */
+.l-divider {
+  position: relative;
+}
+
+/* line 185, ../../../source/sass/_layout.scss */
+.l-divider:after {
+  content: '';
+  display: block;
+  height: 11px;
+  position: absolute;
+  bottom: -25px;
+  left: -15px;
+  right: -15px;
+  margin: auto;
+  background-image: url(/assets/img/wavy-line.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
 /* line 1, ../../../source/sass/_base_styles.scss */
 *,
 *:after,
@@ -1101,13 +1121,18 @@ i {
   position: relative;
 }
 
+/* line 13, ../../../source/sass/_global_elements.scss */
+.main-header--wrapper {
+  margin-bottom: 1rem;
+}
+
 @media only screen and (min-width: 40.063em) {
-  /* line 14, ../../../source/sass/_global_elements.scss */
+  /* line 18, ../../../source/sass/_global_elements.scss */
   .home .main-header {
     margin-bottom: 0;
   }
 }
-/* line 19, ../../../source/sass/_global_elements.scss */
+/* line 23, ../../../source/sass/_global_elements.scss */
 .classroom .main-header {
   position: absolute;
   left: 2.5%;
@@ -1115,25 +1140,25 @@ i {
   z-index: 1;
 }
 
-/* line 26, ../../../source/sass/_global_elements.scss */
+/* line 30, ../../../source/sass/_global_elements.scss */
 .main-footer {
   color: #663366;
   letter-spacing: 2.1px;
   padding-bottom: 1rem;
 }
-/* line 31, ../../../source/sass/_global_elements.scss */
+/* line 35, ../../../source/sass/_global_elements.scss */
 .main-footer a {
   height: 18px;
   color: #f77e85;
   text-decoration: none;
 }
-/* line 37, ../../../source/sass/_global_elements.scss */
+/* line 41, ../../../source/sass/_global_elements.scss */
 .main-footer p {
   margin: 0;
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 43, ../../../source/sass/_global_elements.scss */
+  /* line 47, ../../../source/sass/_global_elements.scss */
   .sticky .main-header {
     background-color: white;
     position: fixed;
@@ -1144,7 +1169,7 @@ i {
     -webkit-backface-visibility: hidden;
     box-shadow: 0 10px 70px 30px rgba(255, 255, 255, 0.7);
   }
-  /* line 53, ../../../source/sass/_global_elements.scss */
+  /* line 57, ../../../source/sass/_global_elements.scss */
   .sticky .main-header:after {
     content: '';
     display: block;
@@ -1159,24 +1184,24 @@ i {
     background-position: center center;
   }
 
-  /* line 68, ../../../source/sass/_global_elements.scss */
+  /* line 72, ../../../source/sass/_global_elements.scss */
   .sticky.container-flush .main-header {
     background: transparent;
     box-shadow: none;
   }
-  /* line 72, ../../../source/sass/_global_elements.scss */
+  /* line 76, ../../../source/sass/_global_elements.scss */
   .sticky.container-flush .main-header:after {
     content: none;
   }
 }
 @media only screen and (min-width: 730px) {
-  /* line 79, ../../../source/sass/_global_elements.scss */
+  /* line 83, ../../../source/sass/_global_elements.scss */
   .sticky .main-header:after {
     left: 15px;
     right: 15px;
   }
 }
-/* line 87, ../../../source/sass/_global_elements.scss */
+/* line 91, ../../../source/sass/_global_elements.scss */
 .main-header .wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1195,7 +1220,7 @@ i {
   align-items: center;
 }
 
-/* line 93, ../../../source/sass/_global_elements.scss */
+/* line 97, ../../../source/sass/_global_elements.scss */
 .menu-button {
   font-size: 1.625rem;
   background: none;
@@ -1207,20 +1232,20 @@ i {
   -webkit-transition: color 150ms ease;
   transition: color 150ms ease;
 }
-/* line 103, ../../../source/sass/_global_elements.scss */
+/* line 107, ../../../source/sass/_global_elements.scss */
 .menu-button:focus, .menu-button:active {
   color: inherit;
   outline: none;
   border: none;
   background: none;
 }
-/* line 111, ../../../source/sass/_global_elements.scss */
+/* line 115, ../../../source/sass/_global_elements.scss */
 .menu-button:hover {
   color: #f77e85;
   background: none;
 }
 
-/* line 117, ../../../source/sass/_global_elements.scss */
+/* line 121, ../../../source/sass/_global_elements.scss */
 .undecorated {
   text-decoration: none;
   border: none;
@@ -1228,13 +1253,13 @@ i {
   transition: none;
 }
 
-/* line 123, ../../../source/sass/_global_elements.scss */
+/* line 127, ../../../source/sass/_global_elements.scss */
 .logo {
   color: transparent;
   margin: 0;
   letter-spacing: 2.1px;
 }
-/* line 129, ../../../source/sass/_global_elements.scss */
+/* line 133, ../../../source/sass/_global_elements.scss */
 .logo span {
   font-family: kim;
   font-size: 1.5625rem;
@@ -1249,39 +1274,39 @@ i {
           transition: color 200ms ease 0ms, opacity 500ms ease 0ms;
 }
 
-/* line 139, ../../../source/sass/_global_elements.scss */
+/* line 143, ../../../source/sass/_global_elements.scss */
 .logo.loaded span {
   opacity: 1;
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 144, ../../../source/sass/_global_elements.scss */
+  /* line 148, ../../../source/sass/_global_elements.scss */
   .main-header .wrapper {
     display: block;
   }
 
-  /* line 148, ../../../source/sass/_global_elements.scss */
+  /* line 152, ../../../source/sass/_global_elements.scss */
   .menu-button {
     display: none;
   }
 
-  /* line 153, ../../../source/sass/_global_elements.scss */
+  /* line 157, ../../../source/sass/_global_elements.scss */
   .logo span {
     font-size: 2.1875rem;
   }
 }
-/* line 159, ../../../source/sass/_global_elements.scss */
+/* line 163, ../../../source/sass/_global_elements.scss */
 .main-menu {
   margin: 0 10px 15px;
   display: none;
   position: relative;
   text-transform: lowercase;
 }
-/* line 166, ../../../source/sass/_global_elements.scss */
+/* line 170, ../../../source/sass/_global_elements.scss */
 .about .main-menu {
   margin-bottom: 100px;
 }
-/* line 170, ../../../source/sass/_global_elements.scss */
+/* line 174, ../../../source/sass/_global_elements.scss */
 .main-menu > ul {
   display: block;
   width: 100%;
@@ -1290,49 +1315,49 @@ i {
   list-style-type: none;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 159, ../../../source/sass/_global_elements.scss */
+  /* line 163, ../../../source/sass/_global_elements.scss */
   .main-menu {
     max-width: 660px;
     margin: 0 auto 15px;
     height: 22px;
   }
-  /* line 184, ../../../source/sass/_global_elements.scss */
+  /* line 188, ../../../source/sass/_global_elements.scss */
   .about .main-menu {
     margin-bottom: 50px;
   }
 }
-/* line 189, ../../../source/sass/_global_elements.scss */
+/* line 193, ../../../source/sass/_global_elements.scss */
 .main-menu.show {
   display: block;
 }
-/* line 193, ../../../source/sass/_global_elements.scss */
+/* line 197, ../../../source/sass/_global_elements.scss */
 .main-menu li {
   font-size: 26px;
   font-size: 1.625rem;
   letter-spacing: 2.1px;
 }
-/* line 198, ../../../source/sass/_global_elements.scss */
+/* line 202, ../../../source/sass/_global_elements.scss */
 .main-menu li.selected > a {
   color: #70becd;
 }
-/* line 204, ../../../source/sass/_global_elements.scss */
+/* line 208, ../../../source/sass/_global_elements.scss */
 .main-menu a {
   color: #663366;
   border: none;
   text-decoration: none;
   display: block;
 }
-/* line 210, ../../../source/sass/_global_elements.scss */
+/* line 214, ../../../source/sass/_global_elements.scss */
 .main-menu a:hover {
   color: #f77e85;
 }
-/* line 214, ../../../source/sass/_global_elements.scss */
+/* line 218, ../../../source/sass/_global_elements.scss */
 .main-menu a:focus {
   outline: none;
   border-bottom: 1px #663366 dotted;
 }
 
-/* line 221, ../../../source/sass/_global_elements.scss */
+/* line 225, ../../../source/sass/_global_elements.scss */
 .subnav {
   position: absolute;
   left: 0;
@@ -1342,18 +1367,18 @@ i {
   text-transform: lowercase;
   display: none;
 }
-/* line 231, ../../../source/sass/_global_elements.scss */
+/* line 235, ../../../source/sass/_global_elements.scss */
 .show ~ .subnav {
   display: block;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 221, ../../../source/sass/_global_elements.scss */
+  /* line 225, ../../../source/sass/_global_elements.scss */
   .subnav {
     display: block;
     top: 80%;
   }
 }
-/* line 240, ../../../source/sass/_global_elements.scss */
+/* line 244, ../../../source/sass/_global_elements.scss */
 .subnav > ul {
   display: inline-block;
   list-style-type: none;
@@ -1362,7 +1387,7 @@ i {
   background-color: white;
   border: 1px solid rgba(102, 51, 102, 0.5);
 }
-/* line 249, ../../../source/sass/_global_elements.scss */
+/* line 253, ../../../source/sass/_global_elements.scss */
 .subnav > ul > li {
   display: inline-block;
   margin-right: 5px;
@@ -1370,42 +1395,42 @@ i {
   font-size: 26px;
   font-size: 1.625rem;
 }
-/* line 257, ../../../source/sass/_global_elements.scss */
+/* line 261, ../../../source/sass/_global_elements.scss */
 .subnav > ul > li.selected > a {
   color: #70becd;
 }
-/* line 261, ../../../source/sass/_global_elements.scss */
+/* line 265, ../../../source/sass/_global_elements.scss */
 .subnav > ul > li:after {
   content: '-';
   display: inline-block;
   margin-left: 10px;
   color: #663366;
 }
-/* line 268, ../../../source/sass/_global_elements.scss */
+/* line 272, ../../../source/sass/_global_elements.scss */
 .subnav > ul > li:last-child {
   margin-right: 0;
 }
-/* line 272, ../../../source/sass/_global_elements.scss */
+/* line 276, ../../../source/sass/_global_elements.scss */
 .subnav > ul > li:last-child:after {
   display: none;
 }
-/* line 276, ../../../source/sass/_global_elements.scss */
+/* line 280, ../../../source/sass/_global_elements.scss */
 .subnav > ul > li > a {
   color: #663366;
   border: none;
 }
-/* line 280, ../../../source/sass/_global_elements.scss */
+/* line 284, ../../../source/sass/_global_elements.scss */
 .subnav > ul > li > a:hover {
   color: #70becd;
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 287, ../../../source/sass/_global_elements.scss */
+  /* line 291, ../../../source/sass/_global_elements.scss */
   .main-menu,
   .main-menu.show {
     display: block;
   }
-  /* line 292, ../../../source/sass/_global_elements.scss */
+  /* line 296, ../../../source/sass/_global_elements.scss */
   .main-menu > ul,
   .main-menu.show > ul {
     display: -webkit-box;
@@ -1421,7 +1446,7 @@ i {
   }
 }
 
-/* line 299, ../../../source/sass/_global_elements.scss */
+/* line 303, ../../../source/sass/_global_elements.scss */
 .arrow {
   display: block;
   position: fixed;
@@ -1433,25 +1458,25 @@ i {
   -webkit-transition: opacity 50ms;
   transition: opacity 50ms;
 }
-/* line 309, ../../../source/sass/_global_elements.scss */
+/* line 313, ../../../source/sass/_global_elements.scss */
 .arrow:hover {
   border: none;
 }
-/* line 313, ../../../source/sass/_global_elements.scss */
+/* line 317, ../../../source/sass/_global_elements.scss */
 .resources .arrow {
   background-image: url(/assets/img/arrows/red-arrow.png);
 }
-/* line 317, ../../../source/sass/_global_elements.scss */
+/* line 321, ../../../source/sass/_global_elements.scss */
 .blog .arrow, .resources-detail .arrow, .about .arrow {
   background-image: url(/assets/img/arrows/blue-arrow.png);
 }
-/* line 323, ../../../source/sass/_global_elements.scss */
+/* line 327, ../../../source/sass/_global_elements.scss */
 .blog .arrow, .resources-detail .arrow {
   left: 50px;
   right: auto;
 }
 @media only screen and (min-width: 930px) {
-  /* line 330, ../../../source/sass/_global_elements.scss */
+  /* line 334, ../../../source/sass/_global_elements.scss */
   .blog .arrow, .resources-detail .arrow {
     right: 45px;
     left: auto;
@@ -1459,7 +1484,7 @@ i {
 }
 
 @media only screen and (max-width: 40em) {
-  /* line 339, ../../../source/sass/_global_elements.scss */
+  /* line 343, ../../../source/sass/_global_elements.scss */
   .arrow {
     display: none;
   }
@@ -1676,13 +1701,14 @@ i {
   letter-spacing: 1.9px;
   color: #663366;
   font-size: 1.125rem;
+  margin-bottom: 3rem;
 }
-/* line 8, ../../../source/sass/modules/_forms.scss */
+/* line 10, ../../../source/sass/modules/_forms.scss */
 .form-purple.error {
   border: 1px solid #f77e85;
 }
 
-/* line 13, ../../../source/sass/modules/_forms.scss */
+/* line 15, ../../../source/sass/modules/_forms.scss */
 .label-purple,
 .label-purple + textarea,
 .label-purple + input {
@@ -1690,7 +1716,7 @@ i {
   width: 100%;
 }
 
-/* line 20, ../../../source/sass/modules/_forms.scss */
+/* line 22, ../../../source/sass/modules/_forms.scss */
 .label-purple--inline,
 .label-purple--inline + input {
   display: inline;
@@ -1699,20 +1725,16 @@ i {
   vertical-align: middle;
 }
 
-/* line 28, ../../../source/sass/modules/_forms.scss */
+/* line 30, ../../../source/sass/modules/_forms.scss */
 .label-purple {
   margin-bottom: 2px;
 }
 
-/* line 32, ../../../source/sass/modules/_forms.scss */
+/* line 34, ../../../source/sass/modules/_forms.scss */
 .label-purple--dark {
   color: #a59dae;
 }
 
-/* line 36, ../../../source/sass/modules/_forms.scss */
-.form-purple {
-  margin-bottom: 2rem;
-}
 /* line 39, ../../../source/sass/modules/_forms.scss */
 .form-purple input,
 .form-purple textarea {
@@ -1909,6 +1931,19 @@ i {
 /* line 36, ../../../source/sass/modules/_buttons.scss */
 .btn--inline {
   display: inline-block;
+  padding: 25px 45px;
+  margin: 0;
+  border-radius: 3px;
+}
+
+/* line 43, ../../../source/sass/modules/_buttons.scss */
+.btn--yellow {
+  color: white;
+  background-color: #ffca2b;
+}
+/* line 47, ../../../source/sass/modules/_buttons.scss */
+.btn--yellow:hover {
+  background-color: rgba(255, 202, 43, 0.5);
 }
 
 /* line 3, ../../../source/sass/modules/_slideshow.scss */
@@ -2341,6 +2376,16 @@ i {
 }
 
 /* line 38, ../../../source/sass/modules/_text.scss */
+.text-body--spacer {
+  margin-bottom: 2.5rem;
+}
+
+/* line 42, ../../../source/sass/modules/_text.scss */
+.text-body--bold {
+  font-weight: bold;
+}
+
+/* line 46, ../../../source/sass/modules/_text.scss */
 .text-body--display {
   font-size: 3.5rem;
   color: white;
@@ -2349,12 +2394,12 @@ i {
   margin: 0 auto;
 }
 
-/* line 46, ../../../source/sass/modules/_text.scss */
+/* line 54, ../../../source/sass/modules/_text.scss */
 .text-body--purple {
   color: #663366;
 }
 
-/* line 52, ../../../source/sass/modules/_text.scss */
+/* line 60, ../../../source/sass/modules/_text.scss */
 .text-block > h1,
 .text-block > h2,
 .text-block > h3,
@@ -2365,7 +2410,7 @@ i {
   text-align: center;
   letter-spacing: 1px;
 }
-/* line 63, ../../../source/sass/modules/_text.scss */
+/* line 71, ../../../source/sass/modules/_text.scss */
 .about .text-block > h1, .about
 .text-block > h2, .about
 .text-block > h3, .about
@@ -2375,7 +2420,7 @@ i {
   text-transform: lowercase;
   margin-bottom: 1rem;
 }
-/* line 68, ../../../source/sass/modules/_text.scss */
+/* line 76, ../../../source/sass/modules/_text.scss */
 .resources-detail .text-block > h1, .resources-detail
 .text-block > h2, .resources-detail
 .text-block > h3, .resources-detail
@@ -2384,70 +2429,80 @@ i {
 .text-block > h6 {
   margin-bottom: 1rem;
 }
-/* line 73, ../../../source/sass/modules/_text.scss */
+/* line 81, ../../../source/sass/modules/_text.scss */
 .text-block > .title {
   font-size: 1em;
   margin-bottom: 1rem;
 }
-/* line 78, ../../../source/sass/modules/_text.scss */
+/* line 86, ../../../source/sass/modules/_text.scss */
 .text-block > p:not(.title) {
   font-size: 0.7em;
 }
-/* line 81, ../../../source/sass/modules/_text.scss */
+/* line 89, ../../../source/sass/modules/_text.scss */
 .text-block > p:not(.title):first-of-type {
   margin-top: 0;
 }
-/* line 86, ../../../source/sass/modules/_text.scss */
+/* line 94, ../../../source/sass/modules/_text.scss */
 .text-block > ul,
 .text-block > ol {
   font-size: 0.7em;
   letter-spacing: 1px;
 }
-/* line 92, ../../../source/sass/modules/_text.scss */
+/* line 100, ../../../source/sass/modules/_text.scss */
 .text-block > ul > li,
 .text-block > ol > li {
   margin-bottom: 1rem;
 }
-/* line 95, ../../../source/sass/modules/_text.scss */
+/* line 103, ../../../source/sass/modules/_text.scss */
 .text-block > ul > li:last-child,
 .text-block > ol > li:last-child {
   margin-bottom: 0;
 }
-/* line 101, ../../../source/sass/modules/_text.scss */
+/* line 109, ../../../source/sass/modules/_text.scss */
 .text-block.body {
   color: #663366;
 }
-/* line 105, ../../../source/sass/modules/_text.scss */
+/* line 113, ../../../source/sass/modules/_text.scss */
 .text-block.purple {
   color: #663366;
 }
-/* line 109, ../../../source/sass/modules/_text.scss */
+/* line 117, ../../../source/sass/modules/_text.scss */
 .text-block.pink {
   color: #f77e85;
 }
-/* line 113, ../../../source/sass/modules/_text.scss */
+/* line 121, ../../../source/sass/modules/_text.scss */
 .text-block.hand {
   font-family: kim;
   letter-spacing: 2.1px;
   line-height: 1;
 }
-/* line 119, ../../../source/sass/modules/_text.scss */
+/* line 127, ../../../source/sass/modules/_text.scss */
 .text-block.hand > .title {
   text-transform: lowercase;
 }
-/* line 122, ../../../source/sass/modules/_text.scss */
+/* line 130, ../../../source/sass/modules/_text.scss */
 .text-block.small {
   font-size: 24px;
   font-size: 1.5rem;
 }
-/* line 127, ../../../source/sass/modules/_text.scss */
+/* line 135, ../../../source/sass/modules/_text.scss */
 .text-block.medium {
   font-size: 26px;
   font-size: 1.625rem;
 }
-/* line 132, ../../../source/sass/modules/_text.scss */
+/* line 140, ../../../source/sass/modules/_text.scss */
 .text-block.centered {
   text-align: center;
+}
+
+/* line 145, ../../../source/sass/modules/_text.scss */
+.bold {
+  font-weight: bold;
+}
+
+/* line 149, ../../../source/sass/modules/_text.scss */
+.flattop {
+  margin-top: 0;
 }
 
 /* line 1, ../../../source/sass/modules/_classroom.scss */
