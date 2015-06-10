@@ -971,7 +971,7 @@ blockquote cite, .logo, .main-menu, .subnav > ul > li, .mask p, .icon-plus, .for
 @media only screen and (min-height: 700px) {
   /* line 36, ../../../source/sass/_base_styles.scss */
   .container {
-    height: 100%;
+    min-height: 100%;
   }
 }
 
