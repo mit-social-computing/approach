@@ -20,7 +20,9 @@ if ( path.match(/^\/resources/) ) {
             iso,
             imgWatcher,
             filterStore = {}, f,
-            forEach = Array.prototype.forEach
+            forEach = Array.prototype.forEach,
+            topPaddingMQ = window.matchMedia('(min-width: 40.063em)'),
+            viewAllDescription = 'This section of the website contains resources for teachers, parents, and researchers interested in Montessori and the Wildflower approach.  There are resources for teachers who are starting Wildflower schools in the teacher culture and teacher resources sections.  There are essays for parents interested in raising their child in a Montessori way in the parent education section.  And there is information for researchers and practitioners in the montessori materials section.'
 
 
         function filterInit() {
@@ -86,12 +88,15 @@ if ( path.match(/^\/resources/) ) {
         function updateDescription(selected) {
             var filterObj = WF.filters[selected.attr('data-filter')],
                 // view all (*) doesn't have a filter object
-                d = filterObj ? filterObj.description : '',
+                d = filterObj ? filterObj.description : viewAllDescription,
                 newHeight
 
             $('#filterInfo').html(d)
-            newHeight = $('#mainHeader').outerHeight(true)
-            $('.container').css('padding-top', newHeight)
+
+            if ( topPaddingMQ.matches ) {
+                newHeight = $('#mainHeader').outerHeight(true)
+                $('.container').css('padding-top', newHeight)
+            }
         }
 
         function setFilterButtons( filterString ) {
@@ -178,6 +183,15 @@ if ( path.match(/^\/resources/) ) {
                 if ( window.sessionStorage ) {
                     sessionStorage.setItem('filter', f)
                 }
+            }
+        })
+
+        topPaddingMQ.addListener(function(mql) {
+            if ( mql.matches ) {
+                newHeight = $('#mainHeader').outerHeight(true)
+                $('.container').css('padding-top', newHeight)
+            } else {
+                $('.container').css('padding-top', 0)
             }
         })
 

@@ -2352,23 +2352,28 @@ i {
 }
 
 /* line 12, ../../../source/sass/modules/_text.scss */
+.text--nopad {
+  padding: 0;
+}
+
+/* line 16, ../../../source/sass/modules/_text.scss */
 .text-centered--bottom {
   margin-bottom: 2.75rem;
 }
 
-/* line 16, ../../../source/sass/modules/_text.scss */
+/* line 20, ../../../source/sass/modules/_text.scss */
 .text-body {
   color: #70becd;
   font-family: kim;
   font-size: 1.375rem;
   line-height: 1;
 }
-/* line 24, ../../../source/sass/modules/_text.scss */
+/* line 28, ../../../source/sass/modules/_text.scss */
 .text-body > p {
   letter-spacing: 2.1px;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 16, ../../../source/sass/modules/_text.scss */
+  /* line 20, ../../../source/sass/modules/_text.scss */
   .text-body {
     font-size: 1.375rem;
     letter-spacing: 2.1px;
@@ -2377,17 +2382,17 @@ i {
   }
 }
 
-/* line 38, ../../../source/sass/modules/_text.scss */
+/* line 42, ../../../source/sass/modules/_text.scss */
 .text-body--spacer {
   margin-bottom: 2.5rem;
 }
 
-/* line 42, ../../../source/sass/modules/_text.scss */
+/* line 46, ../../../source/sass/modules/_text.scss */
 .text-body--bold {
   font-weight: bold;
 }
 
-/* line 46, ../../../source/sass/modules/_text.scss */
+/* line 50, ../../../source/sass/modules/_text.scss */
 .text-body--display {
   font-size: 3.5rem;
   color: white;
@@ -2396,12 +2401,12 @@ i {
   margin: 0 auto;
 }
 
-/* line 54, ../../../source/sass/modules/_text.scss */
+/* line 58, ../../../source/sass/modules/_text.scss */
 .text-body--purple {
   color: #663366;
 }
 
-/* line 60, ../../../source/sass/modules/_text.scss */
+/* line 64, ../../../source/sass/modules/_text.scss */
 .text-block > h1,
 .text-block > h2,
 .text-block > h3,
@@ -2412,7 +2417,7 @@ i {
   text-align: center;
   letter-spacing: 1px;
 }
-/* line 71, ../../../source/sass/modules/_text.scss */
+/* line 75, ../../../source/sass/modules/_text.scss */
 .about .text-block > h1, .about
 .text-block > h2, .about
 .text-block > h3, .about
@@ -2422,7 +2427,7 @@ i {
   text-transform: lowercase;
   margin-bottom: 1rem;
 }
-/* line 76, ../../../source/sass/modules/_text.scss */
+/* line 80, ../../../source/sass/modules/_text.scss */
 .resources-detail .text-block > h1, .resources-detail
 .text-block > h2, .resources-detail
 .text-block > h3, .resources-detail
@@ -2431,78 +2436,78 @@ i {
 .text-block > h6 {
   margin-bottom: 1rem;
 }
-/* line 81, ../../../source/sass/modules/_text.scss */
+/* line 85, ../../../source/sass/modules/_text.scss */
 .text-block > .title {
   font-size: 1em;
   margin-bottom: 1rem;
 }
-/* line 86, ../../../source/sass/modules/_text.scss */
+/* line 90, ../../../source/sass/modules/_text.scss */
 .text-block > p:not(.title) {
   font-size: 0.7em;
 }
-/* line 89, ../../../source/sass/modules/_text.scss */
+/* line 93, ../../../source/sass/modules/_text.scss */
 .text-block > p:not(.title):first-of-type {
   margin-top: 0;
 }
-/* line 94, ../../../source/sass/modules/_text.scss */
+/* line 98, ../../../source/sass/modules/_text.scss */
 .text-block > ul,
 .text-block > ol {
   font-size: 0.7em;
   letter-spacing: 1px;
 }
-/* line 100, ../../../source/sass/modules/_text.scss */
+/* line 104, ../../../source/sass/modules/_text.scss */
 .text-block > ul > li,
 .text-block > ol > li {
   margin-bottom: 1rem;
 }
-/* line 103, ../../../source/sass/modules/_text.scss */
+/* line 107, ../../../source/sass/modules/_text.scss */
 .text-block > ul > li:last-child,
 .text-block > ol > li:last-child {
   margin-bottom: 0;
 }
-/* line 109, ../../../source/sass/modules/_text.scss */
+/* line 113, ../../../source/sass/modules/_text.scss */
 .text-block.body {
   color: #663366;
 }
-/* line 113, ../../../source/sass/modules/_text.scss */
+/* line 117, ../../../source/sass/modules/_text.scss */
 .text-block.purple {
   color: #663366;
 }
-/* line 117, ../../../source/sass/modules/_text.scss */
+/* line 121, ../../../source/sass/modules/_text.scss */
 .text-block.pink {
   color: #f77e85;
 }
-/* line 121, ../../../source/sass/modules/_text.scss */
+/* line 125, ../../../source/sass/modules/_text.scss */
 .text-block.hand {
   font-family: kim;
   letter-spacing: 2.1px;
   line-height: 1;
 }
-/* line 127, ../../../source/sass/modules/_text.scss */
+/* line 131, ../../../source/sass/modules/_text.scss */
 .text-block.hand > .title {
   text-transform: lowercase;
 }
-/* line 130, ../../../source/sass/modules/_text.scss */
+/* line 134, ../../../source/sass/modules/_text.scss */
 .text-block.small {
   font-size: 24px;
   font-size: 1.5rem;
 }
-/* line 135, ../../../source/sass/modules/_text.scss */
+/* line 139, ../../../source/sass/modules/_text.scss */
 .text-block.medium {
   font-size: 26px;
   font-size: 1.625rem;
 }
-/* line 140, ../../../source/sass/modules/_text.scss */
+/* line 144, ../../../source/sass/modules/_text.scss */
 .text-block.centered {
   text-align: center;
 }
 
-/* line 145, ../../../source/sass/modules/_text.scss */
+/* line 149, ../../../source/sass/modules/_text.scss */
 .bold {
   font-weight: bold;
 }
 
-/* line 149, ../../../source/sass/modules/_text.scss */
+/* line 153, ../../../source/sass/modules/_text.scss */
 .flattop {
   margin-top: 0;
 }
