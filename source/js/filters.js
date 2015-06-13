@@ -2,8 +2,6 @@
 /*global Isotope,imagesLoaded,s,sessionStorage*/
 'use strict';
 
-// define(['isotope', 'imagesloaded'],
-// function(Isotope, imagesLoaded) {
 if ( path.match(/^\/resources/) ) {
     if ( path.split('/').length === 2 ) {
 
@@ -30,19 +28,19 @@ if ( path.match(/^\/resources/) ) {
                 $container = $('<div/>').html(tpl),
                 filters = []
 
-            // $('.grid-item').each(function() {
-            //     var classes = $(this).attr('class').split(' ')
-            //     classes.forEach(function(c, i) {
-            //         if ( !c.match(/grid-item|loaded/) && filters.indexOf(c) === -1 ) {
-            //             filters.push(c)
-            //         }
-            //     })
-            // })
+            Object.keys(WF.filters).forEach(function(k) {
+                var $filter = $($container.html()),
+                    selector = k,
+                    name = WF.filters[k].name,
+                    description = WF.filters[k].description
 
-            WF.filters.forEach(function(f, i) {
-                var $filter = $($container.html())
-                $filter.find('.filter').attr('data-filter', f.selector).html(f.name.toLowerCase())
-                filters[i] = $filter
+                $filter
+                    .find('.filter')
+                    .attr('data-filter', selector)
+                    .data('info', description)
+                    .html(name.toLowerCase())
+
+                filters.push($filter)
             })
 
             $('#filters').prepend(filters).addClass('loaded')
@@ -85,6 +83,17 @@ if ( path.match(/^\/resources/) ) {
             return selected.length ? '.' + selected.join('.') : '*'
         }
 
+        function updateDescription(selected) {
+            var filterObj = WF.filters[selected.attr('data-filter')],
+                // view all (*) doesn't have a filter object
+                d = filterObj ? filterObj.description : '',
+                newHeight
+
+            $('#filterInfo').html(d)
+            newHeight = $('#mainHeader').outerHeight(true)
+            $('.container').css('padding-top', newHeight)
+        }
+
         function setFilterButtons( filterString ) {
             // filterString
             // ".for-parents.for-teachers.for-researchers"
@@ -106,6 +115,7 @@ if ( path.match(/^\/resources/) ) {
                 })
 
                 viewAll.classList.add('selected')
+                selected = $(viewAll)
             } else {
             //    viewAll.classList.remove('selected')
                 filters = document.querySelectorAll('.filter')
@@ -114,11 +124,14 @@ if ( path.match(/^\/resources/) ) {
                 forEach.call(filters, function(el) {
                     if ( newFilters.indexOf(el.dataset.filter) !== -1 ) {
                         el.classList.add('selected')
+                        selected = $().add(el)
                     } else {
                         el.classList.remove('selected')
                     }
                 })
             }
+
+            updateDescription(selected)
         }
 
         function filter( filterChoice, addOrRemove ) {
@@ -230,6 +243,3 @@ if ( path.match(/^\/resources/) ) {
     }
 
 }
-
-//    return iso
-//})

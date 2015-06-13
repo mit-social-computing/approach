@@ -947,8 +947,10 @@ blockquote cite, .logo, .main-menu, .subnav > ul > li, .mask p, .icon-plus, .for
   max-width: 865px;
   margin: 0 auto;
   position: relative;
+  -webkit-transition: padding-top 200ms ease;
+  transition: padding-top 200ms ease;
 }
-/* line 42, ../../../source/sass/_base_styles.scss */
+/* line 44, ../../../source/sass/_base_styles.scss */
 .resources .container {
   display: block;
 }
@@ -975,59 +977,59 @@ blockquote cite, .logo, .main-menu, .subnav > ul > li, .mask p, .icon-plus, .for
   }
 }
 
-/* line 56, ../../../source/sass/_base_styles.scss */
+/* line 58, ../../../source/sass/_base_styles.scss */
 .container-flush {
   max-width: none;
   width: 100%;
   min-height: 100%;
 }
-/* line 61, ../../../source/sass/_base_styles.scss */
+/* line 63, ../../../source/sass/_base_styles.scss */
 .container-flush.container.sticky {
   padding: 0;
 }
 
-/* line 66, ../../../source/sass/_base_styles.scss */
+/* line 68, ../../../source/sass/_base_styles.scss */
 .touch :not(.contact) .container {
   display: block;
 }
 
-/* line 70, ../../../source/sass/_base_styles.scss */
+/* line 72, ../../../source/sass/_base_styles.scss */
 .touch .container {
   min-height: 100%;
 }
 
 @media only screen and (min-width: 40.063em) {
-  /* line 75, ../../../source/sass/_base_styles.scss */
+  /* line 77, ../../../source/sass/_base_styles.scss */
   .container.sticky {
     padding-top: 135px;
     margin-bottom: 1rem;
   }
 
-  /* line 80, ../../../source/sass/_base_styles.scss */
+  /* line 82, ../../../source/sass/_base_styles.scss */
   .about .container.sticky {
     padding-top: 180px;
   }
 
-  /* line 84, ../../../source/sass/_base_styles.scss */
+  /* line 86, ../../../source/sass/_base_styles.scss */
   .resources .container.sticky {
     padding-top: 185px;
   }
 
-  /* line 88, ../../../source/sass/_base_styles.scss */
+  /* line 90, ../../../source/sass/_base_styles.scss */
   .apply .container.sticky {
     margin-bottom: 0;
   }
 }
-/* line 93, ../../../source/sass/_base_styles.scss */
+/* line 95, ../../../source/sass/_base_styles.scss */
 blockquote {
   margin: 0 0 1rem;
   border: none;
 }
-/* line 97, ../../../source/sass/_base_styles.scss */
+/* line 99, ../../../source/sass/_base_styles.scss */
 blockquote > p {
   margin-top: 0;
 }
-/* line 101, ../../../source/sass/_base_styles.scss */
+/* line 103, ../../../source/sass/_base_styles.scss */
 blockquote,
 blockquote cite {
   font-family: kim;
@@ -1039,18 +1041,18 @@ blockquote cite {
   padding: 0 5px;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 101, ../../../source/sass/_base_styles.scss */
+  /* line 103, ../../../source/sass/_base_styles.scss */
   blockquote,
   blockquote cite {
     padding: 0 95px;
   }
 }
-/* line 118, ../../../source/sass/_base_styles.scss */
+/* line 120, ../../../source/sass/_base_styles.scss */
 blockquote cite {
   font-style: normal;
 }
 
-/* line 123, ../../../source/sass/_base_styles.scss */
+/* line 125, ../../../source/sass/_base_styles.scss */
 a {
   text-decoration: none;
   color: #f77e85;
@@ -1059,12 +1061,12 @@ a {
   -webkit-transition: border-bottom-color 150ms ease, color 150ms ease;
   transition: border-bottom-color 150ms ease, color 150ms ease;
 }
-/* line 130, ../../../source/sass/_base_styles.scss */
+/* line 132, ../../../source/sass/_base_styles.scss */
 a:hover {
   border-bottom-color: #fdc52f;
 }
 
-/* line 135, ../../../source/sass/_base_styles.scss */
+/* line 137, ../../../source/sass/_base_styles.scss */
 a.tall-link {
   height: 18px;
   pointer-events: none;
@@ -1072,37 +1074,37 @@ a.tall-link {
   border: none;
 }
 @media only screen and (min-width: 40.063em) {
-  /* line 135, ../../../source/sass/_base_styles.scss */
+  /* line 137, ../../../source/sass/_base_styles.scss */
   a.tall-link {
     height: 22px;
     pointer-events: all;
     color: #d9959e;
     border-bottom: 1px solid rgba(253, 197, 47, 0);
   }
-  /* line 147, ../../../source/sass/_base_styles.scss */
+  /* line 149, ../../../source/sass/_base_styles.scss */
   a.tall-link:hover {
     border-bottom-color: #fdc52f;
   }
-  /* line 151, ../../../source/sass/_base_styles.scss */
+  /* line 153, ../../../source/sass/_base_styles.scss */
   a.tall-link.disabled {
     color: #663366;
     pointer-events: none;
   }
 }
 
-/* line 158, ../../../source/sass/_base_styles.scss */
+/* line 160, ../../../source/sass/_base_styles.scss */
 p {
   letter-spacing: 1px;
 }
 
-/* line 163, ../../../source/sass/_base_styles.scss */
+/* line 165, ../../../source/sass/_base_styles.scss */
 button {
   -moz-appearance: none;
   -webkit-appearance: none;
   border: none;
 }
 
-/* line 168, ../../../source/sass/_base_styles.scss */
+/* line 170, ../../../source/sass/_base_styles.scss */
 i {
   font-style: normal;
 }

@@ -39,6 +39,8 @@ time {
     margin: 0 auto;
     position: relative;
 
+    @include transition(padding-top 200ms ease);
+
     .resources & {
         display: block;
     }

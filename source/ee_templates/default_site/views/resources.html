@@ -15,9 +15,9 @@
 {exp:ce_cache:escape}
 <script>
     var WF = {};
-    WF.filters = [];
+    WF.filters = {};
     {exp:channel:categories show_empty="no" category_id="1" style="linear"}
-    WF.filters.push({ name: "{category_name}", selector: "{category_url_title}" })
+    WF.filters["{category_url_title}"] = { name: "{category_name}", description: "{category_description}" }
     {/exp:channel:categories}
 </script>
 {/exp:ce_cache:escape}
