@@ -35,6 +35,7 @@
                 <nav class="main-menu" id="nav">
                     <ul>
                         <li{if segment_1 == ''} class="selected"{/if}><a href="/">home</a></li>
+                        {exp:ce_cache:escape}
                         {exp:structure:nav 
                             status="not closed"
                             start_from="/"
@@ -42,6 +43,7 @@
                             add_unique_ids="entry_id"
                             include_ul="no"
                             current_class="selected"}
+                        {/exp:ce_cache:escape}
                     </ul>
                 </nav>
                 {if segment_1 == 'resources' && segment_2 == ''}

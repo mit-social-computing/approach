@@ -22,8 +22,7 @@ if ( path.match(/^\/resources/) ) {
             filterStore = {}, f,
             forEach = Array.prototype.forEach,
             topPaddingMQ = window.matchMedia('(min-width: 40.063em)'),
-            viewAllDescription = 'This section of the website contains resources for teachers, parents, and researchers interested in Montessori and the Wildflower approach.  There are resources for teachers who are starting Wildflower schools in the teacher culture and teacher resources sections.  There are essays for parents interested in raising their child in a Montessori way in the parent education section.  And there is information for researchers and practitioners in the montessori materials section.'
-
+            viewAllDescription = 'This section of the website contains resources for teachers, parents, and researchers interested in Montessori and the Wildflower approach.  Click on the tags above to navigate.'
 
         function filterInit() {
             var tpl = '<li><button class="filter"></button></li>',
@@ -252,6 +251,7 @@ if ( path.match(/^\/resources/) ) {
                 history.replaceState({ filter: '*' }, '')
                 sessionStorage.setItem('filter', '*')
                 filterStore['*'] = true
+                updateDescription($('[data-filter="*"]').get(0))
             }
         }
     }

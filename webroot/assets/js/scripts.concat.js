@@ -21335,8 +21335,6 @@ if ( path === '/' ) {
 /*global Isotope,imagesLoaded,s,sessionStorage*/
 'use strict';
 
-// define(['isotope', 'imagesloaded'],
-// function(Isotope, imagesLoaded) {
 if ( path.match(/^\/resources/) ) {
     if ( path.split('/').length === 2 ) {
 
@@ -21355,27 +21353,28 @@ if ( path.match(/^\/resources/) ) {
             iso,
             imgWatcher,
             filterStore = {}, f,
-            forEach = Array.prototype.forEach
-
+            forEach = Array.prototype.forEach,
+            topPaddingMQ = window.matchMedia('(min-width: 40.063em)'),
+            viewAllDescription = 'This section of the website contains resources for teachers, parents, and researchers interested in Montessori and the Wildflower approach.  Click on the tags above to navigate.'
 
         function filterInit() {
             var tpl = '<li><button class="filter"></button></li>',
                 $container = $('<div/>').html(tpl),
                 filters = []
 
-            // $('.grid-item').each(function() {
-            //     var classes = $(this).attr('class').split(' ')
-            //     classes.forEach(function(c, i) {
-            //         if ( !c.match(/grid-item|loaded/) && filters.indexOf(c) === -1 ) {
-            //             filters.push(c)
-            //         }
-            //     })
-            // })
+            Object.keys(WF.filters).forEach(function(k) {
+                var $filter = $($container.html()),
+                    selector = k,
+                    name = WF.filters[k].name,
+                    description = WF.filters[k].description
 
-            WF.filters.forEach(function(f, i) {
-                var $filter = $($container.html())
-                $filter.find('.filter').attr('data-filter', f.selector).html(f.name.toLowerCase())
-                filters[i] = $filter
+                $filter
+                    .find('.filter')
+                    .attr('data-filter', selector)
+                    .data('info', description)
+                    .html(name.toLowerCase())
+
+                filters.push($filter)
             })
 
             $('#filters').prepend(filters).addClass('loaded')
@@ -21418,6 +21417,20 @@ if ( path.match(/^\/resources/) ) {
             return selected.length ? '.' + selected.join('.') : '*'
         }
 
+        function updateDescription(selected) {
+            var filterObj = WF.filters[selected.attr('data-filter')],
+                // view all (*) doesn't have a filter object
+                d = filterObj ? filterObj.description : viewAllDescription,
+                newHeight
+
+            $('#filterInfo').html(d)
+
+            if ( topPaddingMQ.matches ) {
+                newHeight = $('#mainHeader').outerHeight(true)
+                $('.container').css('padding-top', newHeight)
+            }
+        }
+
         function setFilterButtons( filterString ) {
             // filterString
             // ".for-parents.for-teachers.for-researchers"
@@ -21439,6 +21452,7 @@ if ( path.match(/^\/resources/) ) {
                 })
 
                 viewAll.classList.add('selected')
+                selected = $(viewAll)
             } else {
             //    viewAll.classList.remove('selected')
                 filters = document.querySelectorAll('.filter')
@@ -21447,11 +21461,14 @@ if ( path.match(/^\/resources/) ) {
                 forEach.call(filters, function(el) {
                     if ( newFilters.indexOf(el.dataset.filter) !== -1 ) {
                         el.classList.add('selected')
+                        selected = $().add(el)
                     } else {
                         el.classList.remove('selected')
                     }
                 })
             }
+
+            updateDescription(selected)
         }
 
         function filter( filterChoice, addOrRemove ) {
@@ -21498,6 +21515,15 @@ if ( path.match(/^\/resources/) ) {
                 if ( window.sessionStorage ) {
                     sessionStorage.setItem('filter', f)
                 }
+            }
+        })
+
+        topPaddingMQ.addListener(function(mql) {
+            if ( mql.matches ) {
+                newHeight = $('#mainHeader').outerHeight(true)
+                $('.container').css('padding-top', newHeight)
+            } else {
+                $('.container').css('padding-top', 0)
             }
         })
 
@@ -21558,14 +21584,12 @@ if ( path.match(/^\/resources/) ) {
                 history.replaceState({ filter: '*' }, '')
                 sessionStorage.setItem('filter', '*')
                 filterStore['*'] = true
+                updateDescription($('[data-filter="*"]').get(0))
             }
         }
     }
 
 }
-
-//    return iso
-//})
 
 //lightbox.js
 'use strict';
@@ -21640,15 +21664,15 @@ if ( path.match(/^\/resources/) || path.match(/^\/blog/) ) {
 // forms.js
 'use strict';
 
-if ( path.match(/^\/schools/) ) {
-    var viewerHeight = 0
+if ( path.match(/^\/contact/) ) {
+    // var viewerHeight = 0
 
-    $('#viewer').children().each(function() {
-        var h = $(this).outerHeight(true)
-        if ( h > viewerHeight ) {
-            viewerHeight = h
-        }
-    }).end().height(viewerHeight)
+    // $('#viewer').children().each(function() {
+    //     var h = $(this).outerHeight(true)
+    //     if ( h > viewerHeight ) {
+    //         viewerHeight = h
+    //     }
+    // }).end().height(viewerHeight)
 
     $('#viewer').find('form').submit(function(e) {
         e.preventDefault()
@@ -21657,13 +21681,21 @@ if ( path.match(/^\/schools/) ) {
             action = this.action
 
         $.post(action, values, function(res, msg, promise) {
+            var text
             if (res.success) {
-                $('#successBox')
+                if ( $(this).parents('#contact_form') ) {
+                    text = 'Your note has been sent.'
+                } else {
+                    text = 'You have signed up to be notified of upcoming info sessions.'
+                }
+
+                $(this).find('.success-box')
                     .addClass('show')
-                    .text('success. thank you.')
+                    .height(25)
+                    .text(text)
                     .siblings().hide()
             } else {
-                var $errors = $('#errors')
+                var $errors = $(this).find('.errors-list')
 
                 $errors.empty()
                 Object.keys(res.errors).forEach(function(key) {
@@ -21672,11 +21704,11 @@ if ( path.match(/^\/schools/) ) {
                     }))
                 })
 
-                $('#errorsBox')
+                $(this).find('.errors-box')
                     .height($errors.height() + 15)
                     .addClass('show')
             }
-        })
+        }.bind(this))
     })
 }
 
