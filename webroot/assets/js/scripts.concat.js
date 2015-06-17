@@ -21417,8 +21417,8 @@ if ( path.match(/^\/resources/) ) {
             return selected.length ? '.' + selected.join('.') : '*'
         }
 
-        function updateDescription(selected) {
-            var filterObj = WF.filters[selected.attr('data-filter')],
+        function updateDescription($selected) {
+            var filterObj = WF.filters[$selected.attr('data-filter')],
                 // view all (*) doesn't have a filter object
                 d = filterObj ? filterObj.description : viewAllDescription,
                 newHeight
@@ -21584,7 +21584,7 @@ if ( path.match(/^\/resources/) ) {
                 history.replaceState({ filter: '*' }, '')
                 sessionStorage.setItem('filter', '*')
                 filterStore['*'] = true
-                updateDescription($('[data-filter="*"]').get(0))
+                updateDescription($('[data-filter="*"]'))
             }
         }
     }
