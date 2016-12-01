@@ -16,7 +16,7 @@
                 disable="member_data|categories|pagination"
                 parent_id="{structure:top:entry_id}"}
 
-                {stash:title}{exp:ce_str:ing lowercase}{title}{/exp:ce_str:ing}{/stash:title}
+                {stash:title}{exp:ce_str:ing url_title}{title}{/exp:ce_str:ing}{/stash:title}
                 {stash:content}
                     {exp:stash:parse}{exp:ce_img:bulk}{page_content}{/exp:ce_img:bulk}{/exp:stash:parse}
                 {/stash:content}
