@@ -18,12 +18,18 @@ class Map_marker_ft extends EE_Fieldtype
 	);
 
   var $defaults = array(
+    'landmark_label' => '',
     'map_center_lat' => 0,
     'map_center_long' => 0,
-    'map_zoom' => 10,
+    'map_zoom' => 2,
     'landmarks' => array());
 	
 	// --------------------------------------------------------------------
+  
+  function install()
+  {
+    return $this->defaults;
+  }
 	
 	/**
 	 * Display Field on Publish
