@@ -1,18 +1,18 @@
-/*global $,L,window,document*/
+/*global $,L*/
 $(function(){
-    function addMarker(ll, type) {
-        var popup, school, marker
-        if ( type === 'school' && map.markerLayer.school ) {
-            school = map.markerLayer.getLayer(map.markerLayer.school)
-            school.setLatLng(ll)
-            $('#mapmarker-' + school._leaflet_id + '-latlng').val([ll.lat, ll.lng])
-        } else {
-            popup = $('<a href="#" id="delete">Delete this landmark?</a>')
+    function addMarker(ll/*, type*/) {
+        var popup, marker, label = mapmarker.config.landmarkLabel
+        // if ( type === 'school' && map.markerLayer.school ) {
+        //     school = map.markerLayer.getLayer(map.markerLayer.school)
+        //     school.setLatLng(ll)
+        //     $('#mapmarker-' + school._leaflet_id + '-latlng').val([ll.lat, ll.lng])
+        // } else {
+            popup = $('<a href="#" id="delete">Delete this ' + label + '?</a>')
             marker = L.marker(ll, {
                 draggable: true,
                 icon: L.mapbox.marker.icon({
                     'marker-size': 'large',
-                    'marker-symbol': type === 'school' ? 'building' : 'marker-stroked',
+                    'marker-symbol': 'building',
                     'marker-color': '#fff'
                 })
             })
@@ -21,7 +21,7 @@ $(function(){
             popup.data('marker', marker)
 
             marker.bindPopup(popup[0])
-            marker.type = type
+            // marker.type = type
 
             marker.on('mouseover mouseout', hightlightInput)
             marker.on('dragend', dragMarkerHandler)
@@ -31,11 +31,7 @@ $(function(){
             })
 
             marker.addTo(map.markerLayer)
-
-            if ( type === 'school' ) {
-                map.markerLayer.school = marker._leaflet_id
-            }
-        }
+        // }
 
         return marker
     }
@@ -54,8 +50,7 @@ $(function(){
 
     function landmarkLabelToggle(e) {
         var markerId = $(e.target).data('markerId'),
-            marker = map.markerLayer.getLayer(markerId),
-            popup = $('<a href="#" id="delete">Delete this landmark?</a>')
+            marker = map.markerLayer.getLayer(markerId)
 
         if (e.type === 'focusin') {
             marker.setPopupContent(e.target.value || '')
@@ -71,21 +66,22 @@ $(function(){
         var marker = $(e.target).data('marker')
         map.markerLayer.removeLayer(marker)
 
-        if (marker.type === 'school') {
-            map.markerLayer.school = null
-        }
+        // if (marker.type === 'school') {
+        //     map.markerLayer.school = null
+        // }
     }
 
     function buildMenu() {
         var $menu = $('<ul id="landmarkMenu"/>')
-                .append('<li id="schoolOption" />')
+                // .append('<li id="schoolOption" />')
                 .append('<li id="landmarkOption" />'),
-            $landmarkLink = $('<a href="#" id="landmarkLink" />').text('Add Landmark Here'),
-            schoolText = map.markerLayer.school ? 'Replace School' : 'Add School Here',
-            $schoolLink = $('<a href="#" id="schoolLink" />').text(schoolText)
+            label = mapmarker.config.landmarkLabel,
+            $landmarkLink = $('<a href="#" id="landmarkLink" />').text('Add ' + label + ' Here')
+            // schoolText = map.markerLayer.school ? 'Replace School' : 'Add School Here',
+            // $schoolLink = $('<a href="#" id="schoolLink" />').text(schoolText)
 
-        $menu.find('#schoolOption').append($landmarkLink)
-        $menu.find('#landmarkOption').append($schoolLink)
+        // $menu.find('#schoolOption').append($landmarkLink)
+        $menu.find('#landmarkOption').append($landmarkLink)
 
         return $menu
     }
@@ -104,11 +100,12 @@ $(function(){
 
         var latlng = $(e.target).parents('#landmarkMenu').data('latlng')
 
-        if (e.target.id === 'landmarkLink') {
-            addMarker(latlng, 'landmark')
-        } else if (e.target.id === 'schoolLink') {
-            addMarker(latlng, 'school')
-        }
+        addMarker(latlng)
+        // if (e.target.id === 'landmarkLink') {
+        //     addMarker(latlng, 'landmark')
+        // } else if (e.target.id === 'schoolLink') {
+        //     addMarker(latlng, 'school')
+        // }
 
         map.closePopup()
     }
@@ -131,27 +128,28 @@ $(function(){
 
     function inputHandler(e) {
         var $list = $('#landmarkList'),
+            label = mapmarker.config.landmarkLabel,
             $label, $latlng, markerId = e.layer._leaflet_id
 
         if ( e.type === 'layeradd' ) {
             $label = $('<input type="text" />').attr({
-                placeholder : 'Enter a label for this landmark',
+                placeholder : 'Enter a label for this ' + label,
                 class : 'mapmarker-' + markerId,
-                name : 'mapmarker__school_map[landmarks][' + markerId + '][label]'
+                name : 'mapmarker[landmarks][' + markerId + '][label]'
             }).data('markerId', markerId)
 
             $latlng = $('<input type="hidden" />').attr({
                 class : 'mapmarker-' + markerId,
-                name : 'mapmarker__school_map[landmarks][' + markerId + '][latlng]',
+                name : 'mapmarker[landmarks][' + markerId + '][latlng]',
                 id : 'mapmarker-' + markerId
             }).val( e.layer._latlng.toString().match(/[^A-Za-z\(\)]+/) )
 
-            $type = $('<input type="hidden" />').attr({
-                class : 'mapmarker-' + markerId,
-                name : 'mapmarker__school_map[landmarks][' + markerId + '][type]'
-            }).val( e.layer.type )
+            // $type = $('<input type="hidden" />').attr({
+            //     class : 'mapmarker-' + markerId,
+            //     name : 'mapmarker__school_map[landmarks][' + markerId + '][type]'
+            // }).val( e.layer.type )
 
-            $list.append($label).append($latlng).append($type)
+            $list.append($label).append($latlng)
 
         } else if ( e.type === 'layerremove' ) {
             $('.mapmarker-' + markerId).remove()
@@ -172,10 +170,8 @@ $(function(){
     var mapId = 'noslouch.hp1dlcam',
         map = L.mapbox.map('map', mapId)
             .setView(
-                mapmarker.mapCenter ?
-                    L.latLng(mapmarker.mapCenter[0], mapmarker.mapCenter[1]) :
-                    [0, 0],
-                mapmarker.zoom ? mapmarker.zoom : 10 )
+                L.latLng(mapmarker.mapCenter[0], mapmarker.mapCenter[1]),
+                mapmarker.zoom)
 
     map.markerLayer.school = null
     map.addControl(L.mapbox.geocoderControl(mapId, {
@@ -187,7 +183,7 @@ $(function(){
             setTimeout(function(){
                 mapmarker.landmarks.forEach(function(landmark){
                     var ll = L.latLng(landmark.lat, landmark.long),
-                        marker = addMarker(ll, landmark.type)
+                        marker = addMarker(ll)
 
                     // all inputs for this landmark
                     $('.mapmarker-' + landmark.landmark_id).each(function(idx, el) {
