@@ -111,6 +111,26 @@ class Map_marker_ft extends EE_Fieldtype
        'landmark_label' => ee()->input->post('landmark_label')
      );
    }
+   
+   function replace_tag($data, $params = array(), $tagdata = FALSE)
+   {
+      $data = unserialize(base64_decode($data));
+      if (empty($data['landmarks']))
+      {
+        return FALSE;
+      }
+      else
+      {
+        $encoded_data = json_encode($data);
+        return <<<TAG
+<div id="map" class="map-display">
+<script>
+var mapmarker = $encoded_data;
+</script>
+</div>
+TAG;
+      }
+  }
 	
 	// --------------------------------------------------------------------
 		
@@ -120,7 +140,7 @@ class Map_marker_ft extends EE_Fieldtype
         ee()->cp->add_to_head("<link href='".URL_THIRD_THEMES."/map_marker/css/landmark_picker.css' rel='stylesheet' />");
 
         ee()->cp->add_to_foot("<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>");
-        ee()->cp->add_to_foot("<script src='".URL_THIRD_THEMES."/map_marker/js/landmark_picker.js'");
+        ee()->cp->add_to_foot("<script src='".URL_THIRD_THEMES."/map_marker/js/landmark_picker.js'></script>");
     }
 
 	// --------------------------------------------------------------------
