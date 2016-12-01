@@ -78,6 +78,23 @@ class Map_marker_ft extends EE_Fieldtype
       return serialize($to_save);
       
    }
+   
+   function display_settings($data)
+   {
+     $label = isset($data['landmark_label']) ? $data['landmark_label'] : $this->settings['landmark_label'];
+     
+     ee()->table->add_row(
+       'Landmark Label',
+       form_input('landmark_label', $label)
+     );
+   }
+   
+   function save_settings($data)
+   {
+     return array(
+       'landmark_label' => ee()->input->post('landmark_label')
+     );
+   }
 	
 	// --------------------------------------------------------------------
 		
