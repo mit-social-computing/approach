@@ -19,3 +19,15 @@
     {/exp:low_variables:pair}
 
 {/exp:stash:set_list}
+
+{exp:stash:set_list
+  name="schools"
+  parse="yes"
+  parse_depth="2"}
+    
+    {exp:low_variables:pair var="home_schools"}
+          {stash:name}{title}{/stash:name}
+          {stash:url}{structure:page_url_for:{entry_id}}{/stash:url}
+    {/exp:low_variables:pair}
+    
+{/exp:stash:set_list}

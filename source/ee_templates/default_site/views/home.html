@@ -9,7 +9,9 @@
         <div class="text-body text-body--purple text-body--spacer text-body--bold">
             <p>Want to learn more about Wildflower schools?</p>
             <p>
-                <a class="btn btn--yellow btn--inline" href="/contact#attend">Attend an Info Session</a> 
+              {exp:stash:get_list name="schools"}
+                <a class="btn btn--yellow btn--inline" href="{url}">{name}</a> 
+              {/exp:stash:get_list}
             </p>
         </div>
         <!-- .text-body -->
