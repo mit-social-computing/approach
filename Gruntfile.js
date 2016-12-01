@@ -102,8 +102,8 @@ module.exports = function(grunt) {
         },
         modernizr : {
             dist : {
-                devFile : 'source/bower_components/modernizr/modernizr.js',
-                outputFile :  'source/bower_components/modernizr/modernizr.build.js',
+                devFile : 'node_modules/grunt-modernizr/build/modernizr-custom.js',
+                dest :  'source/bower_components/modernizr/modernizr.build.js',
                 uglify : false,
                 extra : {
                     shiv : false,
