@@ -17,7 +17,7 @@
 
     {if segment_1 == ''}
     <body class="home" id="home">
-    {if:elseif segment_1 == 'summary'}
+    {if:elseif segment_1 == 'about' || segment_1 == 'montessori'}
     <body class="about" id="about">
     {if:elseif segment_2 != ''}
     <body class="{segment_1}-detail" id="{segment_1}-detail">
@@ -62,7 +62,7 @@
                 </div>
                 {/if}
 
-                {if segment_1 == 'summary'}
+                {if:elseif segment_1 == 'about' || segment_1 == 'montessori'}
                 <nav class="subnav" id="subnav">
                     <ul>
                         {exp:structure:nav 
