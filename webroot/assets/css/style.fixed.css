@@ -1939,11 +1939,16 @@ i {
 }
 
 /* line 43, ../../../source/sass/modules/_buttons.scss */
+.btn--inline.btn--stacked {
+  margin-bottom: 15px;
+}
+
+/* line 47, ../../../source/sass/modules/_buttons.scss */
 .btn--yellow {
   color: black;
   background-color: #ffca2b;
 }
-/* line 47, ../../../source/sass/modules/_buttons.scss */
+/* line 51, ../../../source/sass/modules/_buttons.scss */
 .btn--yellow:hover {
   background-color: rgba(255, 202, 43, 0.5);
 }
