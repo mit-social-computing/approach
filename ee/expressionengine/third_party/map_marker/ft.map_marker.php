@@ -44,11 +44,12 @@ class Map_marker_ft extends EE_Fieldtype
 	{
         if ( ! empty($data))
         {
-            $unseralized = unserialize($data);
+            $data = unserialize(base64_decode($data));
+            $data['landmark_label'] = $this->settings['landmark_label'];
         }
         else 
         {
-          foreach($this->defaults as $key => $val)
+          foreach($this->settings as $key => $val)
           {
             $data[$key] = $val;
           }
