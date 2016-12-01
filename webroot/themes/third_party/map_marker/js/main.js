@@ -21,19 +21,21 @@ function addMarker(ll, map) {
   return marker
 }
 
-$(function() {
-  var mapId = 'noslouch.hp1dlcam',
-    map = L.mapbox.map('map', mapId)
-      .setView(
-        L.latLng(mapmarker.map_center_lat, mapmarker.map_center_long),
-        mapmarker.map_zoom)
+if (typeof L !== 'undefined') {
+  $(function() {
+    var mapId = 'noslouch.hp1dlcam',
+      map = L.mapbox.map('map', mapId)
+        .setView(
+          L.latLng(mapmarker.map_center_lat, mapmarker.map_center_long),
+          mapmarker.map_zoom)
 
-  if ( mapmarker.landmarks ) {
-    map.whenReady(function() {
-      mapmarker.landmarks.forEach(function(landmark){
-        var ll = L.latLng(landmark.lat, landmark.long)
-        addMarker(ll, map)
+    if ( mapmarker.landmarks ) {
+      map.whenReady(function() {
+        mapmarker.landmarks.forEach(function(landmark){
+          var ll = L.latLng(landmark.lat, landmark.long)
+          addMarker(ll, map)
+        })
       })
-    })
-  }
-})
+    }
+  })
+}
