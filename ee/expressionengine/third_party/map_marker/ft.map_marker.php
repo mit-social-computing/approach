@@ -67,15 +67,30 @@ class Map_marker_ft extends EE_Fieldtype
 	 * @param	submitted field data
 	 * @return	string to save
 	 */
-   function save($data)
+   function save()
    {
-      $to_save = array('map' => array(), 'landmarks' => array());
-      foreach($this->defaults as $key => $val)
+      $data = ee()->input->post('mapmarker');
+      $to_save = array('landmarks' => array());
+      if ( isset($data['landmarks']) )
       {
-          $to_save['map'][] = ee()->input->post($key.'_field_id'.$this->field_id);
+        foreach($data['landmarks'] as $id => $landmark)
+        {
+          list($lat, $lng) = explode(',', $landmark['latlng']);
+          $to_save['landmarks'][] = array(
+            'landmark_id' => $id,
+            'label' => $landmark['label'],
+            'lat' => trim($lat),
+            'long' => trim($lng)
+          );
+        }
       }
+
+      $to_save['map_zoom'] = $data['zoom'];
+      list($lat, $long) = explode(',', $data['center']);
+      $to_save['map_center_lat'] = $lat;
+      $to_save['map_center_long'] = $long;
       
-      return serialize($to_save);
+      return base64_encode(serialize($to_save));
       
    }
    
