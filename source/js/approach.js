@@ -84,7 +84,7 @@ $(function() {
 
     if ( matchMedia ) {
         mql = window.matchMedia('(min-width: 40em)')
-        if ( !Modernizr.touch && mql.matches ) {
+        if ( !Modernizr.touchevents && mql.matches ) {
             $('#slideshow').slick(slickOps)
         }
 

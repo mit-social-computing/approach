@@ -1002,12 +1002,12 @@ blockquote cite, .logo, .main-menu, .subnav > ul > li, .mask p, .icon-plus, .for
 }
 
 /* line 68, ../../../source/sass/_base_styles.scss */
-.touch :not(.contact) .container {
+.touchevents :not(.contact) .container {
   display: block;
 }
 
 /* line 72, ../../../source/sass/_base_styles.scss */
-.touch .container {
+.touchevents .container {
   min-height: 100%;
 }
 
@@ -2147,8 +2147,8 @@ i {
 }
 
 /* line 148, ../../../source/sass/modules/_slideshow.scss */
-.touch .slick-prev,
-.touch .slick-next {
+.touchevents .slick-prev,
+.touchevents .slick-next {
   display: none !important;
 }
 

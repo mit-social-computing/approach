@@ -65,11 +65,11 @@ time {
     }
 }
 
-.touch :not(.contact) .container {
+.touchevents :not(.contact) .container {
     display: block;
 }
 
-.touch .container {
+.touchevents .container {
     min-height: 100%;
 }
 

@@ -95,7 +95,7 @@ function subNavLoader(section) {
         }
     })
 
-    if ( !Modernizr.touch &&
+    if ( !Modernizr.touchevents &&
           !document.getElementById('home') &&
           !document.getElementById('schools') &&
           !document.getElementById('principles') ) {
