@@ -13,11 +13,6 @@
                     class="mapmarker-<?=$l['landmark_id']?>" 
                     value="<?=$l['lat']?>, <?=$l['long']?>"
                     name="mapmarker[landmarks][<?=$l['landmark_id']?>][latlng]">
-
-            <input  type="hidden" 
-                    class="mapmarker-<?=$l['landmark_id']?>" 
-                    value="<?=$l['type']?>"
-                    name="mapmarker[landmarks][<?=$l['landmark_id']?>][type]">
         <?php endforeach ?>
     </fieldset>
     <input  type="hidden" 
@@ -33,7 +28,11 @@
 <!-- .wildflower-map -->
 
 <script>
-    var mapmarker = {};
+    var mapmarker = {
+      config: {
+        'landmarkLabel': <?=json_encode($landmark_label)?>
+      }
+    };
     mapmarker.landmarks = <?=json_encode($landmarks)?>;
     mapmarker.zoom = <?=$map_zoom?>;
     mapmarker.mapCenter = [<?=$map_center_lat?>, <?=$map_center_long?>]
