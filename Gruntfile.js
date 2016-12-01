@@ -16,6 +16,7 @@ module.exports = function(grunt) {
         , 'source/js/lightbox.js'
         , 'source/js/forms.js'
         , 'source/js/approach.js'
+        , 'webroot/themes/third_party/map_marker/js/main.js'
     ]
 
     // Project configuration.
@@ -46,11 +47,11 @@ module.exports = function(grunt) {
                 tasks : ['autoprefixer:css']
             },
             css : {
-                files : ['webroot/assets/css/style.fixed.css'],
+                files : ['webroot/themes/third_party/map_marker/css/landmark_picker.css', 'webroot/assets/css/style.fixed.css'],
                 tasks : ['concat:css']
             },
             scripts : {
-                files : ['source/js/**/*.js'],
+                files : [mainJs],
                 tasks : ['uglify:dev', 'concat:js']
             }
         },
@@ -132,6 +133,7 @@ module.exports = function(grunt) {
                 files :  {
                     'webroot/assets/css/style.concat.css' : [
                         //'source/bower_components/slick-carousel/slick/slick.css'
+                        'webroot/themes/third_party/map_marker/css/landmark_picker.css',
                         'webroot/assets/css/style.fixed.css'
                     ]
                 }
