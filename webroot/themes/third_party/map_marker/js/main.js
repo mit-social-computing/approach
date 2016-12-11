@@ -33,6 +33,7 @@ if (typeof L !== 'undefined') {
       map.whenReady(function() {
         mapmarker.landmarks.forEach(function(landmark){
           var ll = L.latLng(landmark.lat, landmark.long)
+          ll.label = landmark.label;
           addMarker(ll, map)
         })
       })

@@ -50,3 +50,7 @@
 .mapmarker-map .leaflet-popup-content {
     padding: 19px 10px 16px;
 }
+
+.leaflet-popup-content {
+  padding: 15px 10px 10px;
+}
