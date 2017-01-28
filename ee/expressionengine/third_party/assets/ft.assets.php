@@ -616,7 +616,7 @@ class Assets_ft extends EE_Fieldtype
 				$this->field_id = $this->settings['grid_field_id'];
 			}
 
-			$sql = "SELECT DISTINCT a.source_type, a.folder_id, a.file_name, a.file_id, af.source_id, af.filedir_id
+			$sql = "SELECT DISTINCT  a.source_type, a.folder_id, a.file_name, a.file_id, af.source_id, af.filedir_id, ae.sort_order
 			        FROM exp_assets_files AS a
 			        INNER JOIN exp_assets_selections AS ae ON ae.file_id = a.file_id
 			        INNER JOIN exp_assets_folders AS af ON af.folder_id = a.folder_id
@@ -1460,7 +1460,7 @@ class Assets_ft extends EE_Fieldtype
 		else
 		{
 
-			$sql = 'SELECT DISTINCT a.* FROM exp_assets_files AS a
+			$sql = 'SELECT DISTINCT a.*, ae.sort_order FROM exp_assets_files AS a
 				INNER JOIN exp_assets_folders AS af ON af.folder_id = a.folder_id
 				INNER JOIN exp_assets_selections AS ae ON ae.file_id = a.file_id';
 
