@@ -547,7 +547,7 @@ class Playa
 			{
 				case 'children':
 
-					$sql = 'SELECT DISTINCT(rel.child_entry_id) AS entry_id
+					$sql = 'SELECT DISTINCT rel.child_entry_id AS entry_id, rel.parent_entry_id, rel.parent_field_id, rel.parent_row_id, rel.parent_col_id, rel.parent_var_id, rel.rel_order
 					        FROM exp_playa_relationships rel';
 
 					if ($this->entry_ids)
