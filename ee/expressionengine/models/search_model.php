@@ -459,20 +459,24 @@ class Search_model extends CI_Model {
 				if ($key == 'channel_name')
 				{
 					$this->db->order_by('FIELD(channel_id, '.$channel_name_order.')', NULL, FALSE);
+					$this->db->select('channel_id');
 				}
 				elseif ($key == 'screen_name')
 				{
 					$this->db->order_by('FIELD(author_id, '.$screen_name_order.')', NULL, FALSE);
+					$this->db->select('author_id');
 				}
 				else
 				{
 					$this->db->order_by($key, $val);
+					$this->db->select($key);
 				}
 			}
 		}
 		else
 		{
 			$this->db->order_by('entry_date', 'desc');
+			$this->db->select('entry_date');
 		}
 
 		//$this->db->limit($data['perpage'], $data['rownum']);
